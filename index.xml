@@ -16,14 +16,13 @@
       <pubDate>Mon, 18 Nov 2019 19:02:57 +0800</pubDate>
       
       <guid>https://springboot.kr/posts/k8s/kubernetes-install/</guid>
-      <description>맥북에서 kubernetes 설치를 위해 상단바에 있는 도커를 클릭후
+      <description>Kubernetes Minikube 설치 맥북에서 kubernetes 설치를 위해 상단바에 있는 도커를 클릭후
 Preferences&amp;hellip; 를 클릭후 kubernetes 버튼을 눌러
 Enable Kubernetes를 체크 후 apply를 눌러 쿠버네티스를 활성화 시킨다.
 활성화가 되는 도중에는 오른쪽 하단에 Kubernetes is starting 이란 문구가 나오고
 활성화가 끝나면 오른쪽 하단에 Kubernetes is running 으로 나온다.
 다음으로 kubectl을 설치해 주자 kubernetes cli 툴이다.
-curl -LO &amp;quot;https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl&amp;quot; chmod +x ./kubectl sudo mv ./kubectl /usr/local/bin/kubectl  설치가 끝나면 version 체크로 확인을 해준다.
-kubectl version  Kubectl 설치가 끝나면 Minikube 설치를 해준다.</description>
+curl -LO &amp;quot;https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl&amp;quot; chmod +x ./kubectl sudo mv ./kubectl /usr/local/bin/kubectl  설치가 끝나면 version 체크로 확인을 해준다.</description>
     </item>
     
     <item>
