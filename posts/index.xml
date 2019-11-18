@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>GitHub Style</title>
-    <link>https://springboot.kr/</link>
-    <description>Recent content on GitHub Style</description>
+    <title>Posts on GitHub Style</title>
+    <link>https://springboot.kr/posts/</link>
+    <description>Recent content in Posts on GitHub Style</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Fri, 21 Jun 2019 14:24:00 +0800</lastBuildDate>
     
-	<atom:link href="https://springboot.kr/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://springboot.kr/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>

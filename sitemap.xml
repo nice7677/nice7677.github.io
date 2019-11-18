@@ -3,11 +3,47 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://springboot.kr/categories/</loc>
+    <loc>https://springboot.kr/</loc>
+    <lastmod>2019-06-21T14:24:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://springboot.kr/</loc>
+    <loc>https://springboot.kr/posts/</loc>
+    <lastmod>2019-06-21T14:24:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://springboot.kr/posts/effective-java/effective-fava-3e-02-03/</loc>
+    <lastmod>2019-06-21T14:24:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://springboot.kr/posts/effective-java/effective-fava-3e-02-02/</loc>
+    <lastmod>2019-06-20T14:23:57+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://springboot.kr/posts/effective-java/effective-fava-3e-02-01/</loc>
+    <lastmod>2019-06-19T14:23:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://springboot.kr/posts/junit-01/</loc>
+    <lastmod>2019-06-17T14:23:07+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://springboot.kr/posts/golang-go-pg-1/</loc>
+    <lastmod>2019-03-23T14:22:38+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://springboot.kr/posts/java-xml-to-json/</loc>
+    <lastmod>2019-03-22T14:21:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://springboot.kr/categories/</loc>
   </url>
   
   <url>
