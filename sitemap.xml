@@ -3,8 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://springboot.kr/about/</loc>
+    <lastmod>2019-11-15T19:34:39+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://springboot.kr/</loc>
-    <lastmod>2019-06-21T14:24:00+08:00</lastmod>
+    <lastmod>2019-11-15T19:34:39+08:00</lastmod>
   </url>
   
   <url>
