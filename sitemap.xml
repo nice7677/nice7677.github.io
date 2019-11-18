@@ -3,17 +3,17 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://springboot.kr/</loc>
-    <lastmod>2019-11-18T19:02:57+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://springboot.kr/posts/k8s/kubernetes-install/</loc>
     <lastmod>2019-11-18T19:02:57+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://springboot.kr/posts/</loc>
+    <lastmod>2019-11-18T19:02:57+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://springboot.kr/</loc>
     <lastmod>2019-11-18T19:02:57+08:00</lastmod>
   </url>
   
