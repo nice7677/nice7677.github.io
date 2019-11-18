@@ -165,7 +165,7 @@
             <a class="UnderlineNav-item mr-0 mr-md-1 mr-lg-3 " href="https://springboot.kr/posts/">
                 Posts
                 <span class="Counter hide-lg hide-md hide-sm">
-                    6
+                    7
                 </span>
             </a>
             <a class="UnderlineNav-item mr-0 mr-md-1 mr-lg-3 " href="https://springboot.kr/about/">
@@ -181,6 +181,39 @@
                 </h2>
 
                 <ol class="d-flex flex-wrap list-style-none gutter-condensed mb-4 js-pinned-items-reorder-list">
+                    
+                    <li class="col-12 col-md-6 col-lg-6 mb-3 d-flex flex-content-stretch">
+                        <div
+                            class="Box pinned-item-list-item d-flex p-3 width-full js-pinned-item-list-item public source  sortable-button-item">
+                            <div class="pinned-item-list-item-content" name="pinned-post" >
+                                <div class="d-flex width-full flex-items-center position-relative">
+                                    <svg class="octicon octicon-repo mr-2 text-gray flex-shrink-0" viewBox="0 0 12 16"
+                                        version="1.1" width="12" height="16" aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M4 9H3V8h1v1zm0-3H3v1h1V6zm0-2H3v1h1V4zm0-2H3v1h1V2zm8-1v12c0 .55-.45 1-1 1H6v2l-1.5-1.5L3 16v-2H1c-.55 0-1-.45-1-1V1c0-.55.45-1 1-1h10c.55 0 1 .45 1 1zm-1 10H1v2h2v-1h3v1h5v-2zm0-10H2v9h9V1z" />
+                                    </svg>
+                                    <a href="https://springboot.kr/posts/k8s/kubernetes-install/" class="text-bold flex-auto min-width-0 ">
+                                        <span class="repo js-pinnable-item" title="Kubernetes Minikube 설치">Kubernetes Minikube 설치</span>
+                                    </a>
+                                </div>
+                                <div class="summary" style="width:90%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap; margin-top: 0.5rem;">
+                                    맥북에서 kubernetes 설치를 위해 상단바에 있는 도커를 클릭후
+Preferences&hellip; 를 클릭후 kubernetes 버튼을 눌러
+Enable Kubernetes를 체크 후 apply를 눌러 쿠버네티스를 활성화 시킨다.
+활성화가 되는 도중에는 오른쪽 하단에 Kubernetes is starting 이란 문구가 나오고
+활성화가 끝나면 오른쪽 하단에 Kubernetes is running 으로 나온다.
+다음으로 kubectl을 설치해 주자 kubernetes cli 툴이다.
+curl -LO &quot;https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl&quot; chmod +x ./kubectl sudo mv ./kubectl /usr/local/bin/kubectl  설치가 끝나면 version 체크로 확인을 해준다.
+kubectl version  Kubectl 설치가 끝나면 Minikube 설치를 해준다.
+                                </div>
+                                <div class="f6 text-gray mt-2">
+                                    Updated <relative-time datetime="2019-11-18"
+                                        class="no-wrap" title="Modify at 2019/11/18">
+                                        November 18, 2019</relative-time>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                     
                     <li class="col-12 col-md-6 col-lg-6 mb-3 d-flex flex-content-stretch">
                         <div
@@ -327,41 +360,6 @@ func Connect() *pg.DB { db := pg.Connect(&amp;pg.Options{ User: &quot;user&quot;
                                     Updated <relative-time datetime="2019-03-23"
                                         class="no-wrap" title="Modify at 2019/03/23">
                                         March 23, 2019</relative-time>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    
-                    <li class="col-12 col-md-6 col-lg-6 mb-3 d-flex flex-content-stretch">
-                        <div
-                            class="Box pinned-item-list-item d-flex p-3 width-full js-pinned-item-list-item public source  sortable-button-item">
-                            <div class="pinned-item-list-item-content" name="pinned-post" >
-                                <div class="d-flex width-full flex-items-center position-relative">
-                                    <svg class="octicon octicon-repo mr-2 text-gray flex-shrink-0" viewBox="0 0 12 16"
-                                        version="1.1" width="12" height="16" aria-hidden="true">
-                                        <path fill-rule="evenodd"
-                                            d="M4 9H3V8h1v1zm0-3H3v1h1V6zm0-2H3v1h1V4zm0-2H3v1h1V2zm8-1v12c0 .55-.45 1-1 1H6v2l-1.5-1.5L3 16v-2H1c-.55 0-1-.45-1-1V1c0-.55.45-1 1-1h10c.55 0 1 .45 1 1zm-1 10H1v2h2v-1h3v1h5v-2zm0-10H2v9h9V1z" />
-                                    </svg>
-                                    <a href="https://springboot.kr/posts/java-xml-to-json/" class="text-bold flex-auto min-width-0 ">
-                                        <span class="repo js-pinnable-item" title="자바 XML TO JSON 변환 하기">자바 XML TO JSON 변환 하기</span>
-                                    </a>
-                                </div>
-                                <div class="summary" style="width:90%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap; margin-top: 0.5rem;">
-                                    XML TO JSON (AND CUSTOM OBJECT) xml 데이터를 json으로 변환하기 위한 작업이 필요하다.
-그러기 위해서 spring framework에서 많이 사용하는 jackson(jackson-dataformat-xml)을 사용해 변환을 해보려 했다.
-하지만 jackson 라이브러리를 사용해 xml을 json으로 변환할 때 xml의 multiple child 값들이 다 사라지면서 단일 값이 남게 된다.
-그래서 찾아봤다.
-똑같은 현상을 가지고 있는 사람을 발견했다.
-스택오버플로우
-거기에 있는 답변을 참고해보자.
- org.json 라이브러리를 추가시킨다.
- org.json 라이브러리와 jackson 라이브러리를 섞어 사용한다.
-  예제 샘플이다
-                                </div>
-                                <div class="f6 text-gray mt-2">
-                                    Updated <relative-time datetime="2019-03-22"
-                                        class="no-wrap" title="Modify at 2019/03/22">
-                                        March 22, 2019</relative-time>
                                 </div>
                             </div>
                         </div>

@@ -9,7 +9,7 @@
         rel="stylesheet" href="https://springboot.kr/css/github.css" />
     <meta name="viewport" content="width=device-width">
 
-    <title>About - GitHub Style</title>
+    <title>Kubernetes Minikube 설치 - GitHub Style</title>
 
     <link rel="icon" type="image/x-icon" class="js-site-favicon" href="https://springboot.kr/images/favicon.ico">
     <meta name="theme-color" content="#1e2327">
@@ -66,131 +66,152 @@
 <div id="js-flash-container">
 </div>
   
-<div class="application-main " data-commit-hovercards-enabled>
-    <main id="js-pjax-container" data-pjax-container>
-        <div class="container-xl clearfix px-3 mt-4">
+<div class="application-main " data-commit-hovercards-enabled="">
+    <div itemscope="" itemtype="http://schema.org/SoftwareSourceCode" class="">
+        <main id="js-repo-pjax-container" data-pjax-container="">
+            <div class="pagehead repohead instapaper_ignore readability-menu experiment-repo-nav pt-0 pt-lg-4 ">
+                <div class="repohead-details-container clearfix container-lg p-responsive d-none d-lg-block">
+                    <div class="mb-3 d-flex">
+                        <h1 class="public css-truncate float-none flex-auto width-fit pl-0">
+                            <a class="avatar mr-1" href="https://springboot.kr/about/"><img
+                                    src="https://springboot.kr/images/avatar.png" width="26" height="26"></a>
+                            <span class="author"><a
+                                    href="https://springboot.kr/">JIN</a></span>
+                            <span class="path-divider">/</span>
+                            <strong itemprop="name" class="css-truncate-target" style="max-width: 410px"><a
+                                    href="https://springboot.kr/posts/k8s/kubernetes-install/">Kubernetes Minikube 설치</a></strong>
 
-            <div class="h-card col-lg-3 col-md-4 col-12 float-md-left pr-md-3 pr-xl-6" itemscope
-    itemtype="http://schema.org/Person">
-    <div class="user-profile-sticky-bar js-user-profile-sticky-bar">
-    </div>
-    <div class="clearfix mb-2">
-        <div class="float-left col-3 col-md-12 pr-3 pr-md-0">
-            <a itemprop="image" class="u-photo d-block position-relative" aria-hidden="true"
-                href="https://springboot.kr/images/avatar.png"><img alt="" width="260" height="260"
-                    class="avatar width-full height-full rounded-2" src="https://springboot.kr/images/avatar.png" /></a>
-        </div>
-        <div class="float-left col-9 col-md-12 pl-2 pl-md-0">
-
-            <div class="vcard-names-container pt-1 pt-md-3 pb-1 pb-md-3 js-sticky js-user-profile-sticky-fields">
-                <h1 class="vcard-names">
-                    <span class="p-name vcard-fullname d-block overflow-hidden"
-                        itemprop="name">JIN</span>
-                    <span class="p-nickname vcard-username d-block"
-                        itemprop="additionalName">nice7677</span>
-                </h1>
-            </div>
-
-            
-            <div class="user-profile-following-container js-user-profile-following-toggle mb-3">
-                <span class="user-following-container js-toggler-container js-social-container">
-                    <span class="follow">
-                        <input type="button" style="max-width: 100%" value="Follow"
-                            class="btn btn-block top-0 js-sticky js-user-profile-follow-button mb-2  js-toggler-target"
-                            title="Follow" onclick="window.location.href = 'https://github.com/nice7677'" />
-                    </span>
-                    <span class="unfollow">
-                        <input type="button" style="max-width: 100%" value="Unfollow"
-                            class="btn btn-block top-0 js-sticky js-user-profile-follow-button mb-2  js-toggler-target"
-                            title="Unfollow" onclick="window.location.href = 'https://github.com/nice7677'" />
-                    </span>
-                </span>
-            </div>
-            
-
-            <div class="d-none d-md-block">
-                <div class="js-profile-editable-area">
-                    <div class="p-note user-profile-bio js-user-profile-bio">
-                        <div>Hello XD</div>
+                            <div class="d-block text-small text-gray">
+                                Created <time-ago datetime="2019-11-18" class="no-wrap"
+                                    title="Created at 2019/11/18">
+                                    2019-11-18</time-ago>
+                                <span class="file-info-divider"></span>
+                                Modifyd <time-ago datetime="2019-11-18" class="no-wrap"
+                                    title="Modifyd at 2019/11/18">
+                                    2019-11-18</time-ago>
+                            </div>
+                        </h1>
                     </div>
-                    <ul class="vcard-details mb-3">
-                        <li itemprop="email" aria-label="Email: jxn1024@icloud.com"
-                            class="vcard-detail pt-1 css-truncate css-truncate-target"><svg class="octicon octicon-mail"
-                                viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                    d="M0 4v8c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1H1c-.55 0-1 .45-1 1zm13 0L7 9 1 4h12zM1 5.5l4 3-4 3v-6zM2 12l3.5-3L7 10.5 8.5 9l3.5 3H2zm11-.5l-4-3 4-3v6z" />
-                            </svg>
-                            <a class="u-email " href="mailto:nice7677@naver.com">nice7677@naver.com</a>
-                        </li>
-                        <li itemprop="url" data-test-selector="profile-website-url"
-                            class="vcard-detail pt-1 css-truncate css-truncate-target"><svg class="octicon octicon-link"
-                                viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                    d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
-                                </path>
-                            </svg>
-                            <a rel="nofollow me" href="https://springboot.kr/">https://springboot.kr/</a>
-                        </li>
-                    </ul>
                 </div>
+
+
+
+
             </div>
+            <div class="container-lg clearfix new-discussion-timeline experiment-repo-nav  p-responsive">
+                <div class="repository-content ">
+                    <div class="Box mt-3 position-relative">
+                        <div class="Box-header py-2 d-flex flex-column flex-shrink-0 flex-md-row flex-md-items-center">
+                            <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+                                486 Words
+                                
+                            </div>
+                        </div>
 
-            <div class="border-top py-3 clearfix hide-sm hide-md">
-                <h2 class="mb-1 h4">Organizations</h2>
+                        <div id="readme" class="Box-body readme blob instapaper_body js-code-block-container">
+                            <article class="markdown-body entry-content p-3 p-md-6" itemprop="text"><p>맥북에서 kubernetes 설치를 위해 상단바에 있는 도커를 클릭후</p>
 
-                <a class="avatar-group-item" data-hovercard-type="organization"
-                    href="https://github.com/nice7677">
-                    <img src="https://springboot.kr/images/github.png" class="avatar" width="35" height="35">
-                </a>
-                
-            </div>
+<p>Preferences&hellip; 를 클릭후 kubernetes 버튼을 눌러</p>
 
-            <div data-test-selector="profile-sponsorships">
-            </div>
-        </div>
-    </div>
-</div>
+<p>Enable Kubernetes를 체크 후 apply를 눌러 쿠버네티스를 활성화 시킨다.</p>
 
-            
+<p><img src="../../../resources/_gen/images/kube-install/kubernetes-install.png" alt="이미지" /></p>
 
+<p>활성화가 되는 도중에는 오른쪽 하단에 Kubernetes is starting 이란 문구가 나오고</p>
 
+<p>활성화가 끝나면 오른쪽 하단에 Kubernetes is running 으로 나온다.</p>
 
-<div class="col-lg-9 col-md-8 col-12 float-md-left pl-md-2">
-    <div class="UnderlineNav width-full user-profile-nav top-0 is-placeholder"
-        style="visibility: hidden; display: none; height: 56px;"></div>
-    <div class="UnderlineNav width-full user-profile-nav js-sticky top-0"
-        style="position: static; top: 0px; left: 330.5px; width: 911.5px;">
-        <nav class="UnderlineNav-body" data-pjax aria-label="User profile">
-            <a aria-current="page" class="UnderlineNav-item mr-0 mr-md-1 mr-lg-3 " href="https://springboot.kr/">
-                Overview
-            </a>
-            <a class="UnderlineNav-item mr-0 mr-md-1 mr-lg-3 " href="https://springboot.kr/posts/">
-                Posts
-                <span class="Counter hide-lg hide-md hide-sm">
-                    7
-                </span>
-            </a>
-            <a class="UnderlineNav-item mr-0 mr-md-1 mr-lg-3 selected" href="https://springboot.kr/about/">
-                About
-            </a>
-        </nav>
-    </div>
+<p>다음으로 kubectl을 설치해 주자 kubernetes cli 툴이다.</p>
 
-    <div class="position-relative">
-        <div class="container-lg clearfix new-discussion-timeline experiment-repo-nav  p-responsive">
-            <div class="repository-content ">
-                <div class="Box mt-3 position-relative">
-                    <div id="readme" class="Box-body readme blob instapaper_body js-code-block-container">
-                        <article class="markdown-body entry-content p-3 p-md-6" itemprop="text"><p>about me</p>
+<pre><code>curl -LO &quot;https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl&quot;
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+</code></pre>
+
+<p>설치가 끝나면 version 체크로 확인을 해준다.</p>
+
+<pre><code>kubectl version
+</code></pre>
+
+<p><img src="../../../resources/_gen/images/kube-install/kubernetes-install-4.png" alt="이미지" /></p>
+
+<p>Kubectl 설치가 끝나면 Minikube 설치를 해준다.</p>
+
+<p><a href="https://kubernetes.io/ko/docs/tasks/tools/install-minikube/">install-minikube</a> 공식 문서</p>
+
+<p>우선 먼저 가상화 지원 여부를 확인하기 위해 명령어를 입력해준다</p>
+
+<pre><code>sysctl -a | grep -E --color 'machdep.cpu.features|VMX' 
+</code></pre>
+
+<p>명령어를 실행 후</p>
+
+<p><strong>VMX</strong> 이란 녀석에 색으로 강조된 녀석이 있으면 가상화가 활성화 되있는 것 이다.</p>
+
+<p>다음으로 minikube를 설치 해 주어야 하는데</p>
+
+<p>homebrew를 사용하는 방법과 바이너리를 사용해 설치하는 방법이 있다.</p>
+
+<ol>
+<li><p>brew (1번 방법으로 설치를했을때 에러가나면 1-1의 방법으로 실행해 보자.)</p>
+
+<pre><code>brew cask install minikube
+</code></pre></li>
+</ol>
+
+<p>1-1. brew</p>
+
+<pre><code>brew install minikube
+</code></pre>
+
+<ol>
+<li><p>바이너리</p>
+
+<pre><code>curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64 \
+&amp;&amp; chmod +x minikube
+</code></pre></li>
+</ol>
+
+<p>다음으로 minikube를 실행 경로에 추가해 주는 작업이 필요하다.</p>
+
+<pre><code>sudo mv minikube /usr/local/bin
+</code></pre>
+
+<p>설치가 완료가 된 후 에는 다음 명령어를 실행해 준다.</p>
+
+<pre><code>minikube start
+</code></pre>
+
+<p><img src="../../../resources/_gen/images/kube-install/kubernetes-install-2.png" alt="이미지" /></p>
+
+<p>입력 후 다음 과같이 설치가 진행되고 실행이 된다.</p>
+
+<p>그리고 다음과 같이 확인을 해보자</p>
+
+<pre><code>kubectl get nodes
+</code></pre>
+
+<p><img src="../../../resources/_gen/images/kube-install/kubernetes-install-3.png" alt="이미지" /></p>
+
+<p>미니쿠베가 잘 올라가있다.</p>
 </article>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
     </div>
 </div>
-    </main>
-</div>
+
+<div class="utterances"></div>
+<script src="https://utteranc.es/client.js"
+        repo="example/example.github.io"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
 
   <div class="footer container-lg width-full p-responsive" role="contentinfo">
     <div
