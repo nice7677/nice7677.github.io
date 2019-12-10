@@ -197,7 +197,7 @@
             <a class="UnderlineNav-item mr-0 mr-md-1 mr-lg-3 selected" href="https://springboot.kr/posts/">
                 Posts
                 <span class="Counter hide-lg hide-md hide-sm">
-                    8
+                    9
                 </span>
             </a>
             <a class="UnderlineNav-item mr-0 mr-md-1 mr-lg-3 " href="https://springboot.kr/about/">
@@ -209,6 +209,30 @@
     <div class="position-relative">
         <div id="user-repositories-list">
             <ul data-filterable-for="your-repos-filter" data-filterable-type="substring">
+                
+                <li class="col-12 d-flex width-full py-4 border-bottom public fork">
+                    <div class="col-12 col-lg-12 d-inline-block">
+                        <div class="d-inline-block mb-1">
+                            <h3>
+                                <a href="https://springboot.kr/posts/java/about-serialversionuid/">Java serialVersionUID에 대하여</a>
+                            </h3>
+                        </div>
+
+                        <div name="posts-post" style="width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-top: 0.5rem;">
+                            ###serialVersionUID
+  serialVersionUID에 란 무엇인가?
+ 객체를 직렬화 하여 역직렬화를 할때 사용한다. 직렬화 외에도 보안등의 용도에 사용됬다. 객체에 대한 고유번호(?)으로 생각하면 된다. serialization가 사용되는 클래스의 경우에 명시적으로 선언해 주는것을 권유한다.    어떻게 사용하는가?
+ serialVersionUID를 사용하기 위해서는 static, final, long 타입이여야 한다. private을 추천함. example) private static final long serialVersionUID = 11L;     선언을 하지 않을 경우에는?
+ 선언을 하지 않은 경우에는 실행하는 시점에서 serialization을 담당하는 모듈을 통해 자동생성되어 디폴트값이 만들어진다.
+                        </div>
+
+                        <div class="f6 text-gray mt-2">
+                            Updated <relative-time datetime="2019-12-10" class="no-wrap"
+                                title="Modifyd at 2019/12/10">
+                                December 10, 2019</relative-time>
+                        </div>
+                    </div>
+                </li>
                 
                 <li class="col-12 d-flex width-full py-4 border-bottom public fork">
                     <div class="col-12 col-lg-12 d-inline-block">
