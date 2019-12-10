@@ -25,7 +25,7 @@ Google OAuth 2.0 for Web Server Applications
 내가 사용한 방법은 resty라는 http 라이브러리를 사용했다.
 resty는 spring으로 보면 resttemplate 같은? 나는 같은 용도로 사용한다.
 resty설치를 위해 다과 같이 입력해 준다.
-go get -u github.com/go-resty/resty/v2  설치가 끝나면 라이브러리를 사용할수 있다.</description>
+go get -u github.com/go-resty/resty/v2 설치가 끝나면 라이브러리를 사용할수 있다.</description>
     </item>
     
     <item>
@@ -40,7 +40,8 @@ Enable Kubernetes를 체크 후 apply를 눌러 쿠버네티스를 활성화 시
 활성화가 되는 도중에는 오른쪽 하단에 Kubernetes is starting 이란 문구가 나오고
 활성화가 끝나면 오른쪽 하단에 Kubernetes is running 으로 나온다.
 다음으로 kubectl을 설치해 주자 kubernetes cli 툴이다.
-curl -LO &amp;quot;https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl&amp;quot; chmod +x ./kubectl sudo mv ./kubectl /usr/local/bin/kubectl  설치가 끝나면 version 체크로 확인을 해준다.</description>
+curl -LO &amp;quot;https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl&amp;quot; chmod +x ./kubectl sudo mv ./kubectl /usr/local/bin/kubectl 설치가 끝나면 version 체크로 확인을 해준다.
+kubectl version Kubectl 설치가 끝나면 Minikube 설치를 해준다.</description>
     </item>
     
     <item>
@@ -66,7 +67,7 @@ curl -LO &amp;quot;https://storage.googleapis.com/kubernetes-release/release/$(c
       <description>Effective Java 3/E 2장 생성자에 매개변수가 많다면 빌더를 고려하라 정적 팩터리와 생성자에는 똑같은 제약이 하나 있다.
 선택적 매개변수가 많을때 대응이 어렵다.
 점층적 생성자 패턴도 쓸 수는 있지만 매개변수가 많아지면 클라이언트 코드를 작성하거나 읽기 어려워 진다.
-public class Hello { private String str; private String str2; private String str3; public Hello(String str) { System.out.println(&amp;quot;Hello str&amp;quot; + str); } public Hello(String str, String str2) { System.out.println(&amp;quot;Hello str1, str2&amp;quot; + str + str2); } public Hello(String str, String str2) { System.</description>
+public class Hello { private String str; private String str2; private String str3; public Hello(String str) { System.out.println(&amp;#34;Hello str&amp;#34; + str); } public Hello(String str, String str2) { System.out.println(&amp;#34;Hello str1, str2&amp;#34; + str + str2); } public Hello(String str, String str2) { System.</description>
     </item>
     
     <item>
@@ -75,13 +76,12 @@ public class Hello { private String str; private String str2; private String str
       <pubDate>Wed, 19 Jun 2019 14:23:52 +0800</pubDate>
       
       <guid>https://springboot.kr/posts/effective-java/effective-fava-3e-02-01/</guid>
-      <description>Effective Java 3/E 2장 생성자 대신 정적 팩토리 메서드를 고려하라  인스턴스를 얻는전통적 수단은 Public 생성자이다.
- 클래스는 별도로 정적 팩터리 메서드를 제공 할 수 있다. (클래스의 인스턴스를 반환하는 단순한 정적 메서드)
- 정적 팩터리 메서드와 팩토리 패턴은 같지 않다.
- 정적 팩터리 메서드가 생성자보다 좋은점 5가지
- 이름을 가질 수 없다.
- 어떤게 더 의미를 잘 설명할 수 있는 가?
-BigInteger(int, int, Random)  BigInteger.ProbablePrime  한 클래스에 시그니처가 같은 생성자가 여러개 필요할 것 같으면 생성자를 정적 팩터리 메서드로 바꾸고 각각의 차이를 잘 드러내는 이름을 지어 주자.</description>
+      <description>Effective Java 3/E 2장 생성자 대신 정적 팩토리 메서드를 고려하라    인스턴스를 얻는전통적 수단은 Public 생성자이다.
+  클래스는 별도로 정적 팩터리 메서드를 제공 할 수 있다. (클래스의 인스턴스를 반환하는 단순한 정적 메서드)
+  정적 팩터리 메서드와 팩토리 패턴은 같지 않다.
+    정적 팩터리 메서드가 생성자보다 좋은점 5가지
+  이름을 가질 수 없다.
+ 어떤게 더 의미를 잘 설명할 수 있는 가? BigInteger(int, int, Random) BigInteger.</description>
     </item>
     
     <item>
@@ -104,8 +104,7 @@ BigInteger(int, int, Random)  BigInteger.ProbablePrime  한 클래스에 시그�
 go-pg에 대한 링크를 걸어 둡니다.
 Github / Document
 위에 링크를 첨부해 두었다 우선 go-pg에 접속하기 위해서는 다음과 같은 세팅을 잡는다.
- database.go
-func Connect() *pg.DB { db := pg.Connect(&amp;amp;pg.Options{ User: &amp;quot;user&amp;quot;, Database: &amp;quot;database&amp;quot;, Addr: &amp;quot;addr:port&amp;quot; }) if db == nil { log.</description>
+ database.go  func Connect() *pg.DB { db := pg.Connect(&amp;amp;pg.Options{ User: &amp;#34;user&amp;#34;, Database: &amp;#34;database&amp;#34;, Addr: &amp;#34;addr:port&amp;#34; }) if db == nil { log.</description>
     </item>
     
     <item>
@@ -121,8 +120,8 @@ func Connect() *pg.DB { db := pg.Connect(&amp;amp;pg.Options{ User: &amp;quot;us
 똑같은 현상을 가지고 있는 사람을 발견했다.
 스택오버플로우
 거기에 있는 답변을 참고해보자.
- org.json 라이브러리를 추가시킨다.
- org.json 라이브러리와 jackson 라이브러리를 섞어 사용한다.
+  org.json 라이브러리를 추가시킨다.
+  org.json 라이브러리와 jackson 라이브러리를 섞어 사용한다.
   예제 샘플이다</description>
     </item>
     

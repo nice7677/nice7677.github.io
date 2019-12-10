@@ -2,7 +2,6 @@
 <html lang="">
 <head>
     <meta charset="utf-8">
-    <meta name="google-site-verification" content="I1Ukc6UTp3isT1xeEldFUSPqE42KSyJOketXk_S7rSU" />
     <link crossorigin="anonymous" media="all"
         rel="stylesheet"
         href="https://springboot.kr/css/frameworks.css" />
@@ -56,7 +55,9 @@
             <details class="details-overlay details-reset">
                 <summary class="Header-link" aria-label="View profile and more"
                     data-ga-click="Header, show menu, icon:avatar">
+                    
                     <img alt="" class="avatar" src="https://springboot.kr/images/avatar.png" height="20" width="20">
+                    
                 </summary>
             </details>
         </div>
@@ -66,8 +67,8 @@
 <div id="start-of-content" class="show-on-focus"></div>
 <div id="js-flash-container">
 </div>
-  
 
+  
 <div class="application-main " data-commit-hovercards-enabled="">
     <div itemscope="" itemtype="http://schema.org/SoftwareSourceCode" class="">
         <main id="js-repo-pjax-container" data-pjax-container="">
@@ -75,8 +76,12 @@
                 <div class="repohead-details-container clearfix container-lg p-responsive d-none d-lg-block">
                     <div class="mb-3 d-flex">
                         <h1 class="public css-truncate float-none flex-auto width-fit pl-0">
-                            <a class="avatar mr-1" href="https://springboot.kr/about/"><img
-                                    src="https://springboot.kr/images/avatar.png" width="26" height="26"></a>
+                            <a class="avatar mr-1" href="https://springboot.kr/about/">
+                            
+                                <img
+                                    src="https://springboot.kr/images/avatar.png" width="26" height="26">
+                            
+                            </a>
                             <span class="author"><a
                                     href="https://springboot.kr/">JINWOO</a></span>
                             <span class="path-divider">/</span>
@@ -88,8 +93,8 @@
                                     title="Created at 2019/06/21">
                                     2019-06-21</time-ago>
                                 <span class="file-info-divider"></span>
-                                Modifyd <time-ago datetime="2019-06-21" class="no-wrap"
-                                    title="Modifyd at 2019/06/21">
+                                Modifyed <time-ago datetime="2019-06-21" class="no-wrap"
+                                    title="Modifyed  at 2019/06/21">
                                     2019-06-21</time-ago>
                             </div>
                         </h1>
@@ -109,40 +114,27 @@
                                 
                             </div>
                         </div>
-
                         <div id="readme" class="Box-body readme blob instapaper_body js-code-block-container">
                             <article class="markdown-body entry-content p-3 p-md-6" itemprop="text">
-                                <h1 >
-                                    <div>
-                                        생성자나 열거 탕비으로 싱클턴임을 보증하라
-                                    </div>
-                                    <div style="font-size: 14px; font-weight: normal;">
+                                <h1>
+                                    생성자나 열거 탕비으로 싱클턴임을 보증하라
+                                    <div class="d-block text-small text-gray" style="margin-top: 1rem; margin-bottom: 0.5rem;">
                                         작성 <time-ago datetime="2019-06-21" class="no-wrap"
-                                        title="Created at 2019/06/21">
+                                        title="작성 2019/06/21">
                                         2019-06-21</time-ago>
                                         <span class="file-info-divider"></span>
                                         수정 <time-ago datetime="2019-06-21" class="no-wrap"
-                                        title="Modifyd at 2019/06/21">
+                                        title="수정 2019/06/21">
                                         2019-06-21</time-ago>
                                     </div>
-                                </h1>
-
-<h1 id="effective-java-3-e-2장-생성자나-열거-탕비으로-싱클턴임을-보증하라">Effective Java 3/E 2장 생성자나 열거 탕비으로 싱클턴임을 보증하라</h1>
-
+                                </h1><h1 id="effective-java-3e-2-----">Effective Java 3/E 2장 생성자나 열거 탕비으로 싱클턴임을 보증하라</h1>
 <p>싱글턴은 인스턴스를 하나만 만들수 있는 패턴이다.</p>
-
 <p>하지만 클래스를 싱글턴으로 만들면 싱글턴 인스턴스를 Mock 구현으로 대체 할 수가 없다</p>
-
 <p>그렇게 되면 이를 사용하는 클라이언트를 테스트하기가 어려워지게 된다.</p>
-
 <p>아주 복잡한 직렬화 상황이나 리플렉션 공격에서도 제2의 인스턴스가 생기는 일을 완벽히 막아준다.</p>
-
 <p>대부분의 상황에서는 원소가 하나뿐인 열거 타입이 싱글턴을 만드는 가장 좋은 방법이다.</p>
-
 <p>하지만 만약에 싱글턴이 Enum 외의 클래스를 상속해야 한다면 이 방법은 사용할 수 없다.</p>
 </article>
-                            <div class="utterances"></div>
-
                         </div>
                     </div>
                 </div>
@@ -151,7 +143,7 @@
     </div>
 </div>
 
-
+<div class="utterances"></div>
 <script src="https://utteranc.es/client.js"
         repo="nice7677/nice7677.github.io"
         issue-term="title"
@@ -159,6 +151,7 @@
         crossorigin="anonymous"
         async>
 </script>
+
 
 
   <div class="footer container-lg width-full p-responsive" role="contentinfo">
