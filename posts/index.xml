@@ -5,10 +5,26 @@
     <link>https://springboot.kr/posts/</link>
     <description>Recent content in Posts on SPRINGBOOT.KR</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 12 Dec 2019 00:37:20 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 04 Jan 2021 16:36:41 +0900</lastBuildDate>
     
 	<atom:link href="https://springboot.kr/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>카카오 TV 챗봇 만들기</title>
+      <link>https://springboot.kr/posts/kakaotv/kakaotv-chat-bot/</link>
+      <pubDate>Mon, 04 Jan 2021 16:36:41 +0900</pubDate>
+      
+      <guid>https://springboot.kr/posts/kakaotv/kakaotv-chat-bot/</guid>
+      <description>카카오TV 챗봇 만들기
+일 년도 더 넘게 글을 쓰지 않았다. 이제 가끔씩 다시 적어보려고 하는데 시작이 카카오티비 챗봇이다.
+이미 작년에 만들었는데 카카오TV가 죽어서 사용하질 않고 있다.
+시청자가 500명 정도되는 방에서 테스트까지 끝낸 챗봇인데
+테스트가 끝날 때 즈음 사람들이 대부분 트위치로 이동해 사용하질 않았다.
+궁금해하는 사람이 있을 수도 있으니 어떻게 만들었는지 개발기를 적어보도록 해야겠다.
+우선 카카오TV는 트위치 처럼 API를 제공하지 않는다.
+하지만 Web은 제공한다 ([?]팟플레이어라는 플레이어를 사용해 보는사람들이 많다. 웹은 트위치처럼 좋지 않고 기능이적어 사람들이 잘안쓴다.</description>
+    </item>
     
     <item>
       <title>Golang Google Oauth Signin 인증 방법</title>
