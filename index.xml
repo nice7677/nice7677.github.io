@@ -6,7 +6,16 @@
     <description>Recent content on SPRINGBOOT.KR</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 04 Jan 2021 16:36:41 +0900</lastBuildDate><atom:link href="http://www.springboot.kr/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Dec 2021 17:33:16 +0800</lastBuildDate><atom:link href="http://www.springboot.kr/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>블라블라</title>
+      <link>http://www.springboot.kr/posts/blahblah/2021-12-27-blahblah/</link>
+      <pubDate>Mon, 27 Dec 2021 17:33:16 +0800</pubDate>
+      
+      <guid>http://www.springboot.kr/posts/blahblah/2021-12-27-blahblah/</guid>
+      <description>겨울이 끝나면 봄이 온다. 봄이 온다. 봄이 올까? 왜 봄일까? 봄은 짧은데 여름아니면 겨울하면안되나? 여름은 안되나? 겨울은?</description>
+    </item>
+    
     <item>
       <title>카카오 TV 챗봇 만들기</title>
       <link>http://www.springboot.kr/posts/kakaotv/kakaotv-chat-bot/</link>

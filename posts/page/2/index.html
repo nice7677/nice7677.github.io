@@ -143,6 +143,25 @@ if (!doNotTrack) {
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Kubernetes Minikube 설치
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>맥북에서 kubernetes 설치를 위해 상단바에 있는 도커를 클릭후
+Preferences… 를 클릭후 kubernetes 버튼을 눌러
+Enable Kubernetes를 체크 후 apply를 눌러 쿠버네티스를 활성화 시킨다.
+활성화가 되는 도중에는 오른쪽 하단에 Kubernetes is starting 이란 문구가 나오고
+활성화가 끝나면 오른쪽 하단에 Kubernetes is running 으로 나온다.
+다음으로 kubectl을 설치해 주자 kubernetes cli 툴이다.
+curl -LO &#34;https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl&#34; chmod &#43;x ./kubectl sudo mv ./kubectl /usr/local/bin/kubectl 설치가 끝나면 version 체크로 확인을 해준다.
+kubectl version Kubectl 설치가 끝나면 Minikube 설치를 해준다....</p>
+  </section>
+  <footer class="entry-footer"><span title='2019-11-18 19:02:57 +0800 CST'>November 18, 2019</span></footer>
+  <a class="entry-link" aria-label="post link to Kubernetes Minikube 설치" href="http://www.springboot.kr/posts/k8s/kubernetes-install/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>생성자나 열거 탕비으로 싱클턴임을 보증하라
     </h2>
   </header>
@@ -200,23 +219,6 @@ public class Hello { private String str; private String str2; private String str
   </section>
   <footer class="entry-footer"><span title='2019-06-17 14:23:07 +0800 CST'>June 17, 2019</span></footer>
   <a class="entry-link" aria-label="post link to JUnit4 assert method 예시" href="http://www.springboot.kr/posts/junit-01/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>golang go-pg 사용하기
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>golang에서 postgresql orm go-pg 사용하기 처음 글에서는 go-pg를 사용한 connection과 close에 대해 적어본다 예제 샘플을 따라하면 잘 될것이다.
-나는 postgresql을 사용하기 위함이 아니라 cockroach db를 go에서 사용하기 위해 go-pg를 선택했다.
-go-pg에 대한 링크를 걸어 둡니다.
-Github / Document
-위에 링크를 첨부해 두었다 우선 go-pg에 접속하기 위해서는 다음과 같은 세팅을 잡는다.
- database.go  func Connect() *pg.DB { db := pg.Connect(&amp;pg.Options{ User: &#34;user&#34;, Database: &#34;database&#34;, Addr: &#34;addr:port&#34; }) if db == nil { log....</p>
-  </section>
-  <footer class="entry-footer"><span title='2019-03-23 14:22:38 +0800 CST'>March 23, 2019</span></footer>
-  <a class="entry-link" aria-label="post link to golang go-pg 사용하기" href="http://www.springboot.kr/posts/golang-go-pg-1/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
