@@ -1,142 +1,216 @@
 <!DOCTYPE html>
-<html lang="">
-<head>
-    <meta charset="utf-8">
-    <link crossorigin="anonymous" media="all"
-        rel="stylesheet"
-        href="https://springboot.kr/css/frameworks.css" />
-    <link crossorigin="anonymous" media="all"
-        rel="stylesheet" href="https://springboot.kr/css/github.css" />
-    <meta name="viewport" content="width=device-width">
+<html lang="en" dir="auto">
 
-    <title>Golang Google Oauth Signin 인증 방법 - SPRINGBOOT.KR</title>
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Golang Google Oauth Signin 인증 방법 | SPRINGBOOT.KR</title>
+<meta name="keywords" content="" />
+<meta name="description" content="2019년 1월에 Google&#43; API가 종료 됬습니다.
+그래서 찾아보는데&hellip; 찾았습니다.
+물론 너무 짧은 시간동안 서치하고 사용한거라 원래 공유되있는 내용 일수도 있습니다.
+여기로 가면 쉽게 로그인을 사용할수 있는 방법이 있는데요.
+저는 또 사용하지 않았습니다.
+그래서 찾은 방법은 우선 Golang Google OAuth 사용 하기와 겹치는 내용이 있기 때문에 그부분은 스킵하고 바로 진행하겠습니다.
+그부분 이해하시고 참고하여 따라 하시면 됩니다.
+다만 저 포스트에 나와있는 내용중 code를 발급받을때 scope를 https://www.googleapis.com/auth/userinfo.email로 잡아 주시면 됩니다.
+&lt;a href=&#34; https://accounts.google.com/o/oauth2/v2/auth? scope=https://www.">
+<meta name="author" content="">
+<link rel="canonical" href="http://www.springboot.kr/posts/google/golang-google-oauth-signin/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.c88963fe2d79462000fd0fb1b3737783c32855d340583e4523343f8735c787f0.css" integrity="sha256-yIlj/i15RiAA/Q&#43;xs3N3g8MoVdNAWD5FIzQ/hzXHh/A=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="http://www.springboot.kr/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://www.springboot.kr/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://www.springboot.kr/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://www.springboot.kr/apple-touch-icon.png">
+<link rel="mask-icon" href="http://www.springboot.kr/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.91.2" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
 
-    <link rel="icon" type="image/x-icon" class="js-site-favicon" href="https://springboot.kr/images/favicon.ico">
-    <meta name="theme-color" content="#1e2327">
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PM2KLTYJRP"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-PM2KLTYJRP', { 'anonymize_ip': false });
+}
+</script>
+<meta property="og:title" content="Golang Google Oauth Signin 인증 방법" />
+<meta property="og:description" content="2019년 1월에 Google&#43; API가 종료 됬습니다.
+그래서 찾아보는데&hellip; 찾았습니다.
+물론 너무 짧은 시간동안 서치하고 사용한거라 원래 공유되있는 내용 일수도 있습니다.
+여기로 가면 쉽게 로그인을 사용할수 있는 방법이 있는데요.
+저는 또 사용하지 않았습니다.
+그래서 찾은 방법은 우선 Golang Google OAuth 사용 하기와 겹치는 내용이 있기 때문에 그부분은 스킵하고 바로 진행하겠습니다.
+그부분 이해하시고 참고하여 따라 하시면 됩니다.
+다만 저 포스트에 나와있는 내용중 code를 발급받을때 scope를 https://www.googleapis.com/auth/userinfo.email로 잡아 주시면 됩니다.
+&lt;a href=&#34; https://accounts.google.com/o/oauth2/v2/auth? scope=https://www." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.springboot.kr/posts/google/golang-google-oauth-signin/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-12-12T00:37:20&#43;09:00" />
+<meta property="article:modified_time" content="2019-12-12T00:37:20&#43;09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Golang Google Oauth Signin 인증 방법"/>
+<meta name="twitter:description" content="2019년 1월에 Google&#43; API가 종료 됬습니다.
+그래서 찾아보는데&hellip; 찾았습니다.
+물론 너무 짧은 시간동안 서치하고 사용한거라 원래 공유되있는 내용 일수도 있습니다.
+여기로 가면 쉽게 로그인을 사용할수 있는 방법이 있는데요.
+저는 또 사용하지 않았습니다.
+그래서 찾은 방법은 우선 Golang Google OAuth 사용 하기와 겹치는 내용이 있기 때문에 그부분은 스킵하고 바로 진행하겠습니다.
+그부분 이해하시고 참고하여 따라 하시면 됩니다.
+다만 저 포스트에 나와있는 내용중 code를 발급받을때 scope를 https://www.googleapis.com/auth/userinfo.email로 잡아 주시면 됩니다.
+&lt;a href=&#34; https://accounts.google.com/o/oauth2/v2/auth? scope=https://www."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://www.springboot.kr/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Golang Google Oauth Signin 인증 방법",
+      "item": "http://www.springboot.kr/posts/google/golang-google-oauth-signin/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Golang Google Oauth Signin 인증 방법",
+  "name": "Golang Google Oauth Signin 인증 방법",
+  "description": "2019년 1월에 Google+ API가 종료 됬습니다.\n그래서 찾아보는데\u0026hellip; 찾았습니다.\n물론 너무 짧은 시간동안 서치하고 사용한거라 원래 공유되있는 내용 일수도 있습니다.\n여기로 가면 쉽게 로그인을 사용할수 있는 방법이 있는데요.\n저는 또 사용하지 않았습니다.\n그래서 찾은 방법은 우선 Golang Google OAuth 사용 하기와 겹치는 내용이 있기 때문에 그부분은 스킵하고 바로 진행하겠습니다.\n그부분 이해하시고 참고하여 따라 하시면 됩니다.\n다만 저 포스트에 나와있는 내용중 code를 발급받을때 scope를 https://www.googleapis.com/auth/userinfo.email로 잡아 주시면 됩니다.\n\u0026lt;a href=\u0026#34; https://accounts.google.com/o/oauth2/v2/auth? scope=https://www.",
+  "keywords": [
     
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PM2KLTYJRP"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-PM2KLTYJRP');
-    </script>
-    
+  ],
+  "articleBody": "2019년 1월에 Google+ API가 종료 됬습니다.\n그래서 찾아보는데… 찾았습니다.\n물론 너무 짧은 시간동안 서치하고 사용한거라 원래 공유되있는 내용 일수도 있습니다.\n여기로 가면 쉽게 로그인을 사용할수 있는 방법이 있는데요.\n저는 또 사용하지 않았습니다.\n그래서 찾은 방법은 우선 Golang Google OAuth 사용 하기와 겹치는 내용이 있기 때문에 그부분은 스킵하고 바로 진행하겠습니다.\n그부분 이해하시고 참고하여 따라 하시면 됩니다.\n다만 저 포스트에 나와있는 내용중 code를 발급받을때 scope를 https://www.googleapis.com/auth/userinfo.email로 잡아 주시면 됩니다.\na href=\" https://accounts.google.com/o/oauth2/v2/auth? scope=https://www.googleapis.com/auth/userinfo.email\u0026 access_type=offline\u0026 include_granted_scopes=true\u0026state=state_parameter_passthrough_value\u0026 redirect_uri=http://localhost:3005/googlecallback\u0026response_type=code\u0026 client_id=YOUR_CLIENT_ID \" 다음으로 위에 링크된 포스트에 있는 resty를 사용하여 진행 합니다.\n우선 사용자의 정보를 가져오기 위해서는 위의 내용에서 인증을 한뒤 발급받은 코드를 사용해 id_token을 받아야합니다.\n발급을 받기 위해서 위에서 말한 코드를 받는 작업을 해주시면 됩니다.\n다음으로 전에 작성한 포스트에 있는 스코프와 범위가 달르기 떄문에 위에 적어논 범위로 잡고 요청을 보내고 받은 코드를 사용하면 id_token이 들어옵니다.\n요청을 보내면 이렇게 나옵니다!!\n코드를 보겠습니다.\nfunc (this *GoogleService) GetEmail(code string) error { // 기존 token 받는 코드 \tclient := resty.New() resp, err := client.R(). SetHeader(\"Content-Type\", \"application/x-www-form-urlencoded\"). SetFormData(map[string]string{ \"code\": code, \"client_id\": CLIENT_ID, \"client_secret\": CLIENT_SECRET, \"redirect_uri\": \"http://localhost:3005/googlecallback\", \"grant_type\": \"authorization_code\", }). Post(\"https://www.googleapis.com/oauth2/v4/token\") if err != nil { log.Println(err.Error()) } src_json := resp.Body() var m map[string]string err = json.Unmarshal(src_json, \u0026m) if err != nil { log.Println(err.Error()) } // 여기 부터는 id_token을 사용해서 google사용자 정보를 가져오는 요청 \tclient = resty.New() resp, err = client.R(). Get(\"https://oauth2.googleapis.com/tokeninfo?id_token=\" + m[\"id_token\"]) if err != nil { log.Println(err.Error()) } src_json = resp.Body() var n map[string]string err = json.Unmarshal(src_json, \u0026n) if err != nil { log.Println(err.Error()) } log.Println(n[\"email\"]) return nil } 위에 주석을 한 부분의 요청 주소를 보시면 \"https://oauth2.googleapis.com/tokeninfo?id_token=\" + m[\"id_token\"]로 되있습니다.\n위에서 받은 id_token을 다음 요청 부분에서 넣어주고 GET으로 요청하시면\n짜잔\n이렇게 사용자 정보가 나오는데 여기서 필요한 부분을 슬쩍하시면 됩니다. 저는 email을 슬쩍했습니다.\n댓글 남겨주세요~~\n",
+  "wordCount" : "275",
+  "inLanguage": "en",
+  "datePublished": "2019-12-12T00:37:20+09:00",
+  "dateModified": "2019-12-12T00:37:20+09:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://www.springboot.kr/posts/google/golang-google-oauth-signin/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SPRINGBOOT.KR",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://www.springboot.kr/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
-<body class="env-production emoji-size-boost page-responsive page-profile">
-  <div class="position-relative js-header-wrapper ">
-    <span class="Progress progress-pjax-loader position-fixed width-full js-pjax-loader-bar">
-        <span class="progress-pjax-loader-bar top-0 left-0" style="width: 0%;"></span>
-    </span>
-    <header class="Header js-details-container Details flex-wrap flex-lg-nowrap p-responsive" role="banner">
-        <div class="Header-item d-none d-lg-flex">
-            <a class="Header-link" href="https://springboot.kr/" aria-label="Homepage"
-                data-ga-click="Header, go to dashboard, icon:logo">
-                <svg class="octicon octicon-mark-github v-align-middle" height="32" viewBox="0 0 16 16" version="1.1"
-                    width="32" aria-hidden="true">
-                    <path fill-rule="evenodd"
-                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
-                </svg>
-            </a>
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://www.springboot.kr/" accesskey="h" title="SPRINGBOOT.KR (Alt + H)">SPRINGBOOT.KR</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
         </div>
-        <div
-            class="Header-item Header-item--full flex-column flex-lg-row width-full flex-order-2 flex-lg-order-none mr-0 mr-lg-3 mt-3 mt-lg-0 Details-content--hidden">
-            <div class="header-search flex-self-stretch flex-lg-self-auto mr-0 mr-lg-3 mb-3 mb-lg-0 scoped-search site-scoped-search js-site-search position-relative js-jump-to"
-                role="combobox" aria-owns="jump-to-results" aria-label="Search or jump to" aria-haspopup="listbox"
-                aria-expanded="false">
-                <div class="position-relative">
-                </div>
-            </div>
-        </div>
-        <div class="Header-item Header-item--full flex-justify-center d-lg-none position-relative" style="margin-right: auto;">
-            <a class="Header-link" href="https://springboot.kr/" aria-label="Homepage"
-                data-ga-click="Header, go to dashboard, icon:logo">
-                <svg class="octicon octicon-mark-github v-align-middle" height="32" viewBox="0 0 16 16" version="1.1"
-                    width="32" aria-hidden="true">
-                    <path fill-rule="evenodd"
-                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
-                </svg>
-            </a>
-        </div>
-        <div class="Header-item position-relative mr-0 d-none d-lg-flex">
-            <details class="details-overlay details-reset">
-                <summary class="Header-link" aria-label="View profile and more"
-                    data-ga-click="Header, show menu, icon:avatar">
-                    
-                    <img alt="" class="avatar" src="https://springboot.kr/images/avatar.png" height="20" width="20">
-                    
-                </summary>
-            </details>
-        </div>
-    </header>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      Golang Google Oauth Signin 인증 방법
+    </h1>
+    <div class="post-meta"><span title='2019-12-12 00:37:20 +0900 +0900'>December 12, 2019</span>
+
 </div>
-
-<div id="start-of-content" class="show-on-focus"></div>
-<div id="js-flash-container">
-</div>
-
-  
-<div class="application-main " data-commit-hovercards-enabled="">
-    <div itemscope="" itemtype="http://schema.org/SoftwareSourceCode" class="">
-        <main id="js-repo-pjax-container" data-pjax-container="">
-            <div class="pagehead repohead instapaper_ignore readability-menu experiment-repo-nav pt-0 pt-lg-4 ">
-                <div class="repohead-details-container clearfix container-lg p-responsive d-none d-lg-block">
-                    <div class="mb-3 d-flex">
-                        <h1 class="public css-truncate float-none flex-auto width-fit pl-0">
-                            <a class="avatar mr-1" href="https://springboot.kr/about/">
-                            
-                                <img
-                                    src="https://springboot.kr/images/avatar.png" width="26" height="26">
-                            
-                            </a>
-                            <span class="author"><a
-                                    href="https://springboot.kr/">JINWOO</a></span>
-                            <span class="path-divider">/</span>
-                            <strong itemprop="name" class="css-truncate-target" style="max-width: 410px"><a
-                                    href="https://springboot.kr/posts/google/golang-google-oauth-signin/">Golang Google Oauth Signin 인증 방법</a></strong>
-
-                            <div class="d-block text-small text-gray">
-                                Created <time-ago datetime="2019-12-12" class="no-wrap"
-                                    title="Created at 2019/12/12">
-                                    2019-12-12</time-ago>
-                                <span class="file-info-divider"></span>
-                                Modifyed <time-ago datetime="2019-12-12" class="no-wrap"
-                                    title="Modifyed  at 2019/12/12">
-                                    2019-12-12</time-ago>
-                            </div>
-                        </h1>
-                    </div>
-                </div>
-
-
-
-
-            </div>
-            <div class="container-lg clearfix new-discussion-timeline experiment-repo-nav  p-responsive">
-                <div class="repository-content ">
-                    <div class="Box mt-3 position-relative">
-                        <div class="Box-header py-2 d-flex flex-column flex-shrink-0 flex-md-row flex-md-items-center">
-                            <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
-                                763 Words
-                                
-                            </div>
-                        </div>
-                        <div id="readme" class="Box-body readme blob instapaper_body js-code-block-container">
-                            <article class="markdown-body entry-content p-3 p-md-6" itemprop="text">
-                                <h1>
-                                    Golang Google Oauth Signin 인증 방법
-                                    <div class="d-block text-small text-gray" style="margin-top: 1rem; margin-bottom: 0.5rem;">
-                                        작성 <time-ago datetime="2019-12-12" class="no-wrap"
-                                        title="작성 2019/12/12">
-                                        2019-12-12</time-ago>
-                                        <span class="file-info-divider"></span>
-                                        수정 <time-ago datetime="2019-12-12" class="no-wrap"
-                                        title="수정 2019/12/12">
-                                        2019-12-12</time-ago>
-                                    </div>
-                                </h1><p>2019년 1월에 Google+ API가 종료 됬습니다.</p>
+  </header> 
+  <div class="post-content"><p>2019년 1월에 Google+ API가 종료 됬습니다.</p>
 <p>그래서 찾아보는데&hellip; 찾았습니다.</p>
 <p>물론 너무 짧은 시간동안 서치하고 사용한거라 원래 공유되있는 내용 일수도 있습니다.</p>
 <p><a href="https://developers.google.com/identity/sign-in/web">여기</a>로 가면 쉽게 로그인을 사용할수 있는 방법이 있는데요.</p>
@@ -144,7 +218,7 @@
 <p>그래서 찾은 방법은 우선 <a href="/posts/google/golang-google-oauth/">Golang Google OAuth 사용 하기</a>와 겹치는 내용이 있기 때문에 그부분은 스킵하고 바로 진행하겠습니다.</p>
 <p>그부분 이해하시고 참고하여 따라 하시면 됩니다.</p>
 <p>다만 저 포스트에 나와있는 내용중 code를 발급받을때 scope를 <code>https://www.googleapis.com/auth/userinfo.email</code>로 잡아 주시면 됩니다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;
 </span><span style="color:#e6db74">https://accounts.google.com/o/oauth2/v2/auth?
 </span><span style="color:#e6db74">scope=https://www.googleapis.com/auth/userinfo.email&amp;
 </span><span style="color:#e6db74">access_type=offline&amp;
@@ -155,12 +229,14 @@
 </code></pre></div><p>다음으로 위에 링크된 포스트에 있는 resty를 사용하여 진행 합니다.</p>
 <p>우선 사용자의 정보를 가져오기 위해서는 위의 내용에서 인증을 한뒤 발급받은 코드를 사용해 id_token을 받아야합니다.</p>
 <p>발급을 받기 위해서 위에서 말한 코드를 받는 작업을 해주시면 됩니다.</p>
-<p><img src="/images/golang-google-oauth/signin/1.png" alt="이미지"></p>
+<p><img loading="lazy" src="/images/golang-google-oauth/signin/1.png" alt="이미지"  />
+</p>
 <p>다음으로 전에 작성한 포스트에 있는 스코프와 범위가 달르기 떄문에 위에 적어논 범위로 잡고 요청을 보내고 받은 코드를 사용하면 id_token이 들어옵니다.</p>
 <p>요청을 보내면 이렇게 나옵니다!!</p>
-<p><img src="/images/golang-google-oauth/signin/2.png" alt="이미지"></p>
+<p><img loading="lazy" src="/images/golang-google-oauth/signin/2.png" alt="이미지"  />
+</p>
 <p>코드를 보겠습니다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">this</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">GoogleService</span>) <span style="color:#a6e22e">GetEmail</span>(<span style="color:#a6e22e">code</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">this</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">GoogleService</span>) <span style="color:#a6e22e">GetEmail</span>(<span style="color:#a6e22e">code</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span> {
 
     <span style="color:#75715e">// 기존 token 받는 코드
 </span><span style="color:#75715e"></span>	<span style="color:#a6e22e">client</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">resty</span>.<span style="color:#a6e22e">New</span>()
@@ -206,81 +282,86 @@
 </code></pre></div><p>위에 주석을 한 부분의 요청 주소를 보시면 <code>&quot;https://oauth2.googleapis.com/tokeninfo?id_token=&quot; + m[&quot;id_token&quot;]</code>로 되있습니다.</p>
 <p>위에서 받은 id_token을 다음 요청 부분에서 넣어주고 GET으로 요청하시면</p>
 <p>짜잔</p>
-<p><img src="/images/golang-google-oauth/signin/3.png" alt="이미지"></p>
+<p><img loading="lazy" src="/images/golang-google-oauth/signin/3.png" alt="이미지"  />
+</p>
 <p>이렇게 사용자 정보가 나오는데 여기서 필요한 부분을 슬쩍하시면 됩니다. 저는 email을 슬쩍했습니다.</p>
 <p>댓글 남겨주세요~~</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+  </footer>
 </article>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-</div>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2021 <a href="http://www.springboot.kr/">SPRINGBOOT.KR</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
 
-<div class="utterances"></div>
-<script src="https://utteranc.es/client.js"
-        repo="nice7677/nice7677.github.io"
-        issue-term="title"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-</script>
-
-
-
-  <div class="footer container-lg width-full p-responsive" role="contentinfo">
-    <div
-        class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
-        <ul
-            class="list-style-none d-flex flex-wrap col-12 col-lg-5 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
-            <li class="mr-3 mr-lg-0">© 2019. Theme by <a href="https://github.com/MeiK2333/github-style"><span>github-style</span></a></li>
-        </ul>
-
-        <a aria-label="Homepage" title="SPRINGBOOT.KR" class="footer-octicon d-none d-lg-block mx-lg-4"
-            href="https://springboot.kr/">
-            <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24"
-                aria-hidden="true">
-                <path fill-rule="evenodd"
-                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
-                </path>
-            </svg>
-        </a>
-        <ul
-            class="list-style-none d-flex flex-wrap col-12 col-lg-5 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
-        </ul>
-    </div>
-    <div class="d-flex flex-justify-center pb-6">
-        <span class="f6 text-gray-light"></span>
-    </div>
-</div>
-
-<script crossorigin="anonymous"
-    type="application/javascript" src="https://springboot.kr/js/frameworks.js"></script>
-
-<script crossorigin="anonymous" async="async"
-    type="application/javascript" src="https://springboot.kr/js/github-bootstrap.js"></script>
 <script>
-    let classs = ['pinned-item-desc', 'text-gray', 'text-small', 'd-block', 'mt-2', 'mb-3'];
-    const pinned_posts = document.getElementsByName('pinned-post');
-    for (let i = 0; i < pinned_posts.length; i++) {
-        for (let j = 0; j < classs.length; j++) {
-            const ps = pinned_posts[i].getElementsByTagName('p');
-            for (let k = 0; k < ps.length; k++) {
-                ps[k].classList.add(classs[j]);
-            }
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
         }
     }
-    classs = [ 'd-inline-block', 'text-gray', 'mb-2', 'pr-4'];
-    const posts_posts = document.getElementsByName('posts-post');
-    for (let i = 0; i < posts_posts.length; i++) {
-        for (let j = 0; j < classs.length; j++) {
-            const ps = posts_posts[i].getElementsByTagName('p');
-            for (let k = 0; k < ps.length; k++) {
-                ps[k].classList.add(classs[j]);
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
             }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
         }
-    }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
 </script>
 </body>
 
