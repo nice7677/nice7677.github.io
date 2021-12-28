@@ -143,56 +143,87 @@ if (!doNotTrack) {
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>golang go-pg 사용하기
+    <h2>Kubernetes Minikube 설치
     </h2>
   </header>
   <section class="entry-content">
-    <p>golang에서 postgresql orm go-pg 사용하기 처음 글에서는 go-pg를 사용한 connection과 close에 대해 적어본다 예제 샘플을 따라하면 잘 될것이다.
-나는 postgresql을 사용하기 위함이 아니라 cockroach db를 go에서 사용하기 위해 go-pg를 선택했다.
-go-pg에 대한 링크를 걸어 둡니다.
-Github / Document
-위에 링크를 첨부해 두었다 우선 go-pg에 접속하기 위해서는 다음과 같은 세팅을 잡는다.
- database.go  func Connect() *pg.DB { db := pg.Connect(&amp;pg.Options{ User: &#34;user&#34;, Database: &#34;database&#34;, Addr: &#34;addr:port&#34; }) if db == nil { log....</p>
+    <p>맥북에서 kubernetes 설치를 위해 상단바에 있는 도커를 클릭후
+Preferences… 를 클릭후 kubernetes 버튼을 눌러
+Enable Kubernetes를 체크 후 apply를 눌러 쿠버네티스를 활성화 시킨다.
+활성화가 되는 도중에는 오른쪽 하단에 Kubernetes is starting 이란 문구가 나오고
+활성화가 끝나면 오른쪽 하단에 Kubernetes is running 으로 나온다.
+다음으로 kubectl을 설치해 주자 kubernetes cli 툴이다.
+curl -LO &#34;https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl&#34; chmod &#43;x ./kubectl sudo mv ./kubectl /usr/local/bin/kubectl 설치가 끝나면 version 체크로 확인을 해준다.
+kubectl version Kubectl 설치가 끝나면 Minikube 설치를 해준다....</p>
   </section>
-  <footer class="entry-footer"><span title='2019-03-23 14:22:38 +0800 CST'>March 23, 2019</span></footer>
-  <a class="entry-link" aria-label="post link to golang go-pg 사용하기" href="http://www.springboot.kr/posts/golang-go-pg-1/"></a>
+  <footer class="entry-footer"><span title='2019-11-18 19:02:57 +0800 CST'>November 18, 2019</span></footer>
+  <a class="entry-link" aria-label="post link to Kubernetes Minikube 설치" href="http://www.springboot.kr/posts/k8s/kubernetes-install/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>자바 XML TO JSON 변환 하기
+    <h2>생성자나 열거 탕비으로 싱클턴임을 보증하라
     </h2>
   </header>
   <section class="entry-content">
-    <p>XML TO JSON (AND CUSTOM OBJECT) xml 데이터를 json으로 변환하기 위한 작업이 필요하다.
-그러기 위해서 spring framework에서 많이 사용하는 jackson(jackson-dataformat-xml)을 사용해 변환을 해보려 했다.
-하지만 jackson 라이브러리를 사용해 xml을 json으로 변환할 때 xml의 multiple child 값들이 다 사라지면서 단일 값이 남게 된다.
-그래서 찾아봤다.
-똑같은 현상을 가지고 있는 사람을 발견했다.
-스택오버플로우
-거기에 있는 답변을 참고해보자.
-  org.json 라이브러리를 추가시킨다.
-  org.json 라이브러리와 jackson 라이브러리를 섞어 사용한다.
-  예제 샘플이다...</p>
+    <p>Effective Java 3/E 2장 생성자나 열거 탕비으로 싱클턴임을 보증하라 싱글턴은 인스턴스를 하나만 만들수 있는 패턴이다.
+하지만 클래스를 싱글턴으로 만들면 싱글턴 인스턴스를 Mock 구현으로 대체 할 수가 없다
+그렇게 되면 이를 사용하는 클라이언트를 테스트하기가 어려워지게 된다.
+아주 복잡한 직렬화 상황이나 리플렉션 공격에서도 제2의 인스턴스가 생기는 일을 완벽히 막아준다.
+대부분의 상황에서는 원소가 하나뿐인 열거 타입이 싱글턴을 만드는 가장 좋은 방법이다.
+하지만 만약에 싱글턴이 Enum 외의 클래스를 상속해야 한다면 이 방법은 사용할 수 없다....</p>
   </section>
-  <footer class="entry-footer"><span title='2019-03-22 14:21:02 +0800 CST'>March 22, 2019</span></footer>
-  <a class="entry-link" aria-label="post link to 자바 XML TO JSON 변환 하기" href="http://www.springboot.kr/posts/java-xml-to-json/"></a>
+  <footer class="entry-footer"><span title='2019-06-21 14:24:00 +0800 CST'>June 21, 2019</span></footer>
+  <a class="entry-link" aria-label="post link to 생성자나 열거 탕비으로 싱클턴임을 보증하라" href="http://www.springboot.kr/posts/effective-java/effective-fava-3e-02-03/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Archive
+    <h2>생성자에 매개변수가 많다면 빌더를 고려하라
     </h2>
   </header>
   <section class="entry-content">
-    <p>archives</p>
+    <p>Effective Java 3/E 2장 생성자에 매개변수가 많다면 빌더를 고려하라 정적 팩터리와 생성자에는 똑같은 제약이 하나 있다.
+선택적 매개변수가 많을때 대응이 어렵다.
+점층적 생성자 패턴도 쓸 수는 있지만 매개변수가 많아지면 클라이언트 코드를 작성하거나 읽기 어려워 진다.
+public class Hello { private String str; private String str2; private String str3; public Hello(String str) { System.out.println(&#34;Hello str&#34; &#43; str); } public Hello(String str, String str2) { System.out.println(&#34;Hello str1, str2&#34; &#43; str &#43; str2); } public Hello(String str, String str2) { System....</p>
   </section>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to Archive" href="http://www.springboot.kr/archives/"></a>
+  <footer class="entry-footer"><span title='2019-06-20 14:23:57 +0800 CST'>June 20, 2019</span></footer>
+  <a class="entry-link" aria-label="post link to 생성자에 매개변수가 많다면 빌더를 고려하라" href="http://www.springboot.kr/posts/effective-java/effective-fava-3e-02-02/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>생성자 대신 정적 팩토리 메서드를 고려하라
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Effective Java 3/E 2장 생성자 대신 정적 팩토리 메서드를 고려하라    인스턴스를 얻는전통적 수단은 Public 생성자이다.
+  클래스는 별도로 정적 팩터리 메서드를 제공 할 수 있다. (클래스의 인스턴스를 반환하는 단순한 정적 메서드)
+  정적 팩터리 메서드와 팩토리 패턴은 같지 않다.
+    정적 팩터리 메서드가 생성자보다 좋은점 5가지
+  이름을 가질 수 없다.
+ 어떤게 더 의미를 잘 설명할 수 있는 가? BigInteger(int, int, Random) BigInteger....</p>
+  </section>
+  <footer class="entry-footer"><span title='2019-06-19 14:23:52 +0800 CST'>June 19, 2019</span></footer>
+  <a class="entry-link" aria-label="post link to 생성자 대신 정적 팩토리 메서드를 고려하라" href="http://www.springboot.kr/posts/effective-java/effective-fava-3e-02-01/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>JUnit4 assert method 예시
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>JUnit4 assert method 예시    assertXxx Method 사용 목적     assertArrayEquals(&#34;message&#34;, A, B) 배열 A와 B가 일치함을 확인한다.   assertEquals(&#34;message&#34;, A, B) 객체 A와 B가 일치함을 확인한다. B를 파라미터로 A의 equals() 메서드를 호출한다(A.equals(B)).   assertSame(&#34;message&#34;, A, B) 객체 A와 B가 같은 객체임을 확인한다. assertEquals 메서드는 두 객체의 값이 같은가를 검사하는데 반해(equals 메서드 사용), assertSame 메서드는 두객체가 동일한, 즉 하나의 객체인가를 검사한다(== 연산자 사용)   assertTrue(&#34;message&#34;, A) 조건 A가 참(true)임을 확인한다....</p>
+  </section>
+  <footer class="entry-footer"><span title='2019-06-17 14:23:07 +0800 CST'>June 17, 2019</span></footer>
+  <a class="entry-link" aria-label="post link to JUnit4 assert method 예시" href="http://www.springboot.kr/posts/junit-01/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="prev" href="http://www.springboot.kr/posts/page/2/">« Prev Page</a>
+    <a class="next" href="http://www.springboot.kr/posts/page/4/">Next Page »</a>
   </nav>
 </footer>
     </main>
