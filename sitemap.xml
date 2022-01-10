@@ -2,71 +2,71 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://www.springboot.kr/posts/</loc>
+    <loc>https://www.springboot.kr/posts/</loc>
     <lastmod>2021-12-27T17:33:16+08:00</lastmod>
   </url><url>
-    <loc>http://www.springboot.kr/</loc>
+    <loc>https://www.springboot.kr/</loc>
     <lastmod>2021-12-27T17:33:16+08:00</lastmod>
   </url><url>
-    <loc>http://www.springboot.kr/posts/blahblah/2021-12-27-blahblah/</loc>
+    <loc>https://www.springboot.kr/posts/blahblah/2021-12-27-blahblah/</loc>
     <lastmod>2021-12-27T17:33:16+08:00</lastmod>
   </url><url>
-    <loc>http://www.springboot.kr/posts/object/chapter5/</loc>
+    <loc>https://www.springboot.kr/posts/object/chapter5/</loc>
     <lastmod>2021-10-27T18:53:16+08:00</lastmod>
   </url><url>
-    <loc>http://www.springboot.kr/posts/object/chapter4/</loc>
+    <loc>https://www.springboot.kr/posts/object/chapter4/</loc>
     <lastmod>2021-10-26T16:01:16+08:00</lastmod>
   </url><url>
-    <loc>http://www.springboot.kr/posts/object/chapter3/</loc>
+    <loc>https://www.springboot.kr/posts/object/chapter3/</loc>
     <lastmod>2021-10-13T16:39:16+08:00</lastmod>
   </url><url>
-    <loc>http://www.springboot.kr/posts/object/chapter2/</loc>
+    <loc>https://www.springboot.kr/posts/object/chapter2/</loc>
     <lastmod>2021-10-12T16:14:16+08:00</lastmod>
   </url><url>
-    <loc>http://www.springboot.kr/posts/object/chapter1/</loc>
+    <loc>https://www.springboot.kr/posts/object/chapter1/</loc>
     <lastmod>2021-10-07T18:18:16+08:00</lastmod>
   </url><url>
-    <loc>http://www.springboot.kr/posts/kakaotv/kakaotv-chat-bot/</loc>
+    <loc>https://www.springboot.kr/posts/kakaotv/kakaotv-chat-bot/</loc>
     <lastmod>2021-01-04T16:36:41+09:00</lastmod>
   </url><url>
-    <loc>http://www.springboot.kr/posts/google/golang-google-oauth-signin/</loc>
+    <loc>https://www.springboot.kr/posts/google/golang-google-oauth-signin/</loc>
     <lastmod>2019-12-12T00:37:20+09:00</lastmod>
   </url><url>
-    <loc>http://www.springboot.kr/posts/java/about-serialversionuid/</loc>
+    <loc>https://www.springboot.kr/posts/java/about-serialversionuid/</loc>
     <lastmod>2019-12-10T15:09:19+09:00</lastmod>
   </url><url>
-    <loc>http://www.springboot.kr/posts/google/golang-google-oauth/</loc>
+    <loc>https://www.springboot.kr/posts/google/golang-google-oauth/</loc>
     <lastmod>2019-11-21T17:21:14+08:00</lastmod>
   </url><url>
-    <loc>http://www.springboot.kr/posts/k8s/kubernetes-install/</loc>
+    <loc>https://www.springboot.kr/posts/k8s/kubernetes-install/</loc>
     <lastmod>2019-11-18T19:02:57+08:00</lastmod>
   </url><url>
-    <loc>http://www.springboot.kr/posts/effective-java/effective-fava-3e-02-03/</loc>
+    <loc>https://www.springboot.kr/posts/effective-java/effective-fava-3e-02-03/</loc>
     <lastmod>2019-06-21T14:24:00+08:00</lastmod>
   </url><url>
-    <loc>http://www.springboot.kr/posts/effective-java/effective-fava-3e-02-02/</loc>
+    <loc>https://www.springboot.kr/posts/effective-java/effective-fava-3e-02-02/</loc>
     <lastmod>2019-06-20T14:23:57+08:00</lastmod>
   </url><url>
-    <loc>http://www.springboot.kr/posts/effective-java/effective-fava-3e-02-01/</loc>
+    <loc>https://www.springboot.kr/posts/effective-java/effective-fava-3e-02-01/</loc>
     <lastmod>2019-06-19T14:23:52+08:00</lastmod>
   </url><url>
-    <loc>http://www.springboot.kr/posts/junit-01/</loc>
+    <loc>https://www.springboot.kr/posts/junit-01/</loc>
     <lastmod>2019-06-17T14:23:07+08:00</lastmod>
   </url><url>
-    <loc>http://www.springboot.kr/posts/golang-go-pg-1/</loc>
+    <loc>https://www.springboot.kr/posts/golang-go-pg-1/</loc>
     <lastmod>2019-03-23T14:22:38+08:00</lastmod>
   </url><url>
-    <loc>http://www.springboot.kr/posts/java-xml-to-json/</loc>
+    <loc>https://www.springboot.kr/posts/java-xml-to-json/</loc>
     <lastmod>2019-03-22T14:21:02+08:00</lastmod>
   </url><url>
-    <loc>http://www.springboot.kr/archives/</loc>
+    <loc>https://www.springboot.kr/archives/</loc>
   </url><url>
-    <loc>http://www.springboot.kr/archives/</loc>
+    <loc>https://www.springboot.kr/archives/</loc>
   </url><url>
-    <loc>http://www.springboot.kr/categories/</loc>
+    <loc>https://www.springboot.kr/categories/</loc>
   </url><url>
-    <loc>http://www.springboot.kr/search/</loc>
+    <loc>https://www.springboot.kr/search/</loc>
   </url><url>
-    <loc>http://www.springboot.kr/tags/</loc>
+    <loc>https://www.springboot.kr/tags/</loc>
   </url>
 </urlset>
