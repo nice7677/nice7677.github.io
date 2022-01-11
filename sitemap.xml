@@ -3,10 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.springboot.kr/posts/</loc>
-    <lastmod>2022-01-11T13:48:08+08:00</lastmod>
+    <lastmod>2022-01-11T20:36:37+08:00</lastmod>
+  </url><url>
+    <loc>https://www.springboot.kr/posts/spring/required-a-single-bean-but-3-were-found/</loc>
+    <lastmod>2022-01-11T20:36:37+08:00</lastmod>
   </url><url>
     <loc>https://www.springboot.kr/</loc>
-    <lastmod>2022-01-11T13:48:08+08:00</lastmod>
+    <lastmod>2022-01-11T20:36:37+08:00</lastmod>
   </url><url>
     <loc>https://www.springboot.kr/posts/blahblah/renew-blog/</loc>
     <lastmod>2022-01-11T13:48:08+08:00</lastmod>
