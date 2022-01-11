@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>SPRINGBOOT.KR</title>
-    <link>http://www.springboot.kr/</link>
+    <link>https://www.springboot.kr/</link>
     <description>Recent content on SPRINGBOOT.KR</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 27 Dec 2021 17:33:16 +0800</lastBuildDate><atom:link href="http://www.springboot.kr/index.xml" rel="self" type="application/rss+xml" />
+    <language>kr-ko</language>
+    <lastBuildDate>Mon, 27 Dec 2021 17:33:16 +0800</lastBuildDate><atom:link href="https://www.springboot.kr/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>블라블라</title>
-      <link>http://www.springboot.kr/posts/blahblah/2021-12-27-blahblah/</link>
+      <link>https://www.springboot.kr/posts/blahblah/2021-12-27-blahblah/</link>
       <pubDate>Mon, 27 Dec 2021 17:33:16 +0800</pubDate>
       
-      <guid>http://www.springboot.kr/posts/blahblah/2021-12-27-blahblah/</guid>
+      <guid>https://www.springboot.kr/posts/blahblah/2021-12-27-blahblah/</guid>
       <description>겨울이 끝나면 봄이 온다. 봄이 온다. 봄이 올까? 왜 봄일까? 봄은 짧은데 여름아니면 겨울하면안되나? 여름은 안되나? 겨울은?</description>
     </item>
     
     <item>
       <title>[오브젝트 OBJECTS] Chapter 5. 책임 할당하기</title>
-      <link>http://www.springboot.kr/posts/object/chapter5/</link>
+      <link>https://www.springboot.kr/posts/object/chapter5/</link>
       <pubDate>Wed, 27 Oct 2021 18:53:16 +0800</pubDate>
       
-      <guid>http://www.springboot.kr/posts/object/chapter5/</guid>
+      <guid>https://www.springboot.kr/posts/object/chapter5/</guid>
       <description>Chapter 5. 책임 할당하기 데이터 중심 설계로 인해 발생하는 문제점을 해결할 수 있는 가장 기본적인 방법은 데이터가 아닌 책임에 초점을 맞추는 것이다.
 책임에 초점을 맞춰서 설계할 때 직면하는 가장 큰 어려움은 어떤 객체에게 어떤 책임을 할당할지를 결정하기가 쉽지 않다는 것이다.
 책임 할당 과정은 일종의 트레이드오프 활동이다. 동일한 문제를 해결할 수 있는 다양한 책임 할당 방법이 존재하며 어떤 방법이 최선인지는 상황과 문맥에 따라 달라진다.
@@ -30,10 +30,10 @@
     
     <item>
       <title>[오브젝트 OBJECTS] Chapter 4. 설계 품질과 트레이드오프</title>
-      <link>http://www.springboot.kr/posts/object/chapter4/</link>
+      <link>https://www.springboot.kr/posts/object/chapter4/</link>
       <pubDate>Tue, 26 Oct 2021 16:01:16 +0800</pubDate>
       
-      <guid>http://www.springboot.kr/posts/object/chapter4/</guid>
+      <guid>https://www.springboot.kr/posts/object/chapter4/</guid>
       <description>Chapter 4. 설계 품질과 트레이드오프 객체지향 설계의 핵심은 역할,책임,협력이다.
 협력은 애플리케이션의 기능을 구현하기 위해 메시지를 주고받는 객체들 사이의 상호작용 이다. 책임은 객체가 다른 객체와 협력 하기 위해 수행하는 행동이고 역할은 대체 가능한 책임의 집합이다.
 책임 주도 설계라는 이름에 나오는 것처럼 저 셋중 가장 중요한 것은 책임이다.
@@ -44,10 +44,10 @@
     
     <item>
       <title>[오브젝트 OBJECTS] Chapter 3. 역할, 책임, 협력</title>
-      <link>http://www.springboot.kr/posts/object/chapter3/</link>
+      <link>https://www.springboot.kr/posts/object/chapter3/</link>
       <pubDate>Wed, 13 Oct 2021 16:39:16 +0800</pubDate>
       
-      <guid>http://www.springboot.kr/posts/object/chapter3/</guid>
+      <guid>https://www.springboot.kr/posts/object/chapter3/</guid>
       <description>Chapter 3. 역할, 책임, 협력 객체지향 패러다임의 관점에서 핵심은 역할, 책임, 협력이다.
 애플리케이션의 기능을 구현하기 위해 수행하는 상호작용을 협력, 객체 자체가 협력에 참여하기 위해 수행하는 로직을 책임이라 한다.
 객체들이 협력 안에서 수행하는 책임들이 모여 객체가 수행하는 역할을 구성한다
@@ -58,10 +58,10 @@
     
     <item>
       <title>[오브젝트 OBJECTS] Chapter 2. 객체지향 프로그래밍</title>
-      <link>http://www.springboot.kr/posts/object/chapter2/</link>
+      <link>https://www.springboot.kr/posts/object/chapter2/</link>
       <pubDate>Tue, 12 Oct 2021 16:14:16 +0800</pubDate>
       
-      <guid>http://www.springboot.kr/posts/object/chapter2/</guid>
+      <guid>https://www.springboot.kr/posts/object/chapter2/</guid>
       <description>Chapter 2. 객체지향 프로그래밍 제목처럼 챕터 2에서는 객체지향 프로그래밍에 대해 이야기한다
 협력, 객체, 클래스 객체지향이란 말 그대로 객체를 지향하는 것이다.
 그리고 객체지향에 익숙한 사람이라면 클래스에 대해 고민할 것이고 어떤 속성과 메서드가 들어갈 것인가를 고민할 것이다.
@@ -74,10 +74,10 @@
     
     <item>
       <title>[오브젝트 OBJECTS] Chapter 1. 객체, 설계</title>
-      <link>http://www.springboot.kr/posts/object/chapter1/</link>
+      <link>https://www.springboot.kr/posts/object/chapter1/</link>
       <pubDate>Thu, 07 Oct 2021 18:18:16 +0800</pubDate>
       
-      <guid>http://www.springboot.kr/posts/object/chapter1/</guid>
+      <guid>https://www.springboot.kr/posts/object/chapter1/</guid>
       <description>Chapter 1. 객체, 설계 챕터의 초반에 소프트웨어 모듈에 대해 이야기한다.
  실행 중에 제대로 동작하는 것 변경을 위해 존재하는 것 코드를 읽는 사람과 의사소통하는 것  그리고 위에 있는 주제를 가지고 예제를 들어 이야기한다.
 변경에 취약한 코드 객체 사이의 의존성에 관련된 문제, 물론 의존성을 완전히 없애는 것이 아니라 의존성을 낮추며 협력하는 객체들의 공동체를 만드는 것이 좋다.
@@ -87,10 +87,10 @@
     
     <item>
       <title>카카오 TV 챗봇 만들기</title>
-      <link>http://www.springboot.kr/posts/kakaotv/kakaotv-chat-bot/</link>
+      <link>https://www.springboot.kr/posts/kakaotv/kakaotv-chat-bot/</link>
       <pubDate>Mon, 04 Jan 2021 16:36:41 +0900</pubDate>
       
-      <guid>http://www.springboot.kr/posts/kakaotv/kakaotv-chat-bot/</guid>
+      <guid>https://www.springboot.kr/posts/kakaotv/kakaotv-chat-bot/</guid>
       <description>카카오TV 챗봇 만들기
 일 년도 더 넘게 글을 쓰지 않았다. 이제 가끔씩 다시 적어보려고 하는데 시작이 카카오티비 챗봇이다.
 이미 작년에 만들었는데 카카오TV가 죽어서 사용하질 않고 있다.
@@ -103,10 +103,10 @@
     
     <item>
       <title>Golang Google Oauth Signin 인증 방법</title>
-      <link>http://www.springboot.kr/posts/google/golang-google-oauth-signin/</link>
+      <link>https://www.springboot.kr/posts/google/golang-google-oauth-signin/</link>
       <pubDate>Thu, 12 Dec 2019 00:37:20 +0900</pubDate>
       
-      <guid>http://www.springboot.kr/posts/google/golang-google-oauth-signin/</guid>
+      <guid>https://www.springboot.kr/posts/google/golang-google-oauth-signin/</guid>
       <description>2019년 1월에 Google+ API가 종료 됬습니다.
 그래서 찾아보는데&amp;hellip; 찾았습니다.
 물론 너무 짧은 시간동안 서치하고 사용한거라 원래 공유되있는 내용 일수도 있습니다.
@@ -120,10 +120,10 @@
     
     <item>
       <title>Java serialVersionUID에 대하여</title>
-      <link>http://www.springboot.kr/posts/java/about-serialversionuid/</link>
+      <link>https://www.springboot.kr/posts/java/about-serialversionuid/</link>
       <pubDate>Tue, 10 Dec 2019 15:09:19 +0900</pubDate>
       
-      <guid>http://www.springboot.kr/posts/java/about-serialversionuid/</guid>
+      <guid>https://www.springboot.kr/posts/java/about-serialversionuid/</guid>
       <description>serialVersionUID
   serialVersionUID에 란 무엇인가?
  객체를 직렬화 하여 역직렬화를 할때 사용한다. 직렬화 외에도 보안등의 용도에 사용됬다. 객체에 대한 고유번호(?)으로 생각하면 된다. serialization가 사용되는 클래스의 경우에 명시적으로 선언해 주는것을 권유한다.    어떻게 사용하는가?
@@ -133,10 +133,10 @@
     
     <item>
       <title>Golang Google OAuth 사용 하기</title>
-      <link>http://www.springboot.kr/posts/google/golang-google-oauth/</link>
+      <link>https://www.springboot.kr/posts/google/golang-google-oauth/</link>
       <pubDate>Thu, 21 Nov 2019 17:21:14 +0800</pubDate>
       
-      <guid>http://www.springboot.kr/posts/google/golang-google-oauth/</guid>
+      <guid>https://www.springboot.kr/posts/google/golang-google-oauth/</guid>
       <description>Golang에서 google photo를 사용하기 위해서 찾았던 내용을 정리 하려고 한다.
 이건 내 방법이고 다른 방법이 있을 수 있음.
 Google OAuth 2.0 for Web Server Applications
@@ -151,10 +151,10 @@ go get -u github.com/go-resty/resty/v2 설치가 끝나면 라이브러리를 �
     
     <item>
       <title>Kubernetes Minikube 설치</title>
-      <link>http://www.springboot.kr/posts/k8s/kubernetes-install/</link>
+      <link>https://www.springboot.kr/posts/k8s/kubernetes-install/</link>
       <pubDate>Mon, 18 Nov 2019 19:02:57 +0800</pubDate>
       
-      <guid>http://www.springboot.kr/posts/k8s/kubernetes-install/</guid>
+      <guid>https://www.springboot.kr/posts/k8s/kubernetes-install/</guid>
       <description>맥북에서 kubernetes 설치를 위해 상단바에 있는 도커를 클릭후
 Preferences&amp;hellip; 를 클릭후 kubernetes 버튼을 눌러
 Enable Kubernetes를 체크 후 apply를 눌러 쿠버네티스를 활성화 시킨다.
@@ -167,10 +167,10 @@ kubectl version Kubectl 설치가 끝나면 Minikube 설치를 해준다.</descr
     
     <item>
       <title>생성자나 열거 탕비으로 싱클턴임을 보증하라</title>
-      <link>http://www.springboot.kr/posts/effective-java/effective-fava-3e-02-03/</link>
+      <link>https://www.springboot.kr/posts/effective-java/effective-fava-3e-02-03/</link>
       <pubDate>Fri, 21 Jun 2019 14:24:00 +0800</pubDate>
       
-      <guid>http://www.springboot.kr/posts/effective-java/effective-fava-3e-02-03/</guid>
+      <guid>https://www.springboot.kr/posts/effective-java/effective-fava-3e-02-03/</guid>
       <description>Effective Java 3/E 2장 생성자나 열거 탕비으로 싱클턴임을 보증하라 싱글턴은 인스턴스를 하나만 만들수 있는 패턴이다.
 하지만 클래스를 싱글턴으로 만들면 싱글턴 인스턴스를 Mock 구현으로 대체 할 수가 없다
 그렇게 되면 이를 사용하는 클라이언트를 테스트하기가 어려워지게 된다.
@@ -181,10 +181,10 @@ kubectl version Kubectl 설치가 끝나면 Minikube 설치를 해준다.</descr
     
     <item>
       <title>생성자에 매개변수가 많다면 빌더를 고려하라</title>
-      <link>http://www.springboot.kr/posts/effective-java/effective-fava-3e-02-02/</link>
+      <link>https://www.springboot.kr/posts/effective-java/effective-fava-3e-02-02/</link>
       <pubDate>Thu, 20 Jun 2019 14:23:57 +0800</pubDate>
       
-      <guid>http://www.springboot.kr/posts/effective-java/effective-fava-3e-02-02/</guid>
+      <guid>https://www.springboot.kr/posts/effective-java/effective-fava-3e-02-02/</guid>
       <description>Effective Java 3/E 2장 생성자에 매개변수가 많다면 빌더를 고려하라 정적 팩터리와 생성자에는 똑같은 제약이 하나 있다.
 선택적 매개변수가 많을때 대응이 어렵다.
 점층적 생성자 패턴도 쓸 수는 있지만 매개변수가 많아지면 클라이언트 코드를 작성하거나 읽기 어려워 진다.
@@ -193,10 +193,10 @@ public class Hello { private String str; private String str2; private String str
     
     <item>
       <title>생성자 대신 정적 팩토리 메서드를 고려하라</title>
-      <link>http://www.springboot.kr/posts/effective-java/effective-fava-3e-02-01/</link>
+      <link>https://www.springboot.kr/posts/effective-java/effective-fava-3e-02-01/</link>
       <pubDate>Wed, 19 Jun 2019 14:23:52 +0800</pubDate>
       
-      <guid>http://www.springboot.kr/posts/effective-java/effective-fava-3e-02-01/</guid>
+      <guid>https://www.springboot.kr/posts/effective-java/effective-fava-3e-02-01/</guid>
       <description>Effective Java 3/E 2장 생성자 대신 정적 팩토리 메서드를 고려하라    인스턴스를 얻는전통적 수단은 Public 생성자이다.
   클래스는 별도로 정적 팩터리 메서드를 제공 할 수 있다. (클래스의 인스턴스를 반환하는 단순한 정적 메서드)
   정적 팩터리 메서드와 팩토리 패턴은 같지 않다.
@@ -207,19 +207,19 @@ public class Hello { private String str; private String str2; private String str
     
     <item>
       <title>JUnit4 assert method 예시</title>
-      <link>http://www.springboot.kr/posts/junit-01/</link>
+      <link>https://www.springboot.kr/posts/junit-01/</link>
       <pubDate>Mon, 17 Jun 2019 14:23:07 +0800</pubDate>
       
-      <guid>http://www.springboot.kr/posts/junit-01/</guid>
+      <guid>https://www.springboot.kr/posts/junit-01/</guid>
       <description>JUnit4 assert method 예시    assertXxx Method 사용 목적     assertArrayEquals(&amp;quot;message&amp;quot;, A, B) 배열 A와 B가 일치함을 확인한다.   assertEquals(&amp;quot;message&amp;quot;, A, B) 객체 A와 B가 일치함을 확인한다. B를 파라미터로 A의 equals() 메서드를 호출한다(A.equals(B)).   assertSame(&amp;quot;message&amp;quot;, A, B) 객체 A와 B가 같은 객체임을 확인한다. assertEquals 메서드는 두 객체의 값이 같은가를 검사하는데 반해(equals 메서드 사용), assertSame 메서드는 두객체가 동일한, 즉 하나의 객체인가를 검사한다(== 연산자 사용)   assertTrue(&amp;quot;message&amp;quot;, A) 조건 A가 참(true)임을 확인한다.</description>
     </item>
     
     <item>
       <title>golang go-pg 사용하기</title>
-      <link>http://www.springboot.kr/posts/golang-go-pg-1/</link>
+      <link>https://www.springboot.kr/posts/golang-go-pg-1/</link>
       <pubDate>Sat, 23 Mar 2019 14:22:38 +0800</pubDate>
       
-      <guid>http://www.springboot.kr/posts/golang-go-pg-1/</guid>
+      <guid>https://www.springboot.kr/posts/golang-go-pg-1/</guid>
       <description>golang에서 postgresql orm go-pg 사용하기 처음 글에서는 go-pg를 사용한 connection과 close에 대해 적어본다 예제 샘플을 따라하면 잘 될것이다.
 나는 postgresql을 사용하기 위함이 아니라 cockroach db를 go에서 사용하기 위해 go-pg를 선택했다.
 go-pg에 대한 링크를 걸어 둡니다.
@@ -230,10 +230,10 @@ Github / Document
     
     <item>
       <title>자바 XML TO JSON 변환 하기</title>
-      <link>http://www.springboot.kr/posts/java-xml-to-json/</link>
+      <link>https://www.springboot.kr/posts/java-xml-to-json/</link>
       <pubDate>Fri, 22 Mar 2019 14:21:02 +0800</pubDate>
       
-      <guid>http://www.springboot.kr/posts/java-xml-to-json/</guid>
+      <guid>https://www.springboot.kr/posts/java-xml-to-json/</guid>
       <description>XML TO JSON (AND CUSTOM OBJECT) xml 데이터를 json으로 변환하기 위한 작업이 필요하다.
 그러기 위해서 spring framework에서 많이 사용하는 jackson(jackson-dataformat-xml)을 사용해 변환을 해보려 했다.
 하지만 jackson 라이브러리를 사용해 xml을 json으로 변환할 때 xml의 multiple child 값들이 다 사라지면서 단일 값이 남게 된다.
@@ -245,6 +245,8 @@ Github / Document
   org.json 라이브러리와 jackson 라이브러리를 섞어 사용한다.
   예제 샘플이다</description>
     </item>
+    
+    
     
     
   </channel>
