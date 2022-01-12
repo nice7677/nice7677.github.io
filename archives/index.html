@@ -69,7 +69,7 @@ if (!doNotTrack) {
 <meta property="og:title" content="Archive" />
 <meta property="og:description" content="archives" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.springboot.kr/archives/" /><meta property="article:section" content="" />
+<meta property="og:url" content="https://www.springboot.kr/archives/" /><meta property="article:section" content="posts" />
 
 
 
@@ -86,6 +86,12 @@ if (!doNotTrack) {
     {
       "@type": "ListItem",
       "position":  1 ,
+      "name": "Posts",
+      "item": "https://www.springboot.kr/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
       "name": "Archive",
       "item": "https://www.springboot.kr/archives/"
     }
@@ -189,11 +195,17 @@ if (!doNotTrack) {
   <h1>Archive</h1>
 </header>
 <div class="archive-year">
-  <h2 class="archive-year-header">2022<sup class="archive-count">&nbsp;&nbsp;2</sup>
+  <h2 class="archive-year-header">2022<sup class="archive-count">&nbsp;&nbsp;3</sup>
   </h2>
   <div class="archive-month">
-    <h3 class="archive-month-header">January<sup class="archive-count">&nbsp;&nbsp;2</sup></h3>
+    <h3 class="archive-month-header">January<sup class="archive-count">&nbsp;&nbsp;3</sup></h3>
     <div class="archive-posts">
+      <div class="archive-entry">
+        <h3 class="archive-entry-title">어설픈 지식은 위험하다.<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>
+        </h3>
+        <div class="archive-meta"><span title='2022-01-12 15:58:44 +0800 CST'>January 12, 2022</span></div>
+        <a class="entry-link" aria-label="post link to 어설픈 지식은 위험하다." href="https://www.springboot.kr/posts/blahblah/the-dig/"></a>
+      </div>
       <div class="archive-entry">
         <h3 class="archive-entry-title">required a single bean, but 3 were found 해결법
         </h3>
@@ -419,15 +431,6 @@ if (!doNotTrack) {
             localStorage.setItem("pref-theme", 'light');
         } else {
             document.body.classList.add('dark');
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
-</body>
-
-</html>
-   document.body.classList.add('dark');
             localStorage.setItem("pref-theme", 'dark');
         }
     })

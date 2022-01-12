@@ -6,7 +6,22 @@
     <description>Recent content in Posts on SPRINGBOOT.KR</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>kr-ko</language>
-    <lastBuildDate>Tue, 11 Jan 2022 20:36:37 +0800</lastBuildDate><atom:link href="https://www.springboot.kr/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 Jan 2022 15:58:44 +0800</lastBuildDate><atom:link href="https://www.springboot.kr/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>어설픈 지식은 위험하다.</title>
+      <link>https://www.springboot.kr/posts/blahblah/the-dig/</link>
+      <pubDate>Wed, 12 Jan 2022 15:58:44 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/blahblah/the-dig/</guid>
+      <description>영화 더디그를 봤다.
+보는데 이런 대사가 나왔다.
+Pretty(여주) - The servants tell me you’ve studied everything, from Latin to geology.
+Brown(남주) - Well, a little education is a dangerous thing.
+이 대사를 보면서 영화 내에서도 나이가 있는 사람이지만 끊임없이 공부를 한다는 점 그런 게 와 닺는 거 같다.
+거기에 어설픈 지식은 위험하다. 뭔가 멋있다.
+그냥.. 대사가 좋았다. 그래서 이 글도 적고 싶어졌다.</description>
+    </item>
+    
     <item>
       <title>required a single bean, but 3 were found 해결법</title>
       <link>https://www.springboot.kr/posts/spring/required-a-single-bean-but-3-were-found/</link>
