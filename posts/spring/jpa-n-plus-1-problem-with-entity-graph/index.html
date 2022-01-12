@@ -128,7 +128,7 @@ if (!doNotTrack) {
   "keywords": [
     
   ],
-  "articleBody": "JPA N+1은 많이 겪어본 문제일듯한데.\n쉬운 방법으로 해결하는 fetch join 방법을 소개한다.\n우선 기본적으로 많이 쓰이는 3가지를 소개한다.\n @NamedEntityGraph 와 @EntityGraph 를 사용해 해결하기 Querydsl 을 사용해 해결하기 JPQL 을 사용해 해결하기  나는 여기 중에서 1번과 비슷하게 사용하는 방법을 소개한다.\n코드를 보자\n우선 Entity 클래스들부터 보자 Company와 Product가 있다.\n@Entity public class Company { @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id; private String name; @OneToMany(mappedBy = \"company\", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST) private ListProduct products = new ArrayList(); @Builder public Company(Long id, String name, ListProduct products) { this.id = id; this.name = name; this.products = products; } public void setProducts(ListProduct products) { this.products = products; } } @Entity public class Product { @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id; private String name; @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = \"company_id\") private Company company; @Builder public Product(Long id, String name, Company company) { this.id = id; this.name = name; this.company = company; } public void setCompany(Company company) { this.company = company; } } 다음으로 Repository를 보자\n@Repository public interface CompanyRepository extends JpaRepositoryCompany, Long { @Override ListCompany findAll(); } 데이터는 다음과 같다.\nCompany Table\n   id Name     7 Coke   8 Nike    Product Table\n   id Name company_id     9 CocaCola 7   10 Sprite 7   11 ZeroCola 7   12 Shoes 8    우선 이렇게 돼있는 코드를 테스트 돌려보자.\n@SpringBootTest public class JpaNPlusOneTest { @Autowired CompanyRepository companyRepository; @Test void findCompanyTest() { companyRepository.findAll(); } } Hibernate: select company0_.id as id1_0_, company0_.name as name2_0_ from company company0_ Hibernate: select products0_.company_id as company_3_1_0_, products0_.id as id1_1_0_, products0_.id as id1_1_1_, products0_.company_id as company_3_1_1_, products0_.name as name2_1_1_ from product products0_ where products0_.company_id=? Hibernate: select products0_.company_id as company_3_1_0_, products0_.id as id1_1_0_, products0_.id as id1_1_1_, products0_.company_id as company_3_1_1_, products0_.name as name2_1_1_ from product products0_ where products0_.company_id=? 결과를 보게 되면 company를 찾고 찾은 company를 1개씩 product에서 검색한다.\n그럼 이제 여기서 Repository 위에 이번에 글에서 말하고 싶은 @EntityGraph(attributePaths = {\"products\"}, type = EntityGraph.EntityGraphType.LOAD) 어노테이션을 붙이고 실행해 보자\n@Repository public interface CompanyRepository extends JpaRepositoryCompany, Long { @EntityGraph(attributePaths = {\"products\"}, type = EntityGraph.EntityGraphType.LOAD) @Override ListCompany findAll(); } Hibernate: select company0_.id as id1_0_0_, products1_.id as id1_1_1_, company0_.name as name2_0_0_, products1_.company_id as company_3_1_1_, products1_.name as name2_1_1_, products1_.company_id as company_3_1_0__, products1_.id as id1_1_0__ from company company0_ left outer join product products1_ on company0_.id=products1_.company_id 결과를 보면 3번의 조회에서 1번의 조회로 해결된 것을 볼 수가 있다.\n글 위에서 소개한 1번의 내용 중 @NamedEntityGraph를 사용하지 않고 @EntityGraph만으로도 사용이 가능하다.\n더 간결해 편해질 수 있다.\n참고로 @EntityGraph에 있는 type으로는 2가지가 있는데\n###Enum Constant Detail ####LOAD\nEntityGraph.EntityGraphType LOAD\njavax.persistence.loadgraph 속성을 사용하여 엔티티 그래프를 지정할 때 엔티티 그래프의 속성 노드에 의해 지정된 속성은 FetchType.EAGER로 처리되고 지정되지 않은 속성은 지정된 또는 기본 FetchType에 따라 처리됩니다.\n####FETCH EntityGraph.EntityGraphType FETCH javax.persistence.fetchgraph 속성을 사용하여 엔티티 그래프를 지정할 때 엔티티 그래프의 속성 노드에 의해 지정된 속성은 FetchType.EAGER로 처리되고 지정되지 않은 속성은 FetchType.LAZY로 처리됩니다.\n라고 Enum EntityGraph.EntityGraphType 여기에 되있다\n이글 [Spring Data] @EntityGraph로 lazy 패치 같이 불러오기 (fetch-graph 커스터마이징) 도 참조 했다.\n- 끗 - ",
+  "articleBody": "JPA N+1은 많이 겪어본 문제일듯한데.\n쉬운 방법으로 해결하는 fetch join 방법을 소개한다.\n우선 기본적으로 많이 쓰이는 3가지를 소개한다.\n @NamedEntityGraph 와 @EntityGraph 를 사용해 해결하기 Querydsl 을 사용해 해결하기 JPQL 을 사용해 해결하기  나는 여기 중에서 1번과 비슷하게 사용하는 방법을 소개한다.\n코드를 보자\n우선 Entity 클래스들부터 보자 Company와 Product가 있다.\n@Entity public class Company { @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id; private String name; @OneToMany(mappedBy = \"company\", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST) private ListProduct products = new ArrayList(); @Builder public Company(Long id, String name, ListProduct products) { this.id = id; this.name = name; this.products = products; } public void setProducts(ListProduct products) { this.products = products; } } @Entity public class Product { @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id; private String name; @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = \"company_id\") private Company company; @Builder public Product(Long id, String name, Company company) { this.id = id; this.name = name; this.company = company; } public void setCompany(Company company) { this.company = company; } } 다음으로 Repository를 보자\n@Repository public interface CompanyRepository extends JpaRepositoryCompany, Long { @Override ListCompany findAll(); } 데이터는 다음과 같다.\nCompany Table\n   id Name     7 Coke   8 Nike    Product Table\n   id Name company_id     9 CocaCola 7   10 Sprite 7   11 ZeroCola 7   12 Shoes 8    우선 이렇게 돼있는 코드를 테스트 돌려보자.\n@SpringBootTest public class JpaNPlusOneTest { @Autowired CompanyRepository companyRepository; @Test void findCompanyTest() { companyRepository.findAll(); } } Hibernate: select company0_.id as id1_0_, company0_.name as name2_0_ from company company0_ Hibernate: select products0_.company_id as company_3_1_0_, products0_.id as id1_1_0_, products0_.id as id1_1_1_, products0_.company_id as company_3_1_1_, products0_.name as name2_1_1_ from product products0_ where products0_.company_id=? Hibernate: select products0_.company_id as company_3_1_0_, products0_.id as id1_1_0_, products0_.id as id1_1_1_, products0_.company_id as company_3_1_1_, products0_.name as name2_1_1_ from product products0_ where products0_.company_id=? 결과를 보게 되면 company를 찾고 찾은 company를 1개씩 product에서 검색한다.\n그럼 이제 여기서 Repository 위에 이번에 글에서 말하고 싶은 @EntityGraph(attributePaths = {\"products\"}, type = EntityGraph.EntityGraphType.LOAD) 어노테이션을 붙이고 실행해 보자\n@Repository public interface CompanyRepository extends JpaRepositoryCompany, Long { @EntityGraph(attributePaths = {\"products\"}, type = EntityGraph.EntityGraphType.LOAD) @Override ListCompany findAll(); } Hibernate: select company0_.id as id1_0_0_, products1_.id as id1_1_1_, company0_.name as name2_0_0_, products1_.company_id as company_3_1_1_, products1_.name as name2_1_1_, products1_.company_id as company_3_1_0__, products1_.id as id1_1_0__ from company company0_ left outer join product products1_ on company0_.id=products1_.company_id 결과를 보면 3번의 조회에서 1번의 조회로 해결된 것을 볼 수가 있다.\n글 위에서 소개한 1번의 내용 중 @NamedEntityGraph를 사용하지 않고 @EntityGraph만으로도 사용이 가능하다.\n더 간결해 편해질 수 있다.\n참고로 @EntityGraph에 있는 type으로는 2가지가 있는데\n###Enum Constant Detail\n####LOAD\nEntityGraph.EntityGraphType LOAD\njavax.persistence.loadgraph 속성을 사용하여 엔티티 그래프를 지정할 때 엔티티 그래프의 속성 노드에 의해 지정된 속성은 FetchType.EAGER로 처리되고 지정되지 않은 속성은 지정된 또는 기본 FetchType에 따라 처리됩니다.\n####FETCH\nEntityGraph.EntityGraphType FETCH\njavax.persistence.fetchgraph 속성을 사용하여 엔티티 그래프를 지정할 때 엔티티 그래프의 속성 노드에 의해 지정된 속성은 FetchType.EAGER로 처리되고 지정되지 않은 속성은 FetchType.LAZY로 처리됩니다.\n라고 Enum EntityGraph.EntityGraphType 여기에 되있다\n이글 [Spring Data] @EntityGraph로 lazy 패치 같이 불러오기 (fetch-graph 커스터마이징) 도 참조 했다.\n- 끗 - ",
   "wordCount" : "470",
   "inLanguage": "en",
   "datePublished": "2022-01-13T01:54:34+08:00",
@@ -215,7 +215,7 @@ if (!doNotTrack) {
   <header class="post-header">
     <div class="breadcrumbs"><a href="https://www.springboot.kr/">Home</a>&nbsp;»&nbsp;<a href="https://www.springboot.kr/posts/">Posts</a></div>
     <h1 class="post-title">
-      JPA N&#43;1문제와 @EntityGraph<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>
+      JPA N&#43;1문제와 @EntityGraph
     </h1>
     <div class="post-meta"><span title='2022-01-13 01:54:34 +0800 CST'>January 13, 2022</span>
 
@@ -232,8 +232,7 @@ if (!doNotTrack) {
 <p>나는 여기 중에서 1번과 비슷하게 사용하는 방법을 소개한다.</p>
 <p>코드를 보자</p>
 <p>우선 Entity 클래스들부터 보자 Company와 Product가 있다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
-<span style="color:#a6e22e">@Entity</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Entity</span>
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Company</span> <span style="color:#f92672">{</span>
 
     <span style="color:#a6e22e">@Id</span>
@@ -284,8 +283,7 @@ if (!doNotTrack) {
 
 <span style="color:#f92672">}</span>
 </code></pre></div><p>다음으로 Repository를 보자</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
-<span style="color:#a6e22e">@Repository</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Repository</span>
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CompanyRepository</span> <span style="color:#66d9ef">extends</span> JpaRepository<span style="color:#f92672">&lt;</span>Company<span style="color:#f92672">,</span> Long<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
 
     <span style="color:#a6e22e">@Override</span>
@@ -388,8 +386,7 @@ Hibernate:
 </code></pre><p>결과를 보게 되면 company를 찾고 찾은 company를 1개씩 product에서 검색한다.</p>
 <p>그럼 이제 여기서 Repository 위에 이번에 글에서 말하고 싶은
 <code>@EntityGraph(attributePaths = {&quot;products&quot;}, type = EntityGraph.EntityGraphType.LOAD)</code> 어노테이션을 붙이고 실행해 보자</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
-<span style="color:#a6e22e">@Repository</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Repository</span>
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CompanyRepository</span> <span style="color:#66d9ef">extends</span> JpaRepository<span style="color:#f92672">&lt;</span>Company<span style="color:#f92672">,</span> Long<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
 
     <span style="color:#a6e22e">@EntityGraph</span><span style="color:#f92672">(</span>attributePaths <span style="color:#f92672">=</span> <span style="color:#f92672">{</span><span style="color:#e6db74">&#34;products&#34;</span><span style="color:#f92672">},</span> type <span style="color:#f92672">=</span> EntityGraph<span style="color:#f92672">.</span><span style="color:#a6e22e">EntityGraphType</span><span style="color:#f92672">.</span><span style="color:#a6e22e">LOAD</span><span style="color:#f92672">)</span>
@@ -415,13 +412,13 @@ Hibernate:
 <p>글 위에서 소개한 1번의 내용 중 @NamedEntityGraph를 사용하지 않고 @EntityGraph만으로도 사용이 가능하다.</p>
 <p>더 간결해 편해질 수 있다.</p>
 <p>참고로 @EntityGraph에 있는 type으로는 2가지가 있는데</p>
-<p>###Enum Constant Detail
-####LOAD</p>
+<p>###Enum Constant Detail</p>
+<p>####LOAD</p>
 <p>EntityGraph.EntityGraphType <code>LOAD</code></p>
 <p>javax.persistence.loadgraph 속성을 사용하여 엔티티 그래프를 지정할 때 엔티티 그래프의 속성 노드에 의해 지정된 속성은 FetchType.EAGER로 처리되고 지정되지 않은 속성은 지정된 또는 기본 FetchType에 따라 처리됩니다.</p>
-<p>####FETCH
-EntityGraph.EntityGraphType <code>FETCH</code>
-javax.persistence.fetchgraph 속성을 사용하여 엔티티 그래프를 지정할 때 엔티티 그래프의 속성 노드에 의해 지정된 속성은 FetchType.EAGER로 처리되고 지정되지 않은 속성은 FetchType.LAZY로 처리됩니다.</p>
+<p>####FETCH</p>
+<p>EntityGraph.EntityGraphType <code>FETCH</code></p>
+<p>javax.persistence.fetchgraph 속성을 사용하여 엔티티 그래프를 지정할 때 엔티티 그래프의 속성 노드에 의해 지정된 속성은 FetchType.EAGER로 처리되고 지정되지 않은 속성은 FetchType.LAZY로 처리됩니다.</p>
 <p>라고 <a href="https://docs.spring.io/spring-data/jpa/docs/current/api/org/springframework/data/jpa/repository/EntityGraph.EntityGraphType.html">Enum EntityGraph.EntityGraphType</a> 여기에 되있다</p>
 <p>이글 <a href="https://blog.leocat.kr/notes/2019/05/26/spring-data-using-entitygraph-to-customize-fetch-graph">[Spring Data] @EntityGraph로 lazy 패치 같이 불러오기 (fetch-graph 커스터마이징)</a> 도 참조 했다.</p>
 <h1 id="--끗--">- 끗 -<a hidden class="anchor" aria-hidden="true" href="#--끗--">#</a></h1>
