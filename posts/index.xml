@@ -14,12 +14,13 @@
       
       <guid>https://www.springboot.kr/posts/spring/authenticationprincipal-security/</guid>
       <description>@Authenticationprincipal !이 어노테이션은 Package org.springframework.security.core.annotation 에 있는 어노테이션 입니다.
-docs.spring.io에서 확인해 보면 이 어 로테이션은 Authentication.getPrincipal()메서드 인수를 확인하는 데 사용된다고 하는데 Authentication 인터페이스에 대해서는 다음에 다루고 우선 이 메서드만 확인해 보게 되면
+docs.spring.io에서 확인해 보면 이 어노테이션은 Authentication.getPrincipal()메서드 인수를 확인하는 데 사용된다고 하는데 Authentication 인터페이스에 대해서는 다음에 다루고 우선 이 메서드만 확인해 보게 되면
 getPrincipal
 인증 중인 주체의 ID입니다.
 사용자 이름과 비밀번호가 있는 인증 요청의 경우, 이 사용자 이름이 됩니다.
 호출자는 인증 요청의 주체를 채워야 합니다.
-AuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있는 주체로서 더 풍부한 정보를 포함하는 인증을 반환하는 경우가 많습니다.</description>
+AuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있는 주체로서 더 풍부한 정보를 포함하는 인증을 반환하는 경우가 많습니다.
+많은 인증 공급자가 UserDetails 개체를 주체로 만듭니다.</description>
     </item>
     
     <item>

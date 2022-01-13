@@ -8,12 +8,13 @@
 <title>@Authenticationprincipal에 대하여 | SPRINGBOOT.KR</title>
 <meta name="keywords" content="" />
 <meta name="description" content="@Authenticationprincipal !이 어노테이션은 Package org.springframework.security.core.annotation 에 있는 어노테이션 입니다.
-docs.spring.io에서 확인해 보면 이 어 로테이션은 Authentication.getPrincipal()메서드 인수를 확인하는 데 사용된다고 하는데 Authentication 인터페이스에 대해서는 다음에 다루고 우선 이 메서드만 확인해 보게 되면
+docs.spring.io에서 확인해 보면 이 어노테이션은 Authentication.getPrincipal()메서드 인수를 확인하는 데 사용된다고 하는데 Authentication 인터페이스에 대해서는 다음에 다루고 우선 이 메서드만 확인해 보게 되면
 getPrincipal
 인증 중인 주체의 ID입니다.
 사용자 이름과 비밀번호가 있는 인증 요청의 경우, 이 사용자 이름이 됩니다.
 호출자는 인증 요청의 주체를 채워야 합니다.
-AuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있는 주체로서 더 풍부한 정보를 포함하는 인증을 반환하는 경우가 많습니다.">
+AuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있는 주체로서 더 풍부한 정보를 포함하는 인증을 반환하는 경우가 많습니다.
+많은 인증 공급자가 UserDetails 개체를 주체로 만듭니다.">
 <meta name="author" content="">
 <link rel="canonical" href="https://www.springboot.kr/posts/spring/authenticationprincipal-security/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.d4b0ee0ca8b7c80a755dba6157c583088bcce231580995dd9a80de7cae0c0f17.css" integrity="sha256-1LDuDKi3yAp1XbphV8WDCIvM4jFYCZXdmoDefK4MDxc=" rel="preload stylesheet" as="style">
@@ -76,12 +77,13 @@ if (!doNotTrack) {
 </script>
 <meta property="og:title" content="@Authenticationprincipal에 대하여" />
 <meta property="og:description" content="@Authenticationprincipal !이 어노테이션은 Package org.springframework.security.core.annotation 에 있는 어노테이션 입니다.
-docs.spring.io에서 확인해 보면 이 어 로테이션은 Authentication.getPrincipal()메서드 인수를 확인하는 데 사용된다고 하는데 Authentication 인터페이스에 대해서는 다음에 다루고 우선 이 메서드만 확인해 보게 되면
+docs.spring.io에서 확인해 보면 이 어노테이션은 Authentication.getPrincipal()메서드 인수를 확인하는 데 사용된다고 하는데 Authentication 인터페이스에 대해서는 다음에 다루고 우선 이 메서드만 확인해 보게 되면
 getPrincipal
 인증 중인 주체의 ID입니다.
 사용자 이름과 비밀번호가 있는 인증 요청의 경우, 이 사용자 이름이 됩니다.
 호출자는 인증 요청의 주체를 채워야 합니다.
-AuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있는 주체로서 더 풍부한 정보를 포함하는 인증을 반환하는 경우가 많습니다." />
+AuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있는 주체로서 더 풍부한 정보를 포함하는 인증을 반환하는 경우가 많습니다.
+많은 인증 공급자가 UserDetails 개체를 주체로 만듭니다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.springboot.kr/posts/spring/authenticationprincipal-security/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-01-14T01:13:27&#43;08:00" />
@@ -90,12 +92,13 @@ AuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있�
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="@Authenticationprincipal에 대하여"/>
 <meta name="twitter:description" content="@Authenticationprincipal !이 어노테이션은 Package org.springframework.security.core.annotation 에 있는 어노테이션 입니다.
-docs.spring.io에서 확인해 보면 이 어 로테이션은 Authentication.getPrincipal()메서드 인수를 확인하는 데 사용된다고 하는데 Authentication 인터페이스에 대해서는 다음에 다루고 우선 이 메서드만 확인해 보게 되면
+docs.spring.io에서 확인해 보면 이 어노테이션은 Authentication.getPrincipal()메서드 인수를 확인하는 데 사용된다고 하는데 Authentication 인터페이스에 대해서는 다음에 다루고 우선 이 메서드만 확인해 보게 되면
 getPrincipal
 인증 중인 주체의 ID입니다.
 사용자 이름과 비밀번호가 있는 인증 요청의 경우, 이 사용자 이름이 됩니다.
 호출자는 인증 요청의 주체를 채워야 합니다.
-AuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있는 주체로서 더 풍부한 정보를 포함하는 인증을 반환하는 경우가 많습니다."/>
+AuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있는 주체로서 더 풍부한 정보를 포함하는 인증을 반환하는 경우가 많습니다.
+많은 인증 공급자가 UserDetails 개체를 주체로 만듭니다."/>
 
 
 <script type="application/ld+json">
@@ -124,12 +127,12 @@ AuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있�
   "@type": "BlogPosting",
   "headline": "@Authenticationprincipal에 대하여",
   "name": "@Authenticationprincipal에 대하여",
-  "description": "@Authenticationprincipal !이 어노테이션은 Package org.springframework.security.core.annotation 에 있는 어노테이션 입니다.\ndocs.spring.io에서 확인해 보면 이 어 로테이션은 Authentication.getPrincipal()메서드 인수를 확인하는 데 사용된다고 하는데 Authentication 인터페이스에 대해서는 다음에 다루고 우선 이 메서드만 확인해 보게 되면\ngetPrincipal\n인증 중인 주체의 ID입니다.\n사용자 이름과 비밀번호가 있는 인증 요청의 경우, 이 사용자 이름이 됩니다.\n호출자는 인증 요청의 주체를 채워야 합니다.\nAuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있는 주체로서 더 풍부한 정보를 포함하는 인증을 반환하는 경우가 많습니다.",
+  "description": "@Authenticationprincipal !이 어노테이션은 Package org.springframework.security.core.annotation 에 있는 어노테이션 입니다.\ndocs.spring.io에서 확인해 보면 이 어노테이션은 Authentication.getPrincipal()메서드 인수를 확인하는 데 사용된다고 하는데 Authentication 인터페이스에 대해서는 다음에 다루고 우선 이 메서드만 확인해 보게 되면\ngetPrincipal\n인증 중인 주체의 ID입니다.\n사용자 이름과 비밀번호가 있는 인증 요청의 경우, 이 사용자 이름이 됩니다.\n호출자는 인증 요청의 주체를 채워야 합니다.\nAuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있는 주체로서 더 풍부한 정보를 포함하는 인증을 반환하는 경우가 많습니다.\n많은 인증 공급자가 UserDetails 개체를 주체로 만듭니다.",
   "keywords": [
     
   ],
-  "articleBody": "@Authenticationprincipal !이 어노테이션은 Package org.springframework.security.core.annotation 에 있는 어노테이션 입니다.\ndocs.spring.io에서 확인해 보면 이 어 로테이션은 Authentication.getPrincipal()메서드 인수를 확인하는 데 사용된다고 하는데 Authentication 인터페이스에 대해서는 다음에 다루고 우선 이 메서드만 확인해 보게 되면\ngetPrincipal\n인증 중인 주체의 ID입니다.\n사용자 이름과 비밀번호가 있는 인증 요청의 경우, 이 사용자 이름이 됩니다.\n호출자는 인증 요청의 주체를 채워야 합니다.\nAuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있는 주체로서 더 풍부한 정보를 포함하는 인증을 반환하는 경우가 많습니다.\n많은 인증 공급자가 UserDetails 개체를 주체로 만듭니다.\n라고한다. 그럼 이제 @Authenticationprincipal에 대해 한번 확인해보자.\nSpring Security를 사용할 때 @AuthenticationPrincipal은 사용자가 인증된 경우 principal를 주입하고 사용자가 인증되지 않은 경우 null을 주입하는데 대부분의 로그인 기능에 UserDetails을 상속받아 커스텀으로 유저 디테일을 만들고 시작하기에 아래 코드에서는 TestUserDetails로 받을 수 있다.\n@RestController public class UserController { @GetMapping(\"/username\") public String getUserName(@AuthenticationPrincipal TestUserDetails testUserDetails) { return testUserDetails.getUsername(); } } 만약에 @Authenticationprincipal를 사용하지 않는다면 SecurityContextHolder를 사용해 Principal를 가져올 수 있다.\n@RestController public class UserController { @GetMapping(\"/username\") public String getUserName(@AuthenticationPrincipal TestUserDetails testUserDetails) { SecurityContext context = SecurityContextHolder.getContext(); Authentication authentication = context.getAuthentication(); TestUserDetails testUserDetails = (TestUserDetails) authentication.getPrincipal(); return testUserDetails.getUsername(); } } 참조\n Annotation Type AuthenticationPrincipal Interface Authentication [Spring Boot] How to stub @AuthenticationPrincipal argument with Spring-Security in Unit Tests Spring Security: Authentication and Authorization In-Depth  - 끗 - ",
-  "wordCount" : "198",
+  "articleBody": "@Authenticationprincipal !이 어노테이션은 Package org.springframework.security.core.annotation 에 있는 어노테이션 입니다.\ndocs.spring.io에서 확인해 보면 이 어노테이션은 Authentication.getPrincipal()메서드 인수를 확인하는 데 사용된다고 하는데 Authentication 인터페이스에 대해서는 다음에 다루고 우선 이 메서드만 확인해 보게 되면\ngetPrincipal\n인증 중인 주체의 ID입니다.\n사용자 이름과 비밀번호가 있는 인증 요청의 경우, 이 사용자 이름이 됩니다.\n호출자는 인증 요청의 주체를 채워야 합니다.\nAuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있는 주체로서 더 풍부한 정보를 포함하는 인증을 반환하는 경우가 많습니다.\n많은 인증 공급자가 UserDetails 개체를 주체로 만듭니다.\n라고한다. 그럼 이제 @Authenticationprincipal에 대해 한번 확인해보자.\nSpring Security를 사용할 때 @AuthenticationPrincipal은 사용자가 인증된 경우 principal를 주입하고\n사용자가 인증되지 않은 경우 null을 주입하는데 대부분의 로그인 기능에 UserDetails을 상속받아 커스텀으로 유저 디테일을 만들고 시작하기에 아래 코드에서는 TestUserDetails로 받을 수 있다.\n@RestController public class UserController { @GetMapping(\"/username\") public String getUserName(@AuthenticationPrincipal TestUserDetails testUserDetails) { return testUserDetails.getUsername(); } } 만약에 @Authenticationprincipal를 사용하지 않는다면 SecurityContextHolder를 사용해 Principal를 가져올 수 있다.\n@RestController public class UserController { @GetMapping(\"/username\") public String getUserName(@AuthenticationPrincipal TestUserDetails testUserDetails) { SecurityContext context = SecurityContextHolder.getContext(); Authentication authentication = context.getAuthentication(); TestUserDetails testUserDetails = (TestUserDetails) authentication.getPrincipal(); return testUserDetails.getUsername(); } } 참조\n Annotation Type AuthenticationPrincipal Interface Authentication [Spring Boot] How to stub @AuthenticationPrincipal argument with Spring-Security in Unit Tests Spring Security: Authentication and Authorization In-Depth  - 끗 - ",
+  "wordCount" : "197",
   "inLanguage": "en",
   "datePublished": "2022-01-14T01:13:27+08:00",
   "dateModified": "2022-01-14T01:13:27+08:00",
@@ -221,17 +224,18 @@ AuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있�
 
 </div>
   </header> 
-  <div class="post-content"><h2 id="authenticationprincipal">@Authenticationprincipal<a hidden class="anchor" aria-hidden="true" href="#authenticationprincipal">#</a></h2>
+  <div class="post-content"><h3 id="authenticationprincipal">@Authenticationprincipal<a hidden class="anchor" aria-hidden="true" href="#authenticationprincipal">#</a></h3>
 <p><code>!</code>이 어노테이션은 <code>Package org.springframework.security.core.annotation</code> 에 있는 어노테이션 입니다.</p>
-<p>docs.spring.io에서 확인해 보면 이 어 로테이션은 <code>Authentication.getPrincipal()</code>메서드 인수를 확인하는 데 사용된다고 하는데 <code>Authentication</code> 인터페이스에 대해서는 다음에 다루고 우선 이 메서드만 확인해 보게 되면</p>
+<p>docs.spring.io에서 확인해 보면 이 어노테이션은 <code>Authentication.getPrincipal()</code>메서드 인수를 확인하는 데 사용된다고 하는데 <code>Authentication</code> 인터페이스에 대해서는 다음에 다루고 우선 이 메서드만 확인해 보게 되면</p>
 <p><code>getPrincipal</code></p>
 <p>인증 중인 주체의 ID입니다.</p>
 <p>사용자 이름과 비밀번호가 있는 인증 요청의 경우, 이 사용자 이름이 됩니다.</p>
 <p>호출자는 인증 요청의 주체를 채워야 합니다.</p>
 <p>AuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있는 주체로서 더 풍부한 정보를 포함하는 인증을 반환하는 경우가 많습니다.</p>
 <p>많은 인증 공급자가 UserDetails 개체를 주체로 만듭니다.</p>
-<p>라고한다. 그럼 이제 @Authenticationprincipal에 대해 한번 확인해보자.</p>
-<p>Spring Security를 사용할 때 <code>@AuthenticationPrincipal</code>은 사용자가 인증된 경우 principal를 주입하고 사용자가 인증되지 않은 경우 null을 주입하는데 대부분의 로그인 기능에 UserDetails을 상속받아 커스텀으로 유저 디테일을 만들고 시작하기에 아래 코드에서는 TestUserDetails로 받을 수 있다.</p>
+<p>라고한다. 그럼 이제 <code>@Authenticationprincipal</code>에 대해 한번 확인해보자.</p>
+<p>Spring Security를 사용할 때 <code>@AuthenticationPrincipal</code>은 사용자가 인증된 경우 principal를 주입하고</p>
+<p>사용자가 인증되지 않은 경우 null을 주입하는데 대부분의 로그인 기능에 UserDetails을 상속받아 커스텀으로 유저 디테일을 만들고 시작하기에 아래 코드에서는 TestUserDetails로 받을 수 있다.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@RestController</span>
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserController</span> <span style="color:#f92672">{</span>
 
