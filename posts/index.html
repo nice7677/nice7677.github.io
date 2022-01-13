@@ -161,6 +161,21 @@ if (!doNotTrack) {
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>JPA 다중 매핑 엔티티 Querydsl 없이 Join 하기<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>이번 게시물은 JPA를 사용할 때 querydsl 없이 여러 엔티티를 join 하는 방법이다.
+단 조건으로 엔티티 중 다른 엔티티 간의 중개자 역할을 하는 엔티티가 필요하다 매핑이 되어 있어야 한다.
+코드로 보자
+@Entity public class Company { @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id; private String name; @OneToMany(mappedBy = &#34;company&#34;, fetch = FetchType.LAZY, cascade = CascadeType.PERSIST) @JoinColumn(name = &#34;company_id&#34;) private List&lt;Product&gt; products = new ArrayList&lt;&gt;(); @OneToOne(mappedBy = &#34;company&#34;, fetch = FetchType.LAZY) private Employee employee; } @Entity public class Employee { @Id @GeneratedValue(strategy = GenerationType....</p>
+  </section>
+  <footer class="entry-footer"><span title='2022-01-13 14:23:35 +0800 CST'>January 13, 2022</span></footer>
+  <a class="entry-link" aria-label="post link to JPA 다중 매핑 엔티티 Querydsl 없이 Join 하기" href="https://www.springboot.kr/posts/spring/jpa-multiple-mapping-domain-join/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>JPA N&#43;1문제와 @EntityGraph
     </h2>
   </header>
@@ -220,18 +235,6 @@ Pretty(여주) - The servants tell me you’ve studied everything, from Latin to
   </section>
   <footer class="entry-footer"><span title='2022-01-11 20:36:37 +0800 CST'>January 11, 2022</span></footer>
   <a class="entry-link" aria-label="post link to required a single bean, but 3 were found 해결법" href="https://www.springboot.kr/posts/spring/required-a-single-bean-but-3-were-found/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>블로그 새롭게 만들기 성공
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>블로그 새롭게 만들기 성공</p>
-  </section>
-  <footer class="entry-footer"><span title='2022-01-11 13:48:08 +0800 CST'>January 11, 2022</span></footer>
-  <a class="entry-link" aria-label="post link to 블로그 새롭게 만들기 성공" href="https://www.springboot.kr/posts/blahblah/renew-blog/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

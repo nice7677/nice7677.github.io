@@ -6,7 +6,19 @@
     <description>Recent content in Posts on SPRINGBOOT.KR</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>kr-ko</language>
-    <lastBuildDate>Thu, 13 Jan 2022 01:54:34 +0800</lastBuildDate><atom:link href="https://www.springboot.kr/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 Jan 2022 14:23:35 +0800</lastBuildDate><atom:link href="https://www.springboot.kr/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JPA 다중 매핑 엔티티 Querydsl 없이 Join 하기</title>
+      <link>https://www.springboot.kr/posts/spring/jpa-multiple-mapping-domain-join/</link>
+      <pubDate>Thu, 13 Jan 2022 14:23:35 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/spring/jpa-multiple-mapping-domain-join/</guid>
+      <description>이번 게시물은 JPA를 사용할 때 querydsl 없이 여러 엔티티를 join 하는 방법이다.
+단 조건으로 엔티티 중 다른 엔티티 간의 중개자 역할을 하는 엔티티가 필요하다 매핑이 되어 있어야 한다.
+코드로 보자
+@Entity public class Company { @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id; private String name; @OneToMany(mappedBy = &amp;#34;company&amp;#34;, fetch = FetchType.LAZY, cascade = CascadeType.PERSIST) @JoinColumn(name = &amp;#34;company_id&amp;#34;) private List&amp;lt;Product&amp;gt; products = new ArrayList&amp;lt;&amp;gt;(); @OneToOne(mappedBy = &amp;#34;company&amp;#34;, fetch = FetchType.LAZY) private Employee employee; } @Entity public class Employee { @Id @GeneratedValue(strategy = GenerationType.</description>
+    </item>
+    
     <item>
       <title>JPA N&#43;1문제와 @EntityGraph</title>
       <link>https://www.springboot.kr/posts/spring/jpa-n-plus-1-problem-with-entity-graph/</link>
