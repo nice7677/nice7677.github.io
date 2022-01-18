@@ -161,6 +161,24 @@ if (!doNotTrack) {
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>StreamBridge 사용하기
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Spring Cloud Stream Binder Kafka를 위한 글.
+버전이 올라오면서 @OUTPUT 어노테이션이 Deprecated 돼서 찾아봤는데 StreamBridge를 이용하면 된다 한다.
+일단 처음부터 봐봅시다.
+implementation group: &#39;org.springframework.cloud&#39;, name: &#39;spring-cloud-stream-binder-kafka&#39;, version: &#39;3.2.1&#39; 를 추가하면 5개의 라이브러리가 추가 된다.
+Gradle: org.springframework.cloud:spring-cloud-function-context:3.2.1 Gradle: org.springframework.cloud:spring-cloud-function-core:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka-core:3.2.1 그럼 시작해보자.
+우선 application.yml에 cloud kafka를 설정해줍시다.
+cloud: function: definition: consumer;producer stream: kafka: bindings: producer-out-0: producer: configuration: key: serializer: org.apache.kafka.common.serialization.StringSerializer consumer-in-0: consumer: configuration: key: deserializer: org.apache.kafka.common.serialization.StringDeserializer value: deserializer: com....</p>
+  </section>
+  <footer class="entry-footer"><span title='2022-01-19 02:00:28 +0800 CST'>January 19, 2022</span></footer>
+  <a class="entry-link" aria-label="post link to StreamBridge 사용하기" href="https://www.springboot.kr/posts/spring/spring-cloud-stream-binder-kafka/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>ELK랑 씨름한날<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>
     </h2>
   </header>
@@ -227,21 +245,6 @@ AuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있�
   </section>
   <footer class="entry-footer"><span title='2022-01-13 01:54:34 +0800 CST'>January 13, 2022</span></footer>
   <a class="entry-link" aria-label="post link to JPA N&#43;1문제와 @EntityGraph" href="https://www.springboot.kr/posts/spring/jpa-n-plus-1-problem-with-entity-graph/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>TheCarbtoon 개발일지 - 1
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>나는 최근 카툰을 볼 수 있는 서비스를 만들고 있다.
-이름은 TheCarbToon.
-스프링 클라우드를 사용해 서비스들을 묶어 개발을 진행 중이다.
-|-------------------------------------------| | | | Auth(java)---\ | | | \ | | | \ | | User(java)-------------- Gateway(java) | | | / | | | | / | | | Media(kotlin)-/ | | | | | | | | | | | Discovery(java) ------------| | | | |-------------------------------------------| 현재 진행은 이러하고 서비스가 추가될 수도 있다고 생각한다....</p>
-  </section>
-  <footer class="entry-footer"><span title='2022-01-12 19:55:23 +0800 CST'>January 12, 2022</span></footer>
-  <a class="entry-link" aria-label="post link to TheCarbtoon 개발일지 - 1" href="https://www.springboot.kr/posts/devnote/thecarbtoon-1/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

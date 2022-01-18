@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>StreamBridge 사용하기 | SPRINGBOOT.KR</title>
+<meta name="keywords" content="" />
+<meta name="description" content="Spring Cloud Stream Binder Kafka를 위한 글.
+버전이 올라오면서 @OUTPUT 어노테이션이 Deprecated 돼서 찾아봤는데 StreamBridge를 이용하면 된다 한다.
+일단 처음부터 봐봅시다.
+implementation group: &#39;org.springframework.cloud&#39;, name: &#39;spring-cloud-stream-binder-kafka&#39;, version: &#39;3.2.1&#39; 를 추가하면 5개의 라이브러리가 추가 된다.
+Gradle: org.springframework.cloud:spring-cloud-function-context:3.2.1 Gradle: org.springframework.cloud:spring-cloud-function-core:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka-core:3.2.1 그럼 시작해보자.
+우선 application.yml에 cloud kafka를 설정해줍시다.
+cloud: function: definition: consumer;producer stream: kafka: bindings: producer-out-0: producer: configuration: key: serializer: org.apache.kafka.common.serialization.StringSerializer consumer-in-0: consumer: configuration: key: deserializer: org.apache.kafka.common.serialization.StringDeserializer value: deserializer: com.">
+<meta name="author" content="">
+<link rel="canonical" href="https://www.springboot.kr/posts/spring/spring-cloud-stream-binder-kafka/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.d4b0ee0ca8b7c80a755dba6157c583088bcce231580995dd9a80de7cae0c0f17.css" integrity="sha256-1LDuDKi3yAp1XbphV8WDCIvM4jFYCZXdmoDefK4MDxc=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://www.springboot.kr/favicon_io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.springboot.kr/favicon_io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.springboot.kr/favicon_io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://www.springboot.kr/favicon_io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://www.springboot.kr/favicon_io/apple-touch-icon.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.91.2" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PM2KLTYJRP"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-PM2KLTYJRP', { 'anonymize_ip': false });
+}
+</script>
+<meta property="og:title" content="StreamBridge 사용하기" />
+<meta property="og:description" content="Spring Cloud Stream Binder Kafka를 위한 글.
+버전이 올라오면서 @OUTPUT 어노테이션이 Deprecated 돼서 찾아봤는데 StreamBridge를 이용하면 된다 한다.
+일단 처음부터 봐봅시다.
+implementation group: &#39;org.springframework.cloud&#39;, name: &#39;spring-cloud-stream-binder-kafka&#39;, version: &#39;3.2.1&#39; 를 추가하면 5개의 라이브러리가 추가 된다.
+Gradle: org.springframework.cloud:spring-cloud-function-context:3.2.1 Gradle: org.springframework.cloud:spring-cloud-function-core:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka-core:3.2.1 그럼 시작해보자.
+우선 application.yml에 cloud kafka를 설정해줍시다.
+cloud: function: definition: consumer;producer stream: kafka: bindings: producer-out-0: producer: configuration: key: serializer: org.apache.kafka.common.serialization.StringSerializer consumer-in-0: consumer: configuration: key: deserializer: org.apache.kafka.common.serialization.StringDeserializer value: deserializer: com." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.springboot.kr/posts/spring/spring-cloud-stream-binder-kafka/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-19T02:00:28&#43;08:00" />
+<meta property="article:modified_time" content="2022-01-19T02:00:28&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="StreamBridge 사용하기"/>
+<meta name="twitter:description" content="Spring Cloud Stream Binder Kafka를 위한 글.
+버전이 올라오면서 @OUTPUT 어노테이션이 Deprecated 돼서 찾아봤는데 StreamBridge를 이용하면 된다 한다.
+일단 처음부터 봐봅시다.
+implementation group: &#39;org.springframework.cloud&#39;, name: &#39;spring-cloud-stream-binder-kafka&#39;, version: &#39;3.2.1&#39; 를 추가하면 5개의 라이브러리가 추가 된다.
+Gradle: org.springframework.cloud:spring-cloud-function-context:3.2.1 Gradle: org.springframework.cloud:spring-cloud-function-core:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka-core:3.2.1 그럼 시작해보자.
+우선 application.yml에 cloud kafka를 설정해줍시다.
+cloud: function: definition: consumer;producer stream: kafka: bindings: producer-out-0: producer: configuration: key: serializer: org.apache.kafka.common.serialization.StringSerializer consumer-in-0: consumer: configuration: key: deserializer: org.apache.kafka.common.serialization.StringDeserializer value: deserializer: com."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://www.springboot.kr/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "StreamBridge 사용하기",
+      "item": "https://www.springboot.kr/posts/spring/spring-cloud-stream-binder-kafka/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "StreamBridge 사용하기",
+  "name": "StreamBridge 사용하기",
+  "description": "Spring Cloud Stream Binder Kafka를 위한 글.\n버전이 올라오면서 @OUTPUT 어노테이션이 Deprecated 돼서 찾아봤는데 StreamBridge를 이용하면 된다 한다.\n일단 처음부터 봐봅시다.\nimplementation group: \u0026#39;org.springframework.cloud\u0026#39;, name: \u0026#39;spring-cloud-stream-binder-kafka\u0026#39;, version: \u0026#39;3.2.1\u0026#39; 를 추가하면 5개의 라이브러리가 추가 된다.\nGradle: org.springframework.cloud:spring-cloud-function-context:3.2.1 Gradle: org.springframework.cloud:spring-cloud-function-core:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka-core:3.2.1 그럼 시작해보자.\n우선 application.yml에 cloud kafka를 설정해줍시다.\ncloud: function: definition: consumer;producer stream: kafka: bindings: producer-out-0: producer: configuration: key: serializer: org.apache.kafka.common.serialization.StringSerializer consumer-in-0: consumer: configuration: key: deserializer: org.apache.kafka.common.serialization.StringDeserializer value: deserializer: com.",
+  "keywords": [
+    
+  ],
+  "articleBody": "Spring Cloud Stream Binder Kafka를 위한 글.\n버전이 올라오면서 @OUTPUT 어노테이션이 Deprecated 돼서 찾아봤는데 StreamBridge를 이용하면 된다 한다.\n일단 처음부터 봐봅시다.\nimplementation group: 'org.springframework.cloud', name: 'spring-cloud-stream-binder-kafka', version: '3.2.1' 를 추가하면 5개의 라이브러리가 추가 된다.\nGradle: org.springframework.cloud:spring-cloud-function-context:3.2.1 Gradle: org.springframework.cloud:spring-cloud-function-core:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka-core:3.2.1 그럼 시작해보자.\n우선 application.yml에 cloud kafka를 설정해줍시다.\ncloud: function: definition: consumer;producer stream: kafka: bindings: producer-out-0: producer: configuration: key: serializer: org.apache.kafka.common.serialization.StringSerializer consumer-in-0: consumer: configuration: key: deserializer: org.apache.kafka.common.serialization.StringDeserializer value: deserializer: com.example.studyspringboot.cloud.stream.binder.kafka.MessageDeserializer # (2) binder: brokers: localhost:9094 bindings: producer-out-0: # (1) destination: carbtoon.test.service # topic contentType: application/json consumer-in-0: destination: carbtoon.test.service  # topic consumer: use-native-decoding: true # (3) 커스텀 deserializer를 사용하기 위해 활성화를 위해 true로 설정합니다. 설정이 끝난다면 Producer를 위한 클래스를 하나 작성.\n@RequiredArgsConstructor @Component public class KafkaProducer { private final StreamBridge streamBridge; // StreamBridge를 주입해주자.  @Async public void send(SpringbootKRPayload payload) { streamBridge.send(\"producer-out-0\", MessageBuilder // ↑ application.yml의 (1)과 같아야합니다.  // send의 첫번째 String parameter 이름은 String bindingName 입니다.  .withPayload(payload) .setHeader(KafkaHeaders.MESSAGE_KEY, UUID.randomUUID().toString()) .build()); } } 이렇게 Producer가 생성이 끝나면 다음으로는 Consumer 클래스를 생성.\n@Component public class KafkaConsumer { @Bean public ConsumerMessage consumer() { return message - System.out.println(message); } } 그리고 테스트를위한 Payload를 하나 만듭니다.\n@Getter @Setter @ToString public class SpringbootKRPayload { private String host; private String title; private String name; @JsonProperty(\"payload_type\") private PayloadType payloadType; @Builder public SpringbootKRPayload(String host, String title, String name, PayloadType payloadType) { this.host = host; this.title = title; this.name = name; this.payloadType = payloadType; } } public enum PayloadType { CREATED, UPDATED, DELETED } 그리고 application.yml의 (2)에 필요한 커스텀 deserializer 클래스를 하나 만듭니다.\npublic class MessageDeserializer implements DeserializerSpringbootKRPayloadDeserializer { private final ObjectMapper objectMapper = new ObjectMapper(); @Override public SpringbootKRPayloadDeserializer deserialize(String topic, byte[] data) { try { return objectMapper.readValue(new String(data), SpringbootKRPayloadDeserializer.class); } catch (IOException e) { throw new SerializationException(e); } } } 위의 클래스를 사용하기 위해서는 application.yml의 (3)을 true로 설정해 주어야합니다.\n그리고 다음으로 위의 코드중 Deserializer를 위한 SpringbootKRPayloadDeserializer를 만들어 줍니다.\npublic class SpringbootKRPayloadDeserializer { @JsonProperty(\"payload_type\") private String payloadType; @JsonProperty(\"host\") private String host; @JsonProperty(\"name\") private String name; @JsonProperty(\"title\") private String title; } 그리고 테스트를 위한 스케줄러를 하나 만들어 봅니다. (스케줄러를 만들었으니 application에 @EnableScheduling 추가)\n@RequiredArgsConstructor @Component public class Scheduler { private KafkaProducer kafkaProducer; @Scheduled(cron = \"*/5 * * * * *\") public void sendMessage() { kafkaProducer.send(SpringbootKRPayload.builder() .host(\"SPRINGBOOT.KR\") .title(\"SPRING CLOUD STREAM KAFKA\") .name(\"JINWOO-LEE\") .payloadType(PayloadType.CREATED) .build()); } } 이제 실행하면??\nGenericMessage [payload=SpringbootKRPayloadDeserializer( payloadType=CREATED, host=SPRINGBOOT.KR, name=JINWOO-LEE, title=SPRING CLOUD STREAM KAFKA), headers={deliveryAttempt=1, kafka_timestampType=CREATE_TIME, kafka_receivedTopic=carbtoon.test.service, skip-input-type-conversion=true, kafka_offset=158, scst_nativeHeadersPresent=true, kafka_consumer=org.apache.kafka.clients.consumer.KafkaConsumer@15d20e35, source-type=streamBridge, id=6a8cd101-3ac7-59ef-3d54-0429e761a4e8, kafka_receivedPartitionId=0, contentType=application/json, kafka_receivedTimestamp=1642531182377, kafka_groupId=anonymous.fa9c0bcf-ba1b-4a0e-be4e-4f997785cf91, timestamp=1642531182464}] 성공이다.\n참조\n Spring Cloud Stream With Kafka  ",
+  "wordCount" : "398",
+  "inLanguage": "en",
+  "datePublished": "2022-01-19T02:00:28+08:00",
+  "dateModified": "2022-01-19T02:00:28+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.springboot.kr/posts/spring/spring-cloud-stream-binder-kafka/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SPRINGBOOT.KR",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.springboot.kr/favicon_io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<header class="header">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://www.springboot.kr/" accesskey="h" title="SPRINGBOOT.KR (Alt + H)">SPRINGBOOT.KR</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://www.springboot.kr/posts" title="posts">
+                    <span>posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.springboot.kr/search" title="search (Alt &#43; /)" accesskey=/>
+                    <span>search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.springboot.kr/archives" title="archives">
+                    <span>archives</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://www.springboot.kr/">Home</a>&nbsp;»&nbsp;<a href="https://www.springboot.kr/posts/">Posts</a></div>
+    <h1 class="post-title">
+      StreamBridge 사용하기
+    </h1>
+    <div class="post-meta"><span title='2022-01-19 02:00:28 +0800 CST'>January 19, 2022</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p>Spring Cloud Stream Binder Kafka를 위한 글.</p>
+<p>버전이 올라오면서 @OUTPUT 어노테이션이 Deprecated 돼서 찾아봤는데 StreamBridge를 이용하면 된다 한다.</p>
+<p>일단 처음부터 봐봅시다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">implementation group: <span style="color:#e6db74">&#39;org.springframework.cloud&#39;</span><span style="color:#f92672">,</span> name: <span style="color:#e6db74">&#39;spring-cloud-stream-binder-kafka&#39;</span><span style="color:#f92672">,</span> version: <span style="color:#e6db74">&#39;3.2.1&#39;</span>
+</code></pre></div><p>를 추가하면 5개의 라이브러리가 추가 된다.</p>
+<pre tabindex="0"><code>Gradle: org.springframework.cloud:spring-cloud-function-context:3.2.1
+Gradle: org.springframework.cloud:spring-cloud-function-core:3.2.1
+Gradle: org.springframework.cloud:spring-cloud-stream:3.2.1
+Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka:3.2.1
+Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka-core:3.2.1
+</code></pre><p>그럼 시작해보자.</p>
+<p>우선 application.yml에 cloud kafka를 설정해줍시다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">cloud</span>:
+  <span style="color:#f92672">function</span>:
+    <span style="color:#f92672">definition</span>: <span style="color:#ae81ff">consumer;producer</span>
+  <span style="color:#f92672">stream</span>:
+    <span style="color:#f92672">kafka</span>:
+      <span style="color:#f92672">bindings</span>:
+        <span style="color:#f92672">producer-out-0</span>:
+          <span style="color:#f92672">producer</span>:
+            <span style="color:#f92672">configuration</span>:
+              <span style="color:#f92672">key</span>:
+                <span style="color:#f92672">serializer</span>: <span style="color:#ae81ff">org.apache.kafka.common.serialization.StringSerializer</span>
+        <span style="color:#f92672">consumer-in-0</span>:
+          <span style="color:#f92672">consumer</span>:
+            <span style="color:#f92672">configuration</span>:
+              <span style="color:#f92672">key</span>:
+                <span style="color:#f92672">deserializer</span>: <span style="color:#ae81ff">org.apache.kafka.common.serialization.StringDeserializer</span>
+              <span style="color:#f92672">value</span>:
+                <span style="color:#f92672">deserializer</span>: <span style="color:#ae81ff">com.example.studyspringboot.cloud.stream.binder.kafka.MessageDeserializer</span> <span style="color:#75715e"># (2)</span>
+      <span style="color:#f92672">binder</span>:
+        <span style="color:#f92672">brokers</span>: <span style="color:#ae81ff">localhost:9094</span>
+    <span style="color:#f92672">bindings</span>:
+      <span style="color:#f92672">producer-out-0</span>: <span style="color:#75715e"># (1)</span>
+        <span style="color:#f92672">destination</span>: <span style="color:#ae81ff">carbtoon.test.service</span> <span style="color:#75715e"># topic</span>
+        <span style="color:#f92672">contentType</span>: <span style="color:#ae81ff">application/json</span>
+      <span style="color:#f92672">consumer-in-0</span>:
+        <span style="color:#f92672">destination</span>: <span style="color:#ae81ff">carbtoon.test.service </span> <span style="color:#75715e"># topic</span>
+        <span style="color:#f92672">consumer</span>:
+          <span style="color:#f92672">use-native-decoding</span>: <span style="color:#66d9ef">true</span> <span style="color:#75715e"># (3) 커스텀 deserializer를 사용하기 위해 활성화를 위해 true로 설정합니다.</span>
+</code></pre></div><p>설정이 끝난다면 Producer를 위한 클래스를 하나 작성.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
+<span style="color:#a6e22e">@RequiredArgsConstructor</span>
+<span style="color:#a6e22e">@Component</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">KafkaProducer</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> StreamBridge streamBridge<span style="color:#f92672">;</span> <span style="color:#75715e">// StreamBridge를 주입해주자.
+</span><span style="color:#75715e"></span>
+    <span style="color:#a6e22e">@Async</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">send</span><span style="color:#f92672">(</span>SpringbootKRPayload payload<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        streamBridge<span style="color:#f92672">.</span><span style="color:#a6e22e">send</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;producer-out-0&#34;</span><span style="color:#f92672">,</span> MessageBuilder
+                <span style="color:#75715e">//  ↑ application.yml의 (1)과 같아야합니다. 
+</span><span style="color:#75715e"></span>                <span style="color:#75715e">// send의 첫번째 String parameter 이름은 String bindingName 입니다.
+</span><span style="color:#75715e"></span>                <span style="color:#f92672">.</span><span style="color:#a6e22e">withPayload</span><span style="color:#f92672">(</span>payload<span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">setHeader</span><span style="color:#f92672">(</span>KafkaHeaders<span style="color:#f92672">.</span><span style="color:#a6e22e">MESSAGE_KEY</span><span style="color:#f92672">,</span> UUID<span style="color:#f92672">.</span><span style="color:#a6e22e">randomUUID</span><span style="color:#f92672">().</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">())</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">());</span>
+    <span style="color:#f92672">}</span>
+
+<span style="color:#f92672">}</span>
+</code></pre></div><p>이렇게 Producer가 생성이 끝나면 다음으로는 Consumer 클래스를 생성.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
+<span style="color:#a6e22e">@Component</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">KafkaConsumer</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#a6e22e">@Bean</span>
+    <span style="color:#66d9ef">public</span> Consumer<span style="color:#f92672">&lt;</span>Message<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">consumer</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> message <span style="color:#f92672">-&gt;</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>message<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+<span style="color:#f92672">}</span>
+</code></pre></div><p>그리고 테스트를위한 Payload를 하나 만듭니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
+<span style="color:#a6e22e">@Getter</span>
+<span style="color:#a6e22e">@Setter</span>
+<span style="color:#a6e22e">@ToString</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SpringbootKRPayload</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#66d9ef">private</span> String host<span style="color:#f92672">;</span>
+
+    <span style="color:#66d9ef">private</span> String title<span style="color:#f92672">;</span>
+
+    <span style="color:#66d9ef">private</span> String name<span style="color:#f92672">;</span>
+
+    <span style="color:#a6e22e">@JsonProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;payload_type&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">private</span> PayloadType payloadType<span style="color:#f92672">;</span>
+
+    <span style="color:#a6e22e">@Builder</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">SpringbootKRPayload</span><span style="color:#f92672">(</span>String host<span style="color:#f92672">,</span> String title<span style="color:#f92672">,</span> String name<span style="color:#f92672">,</span> PayloadType payloadType<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">host</span> <span style="color:#f92672">=</span> host<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">title</span> <span style="color:#f92672">=</span> title<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">payloadType</span> <span style="color:#f92672">=</span> payloadType<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">enum</span> PayloadType <span style="color:#f92672">{</span>
+    CREATED<span style="color:#f92672">,</span> UPDATED<span style="color:#f92672">,</span> DELETED
+<span style="color:#f92672">}</span>
+</code></pre></div><p>그리고 application.yml의 (2)에 필요한 커스텀 deserializer 클래스를 하나 만듭니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MessageDeserializer</span> <span style="color:#66d9ef">implements</span> Deserializer<span style="color:#f92672">&lt;</span>SpringbootKRPayloadDeserializer<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> ObjectMapper objectMapper <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ObjectMapper<span style="color:#f92672">();</span>
+
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> SpringbootKRPayloadDeserializer <span style="color:#a6e22e">deserialize</span><span style="color:#f92672">(</span>String topic<span style="color:#f92672">,</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> data<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">return</span> objectMapper<span style="color:#f92672">.</span><span style="color:#a6e22e">readValue</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> String<span style="color:#f92672">(</span>data<span style="color:#f92672">),</span> SpringbootKRPayloadDeserializer<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IOException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> SerializationException<span style="color:#f92672">(</span>e<span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>위의 클래스를 사용하기 위해서는 application.yml의 (3)을 true로 설정해 주어야합니다.</p>
+<p>그리고 다음으로 위의 코드중 Deserializer를 위한 SpringbootKRPayloadDeserializer를 만들어 줍니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SpringbootKRPayloadDeserializer</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#a6e22e">@JsonProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;payload_type&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">private</span> String payloadType<span style="color:#f92672">;</span>
+
+    <span style="color:#a6e22e">@JsonProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;host&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">private</span> String host<span style="color:#f92672">;</span>
+
+    <span style="color:#a6e22e">@JsonProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;name&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">private</span> String name<span style="color:#f92672">;</span>
+
+    <span style="color:#a6e22e">@JsonProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">private</span> String title<span style="color:#f92672">;</span>
+
+<span style="color:#f92672">}</span>
+</code></pre></div><p>그리고 테스트를 위한 스케줄러를 하나 만들어 봅니다. (스케줄러를 만들었으니 application에 @EnableScheduling 추가)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
+<span style="color:#a6e22e">@RequiredArgsConstructor</span>
+<span style="color:#a6e22e">@Component</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Scheduler</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#66d9ef">private</span> KafkaProducer kafkaProducer<span style="color:#f92672">;</span>
+
+    <span style="color:#a6e22e">@Scheduled</span><span style="color:#f92672">(</span>cron <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;*/5 * * * * *&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sendMessage</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        kafkaProducer<span style="color:#f92672">.</span><span style="color:#a6e22e">send</span><span style="color:#f92672">(</span>SpringbootKRPayload<span style="color:#f92672">.</span><span style="color:#a6e22e">builder</span><span style="color:#f92672">()</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">host</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;SPRINGBOOT.KR&#34;</span><span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">title</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;SPRING CLOUD STREAM KAFKA&#34;</span><span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;JINWOO-LEE&#34;</span><span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">payloadType</span><span style="color:#f92672">(</span>PayloadType<span style="color:#f92672">.</span><span style="color:#a6e22e">CREATED</span><span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">());</span>
+    <span style="color:#f92672">}</span>
+
+<span style="color:#f92672">}</span>
+</code></pre></div><p>이제 실행하면??</p>
+<p><img loading="lazy" src="/images/letsgo/party.gif" alt="images"  />
+</p>
+<pre tabindex="0"><code>GenericMessage 
+[payload=SpringbootKRPayloadDeserializer(
+payloadType=CREATED, 
+host=SPRINGBOOT.KR, 
+name=JINWOO-LEE, 
+title=SPRING CLOUD STREAM KAFKA), 
+headers={deliveryAttempt=1, 
+kafka_timestampType=CREATE_TIME, 
+kafka_receivedTopic=carbtoon.test.service, 
+skip-input-type-conversion=true, 
+kafka_offset=158, 
+scst_nativeHeadersPresent=true, 
+kafka_consumer=org.apache.kafka.clients.consumer.KafkaConsumer@15d20e35, 
+source-type=streamBridge, 
+id=6a8cd101-3ac7-59ef-3d54-0429e761a4e8, 
+kafka_receivedPartitionId=0, 
+contentType=application/json, 
+kafka_receivedTimestamp=1642531182377, 
+kafka_groupId=anonymous.fa9c0bcf-ba1b-4a0e-be4e-4f997785cf91, 
+timestamp=1642531182464}]
+</code></pre><p>성공이다.</p>
+<p><img loading="lazy" src="/images/letsgo/yesyesyes.gif" alt="images"  />
+</p>
+<p>참조</p>
+<ul>
+<li><a href="https://refactorfirst.com/spring-cloud-stream-with-kafka-communication.html">Spring Cloud Stream With Kafka</a></li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+<nav class="paginav">
+  <a class="next" href="https://www.springboot.kr/posts/blahblah/fight-with-elk/">
+    <span class="title">Next Page »</span>
+    <br>
+    <span>ELK랑 씨름한날</span>
+  </a>
+</nav>
+
+  </footer><script src="https://utteranc.es/client.js"
+        repo="nice7677/nice7677.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://www.springboot.kr/">SPRINGBOOT.KR</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

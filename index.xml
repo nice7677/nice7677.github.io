@@ -6,7 +6,22 @@
     <description>Recent content on SPRINGBOOT.KR</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>kr-ko</language>
-    <lastBuildDate>Fri, 14 Jan 2022 21:57:11 +0800</lastBuildDate><atom:link href="https://www.springboot.kr/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 19 Jan 2022 02:00:28 +0800</lastBuildDate><atom:link href="https://www.springboot.kr/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>StreamBridge 사용하기</title>
+      <link>https://www.springboot.kr/posts/spring/spring-cloud-stream-binder-kafka/</link>
+      <pubDate>Wed, 19 Jan 2022 02:00:28 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/spring/spring-cloud-stream-binder-kafka/</guid>
+      <description>Spring Cloud Stream Binder Kafka를 위한 글.
+버전이 올라오면서 @OUTPUT 어노테이션이 Deprecated 돼서 찾아봤는데 StreamBridge를 이용하면 된다 한다.
+일단 처음부터 봐봅시다.
+implementation group: &amp;#39;org.springframework.cloud&amp;#39;, name: &amp;#39;spring-cloud-stream-binder-kafka&amp;#39;, version: &amp;#39;3.2.1&amp;#39; 를 추가하면 5개의 라이브러리가 추가 된다.
+Gradle: org.springframework.cloud:spring-cloud-function-context:3.2.1 Gradle: org.springframework.cloud:spring-cloud-function-core:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka-core:3.2.1 그럼 시작해보자.
+우선 application.yml에 cloud kafka를 설정해줍시다.
+cloud: function: definition: consumer;producer stream: kafka: bindings: producer-out-0: producer: configuration: key: serializer: org.apache.kafka.common.serialization.StringSerializer consumer-in-0: consumer: configuration: key: deserializer: org.apache.kafka.common.serialization.StringDeserializer value: deserializer: com.</description>
+    </item>
+    
     <item>
       <title>ELK랑 씨름한날</title>
       <link>https://www.springboot.kr/posts/blahblah/fight-with-elk/</link>
