@@ -161,6 +161,23 @@ if (!doNotTrack) {
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>golang go-pg 사용하기
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>golang에서 postgresql orm go-pg 사용하기 처음 글에서는 go-pg를 사용한 connection과 close에 대해 적어본다 예제 샘플을 따라하면 잘 될것이다.
+나는 postgresql을 사용하기 위함이 아니라 cockroach db를 go에서 사용하기 위해 go-pg를 선택했다.
+go-pg에 대한 링크를 걸어 둡니다.
+Github / Document
+위에 링크를 첨부해 두었다 우선 go-pg에 접속하기 위해서는 다음과 같은 세팅을 잡는다.
+ database.go  func Connect() *pg.DB { db := pg.Connect(&amp;pg.Options{ User: &#34;user&#34;, Database: &#34;database&#34;, Addr: &#34;addr:port&#34; }) if db == nil { log....</p>
+  </section>
+  <footer class="entry-footer"><span title='2019-03-23 14:22:38 +0800 CST'>March 23, 2019</span></footer>
+  <a class="entry-link" aria-label="post link to golang go-pg 사용하기" href="https://www.springboot.kr/posts/golang-go-pg-1/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>자바 XML TO JSON 변환 하기
     </h2>
   </header>

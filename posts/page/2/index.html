@@ -161,6 +161,24 @@ if (!doNotTrack) {
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>JPA N&#43;1문제와 @EntityGraph
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>JPA N&#43;1은 많이 겪어본 문제일듯한데.
+쉬운 방법으로 해결하는 fetch join 방법을 소개한다.
+우선 기본적으로 많이 쓰이는 3가지를 소개한다.
+ @NamedEntityGraph 와 @EntityGraph 를 사용해 해결하기 Querydsl 을 사용해 해결하기 JPQL 을 사용해 해결하기  나는 여기 중에서 1번과 비슷하게 사용하는 방법을 소개한다.
+코드를 보자
+우선 Entity 클래스들부터 보자 Company와 Product가 있다.
+@Entity public class Company { @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id; private String name; @OneToMany(mappedBy = &#34;company&#34;, fetch = FetchType....</p>
+  </section>
+  <footer class="entry-footer"><span title='2022-01-13 01:54:34 +0800 CST'>January 13, 2022</span></footer>
+  <a class="entry-link" aria-label="post link to JPA N&#43;1문제와 @EntityGraph" href="https://www.springboot.kr/posts/spring/jpa-n-plus-1-problem-with-entity-graph/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>TheCarbtoon 개발일지 - 1
     </h2>
   </header>
@@ -214,18 +232,6 @@ Pretty(여주) - The servants tell me you’ve studied everything, from Latin to
   </section>
   <footer class="entry-footer"><span title='2022-01-11 13:48:08 +0800 CST'>January 11, 2022</span></footer>
   <a class="entry-link" aria-label="post link to 블로그 새롭게 만들기 성공" href="https://www.springboot.kr/posts/blahblah/renew-blog/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>블라블라
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>겨울이 끝나면 봄이 온다. 봄이 온다. 봄이 올까? 왜 봄일까? 봄은 짧은데 여름아니면 겨울하면안되나? 여름은 안되나? 겨울은?</p>
-  </section>
-  <footer class="entry-footer"><span title='2021-12-27 17:33:16 +0800 CST'>December 27, 2021</span></footer>
-  <a class="entry-link" aria-label="post link to 블라블라" href="https://www.springboot.kr/posts/blahblah/2021-12-27-blahblah/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
