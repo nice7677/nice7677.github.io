@@ -6,7 +6,19 @@
     <description>Recent content in Posts on SPRINGBOOT.KR</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>kr-ko</language>
-    <lastBuildDate>Sun, 23 Jan 2022 20:49:13 +0800</lastBuildDate><atom:link href="https://www.springboot.kr/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 Jan 2022 16:38:17 +0800</lastBuildDate><atom:link href="https://www.springboot.kr/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TheCarbtoon 개발일지 - 3</title>
+      <link>https://www.springboot.kr/posts/devnote/thecarbtoon-3/</link>
+      <pubDate>Tue, 25 Jan 2022 16:38:17 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/devnote/thecarbtoon-3/</guid>
+      <description>(대만 이란쪽 좋은 곳)
+벌써 3번째 개발일지 3일 전인가 쓰고 안 썼는데 오늘 다음 일지를 작성하게 됐다.
+우선 2번째 일지 후 있었던 일들은 인증 쪽에 구글 메일을 통해 메일을 인증하는 기능이 추가됐는데 일반 사용자를 위한 목적도 있지만 게시물을 올려주는 메인 사용자들을 위한 검증을 위해 추가했다.
+그리고 전에 생각했던 코틀린 은 안 하기로 했다. 코틀린 은 안 하고 그냥 전부 자바로 하기로 했는데 그냥 하나로 쭉 하는 게 좋을 거 같아서 그렇게 하기로 해서 코틀린 은 다음 기회에.</description>
+    </item>
+    
     <item>
       <title>TheCarbtoon 개발일지 - 2</title>
       <link>https://www.springboot.kr/posts/devnote/thecarbtoon-2/</link>

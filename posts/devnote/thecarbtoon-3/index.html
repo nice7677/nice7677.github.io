@@ -5,14 +5,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>TheCarbtoon 개발일지 - 2 | SPRINGBOOT.KR</title>
+<title>TheCarbtoon 개발일지 - 3 | SPRINGBOOT.KR</title>
 <meta name="keywords" content="" />
-<meta name="description" content="(지내고 있는 곳의 가까운 학교 운동장?)
-한.. 10일 전쯤 개발일지 1을 올렸는데 그 뒤로 몸이 좀 안 좋아서 일주일 쉰 거 같다.
-지금 진행 상황은 모든 서비스들끼리 jwt를 통해 사용자를 확인할 수 있게 됐고 인증 서비스와 유저 서비스의 개발이 얼추 진행돼가고 있는데. 요즘 드는 생각이 아무나 그림을 올릴 수 있게 만들고 카카오 페이로 후원을 받을 수 있는 기능을 구현하고 싶다.
-재미로 그리는 사람이더라도 후원을 받는 건 나쁘지 않다고 생각한다. 자신의 결과물에 산물이랄까">
+<meta name="description" content="(대만 이란쪽 좋은 곳)
+벌써 3번째 개발일지 3일 전인가 쓰고 안 썼는데 오늘 다음 일지를 작성하게 됐다.
+우선 2번째 일지 후 있었던 일들은 인증 쪽에 구글 메일을 통해 메일을 인증하는 기능이 추가됐는데 일반 사용자를 위한 목적도 있지만 게시물을 올려주는 메인 사용자들을 위한 검증을 위해 추가했다.
+그리고 전에 생각했던 코틀린 은 안 하기로 했다. 코틀린 은 안 하고 그냥 전부 자바로 하기로 했는데 그냥 하나로 쭉 하는 게 좋을 거 같아서 그렇게 하기로 해서 코틀린 은 다음 기회에.">
 <meta name="author" content="">
-<link rel="canonical" href="https://www.springboot.kr/posts/devnote/thecarbtoon-2/" />
+<link rel="canonical" href="https://www.springboot.kr/posts/devnote/thecarbtoon-3/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.d4b0ee0ca8b7c80a755dba6157c583088bcce231580995dd9a80de7cae0c0f17.css" integrity="sha256-1LDuDKi3yAp1XbphV8WDCIvM4jFYCZXdmoDefK4MDxc=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
     onload="hljs.initHighlightingOnLoad();"></script>
@@ -71,22 +71,22 @@ if (!doNotTrack) {
 	gtag('config', 'G-PM2KLTYJRP', { 'anonymize_ip': false });
 }
 </script>
-<meta property="og:title" content="TheCarbtoon 개발일지 - 2" />
-<meta property="og:description" content="(지내고 있는 곳의 가까운 학교 운동장?)
-한.. 10일 전쯤 개발일지 1을 올렸는데 그 뒤로 몸이 좀 안 좋아서 일주일 쉰 거 같다.
-지금 진행 상황은 모든 서비스들끼리 jwt를 통해 사용자를 확인할 수 있게 됐고 인증 서비스와 유저 서비스의 개발이 얼추 진행돼가고 있는데. 요즘 드는 생각이 아무나 그림을 올릴 수 있게 만들고 카카오 페이로 후원을 받을 수 있는 기능을 구현하고 싶다.
-재미로 그리는 사람이더라도 후원을 받는 건 나쁘지 않다고 생각한다. 자신의 결과물에 산물이랄까" />
+<meta property="og:title" content="TheCarbtoon 개발일지 - 3" />
+<meta property="og:description" content="(대만 이란쪽 좋은 곳)
+벌써 3번째 개발일지 3일 전인가 쓰고 안 썼는데 오늘 다음 일지를 작성하게 됐다.
+우선 2번째 일지 후 있었던 일들은 인증 쪽에 구글 메일을 통해 메일을 인증하는 기능이 추가됐는데 일반 사용자를 위한 목적도 있지만 게시물을 올려주는 메인 사용자들을 위한 검증을 위해 추가했다.
+그리고 전에 생각했던 코틀린 은 안 하기로 했다. 코틀린 은 안 하고 그냥 전부 자바로 하기로 했는데 그냥 하나로 쭉 하는 게 좋을 거 같아서 그렇게 하기로 해서 코틀린 은 다음 기회에." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.springboot.kr/posts/devnote/thecarbtoon-2/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-01-23T20:49:13&#43;08:00" />
-<meta property="article:modified_time" content="2022-01-23T20:49:13&#43;08:00" />
+<meta property="og:url" content="https://www.springboot.kr/posts/devnote/thecarbtoon-3/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-25T16:38:17&#43;08:00" />
+<meta property="article:modified_time" content="2022-01-25T16:38:17&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="TheCarbtoon 개발일지 - 2"/>
-<meta name="twitter:description" content="(지내고 있는 곳의 가까운 학교 운동장?)
-한.. 10일 전쯤 개발일지 1을 올렸는데 그 뒤로 몸이 좀 안 좋아서 일주일 쉰 거 같다.
-지금 진행 상황은 모든 서비스들끼리 jwt를 통해 사용자를 확인할 수 있게 됐고 인증 서비스와 유저 서비스의 개발이 얼추 진행돼가고 있는데. 요즘 드는 생각이 아무나 그림을 올릴 수 있게 만들고 카카오 페이로 후원을 받을 수 있는 기능을 구현하고 싶다.
-재미로 그리는 사람이더라도 후원을 받는 건 나쁘지 않다고 생각한다. 자신의 결과물에 산물이랄까"/>
+<meta name="twitter:title" content="TheCarbtoon 개발일지 - 3"/>
+<meta name="twitter:description" content="(대만 이란쪽 좋은 곳)
+벌써 3번째 개발일지 3일 전인가 쓰고 안 썼는데 오늘 다음 일지를 작성하게 됐다.
+우선 2번째 일지 후 있었던 일들은 인증 쪽에 구글 메일을 통해 메일을 인증하는 기능이 추가됐는데 일반 사용자를 위한 목적도 있지만 게시물을 올려주는 메인 사용자들을 위한 검증을 위해 추가했다.
+그리고 전에 생각했던 코틀린 은 안 하기로 했다. 코틀린 은 안 하고 그냥 전부 자바로 하기로 했는데 그냥 하나로 쭉 하는 게 좋을 거 같아서 그렇게 하기로 해서 코틀린 은 다음 기회에."/>
 
 
 <script type="application/ld+json">
@@ -103,8 +103,8 @@ if (!doNotTrack) {
     {
       "@type": "ListItem",
       "position":  2 ,
-      "name": "TheCarbtoon 개발일지 - 2",
-      "item": "https://www.springboot.kr/posts/devnote/thecarbtoon-2/"
+      "name": "TheCarbtoon 개발일지 - 3",
+      "item": "https://www.springboot.kr/posts/devnote/thecarbtoon-3/"
     }
   ]
 }
@@ -113,20 +113,20 @@ if (!doNotTrack) {
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "TheCarbtoon 개발일지 - 2",
-  "name": "TheCarbtoon 개발일지 - 2",
-  "description": "(지내고 있는 곳의 가까운 학교 운동장?)\n한.. 10일 전쯤 개발일지 1을 올렸는데 그 뒤로 몸이 좀 안 좋아서 일주일 쉰 거 같다.\n지금 진행 상황은 모든 서비스들끼리 jwt를 통해 사용자를 확인할 수 있게 됐고 인증 서비스와 유저 서비스의 개발이 얼추 진행돼가고 있는데. 요즘 드는 생각이 아무나 그림을 올릴 수 있게 만들고 카카오 페이로 후원을 받을 수 있는 기능을 구현하고 싶다.\n재미로 그리는 사람이더라도 후원을 받는 건 나쁘지 않다고 생각한다. 자신의 결과물에 산물이랄까",
+  "headline": "TheCarbtoon 개발일지 - 3",
+  "name": "TheCarbtoon 개발일지 - 3",
+  "description": "(대만 이란쪽 좋은 곳)\n벌써 3번째 개발일지 3일 전인가 쓰고 안 썼는데 오늘 다음 일지를 작성하게 됐다.\n우선 2번째 일지 후 있었던 일들은 인증 쪽에 구글 메일을 통해 메일을 인증하는 기능이 추가됐는데 일반 사용자를 위한 목적도 있지만 게시물을 올려주는 메인 사용자들을 위한 검증을 위해 추가했다.\n그리고 전에 생각했던 코틀린 은 안 하기로 했다. 코틀린 은 안 하고 그냥 전부 자바로 하기로 했는데 그냥 하나로 쭉 하는 게 좋을 거 같아서 그렇게 하기로 해서 코틀린 은 다음 기회에.",
   "keywords": [
     
   ],
-  "articleBody": "(지내고 있는 곳의 가까운 학교 운동장?)\n한.. 10일 전쯤 개발일지 1을 올렸는데 그 뒤로 몸이 좀 안 좋아서 일주일 쉰 거 같다.\n지금 진행 상황은 모든 서비스들끼리 jwt를 통해 사용자를 확인할 수 있게 됐고 인증 서비스와 유저 서비스의 개발이 얼추 진행돼가고 있는데. 요즘 드는 생각이 아무나 그림을 올릴 수 있게 만들고 카카오 페이로 후원을 받을 수 있는 기능을 구현하고 싶다.\n재미로 그리는 사람이더라도 후원을 받는 건 나쁘지 않다고 생각한다. 자신의 결과물에 산물이랄까\n아무튼 아직 생각 중인 기능이기 때문에 추후에 추가될 수도 있고 안될 수도 있다.\n그리고 인증 서비스와 유저 서비스의 유저는 서로 공유한다. 단 DB는 다름. 인증은 몽고로 유저는 mysql로 되어있다.\n그리고 인증 서비스에서는 회원가입, 토큰 발급, 리프레시 토큰 발급 정도?의 역할을 하고 있고 나머지 유저와 관련된 API들은 유저 서비스에서 맡아서 하고 있게 개발 중이다.\n그래서 서로 feign을 사용해 서로 바뀌는 값들에 대해 업데이트가 될 수 있게 만들어 놓긴 했는데. 나중에 k8s를 넣으면 어떻게 될지 생각도 좀 해봐야겠다.\n우선 현재 진행 상황은 이러하고 웬만하면 빠른 시간 내에 빡세개해서 일찍 끝내고 싶다.\n프론트도 해야 하는데 jquery로 할지 svelte를 할지 고민 중이다..\n프론트에는 소질이 없는 것 같다. 재미가 없어..\n그리고 백엔드가 끝나면 사용자들도 모집해야 다 메일 보내고 쪽지 보내고 해야 해서 바쁠 것 같다.\n- 끗 - (대만의 타이페이 시먼에 있는 돈키호테에서)\n",
-  "wordCount" : "200",
+  "articleBody": "(대만 이란쪽 좋은 곳)\n벌써 3번째 개발일지 3일 전인가 쓰고 안 썼는데 오늘 다음 일지를 작성하게 됐다.\n우선 2번째 일지 후 있었던 일들은 인증 쪽에 구글 메일을 통해 메일을 인증하는 기능이 추가됐는데 일반 사용자를 위한 목적도 있지만 게시물을 올려주는 메인 사용자들을 위한 검증을 위해 추가했다.\n그리고 전에 생각했던 코틀린 은 안 하기로 했다. 코틀린 은 안 하고 그냥 전부 자바로 하기로 했는데 그냥 하나로 쭉 하는 게 좋을 거 같아서 그렇게 하기로 해서 코틀린 은 다음 기회에..\n그리고 프론트쪽을 해보려다가 그만 참지 못하고 꺼버렸다. 플러터로 해봐야겠다. 자바스크립트랑은 스타일이 좀 달라서 전에 해봤을 때 그렇게 지루하진 않았는데 또 하다 보면 혹시 모르겠지만.\n그리고 전에 말하던 DB, Kafka, Logstash를 작업용 피시에서 때 버렸다. AWS Lightsail로 옮겨버렸는데 1코어 1기가 5천 원짜리다. 3개월 무료라고 해서 혜자인듯하다 처음에 다 세팅해서 작동시키니 카프카에서 메모리 아웃 에러가 났다. 그래서 Memory swap 걸고 3기 가까지 늘렸다. 그랬더니 swap 걸린 메모리를 마구 쓴다.\n이제 작업용 컴퓨터에서는 서버 개발만 하게 됐는데. 이것도 분리하고 싶은데 내가 주로 집에서 작업하지 않고 도서관이나 카페에서 작업하다 보니 디스커버리에 연결할 수 있는 외부 포트 여는 게 쉽지 않다. 공공 와이파이나 테더링을 해서 하면 포트를 열 수가 없다. 그래서 그냥 다 한 컴퓨터에서 돌리고 있다.\n그래서 이제 남은 건 유저 서비스에 후원 기능을 넣어주는 거랑 포스트 서비스랑 미디어 서비스 개발이 남았다.\n포스트 서비스에서는 게시물을 올리고 댓글 정도? 관리해 주는 서비스이고 미디어는 말 그대로 미디어 서비스인데 미디어 서비스를 S3나 Object storage에 올릴까 생각했는데 그냥 가격 때문에 안 하기로 했다. 이건 사비로 운영 예정이기 때문임..\n뭐 남은 서비스들을 개발하면서 feign으로 묶어줄 API들이 있으면 더 개발하게 될지도 모르지만 우선 지금 선에서는 인증 쪽과 유저는 마무리가 돼가는 느낌이다.\n- 끗 - (대만 사는곳 옥상 하늘)\n",
+  "wordCount" : "265",
   "inLanguage": "en",
-  "datePublished": "2022-01-23T20:49:13+08:00",
-  "dateModified": "2022-01-23T20:49:13+08:00",
+  "datePublished": "2022-01-25T16:38:17+08:00",
+  "dateModified": "2022-01-25T16:38:17+08:00",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://www.springboot.kr/posts/devnote/thecarbtoon-2/"
+    "@id": "https://www.springboot.kr/posts/devnote/thecarbtoon-3/"
   },
   "publisher": {
     "@type": "Organization",
@@ -206,45 +206,42 @@ if (!doNotTrack) {
   <header class="post-header">
     <div class="breadcrumbs"><a href="https://www.springboot.kr/">Home</a>&nbsp;»&nbsp;<a href="https://www.springboot.kr/posts/">Posts</a></div>
     <h1 class="post-title">
-      TheCarbtoon 개발일지 - 2
+      TheCarbtoon 개발일지 - 3<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>
     </h1>
-    <div class="post-meta"><span title='2022-01-23 20:49:13 +0800 CST'>January 23, 2022</span>
+    <div class="post-meta"><span title='2022-01-25 16:38:17 +0800 CST'>January 25, 2022</span>
 
 </div>
   </header> 
-  <div class="post-content"><p><img loading="lazy" src="/images/devnote/thecarbtoon-2/IMG_3825.jpg" alt="images"  />
+  <div class="post-content"><p><img loading="lazy" src="/images/devnote/thecarbtoon-3/659076640.090120_Original.jpg" alt="imagaes"  />
 </p>
-<p>(지내고 있는 곳의 가까운 학교 운동장?)</p>
-<p>한.. 10일 전쯤 개발일지 1을 올렸는데 그 뒤로 몸이 좀 안 좋아서 일주일 쉰 거 같다.</p>
-<p>지금 진행 상황은 모든 서비스들끼리 jwt를 통해 사용자를 확인할 수 있게 됐고 인증 서비스와 유저 서비스의 개발이 얼추 진행돼가고 있는데. 요즘 드는 생각이 아무나 그림을 올릴 수 있게 만들고 카카오 페이로 후원을 받을 수 있는 기능을 구현하고 싶다.</p>
-<p>재미로 그리는 사람이더라도 후원을 받는 건 나쁘지 않다고 생각한다. 자신의 결과물에 산물이랄까</p>
-<p>아무튼 아직 생각 중인 기능이기 때문에 추후에 추가될 수도 있고 안될 수도 있다.</p>
-<p>그리고 인증 서비스와 유저 서비스의 유저는 서로 공유한다. 단 DB는 다름. 인증은 몽고로 유저는 mysql로 되어있다.</p>
-<p>그리고 인증 서비스에서는 회원가입, 토큰 발급, 리프레시 토큰 발급 정도?의 역할을 하고 있고 나머지 유저와 관련된 API들은 유저 서비스에서 맡아서 하고 있게 개발 중이다.</p>
-<p>그래서 서로 feign을 사용해 서로 바뀌는 값들에 대해 업데이트가 될 수 있게 만들어 놓긴 했는데. 나중에 k8s를 넣으면 어떻게 될지 생각도 좀 해봐야겠다.</p>
-<p>우선 현재 진행 상황은 이러하고 웬만하면 빠른 시간 내에 빡세개해서 일찍 끝내고 싶다.</p>
-<p>프론트도 해야 하는데 jquery로 할지 svelte를 할지 고민 중이다..</p>
-<p>프론트에는 소질이 없는 것 같다. 재미가 없어..</p>
-<p>그리고 백엔드가 끝나면 사용자들도 모집해야 다 메일 보내고 쪽지 보내고 해야 해서 바쁠 것 같다.</p>
+<p>(대만 이란쪽 좋은 곳)</p>
+<p>벌써 3번째 개발일지 3일 전인가 쓰고 안 썼는데 오늘 다음 일지를 작성하게 됐다.</p>
+<p>우선 2번째 일지 후 있었던 일들은 인증 쪽에 구글 메일을 통해 메일을 인증하는 기능이 추가됐는데 일반 사용자를 위한 목적도 있지만 게시물을 올려주는 메인 사용자들을 위한 검증을 위해 추가했다.</p>
+<p>그리고 전에 생각했던 코틀린 은 안 하기로 했다. 코틀린 은 안 하고 그냥 전부 자바로 하기로 했는데 그냥 하나로 쭉 하는 게 좋을 거 같아서 그렇게 하기로 해서 코틀린 은 다음 기회에..</p>
+<p>그리고 프론트쪽을 해보려다가 그만 참지 못하고 꺼버렸다. 플러터로 해봐야겠다. 자바스크립트랑은 스타일이 좀 달라서 전에 해봤을 때 그렇게 지루하진 않았는데 또 하다 보면 혹시 모르겠지만.</p>
+<p>그리고 전에 말하던 DB, Kafka, Logstash를 작업용 피시에서 때 버렸다. AWS Lightsail로 옮겨버렸는데 1코어 1기가 5천 원짜리다. 3개월 무료라고 해서 혜자인듯하다 처음에 다 세팅해서 작동시키니 카프카에서 메모리 아웃 에러가 났다. 그래서 Memory swap 걸고 3기 가까지 늘렸다. 그랬더니 swap 걸린 메모리를 마구 쓴다.</p>
+<p><img loading="lazy" src="/images/devnote/thecarbtoon-3/aws.png" alt="imagaes"  />
+</p>
+<p>이제 작업용 컴퓨터에서는 서버 개발만 하게 됐는데. 이것도 분리하고 싶은데 내가 주로 집에서 작업하지 않고 도서관이나 카페에서 작업하다 보니 디스커버리에 연결할 수 있는 외부 포트 여는 게 쉽지 않다. 공공 와이파이나 테더링을 해서 하면 포트를 열 수가 없다. 그래서 그냥 다 한 컴퓨터에서 돌리고 있다.</p>
+<p>그래서 이제 남은 건 유저 서비스에 후원 기능을 넣어주는 거랑 포스트 서비스랑 미디어 서비스 개발이 남았다.</p>
+<p><img loading="lazy" src="/images/devnote/thecarbtoon-3/project.png" alt="imagaes"  />
+</p>
+<p>포스트 서비스에서는 게시물을 올리고 댓글 정도? 관리해 주는 서비스이고 미디어는 말 그대로 미디어 서비스인데 미디어 서비스를 S3나 Object storage에 올릴까 생각했는데 그냥 가격 때문에 안 하기로 했다. 이건 사비로 운영 예정이기 때문임..</p>
+<p>뭐 남은 서비스들을 개발하면서 feign으로 묶어줄 API들이 있으면 더 개발하게 될지도 모르지만 우선 지금 선에서는 인증 쪽과 유저는 마무리가 돼가는 느낌이다.</p>
 <h1 id="--끗--"><em>- 끗 -</em><a hidden class="anchor" aria-hidden="true" href="#--끗--">#</a></h1>
-<p><img loading="lazy" src="/images/devnote/thecarbtoon-2/IMG_6525.jpg" alt="images"  />
+<p><img loading="lazy" src="/images/devnote/thecarbtoon-3/IMG_1354_Original.jpg" alt="imagaes"  />
 </p>
-<p>(대만의 타이페이 시먼에 있는 돈키호테에서)</p>
+<p>(대만 사는곳 옥상 하늘)</p>
 
 
   </div>
 
   <footer class="post-footer">
 <nav class="paginav">
-  <a class="prev" href="https://www.springboot.kr/posts/devnote/thecarbtoon-3/">
-    <span class="title">« Prev Page</span>
-    <br>
-    <span>TheCarbtoon 개발일지 - 3</span>
-  </a>
-  <a class="next" href="https://www.springboot.kr/posts/spring/spring-cloud-stream-binder-kafka/">
+  <a class="next" href="https://www.springboot.kr/posts/devnote/thecarbtoon-2/">
     <span class="title">Next Page »</span>
     <br>
-    <span>StreamBridge 사용하기</span>
+    <span>TheCarbtoon 개발일지 - 2</span>
   </a>
 </nav>
 
