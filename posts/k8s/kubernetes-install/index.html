@@ -17,7 +17,7 @@ curl -LO &quot;https://storage.googleapis.com/kubernetes-release/release/$(curl 
 kubectl version Kubectl 설치가 끝나면 Minikube 설치를 해준다.">
 <meta name="author" content="">
 <link rel="canonical" href="https://www.springboot.kr/posts/k8s/kubernetes-install/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.d4b0ee0ca8b7c80a755dba6157c583088bcce231580995dd9a80de7cae0c0f17.css" integrity="sha256-1LDuDKi3yAp1XbphV8WDCIvM4jFYCZXdmoDefK4MDxc=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.f238f1b0ccea21e45d3c0112bdd442ca592e7287c4a346036dc9a8b461e5f0a0.css" integrity="sha256-8jjxsMzqIeRdPAESvdRCylkucofEo0YDbcmotGHl8KA=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://www.springboot.kr/favicon_io/favicon.ico">
@@ -212,7 +212,8 @@ kubectl version Kubectl 설치가 끝나면 Minikube 설치를 해준다."/>
         </ul>
     </nav>
 </header>
-<main class="main">
+
+    <main class="main page">
 
 <article class="post-single">
   <header class="post-header">
@@ -223,7 +224,84 @@ kubectl version Kubectl 설치가 끝나면 Minikube 설치를 해준다."/>
     <div class="post-meta"><span title='2019-11-18 19:02:57 +0800 CST'>November 18, 2019</span>
 
 </div>
-  </header> 
+  </header> <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                <span class="details">Table of Contents</span>
+            </summary>
+
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#1-brew-1%eb%b2%88-%eb%b0%a9%eb%b2%95%ec%9c%bc%eb%a1%9c-%ec%84%a4%ec%b9%98%eb%a5%bc%ed%96%88%ec%9d%84%eb%95%8c-%ec%97%90%eb%9f%ac%ea%b0%80%eb%82%98%eb%a9%b4-1-1%ec%9d%98-%eb%b0%a9%eb%b2%95%ec%9c%bc%eb%a1%9c-%ec%8b%a4%ed%96%89%ed%95%b4-%eb%b3%b4%ec%9e%90" aria-label="1. brew (1번 방법으로 설치를했을때 에러가나면 1-1의 방법으로 실행해 보자.)">1. brew (1번 방법으로 설치를했을때 에러가나면 1-1의 방법으로 실행해 보자.)</a></li>
+                    <li>
+                        <a href="#1-1" aria-label="1-1.">1-1.</a></li>
+                    <li>
+                        <a href="#2-%eb%b0%94%ec%9d%b4%eb%84%88%eb%a6%ac" aria-label="2. 바이너리">2. 바이너리</a>
+                    </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        
+        activeElement = elements[0];
+        document.querySelector(`.inner ul li a[href="#${activeElement.getAttribute('id')}"]`).classList.add('active');
+    }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+            if (element === activeElement ){
+                document.querySelector(`.inner ul li a[href="#${element.getAttribute('id')}"]`).classList.add('active');
+            } else {
+                document.querySelector(`.inner ul li a[href="#${element.getAttribute('id')}"]`).classList.remove('active');
+            }
+        })
+    }, false);
+
+    
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+</script>
   <div class="post-content"><p>맥북에서 kubernetes 설치를 위해 상단바에 있는 도커를 클릭후</p>
 <p>Preferences&hellip; 를 클릭후 kubernetes 버튼을 눌러</p>
 <p>Enable Kubernetes를 체크 후 apply를 눌러 쿠버네티스를 활성화 시킨다.</p>

@@ -12,7 +12,7 @@
 밑이 보면 해결 방법으로 3가지를 제시해 준다.">
 <meta name="author" content="">
 <link rel="canonical" href="https://www.springboot.kr/posts/spring/required-a-single-bean-but-3-were-found/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.d4b0ee0ca8b7c80a755dba6157c583088bcce231580995dd9a80de7cae0c0f17.css" integrity="sha256-1LDuDKi3yAp1XbphV8WDCIvM4jFYCZXdmoDefK4MDxc=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.f238f1b0ccea21e45d3c0112bdd442ca592e7287c4a346036dc9a8b461e5f0a0.css" integrity="sha256-8jjxsMzqIeRdPAESvdRCylkucofEo0YDbcmotGHl8KA=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://www.springboot.kr/favicon_io/favicon.ico">
@@ -197,7 +197,8 @@ if (!doNotTrack) {
         </ul>
     </nav>
 </header>
-<main class="main">
+
+    <main class="main page">
 
 <article class="post-single">
   <header class="post-header">
@@ -208,7 +209,89 @@ if (!doNotTrack) {
     <div class="post-meta"><span title='2022-01-11 20:36:37 +0800 CST'>January 11, 2022</span>
 
 </div>
-  </header> 
+  </header> <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                <span class="details">Table of Contents</span>
+            </summary>
+
+            <div class="inner"><ul><ul>
+                    <li>
+                        <a href="#primary-qualifier" aria-label="@Primary, @Qualifier">@Primary, @Qualifier</a></li>
+                    <li>
+                        <a href="#primary" aria-label="@Primary">@Primary</a></li>
+                    <li>
+                        <a href="#list" aria-label="List">List</a></li>
+                    <li>
+                        <a href="#qualifier" aria-label="@Qualifier">@Qualifier</a></li></ul>
+                        
+                    <li>
+                        <a href="#--%eb%81%97--" aria-label="- 끗 -"><em><strong>- 끗 -</strong></em></a>
+                    </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        
+        activeElement = elements[0];
+        document.querySelector(`.inner ul li a[href="#${activeElement.getAttribute('id')}"]`).classList.add('active');
+    }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+            if (element === activeElement ){
+                document.querySelector(`.inner ul li a[href="#${element.getAttribute('id')}"]`).classList.add('active');
+            } else {
+                document.querySelector(`.inner ul li a[href="#${element.getAttribute('id')}"]`).classList.remove('active');
+            }
+        })
+    }, false);
+
+    
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+</script>
   <div class="post-content"><pre tabindex="0"><code>Field testService in com.example.TestController required a single bean, but 3 were found:
 	- testServiceImpl1: defined in file [build/classes/java/main/com/example/TestServiceImpl1.class]
 	- testServiceImpl2: defined in file [build/classes/java/main/com/example/TestServiceImpl2.class]
