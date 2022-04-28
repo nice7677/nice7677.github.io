@@ -20,7 +20,7 @@ go get -u github.com/go-resty/resty/v2 설치가 끝나면 라이브러리를 �
 <meta name="author" content="">
 <link rel="canonical" href="https://www.springboot.kr/posts/google/golang-google-oauth/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.f238f1b0ccea21e45d3c0112bdd442ca592e7287c4a346036dc9a8b461e5f0a0.css" integrity="sha256-8jjxsMzqIeRdPAESvdRCylkucofEo0YDbcmotGHl8KA=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.2840b7fccd34145847db71a290569594bdbdb00047097f75d6495d162f5d7dff.js" integrity="sha256-KEC3/M00FFhH23GikFaVlL29sABHCX911kldFi9dff8="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://www.springboot.kr/favicon_io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://www.springboot.kr/favicon_io/favicon-16x16.png">
@@ -29,7 +29,7 @@ go get -u github.com/go-resty/resty/v2 설치가 끝나면 라이브러리를 �
 <link rel="mask-icon" href="https://www.springboot.kr/favicon_io/apple-touch-icon.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.91.2" />
+<meta name="generator" content="Hugo 0.97.3" />
 <noscript>
     <style>
         #theme-toggle,
@@ -137,7 +137,7 @@ go get -u github.com/go-resty/resty/v2 설치가 끝나면 라이브러리를 �
   "keywords": [
     
   ],
-  "articleBody": "Golang에서 google photo를 사용하기 위해서 찾았던 내용을 정리 하려고 한다.\n이건 내 방법이고 다른 방법이 있을 수 있음.\nGoogle OAuth 2.0 for Web Server Applications\n우선 위에 있는 사이트를 참조해 정리 한다.\n위 사이트에서는 Go는 라이브러리가 지원 한다고 적혀 있다.\n하지만 쓰지 않았다. ㅋㅋ\n내가 사용한 방법은 resty라는 http 라이브러리를 사용했다.\nresty는 spring으로 보면 resttemplate 같은? 나는 같은 용도로 사용한다.\nresty설치를 위해 다과 같이 입력해 준다.\ngo get -u github.com/go-resty/resty/v2 설치가 끝나면 라이브러리를 사용할수 있다.\n사용법은 README에 상세하게 적혀있다.\n이제 OAuth에 필요한 작업을 하기 위해 본격적으로 만들어 보자\nGoogle Cloud Platform에서 프로젝트 생성과 사용자 인증 정보를 생성해야 한다.\nAPI 및 서비스를 들어가면 다음과 같은 메뉴가 나오는데 거기서 사용자 인증 정보를 눌러 생성하자\n애플리케이션 이름을 적어주고 도메인과 애플리케이션 링크도 적어주자\n작성이 끝나면 다음으로 메뉴에서 사용자 인증 정보를 들어가면 다음과 같이 정보가 생성되 있는데\n정보를 클릭하면 상세 내용을 볼 수 있다.\n이제 여기서 클라이언트 ID(client_id)와 클라이언트 보안 비밀(client_sceret)이 우리가 필요한 정보다.\n이제 OAuth에 권한을 부여 할 아이디를 적용해 주는 단계가 필요하다.\nStep 1: Set authorization parameters을 보게 되면 사용 할 수 있는 파라미터들이 정리 되있다.\nStep 2: Redirect to Google's OAuth 2.0 server를 보면 적용 할 수 있는 방법이 있다.\n인증 정보를 생성할때 만들어 놓은 리다이렉트 url과 client_id가 필요하다.\nscope는 나는 구글 포토를 사용하기 위해서 다음과 같이 범위를 잡았다.\nscope=https://www.googleapis.com/auth/photoslibrary+https://www.googleapis.com/auth/photoslibrary.appendonly\n html lang=\"en\" head meta charset=\"UTF-8\" titleSPRINGBOOT.KRtitle head body a href=\" https://accounts.google.com/o/oauth2/v2/auth? scope=https://www.googleapis.com/auth/photoslibrary+https://www.googleapis.com/auth/photoslibrary.appendonly\u0026 access_type=offline\u0026 include_granted_scopes=true\u0026state=state_parameter_passthrough_value\u0026 redirect_uri=http://localhost:3005/redirect\u0026response_type=code\u0026 client_id=Your client id \" style=\"font-size: 50px;\"SPRINGBOOT.KRa body html 이렇게 잡아 놓으면 링크를 눌렀을때 권한을 부여할수 있는 페이지로 이동된다.\n그리고 권한을 다 주게 되면 위에서 설정해 놓은 redirect_uri로 code 값이 들어오는데\n그 부분을 캐치해 code를 따로 들어준다.\n나는 ehco를 사용하고 있어서 c.FormValue(\"code\") 이렇게 하면 잘 받아 졌다.\n그리고 이제 저렇게 받은 code 값을 사용해 OAuth를 요청 할 수 있다.\nfunc GetAccessToken(code string) { client := resty.New() resp, err := client.R(). SetHeader(\"Content-Type\", \"application/x-www-form-urlencoded\"). SetFormData(map[string]string{ \"code\": YOUR_CODE, \"client_id\": YOUR_CLIENT_ID, \"client_secret\": YOUR_CLIENT_SECRET, \"redirect_uri\": \"http://localhost/redirect\", \"grant_type\": \"authorization_code\", }). Post(\"https://www.googleapis.com/oauth2/v4/token\") if err != nil { log.Println(err.Error()) } } 위의 코드에서 보면 클라이언트 아이디와 시크릿이 필요하다.\n아까 받은 사용자 인증 정보의 값을 저기에 입력하면 된다.\n그리고 요청을 보내면 다음과 같이 Response가 오면 성공\n{ \"access_token\":\"1/fFAGRNJru1FTz70BzhT3Zg\", \"expires_in\":3600, \"token_type\":\"Bearer\", \"refresh_token\":\"1/xEoDL4iW3cxlI7yDbSRFYNG01kVKM2C-259HOF2aQbI\" } 그럼 이제 저기에 있는 access token을 api를 사용할때 사용하면 된다!\nexpires_in에 있는 3600은 초단위로 1시간이다.\n그럼 리프레시 토큰은.. 다음 기회에 작성 하겠습니다.\n",
+  "articleBody": "Golang에서 google photo를 사용하기 위해서 찾았던 내용을 정리 하려고 한다.\n이건 내 방법이고 다른 방법이 있을 수 있음.\nGoogle OAuth 2.0 for Web Server Applications\n우선 위에 있는 사이트를 참조해 정리 한다.\n위 사이트에서는 Go는 라이브러리가 지원 한다고 적혀 있다.\n하지만 쓰지 않았다. ㅋㅋ\n내가 사용한 방법은 resty라는 http 라이브러리를 사용했다.\nresty는 spring으로 보면 resttemplate 같은? 나는 같은 용도로 사용한다.\nresty설치를 위해 다과 같이 입력해 준다.\ngo get -u github.com/go-resty/resty/v2 설치가 끝나면 라이브러리를 사용할수 있다.\n사용법은 README에 상세하게 적혀있다.\n이제 OAuth에 필요한 작업을 하기 위해 본격적으로 만들어 보자\nGoogle Cloud Platform에서 프로젝트 생성과 사용자 인증 정보를 생성해야 한다.\nAPI 및 서비스를 들어가면 다음과 같은 메뉴가 나오는데 거기서 사용자 인증 정보를 눌러 생성하자\n애플리케이션 이름을 적어주고 도메인과 애플리케이션 링크도 적어주자\n작성이 끝나면 다음으로 메뉴에서 사용자 인증 정보를 들어가면 다음과 같이 정보가 생성되 있는데\n정보를 클릭하면 상세 내용을 볼 수 있다.\n이제 여기서 클라이언트 ID(client_id)와 클라이언트 보안 비밀(client_sceret)이 우리가 필요한 정보다.\n이제 OAuth에 권한을 부여 할 아이디를 적용해 주는 단계가 필요하다.\nStep 1: Set authorization parameters을 보게 되면 사용 할 수 있는 파라미터들이 정리 되있다.\nStep 2: Redirect to Google's OAuth 2.0 server를 보면 적용 할 수 있는 방법이 있다.\n인증 정보를 생성할때 만들어 놓은 리다이렉트 url과 client_id가 필요하다.\nscope는 나는 구글 포토를 사용하기 위해서 다음과 같이 범위를 잡았다.\nscope=https://www.googleapis.com/auth/photoslibrary+https://www.googleapis.com/auth/photoslibrary.appendonly\n html lang=\"en\" head  meta charset=\"UTF-8\"  titleSPRINGBOOT.KRtitle head body a href=\" https://accounts.google.com/o/oauth2/v2/auth? scope=https://www.googleapis.com/auth/photoslibrary+https://www.googleapis.com/auth/photoslibrary.appendonly\u0026 access_type=offline\u0026 include_granted_scopes=true\u0026state=state_parameter_passthrough_value\u0026 redirect_uri=http://localhost:3005/redirect\u0026response_type=code\u0026 client_id=Your client id \" style=\"font-size: 50px;\"SPRINGBOOT.KRa body html 이렇게 잡아 놓으면 링크를 눌렀을때 권한을 부여할수 있는 페이지로 이동된다.\n그리고 권한을 다 주게 되면 위에서 설정해 놓은 redirect_uri로 code 값이 들어오는데\n그 부분을 캐치해 code를 따로 들어준다.\n나는 ehco를 사용하고 있어서 c.FormValue(\"code\") 이렇게 하면 잘 받아 졌다.\n그리고 이제 저렇게 받은 code 값을 사용해 OAuth를 요청 할 수 있다.\nfunc GetAccessToken(code string) { \tclient := resty.New() \tresp, err := client.R(). \tSetHeader(\"Content-Type\", \"application/x-www-form-urlencoded\"). \tSetFormData(map[string]string{ \t\"code\": YOUR_CODE, \t\"client_id\": YOUR_CLIENT_ID, \t\"client_secret\": YOUR_CLIENT_SECRET, \t\"redirect_uri\": \"http://localhost/redirect\", \t\"grant_type\": \"authorization_code\", \t}). \tPost(\"https://www.googleapis.com/oauth2/v4/token\") \tif err != nil { \tlog.Println(err.Error()) \t} } 위의 코드에서 보면 클라이언트 아이디와 시크릿이 필요하다.\n아까 받은 사용자 인증 정보의 값을 저기에 입력하면 된다.\n그리고 요청을 보내면 다음과 같이 Response가 오면 성공\n{  \"access_token\":\"1/fFAGRNJru1FTz70BzhT3Zg\",  \"expires_in\":3600,  \"token_type\":\"Bearer\",  \"refresh_token\":\"1/xEoDL4iW3cxlI7yDbSRFYNG01kVKM2C-259HOF2aQbI\" } 그럼 이제 저기에 있는 access token을 api를 사용할때 사용하면 된다!\nexpires_in에 있는 3600은 초단위로 1시간이다.\n그럼 리프레시 토큰은.. 다음 기회에 작성 하겠습니다.\n",
   "wordCount" : "369",
   "inLanguage": "en",
   "datePublished": "2019-11-21T17:21:14+08:00",
@@ -174,14 +174,15 @@ go get -u github.com/go-resty/resty/v2 설치가 끝나면 라이브러리를 �
     window.intergramCustomizations = {
         
         titleOpen: 'SPRINGBOOT.KR',
-        introMessage: '안녕하세요. 궁금한 건 채팅을 남겨주세요.',
+        cookieExpiration: 2,
+        introMessage: '안녕하세요. 궁금한 건 채팅을 남겨주세요. 바로 대답할 수 있도록 노력 중입니다.',
         autoResponse: '잠시만 기다려 주세요...',
         autoNoResponse: '지금은 바쁜 것 같네요.. 다음에 연락 주세요..',
         mainColor: "#262934", 
         alwaysUseFloatingButton: true 
     };
 </script>
-<script id="intergram" type="text/javascript" src="https://www.intergram.xyz/js/widget.js"></script>
+<script id="intergram" type="text/javascript" src="/js/intergram.js"></script>
 <header class="header">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -240,7 +241,7 @@ go get -u github.com/go-resty/resty/v2 설치가 끝나면 라이브러리를 �
     <h1 class="post-title">
       Golang Google OAuth 사용 하기
     </h1>
-    <div class="post-meta"><span title='2019-11-21 17:21:14 +0800 CST'>November 21, 2019</span>
+    <div class="post-meta"><span title='2019-11-21 17:21:14 +0800 +0800'>November 21, 2019</span>
 
 </div>
   </header> 
@@ -283,54 +284,54 @@ go get -u github.com/go-resty/resty/v2 설치가 끝나면 라이브러리를 �
 <p>인증 정보를 생성할때 만들어 놓은 리다이렉트 url과 client_id가 필요하다.</p>
 <p>scope는 나는 구글 포토를 사용하기 위해서 다음과 같이 범위를 잡았다.</p>
 <p><code>scope=https://www.googleapis.com/auth/photoslibrary+https://www.googleapis.com/auth/photoslibrary.appendonly</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
-&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span>&gt;
-&lt;<span style="color:#f92672">head</span>&gt;
-    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
-    &lt;<span style="color:#f92672">title</span>&gt;SPRINGBOOT.KR&lt;/<span style="color:#f92672">title</span>&gt;
-&lt;/<span style="color:#f92672">head</span>&gt;
-&lt;<span style="color:#f92672">body</span>&gt;
-&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;
-</span><span style="color:#e6db74">https://accounts.google.com/o/oauth2/v2/auth?
-</span><span style="color:#e6db74">scope=https://www.googleapis.com/auth/photoslibrary+https://www.googleapis.com/auth/photoslibrary.appendonly&amp;
-</span><span style="color:#e6db74">access_type=offline&amp;
-</span><span style="color:#e6db74">include_granted_scopes=true&amp;state=state_parameter_passthrough_value&amp;
-</span><span style="color:#e6db74">redirect_uri=http://localhost:3005/redirect&amp;response_type=code&amp;
-</span><span style="color:#e6db74">client_id=Your client id
-</span><span style="color:#e6db74">&#34;</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;font-size: 50px;&#34;</span>&gt;SPRINGBOOT.KR&lt;/<span style="color:#f92672">a</span>&gt;
-&lt;/<span style="color:#f92672">body</span>&gt;
-&lt;/<span style="color:#f92672">html</span>&gt;
-</code></pre></div><p>이렇게 잡아 놓으면 링크를 눌렀을때 권한을 부여할수 있는 페이지로 이동된다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">title</span>&gt;SPRINGBOOT.KR&lt;/<span style="color:#f92672">title</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">https://accounts.google.com/o/oauth2/v2/auth?
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">scope=https://www.googleapis.com/auth/photoslibrary+https://www.googleapis.com/auth/photoslibrary.appendonly&amp;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">access_type=offline&amp;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">include_granted_scopes=true&amp;state=state_parameter_passthrough_value&amp;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">redirect_uri=http://localhost:3005/redirect&amp;response_type=code&amp;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">client_id=Your client id
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;font-size: 50px;&#34;</span>&gt;SPRINGBOOT.KR&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><p>이렇게 잡아 놓으면 링크를 눌렀을때 권한을 부여할수 있는 페이지로 이동된다.</p>
 <p>그리고 권한을 다 주게 되면 위에서 설정해 놓은 redirect_uri로 code 값이 들어오는데</p>
 <p>그 부분을 캐치해 code를 따로 들어준다.</p>
 <p>나는 ehco를 사용하고 있어서 <code>c.FormValue(&quot;code&quot;)</code> 이렇게 하면 잘 받아 졌다.</p>
 <p>그리고 이제 저렇게 받은 code 값을 사용해 OAuth를 요청 할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">GetAccessToken</span>(<span style="color:#a6e22e">code</span> <span style="color:#66d9ef">string</span>) {
-	<span style="color:#a6e22e">client</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">resty</span>.<span style="color:#a6e22e">New</span>()
-	<span style="color:#a6e22e">resp</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">R</span>().
-		<span style="color:#a6e22e">SetHeader</span>(<span style="color:#e6db74">&#34;Content-Type&#34;</span>, <span style="color:#e6db74">&#34;application/x-www-form-urlencoded&#34;</span>).
-		<span style="color:#a6e22e">SetFormData</span>(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span>{
-			<span style="color:#e6db74">&#34;code&#34;</span>:          <span style="color:#a6e22e">YOUR_CODE</span>,
-			<span style="color:#e6db74">&#34;client_id&#34;</span>:     <span style="color:#a6e22e">YOUR_CLIENT_ID</span>,
-			<span style="color:#e6db74">&#34;client_secret&#34;</span>: <span style="color:#a6e22e">YOUR_CLIENT_SECRET</span>,
-			<span style="color:#e6db74">&#34;redirect_uri&#34;</span>:  <span style="color:#e6db74">&#34;http://localhost/redirect&#34;</span>,
-			<span style="color:#e6db74">&#34;grant_type&#34;</span>:    <span style="color:#e6db74">&#34;authorization_code&#34;</span>,
-		}).
-		<span style="color:#a6e22e">Post</span>(<span style="color:#e6db74">&#34;https://www.googleapis.com/oauth2/v4/token&#34;</span>)
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">Error</span>())
-	}
-}
-</code></pre></div><p>위의 코드에서 보면 클라이언트 아이디와 시크릿이 필요하다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-golang" data-lang="golang"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">GetAccessToken</span>(<span style="color:#a6e22e">code</span> <span style="color:#66d9ef">string</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">client</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">resty</span>.<span style="color:#a6e22e">New</span>()
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">resp</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">R</span>().
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">SetHeader</span>(<span style="color:#e6db74">&#34;Content-Type&#34;</span>, <span style="color:#e6db74">&#34;application/x-www-form-urlencoded&#34;</span>).
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">SetFormData</span>(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span>{
+</span></span><span style="display:flex;"><span>			<span style="color:#e6db74">&#34;code&#34;</span>:          <span style="color:#a6e22e">YOUR_CODE</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#e6db74">&#34;client_id&#34;</span>:     <span style="color:#a6e22e">YOUR_CLIENT_ID</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#e6db74">&#34;client_secret&#34;</span>: <span style="color:#a6e22e">YOUR_CLIENT_SECRET</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#e6db74">&#34;redirect_uri&#34;</span>:  <span style="color:#e6db74">&#34;http://localhost/redirect&#34;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#e6db74">&#34;grant_type&#34;</span>:    <span style="color:#e6db74">&#34;authorization_code&#34;</span>,
+</span></span><span style="display:flex;"><span>		}).
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Post</span>(<span style="color:#e6db74">&#34;https://www.googleapis.com/oauth2/v4/token&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">Error</span>())
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>위의 코드에서 보면 클라이언트 아이디와 시크릿이 필요하다.</p>
 <p>아까 받은 사용자 인증 정보의 값을 저기에 입력하면 된다.</p>
 <p>그리고 요청을 보내면 다음과 같이 Response가 오면 성공</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;access_token&#34;</span>:<span style="color:#e6db74">&#34;1/fFAGRNJru1FTz70BzhT3Zg&#34;</span>,
-  <span style="color:#f92672">&#34;expires_in&#34;</span>:<span style="color:#ae81ff">3600</span>,
-  <span style="color:#f92672">&#34;token_type&#34;</span>:<span style="color:#e6db74">&#34;Bearer&#34;</span>,
-  <span style="color:#f92672">&#34;refresh_token&#34;</span>:<span style="color:#e6db74">&#34;1/xEoDL4iW3cxlI7yDbSRFYNG01kVKM2C-259HOF2aQbI&#34;</span>
-}
-</code></pre></div><p>그럼 이제 저기에 있는 access token을 api를 사용할때 사용하면 된다!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;access_token&#34;</span>:<span style="color:#e6db74">&#34;1/fFAGRNJru1FTz70BzhT3Zg&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;expires_in&#34;</span>:<span style="color:#ae81ff">3600</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;token_type&#34;</span>:<span style="color:#e6db74">&#34;Bearer&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;refresh_token&#34;</span>:<span style="color:#e6db74">&#34;1/xEoDL4iW3cxlI7yDbSRFYNG01kVKM2C-259HOF2aQbI&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>그럼 이제 저기에 있는 access token을 api를 사용할때 사용하면 된다!</p>
 <p>expires_in에 있는 3600은 초단위로 1시간이다.</p>
 <p>그럼 리프레시 토큰은.. 다음 기회에 작성 하겠습니다.</p>
 

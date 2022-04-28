@@ -13,11 +13,11 @@
 implementation group: &#39;org.springframework.cloud&#39;, name: &#39;spring-cloud-stream-binder-kafka&#39;, version: &#39;3.2.1&#39; 를 추가하면 5개의 라이브러리가 추가 된다.
 Gradle: org.springframework.cloud:spring-cloud-function-context:3.2.1 Gradle: org.springframework.cloud:spring-cloud-function-core:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka-core:3.2.1 그럼 시작해보자.
 우선 application.yml에 cloud kafka를 설정해줍시다.
-cloud: function: definition: consumer;producer stream: kafka: bindings: producer-out-0: producer: configuration: key: serializer: org.apache.kafka.common.serialization.StringSerializer consumer-in-0: consumer: configuration: key: deserializer: org.apache.kafka.common.serialization.StringDeserializer value: deserializer: com.">
+cloud:  function:  definition: consumer;producer  stream:  kafka:  bindings:  producer-out-0:  producer:  configuration:  key:  serializer: org.">
 <meta name="author" content="">
 <link rel="canonical" href="https://www.springboot.kr/posts/spring/spring-cloud-stream-binder-kafka/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.f238f1b0ccea21e45d3c0112bdd442ca592e7287c4a346036dc9a8b461e5f0a0.css" integrity="sha256-8jjxsMzqIeRdPAESvdRCylkucofEo0YDbcmotGHl8KA=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.2840b7fccd34145847db71a290569594bdbdb00047097f75d6495d162f5d7dff.js" integrity="sha256-KEC3/M00FFhH23GikFaVlL29sABHCX911kldFi9dff8="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://www.springboot.kr/favicon_io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://www.springboot.kr/favicon_io/favicon-16x16.png">
@@ -26,7 +26,7 @@ cloud: function: definition: consumer;producer stream: kafka: bindings: producer
 <link rel="mask-icon" href="https://www.springboot.kr/favicon_io/apple-touch-icon.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.91.2" />
+<meta name="generator" content="Hugo 0.97.3" />
 <noscript>
     <style>
         #theme-toggle,
@@ -81,7 +81,7 @@ if (!doNotTrack) {
 implementation group: &#39;org.springframework.cloud&#39;, name: &#39;spring-cloud-stream-binder-kafka&#39;, version: &#39;3.2.1&#39; 를 추가하면 5개의 라이브러리가 추가 된다.
 Gradle: org.springframework.cloud:spring-cloud-function-context:3.2.1 Gradle: org.springframework.cloud:spring-cloud-function-core:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka-core:3.2.1 그럼 시작해보자.
 우선 application.yml에 cloud kafka를 설정해줍시다.
-cloud: function: definition: consumer;producer stream: kafka: bindings: producer-out-0: producer: configuration: key: serializer: org.apache.kafka.common.serialization.StringSerializer consumer-in-0: consumer: configuration: key: deserializer: org.apache.kafka.common.serialization.StringDeserializer value: deserializer: com." />
+cloud:  function:  definition: consumer;producer  stream:  kafka:  bindings:  producer-out-0:  producer:  configuration:  key:  serializer: org." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.springboot.kr/posts/spring/spring-cloud-stream-binder-kafka/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-01-19T02:00:28&#43;08:00" />
@@ -95,7 +95,7 @@ cloud: function: definition: consumer;producer stream: kafka: bindings: producer
 implementation group: &#39;org.springframework.cloud&#39;, name: &#39;spring-cloud-stream-binder-kafka&#39;, version: &#39;3.2.1&#39; 를 추가하면 5개의 라이브러리가 추가 된다.
 Gradle: org.springframework.cloud:spring-cloud-function-context:3.2.1 Gradle: org.springframework.cloud:spring-cloud-function-core:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka-core:3.2.1 그럼 시작해보자.
 우선 application.yml에 cloud kafka를 설정해줍시다.
-cloud: function: definition: consumer;producer stream: kafka: bindings: producer-out-0: producer: configuration: key: serializer: org.apache.kafka.common.serialization.StringSerializer consumer-in-0: consumer: configuration: key: deserializer: org.apache.kafka.common.serialization.StringDeserializer value: deserializer: com."/>
+cloud:  function:  definition: consumer;producer  stream:  kafka:  bindings:  producer-out-0:  producer:  configuration:  key:  serializer: org."/>
 
 
 <script type="application/ld+json">
@@ -124,11 +124,11 @@ cloud: function: definition: consumer;producer stream: kafka: bindings: producer
   "@type": "BlogPosting",
   "headline": "StreamBridge 사용하기",
   "name": "StreamBridge 사용하기",
-  "description": "Spring Cloud Stream Binder Kafka를 위한 글.\n버전이 올라오면서 @OUTPUT 어노테이션이 Deprecated 돼서 찾아봤는데 StreamBridge를 이용하면 된다 한다.\n일단 처음부터 봐봅시다.\nimplementation group: \u0026#39;org.springframework.cloud\u0026#39;, name: \u0026#39;spring-cloud-stream-binder-kafka\u0026#39;, version: \u0026#39;3.2.1\u0026#39; 를 추가하면 5개의 라이브러리가 추가 된다.\nGradle: org.springframework.cloud:spring-cloud-function-context:3.2.1 Gradle: org.springframework.cloud:spring-cloud-function-core:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka-core:3.2.1 그럼 시작해보자.\n우선 application.yml에 cloud kafka를 설정해줍시다.\ncloud: function: definition: consumer;producer stream: kafka: bindings: producer-out-0: producer: configuration: key: serializer: org.apache.kafka.common.serialization.StringSerializer consumer-in-0: consumer: configuration: key: deserializer: org.apache.kafka.common.serialization.StringDeserializer value: deserializer: com.",
+  "description": "Spring Cloud Stream Binder Kafka를 위한 글.\n버전이 올라오면서 @OUTPUT 어노테이션이 Deprecated 돼서 찾아봤는데 StreamBridge를 이용하면 된다 한다.\n일단 처음부터 봐봅시다.\nimplementation group: \u0026#39;org.springframework.cloud\u0026#39;, name: \u0026#39;spring-cloud-stream-binder-kafka\u0026#39;, version: \u0026#39;3.2.1\u0026#39; 를 추가하면 5개의 라이브러리가 추가 된다.\nGradle: org.springframework.cloud:spring-cloud-function-context:3.2.1 Gradle: org.springframework.cloud:spring-cloud-function-core:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka-core:3.2.1 그럼 시작해보자.\n우선 application.yml에 cloud kafka를 설정해줍시다.\ncloud:  function:  definition: consumer;producer  stream:  kafka:  bindings:  producer-out-0:  producer:  configuration:  key:  serializer: org.",
   "keywords": [
     
   ],
-  "articleBody": "Spring Cloud Stream Binder Kafka를 위한 글.\n버전이 올라오면서 @OUTPUT 어노테이션이 Deprecated 돼서 찾아봤는데 StreamBridge를 이용하면 된다 한다.\n일단 처음부터 봐봅시다.\nimplementation group: 'org.springframework.cloud', name: 'spring-cloud-stream-binder-kafka', version: '3.2.1' 를 추가하면 5개의 라이브러리가 추가 된다.\nGradle: org.springframework.cloud:spring-cloud-function-context:3.2.1 Gradle: org.springframework.cloud:spring-cloud-function-core:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka-core:3.2.1 그럼 시작해보자.\n우선 application.yml에 cloud kafka를 설정해줍시다.\ncloud: function: definition: consumer;producer stream: kafka: bindings: producer-out-0: producer: configuration: key: serializer: org.apache.kafka.common.serialization.StringSerializer consumer-in-0: consumer: configuration: key: deserializer: org.apache.kafka.common.serialization.StringDeserializer value: deserializer: com.example.studyspringboot.cloud.stream.binder.kafka.MessageDeserializer # (2) binder: brokers: localhost:9094 bindings: producer-out-0: # (1) destination: carbtoon.test.service # topic contentType: application/json consumer-in-0: destination: carbtoon.test.service  # topic consumer: use-native-decoding: true # (3) 커스텀 deserializer를 사용하기 위해 활성화를 위해 true로 설정합니다. 설정이 끝난다면 Producer를 위한 클래스를 하나 작성.\n@RequiredArgsConstructor @Component public class KafkaProducer { private final StreamBridge streamBridge; // StreamBridge를 주입해주자.  @Async public void send(SpringbootKRPayload payload) { streamBridge.send(\"producer-out-0\", MessageBuilder // ↑ application.yml의 (1)과 같아야합니다.  // send의 첫번째 String parameter 이름은 String bindingName 입니다.  .withPayload(payload) .setHeader(KafkaHeaders.MESSAGE_KEY, UUID.randomUUID().toString()) .build()); } } 이렇게 Producer가 생성이 끝나면 다음으로는 Consumer 클래스를 생성.\n@Component public class KafkaConsumer { @Bean public ConsumerMessage consumer() { return message - System.out.println(message); } } 그리고 테스트를위한 Payload를 하나 만듭니다.\n@Getter @Setter @ToString public class SpringbootKRPayload { private String host; private String title; private String name; @JsonProperty(\"payload_type\") private PayloadType payloadType; @Builder public SpringbootKRPayload(String host, String title, String name, PayloadType payloadType) { this.host = host; this.title = title; this.name = name; this.payloadType = payloadType; } } public enum PayloadType { CREATED, UPDATED, DELETED } 그리고 application.yml의 (2)에 필요한 커스텀 deserializer 클래스를 하나 만듭니다.\npublic class MessageDeserializer implements DeserializerSpringbootKRPayloadDeserializer { private final ObjectMapper objectMapper = new ObjectMapper(); @Override public SpringbootKRPayloadDeserializer deserialize(String topic, byte[] data) { try { return objectMapper.readValue(new String(data), SpringbootKRPayloadDeserializer.class); } catch (IOException e) { throw new SerializationException(e); } } } 위의 클래스를 사용하기 위해서는 application.yml의 (3)을 true로 설정해 주어야합니다.\n그리고 다음으로 위의 코드중 Deserializer를 위한 SpringbootKRPayloadDeserializer를 만들어 줍니다.\npublic class SpringbootKRPayloadDeserializer { @JsonProperty(\"payload_type\") private String payloadType; @JsonProperty(\"host\") private String host; @JsonProperty(\"name\") private String name; @JsonProperty(\"title\") private String title; } 그리고 테스트를 위한 스케줄러를 하나 만들어 봅니다. (스케줄러를 만들었으니 application에 @EnableScheduling 추가)\n@RequiredArgsConstructor @Component public class Scheduler { private KafkaProducer kafkaProducer; @Scheduled(cron = \"*/5 * * * * *\") public void sendMessage() { kafkaProducer.send(SpringbootKRPayload.builder() .host(\"SPRINGBOOT.KR\") .title(\"SPRING CLOUD STREAM KAFKA\") .name(\"JINWOO-LEE\") .payloadType(PayloadType.CREATED) .build()); } } 이제 실행하면??\nGenericMessage [payload=SpringbootKRPayloadDeserializer( payloadType=CREATED, host=SPRINGBOOT.KR, name=JINWOO-LEE, title=SPRING CLOUD STREAM KAFKA), headers={deliveryAttempt=1, kafka_timestampType=CREATE_TIME, kafka_receivedTopic=carbtoon.test.service, skip-input-type-conversion=true, kafka_offset=158, scst_nativeHeadersPresent=true, kafka_consumer=org.apache.kafka.clients.consumer.KafkaConsumer@15d20e35, source-type=streamBridge, id=6a8cd101-3ac7-59ef-3d54-0429e761a4e8, kafka_receivedPartitionId=0, contentType=application/json, kafka_receivedTimestamp=1642531182377, kafka_groupId=anonymous.fa9c0bcf-ba1b-4a0e-be4e-4f997785cf91, timestamp=1642531182464}] 성공이다.\n참조\n Spring Cloud Stream With Kafka  ",
+  "articleBody": "Spring Cloud Stream Binder Kafka를 위한 글.\n버전이 올라오면서 @OUTPUT 어노테이션이 Deprecated 돼서 찾아봤는데 StreamBridge를 이용하면 된다 한다.\n일단 처음부터 봐봅시다.\nimplementation group: 'org.springframework.cloud', name: 'spring-cloud-stream-binder-kafka', version: '3.2.1' 를 추가하면 5개의 라이브러리가 추가 된다.\nGradle: org.springframework.cloud:spring-cloud-function-context:3.2.1 Gradle: org.springframework.cloud:spring-cloud-function-core:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka-core:3.2.1 그럼 시작해보자.\n우선 application.yml에 cloud kafka를 설정해줍시다.\ncloud:  function:  definition: consumer;producer  stream:  kafka:  bindings:  producer-out-0:  producer:  configuration:  key:  serializer: org.apache.kafka.common.serialization.StringSerializer  consumer-in-0:  consumer:  configuration:  key:  deserializer: org.apache.kafka.common.serialization.StringDeserializer  value:  deserializer: com.example.studyspringboot.cloud.stream.binder.kafka.MessageDeserializer # (2)  binder:  brokers: localhost:9094  bindings:  producer-out-0: # (1)  destination: carbtoon.test.service # topic  contentType: application/json  consumer-in-0:  destination: carbtoon.test.service  # topic  consumer:  use-native-decoding: true # (3) 커스텀 deserializer를 사용하기 위해 활성화를 위해 true로 설정합니다. 설정이 끝난다면 Producer를 위한 클래스를 하나 작성.\n @RequiredArgsConstructor @Component public class KafkaProducer {   private final StreamBridge streamBridge; // StreamBridge를 주입해주자.   @Async  public void send(SpringbootKRPayload payload) {  streamBridge.send(\"producer-out-0\", MessageBuilder  // ↑ application.yml의 (1)과 같아야합니다.  // send의 첫번째 String parameter 이름은 String bindingName 입니다.  .withPayload(payload)  .setHeader(KafkaHeaders.MESSAGE_KEY, UUID.randomUUID().toString())  .build());  }  } 이렇게 Producer가 생성이 끝나면 다음으로는 Consumer 클래스를 생성.\n @Component public class KafkaConsumer {   @Bean  public ConsumerMessage consumer() {  return message - System.out.println(message);  }  } 그리고 테스트를위한 Payload를 하나 만듭니다.\n @Getter @Setter @ToString public class SpringbootKRPayload {   private String host;   private String title;   private String name;   @JsonProperty(\"payload_type\")  private PayloadType payloadType;   @Builder  public SpringbootKRPayload(String host, String title, String name, PayloadType payloadType) {  this.host = host;  this.title = title;  this.name = name;  this.payloadType = payloadType;  }  }  public enum PayloadType {  CREATED, UPDATED, DELETED } 그리고 application.yml의 (2)에 필요한 커스텀 deserializer 클래스를 하나 만듭니다.\npublic class MessageDeserializer implements DeserializerSpringbootKRPayloadDeserializer {   private final ObjectMapper objectMapper = new ObjectMapper();   @Override  public SpringbootKRPayloadDeserializer deserialize(String topic, byte[] data) {  try {  return objectMapper.readValue(new String(data), SpringbootKRPayloadDeserializer.class);  } catch (IOException e) {  throw new SerializationException(e);  }  } } 위의 클래스를 사용하기 위해서는 application.yml의 (3)을 true로 설정해 주어야합니다.\n그리고 다음으로 위의 코드중 Deserializer를 위한 SpringbootKRPayloadDeserializer를 만들어 줍니다.\npublic class SpringbootKRPayloadDeserializer {   @JsonProperty(\"payload_type\")  private String payloadType;   @JsonProperty(\"host\")  private String host;   @JsonProperty(\"name\")  private String name;   @JsonProperty(\"title\")  private String title;  } 그리고 테스트를 위한 스케줄러를 하나 만들어 봅니다. (스케줄러를 만들었으니 application에 @EnableScheduling 추가)\n @RequiredArgsConstructor @Component public class Scheduler {   private KafkaProducer kafkaProducer;   @Scheduled(cron = \"*/5 * * * * *\")  public void sendMessage() {  kafkaProducer.send(SpringbootKRPayload.builder()  .host(\"SPRINGBOOT.KR\")  .title(\"SPRING CLOUD STREAM KAFKA\")  .name(\"JINWOO-LEE\")  .payloadType(PayloadType.CREATED)  .build());  }  } 이제 실행하면??\nGenericMessage [payload=SpringbootKRPayloadDeserializer( payloadType=CREATED, host=SPRINGBOOT.KR, name=JINWOO-LEE, title=SPRING CLOUD STREAM KAFKA), headers={deliveryAttempt=1, kafka_timestampType=CREATE_TIME, kafka_receivedTopic=carbtoon.test.service, skip-input-type-conversion=true, kafka_offset=158, scst_nativeHeadersPresent=true, kafka_consumer=org.apache.kafka.clients.consumer.KafkaConsumer@15d20e35, source-type=streamBridge, id=6a8cd101-3ac7-59ef-3d54-0429e761a4e8, kafka_receivedPartitionId=0, contentType=application/json, kafka_receivedTimestamp=1642531182377, kafka_groupId=anonymous.fa9c0bcf-ba1b-4a0e-be4e-4f997785cf91, timestamp=1642531182464}] 성공이다.\n참조\n Spring Cloud Stream With Kafka  ",
   "wordCount" : "398",
   "inLanguage": "en",
   "datePublished": "2022-01-19T02:00:28+08:00",
@@ -165,14 +165,15 @@ cloud: function: definition: consumer;producer stream: kafka: bindings: producer
     window.intergramCustomizations = {
         
         titleOpen: 'SPRINGBOOT.KR',
-        introMessage: '안녕하세요. 궁금한 건 채팅을 남겨주세요.',
+        cookieExpiration: 2,
+        introMessage: '안녕하세요. 궁금한 건 채팅을 남겨주세요. 바로 대답할 수 있도록 노력 중입니다.',
         autoResponse: '잠시만 기다려 주세요...',
         autoNoResponse: '지금은 바쁜 것 같네요.. 다음에 연락 주세요..',
         mainColor: "#262934", 
         alwaysUseFloatingButton: true 
     };
 </script>
-<script id="intergram" type="text/javascript" src="https://www.intergram.xyz/js/widget.js"></script>
+<script id="intergram" type="text/javascript" src="/js/intergram.js"></script>
 <header class="header">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -231,15 +232,15 @@ cloud: function: definition: consumer;producer stream: kafka: bindings: producer
     <h1 class="post-title">
       StreamBridge 사용하기
     </h1>
-    <div class="post-meta"><span title='2022-01-19 02:00:28 +0800 CST'>January 19, 2022</span>
+    <div class="post-meta"><span title='2022-01-19 02:00:28 +0800 +0800'>January 19, 2022</span>
 
 </div>
   </header> 
   <div class="post-content"><p>Spring Cloud Stream Binder Kafka를 위한 글.</p>
 <p>버전이 올라오면서 @OUTPUT 어노테이션이 Deprecated 돼서 찾아봤는데 StreamBridge를 이용하면 된다 한다.</p>
 <p>일단 처음부터 봐봅시다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">implementation group: <span style="color:#e6db74">&#39;org.springframework.cloud&#39;</span><span style="color:#f92672">,</span> name: <span style="color:#e6db74">&#39;spring-cloud-stream-binder-kafka&#39;</span><span style="color:#f92672">,</span> version: <span style="color:#e6db74">&#39;3.2.1&#39;</span>
-</code></pre></div><p>를 추가하면 5개의 라이브러리가 추가 된다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>implementation group: <span style="color:#e6db74">&#39;org.springframework.cloud&#39;</span><span style="color:#f92672">,</span> name: <span style="color:#e6db74">&#39;spring-cloud-stream-binder-kafka&#39;</span><span style="color:#f92672">,</span> version: <span style="color:#e6db74">&#39;3.2.1&#39;</span>
+</span></span></code></pre></div><p>를 추가하면 5개의 라이브러리가 추가 된다.</p>
 <pre tabindex="0"><code>Gradle: org.springframework.cloud:spring-cloud-function-context:3.2.1
 Gradle: org.springframework.cloud:spring-cloud-function-core:3.2.1
 Gradle: org.springframework.cloud:spring-cloud-stream:3.2.1
@@ -247,144 +248,144 @@ Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka:3.2.1
 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka-core:3.2.1
 </code></pre><p>그럼 시작해보자.</p>
 <p>우선 application.yml에 cloud kafka를 설정해줍시다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">cloud</span>:
-  <span style="color:#f92672">function</span>:
-    <span style="color:#f92672">definition</span>: <span style="color:#ae81ff">consumer;producer</span>
-  <span style="color:#f92672">stream</span>:
-    <span style="color:#f92672">kafka</span>:
-      <span style="color:#f92672">bindings</span>:
-        <span style="color:#f92672">producer-out-0</span>:
-          <span style="color:#f92672">producer</span>:
-            <span style="color:#f92672">configuration</span>:
-              <span style="color:#f92672">key</span>:
-                <span style="color:#f92672">serializer</span>: <span style="color:#ae81ff">org.apache.kafka.common.serialization.StringSerializer</span>
-        <span style="color:#f92672">consumer-in-0</span>:
-          <span style="color:#f92672">consumer</span>:
-            <span style="color:#f92672">configuration</span>:
-              <span style="color:#f92672">key</span>:
-                <span style="color:#f92672">deserializer</span>: <span style="color:#ae81ff">org.apache.kafka.common.serialization.StringDeserializer</span>
-              <span style="color:#f92672">value</span>:
-                <span style="color:#f92672">deserializer</span>: <span style="color:#ae81ff">com.example.studyspringboot.cloud.stream.binder.kafka.MessageDeserializer</span> <span style="color:#75715e"># (2)</span>
-      <span style="color:#f92672">binder</span>:
-        <span style="color:#f92672">brokers</span>: <span style="color:#ae81ff">localhost:9094</span>
-    <span style="color:#f92672">bindings</span>:
-      <span style="color:#f92672">producer-out-0</span>: <span style="color:#75715e"># (1)</span>
-        <span style="color:#f92672">destination</span>: <span style="color:#ae81ff">carbtoon.test.service</span> <span style="color:#75715e"># topic</span>
-        <span style="color:#f92672">contentType</span>: <span style="color:#ae81ff">application/json</span>
-      <span style="color:#f92672">consumer-in-0</span>:
-        <span style="color:#f92672">destination</span>: <span style="color:#ae81ff">carbtoon.test.service </span> <span style="color:#75715e"># topic</span>
-        <span style="color:#f92672">consumer</span>:
-          <span style="color:#f92672">use-native-decoding</span>: <span style="color:#66d9ef">true</span> <span style="color:#75715e"># (3) 커스텀 deserializer를 사용하기 위해 활성화를 위해 true로 설정합니다.</span>
-</code></pre></div><p>설정이 끝난다면 Producer를 위한 클래스를 하나 작성.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
-<span style="color:#a6e22e">@RequiredArgsConstructor</span>
-<span style="color:#a6e22e">@Component</span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">KafkaProducer</span> <span style="color:#f92672">{</span>
-
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> StreamBridge streamBridge<span style="color:#f92672">;</span> <span style="color:#75715e">// StreamBridge를 주입해주자.
-</span><span style="color:#75715e"></span>
-    <span style="color:#a6e22e">@Async</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">send</span><span style="color:#f92672">(</span>SpringbootKRPayload payload<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        streamBridge<span style="color:#f92672">.</span><span style="color:#a6e22e">send</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;producer-out-0&#34;</span><span style="color:#f92672">,</span> MessageBuilder
-                <span style="color:#75715e">//  ↑ application.yml의 (1)과 같아야합니다. 
-</span><span style="color:#75715e"></span>                <span style="color:#75715e">// send의 첫번째 String parameter 이름은 String bindingName 입니다.
-</span><span style="color:#75715e"></span>                <span style="color:#f92672">.</span><span style="color:#a6e22e">withPayload</span><span style="color:#f92672">(</span>payload<span style="color:#f92672">)</span>
-                <span style="color:#f92672">.</span><span style="color:#a6e22e">setHeader</span><span style="color:#f92672">(</span>KafkaHeaders<span style="color:#f92672">.</span><span style="color:#a6e22e">MESSAGE_KEY</span><span style="color:#f92672">,</span> UUID<span style="color:#f92672">.</span><span style="color:#a6e22e">randomUUID</span><span style="color:#f92672">().</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">())</span>
-                <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">());</span>
-    <span style="color:#f92672">}</span>
-
-<span style="color:#f92672">}</span>
-</code></pre></div><p>이렇게 Producer가 생성이 끝나면 다음으로는 Consumer 클래스를 생성.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
-<span style="color:#a6e22e">@Component</span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">KafkaConsumer</span> <span style="color:#f92672">{</span>
-
-    <span style="color:#a6e22e">@Bean</span>
-    <span style="color:#66d9ef">public</span> Consumer<span style="color:#f92672">&lt;</span>Message<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">consumer</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> message <span style="color:#f92672">-&gt;</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>message<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-
-<span style="color:#f92672">}</span>
-</code></pre></div><p>그리고 테스트를위한 Payload를 하나 만듭니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
-<span style="color:#a6e22e">@Getter</span>
-<span style="color:#a6e22e">@Setter</span>
-<span style="color:#a6e22e">@ToString</span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SpringbootKRPayload</span> <span style="color:#f92672">{</span>
-
-    <span style="color:#66d9ef">private</span> String host<span style="color:#f92672">;</span>
-
-    <span style="color:#66d9ef">private</span> String title<span style="color:#f92672">;</span>
-
-    <span style="color:#66d9ef">private</span> String name<span style="color:#f92672">;</span>
-
-    <span style="color:#a6e22e">@JsonProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;payload_type&#34;</span><span style="color:#f92672">)</span>
-    <span style="color:#66d9ef">private</span> PayloadType payloadType<span style="color:#f92672">;</span>
-
-    <span style="color:#a6e22e">@Builder</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">SpringbootKRPayload</span><span style="color:#f92672">(</span>String host<span style="color:#f92672">,</span> String title<span style="color:#f92672">,</span> String name<span style="color:#f92672">,</span> PayloadType payloadType<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">host</span> <span style="color:#f92672">=</span> host<span style="color:#f92672">;</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">title</span> <span style="color:#f92672">=</span> title<span style="color:#f92672">;</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">payloadType</span> <span style="color:#f92672">=</span> payloadType<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
-
-<span style="color:#f92672">}</span>
-
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">enum</span> PayloadType <span style="color:#f92672">{</span>
-    CREATED<span style="color:#f92672">,</span> UPDATED<span style="color:#f92672">,</span> DELETED
-<span style="color:#f92672">}</span>
-</code></pre></div><p>그리고 application.yml의 (2)에 필요한 커스텀 deserializer 클래스를 하나 만듭니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MessageDeserializer</span> <span style="color:#66d9ef">implements</span> Deserializer<span style="color:#f92672">&lt;</span>SpringbootKRPayloadDeserializer<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
-
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> ObjectMapper objectMapper <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ObjectMapper<span style="color:#f92672">();</span>
-
-    <span style="color:#a6e22e">@Override</span>
-    <span style="color:#66d9ef">public</span> SpringbootKRPayloadDeserializer <span style="color:#a6e22e">deserialize</span><span style="color:#f92672">(</span>String topic<span style="color:#f92672">,</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> data<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">return</span> objectMapper<span style="color:#f92672">.</span><span style="color:#a6e22e">readValue</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> String<span style="color:#f92672">(</span>data<span style="color:#f92672">),</span> SpringbootKRPayloadDeserializer<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
-        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IOException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> SerializationException<span style="color:#f92672">(</span>e<span style="color:#f92672">);</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>위의 클래스를 사용하기 위해서는 application.yml의 (3)을 true로 설정해 주어야합니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">cloud</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">function</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">definition</span>: <span style="color:#ae81ff">consumer;producer</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">stream</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kafka</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">bindings</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">producer-out-0</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">producer</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">configuration</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">key</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">serializer</span>: <span style="color:#ae81ff">org.apache.kafka.common.serialization.StringSerializer</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">consumer-in-0</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">consumer</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">configuration</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">key</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">deserializer</span>: <span style="color:#ae81ff">org.apache.kafka.common.serialization.StringDeserializer</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">value</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">deserializer</span>: <span style="color:#ae81ff">com.example.studyspringboot.cloud.stream.binder.kafka.MessageDeserializer</span> <span style="color:#75715e"># (2)</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">binder</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">brokers</span>: <span style="color:#ae81ff">localhost:9094</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">bindings</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">producer-out-0</span>: <span style="color:#75715e"># (1)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">destination</span>: <span style="color:#ae81ff">carbtoon.test.service</span> <span style="color:#75715e"># topic</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">contentType</span>: <span style="color:#ae81ff">application/json</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">consumer-in-0</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">destination</span>: <span style="color:#ae81ff">carbtoon.test.service </span> <span style="color:#75715e"># topic</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">consumer</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">use-native-decoding</span>: <span style="color:#66d9ef">true</span> <span style="color:#75715e"># (3) 커스텀 deserializer를 사용하기 위해 활성화를 위해 true로 설정합니다.</span>
+</span></span></code></pre></div><p>설정이 끝난다면 Producer를 위한 클래스를 하나 작성.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@RequiredArgsConstructor</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Component</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">KafkaProducer</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> StreamBridge streamBridge<span style="color:#f92672">;</span> <span style="color:#75715e">// StreamBridge를 주입해주자.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Async</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">send</span><span style="color:#f92672">(</span>SpringbootKRPayload payload<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        streamBridge<span style="color:#f92672">.</span><span style="color:#a6e22e">send</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;producer-out-0&#34;</span><span style="color:#f92672">,</span> MessageBuilder
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">//  ↑ application.yml의 (1)과 같아야합니다. 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#75715e">// send의 첫번째 String parameter 이름은 String bindingName 입니다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#f92672">.</span><span style="color:#a6e22e">withPayload</span><span style="color:#f92672">(</span>payload<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">.</span><span style="color:#a6e22e">setHeader</span><span style="color:#f92672">(</span>KafkaHeaders<span style="color:#f92672">.</span><span style="color:#a6e22e">MESSAGE_KEY</span><span style="color:#f92672">,</span> UUID<span style="color:#f92672">.</span><span style="color:#a6e22e">randomUUID</span><span style="color:#f92672">().</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">())</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>이렇게 Producer가 생성이 끝나면 다음으로는 Consumer 클래스를 생성.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Component</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">KafkaConsumer</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Bean</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Consumer<span style="color:#f92672">&lt;</span>Message<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">consumer</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> message <span style="color:#f92672">-&gt;</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>message<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>그리고 테스트를위한 Payload를 하나 만듭니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Getter</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Setter</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@ToString</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SpringbootKRPayload</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String host<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String title<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String name<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@JsonProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;payload_type&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> PayloadType payloadType<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Builder</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">SpringbootKRPayload</span><span style="color:#f92672">(</span>String host<span style="color:#f92672">,</span> String title<span style="color:#f92672">,</span> String name<span style="color:#f92672">,</span> PayloadType payloadType<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">host</span> <span style="color:#f92672">=</span> host<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">title</span> <span style="color:#f92672">=</span> title<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">payloadType</span> <span style="color:#f92672">=</span> payloadType<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">enum</span> PayloadType <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    CREATED<span style="color:#f92672">,</span> UPDATED<span style="color:#f92672">,</span> DELETED
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>그리고 application.yml의 (2)에 필요한 커스텀 deserializer 클래스를 하나 만듭니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MessageDeserializer</span> <span style="color:#66d9ef">implements</span> Deserializer<span style="color:#f92672">&lt;</span>SpringbootKRPayloadDeserializer<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> ObjectMapper objectMapper <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ObjectMapper<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> SpringbootKRPayloadDeserializer <span style="color:#a6e22e">deserialize</span><span style="color:#f92672">(</span>String topic<span style="color:#f92672">,</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> data<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> objectMapper<span style="color:#f92672">.</span><span style="color:#a6e22e">readValue</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> String<span style="color:#f92672">(</span>data<span style="color:#f92672">),</span> SpringbootKRPayloadDeserializer<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IOException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> SerializationException<span style="color:#f92672">(</span>e<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>위의 클래스를 사용하기 위해서는 application.yml의 (3)을 true로 설정해 주어야합니다.</p>
 <p>그리고 다음으로 위의 코드중 Deserializer를 위한 SpringbootKRPayloadDeserializer를 만들어 줍니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SpringbootKRPayloadDeserializer</span> <span style="color:#f92672">{</span>
-
-    <span style="color:#a6e22e">@JsonProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;payload_type&#34;</span><span style="color:#f92672">)</span>
-    <span style="color:#66d9ef">private</span> String payloadType<span style="color:#f92672">;</span>
-
-    <span style="color:#a6e22e">@JsonProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;host&#34;</span><span style="color:#f92672">)</span>
-    <span style="color:#66d9ef">private</span> String host<span style="color:#f92672">;</span>
-
-    <span style="color:#a6e22e">@JsonProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;name&#34;</span><span style="color:#f92672">)</span>
-    <span style="color:#66d9ef">private</span> String name<span style="color:#f92672">;</span>
-
-    <span style="color:#a6e22e">@JsonProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">)</span>
-    <span style="color:#66d9ef">private</span> String title<span style="color:#f92672">;</span>
-
-<span style="color:#f92672">}</span>
-</code></pre></div><p>그리고 테스트를 위한 스케줄러를 하나 만들어 봅니다. (스케줄러를 만들었으니 application에 @EnableScheduling 추가)</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
-<span style="color:#a6e22e">@RequiredArgsConstructor</span>
-<span style="color:#a6e22e">@Component</span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Scheduler</span> <span style="color:#f92672">{</span>
-
-    <span style="color:#66d9ef">private</span> KafkaProducer kafkaProducer<span style="color:#f92672">;</span>
-
-    <span style="color:#a6e22e">@Scheduled</span><span style="color:#f92672">(</span>cron <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;*/5 * * * * *&#34;</span><span style="color:#f92672">)</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sendMessage</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        kafkaProducer<span style="color:#f92672">.</span><span style="color:#a6e22e">send</span><span style="color:#f92672">(</span>SpringbootKRPayload<span style="color:#f92672">.</span><span style="color:#a6e22e">builder</span><span style="color:#f92672">()</span>
-                <span style="color:#f92672">.</span><span style="color:#a6e22e">host</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;SPRINGBOOT.KR&#34;</span><span style="color:#f92672">)</span>
-                <span style="color:#f92672">.</span><span style="color:#a6e22e">title</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;SPRING CLOUD STREAM KAFKA&#34;</span><span style="color:#f92672">)</span>
-                <span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;JINWOO-LEE&#34;</span><span style="color:#f92672">)</span>
-                <span style="color:#f92672">.</span><span style="color:#a6e22e">payloadType</span><span style="color:#f92672">(</span>PayloadType<span style="color:#f92672">.</span><span style="color:#a6e22e">CREATED</span><span style="color:#f92672">)</span>
-                <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">());</span>
-    <span style="color:#f92672">}</span>
-
-<span style="color:#f92672">}</span>
-</code></pre></div><p>이제 실행하면??</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SpringbootKRPayloadDeserializer</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@JsonProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;payload_type&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String payloadType<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@JsonProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;host&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String host<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@JsonProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;name&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String name<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@JsonProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String title<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>그리고 테스트를 위한 스케줄러를 하나 만들어 봅니다. (스케줄러를 만들었으니 application에 @EnableScheduling 추가)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@RequiredArgsConstructor</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Component</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Scheduler</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> KafkaProducer kafkaProducer<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Scheduled</span><span style="color:#f92672">(</span>cron <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;*/5 * * * * *&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sendMessage</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        kafkaProducer<span style="color:#f92672">.</span><span style="color:#a6e22e">send</span><span style="color:#f92672">(</span>SpringbootKRPayload<span style="color:#f92672">.</span><span style="color:#a6e22e">builder</span><span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">.</span><span style="color:#a6e22e">host</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;SPRINGBOOT.KR&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">.</span><span style="color:#a6e22e">title</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;SPRING CLOUD STREAM KAFKA&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;JINWOO-LEE&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">.</span><span style="color:#a6e22e">payloadType</span><span style="color:#f92672">(</span>PayloadType<span style="color:#f92672">.</span><span style="color:#a6e22e">CREATED</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>이제 실행하면??</p>
 <p><img loading="lazy" src="/images/letsgo/party.gif" alt="images"  />
 </p>
 <pre tabindex="0"><code>GenericMessage 

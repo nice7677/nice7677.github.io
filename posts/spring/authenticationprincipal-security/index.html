@@ -18,7 +18,7 @@ AuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있�
 <meta name="author" content="">
 <link rel="canonical" href="https://www.springboot.kr/posts/spring/authenticationprincipal-security/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.f238f1b0ccea21e45d3c0112bdd442ca592e7287c4a346036dc9a8b461e5f0a0.css" integrity="sha256-8jjxsMzqIeRdPAESvdRCylkucofEo0YDbcmotGHl8KA=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.2840b7fccd34145847db71a290569594bdbdb00047097f75d6495d162f5d7dff.js" integrity="sha256-KEC3/M00FFhH23GikFaVlL29sABHCX911kldFi9dff8="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://www.springboot.kr/favicon_io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://www.springboot.kr/favicon_io/favicon-16x16.png">
@@ -27,7 +27,7 @@ AuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있�
 <link rel="mask-icon" href="https://www.springboot.kr/favicon_io/apple-touch-icon.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.91.2" />
+<meta name="generator" content="Hugo 0.97.3" />
 <noscript>
     <style>
         #theme-toggle,
@@ -131,7 +131,7 @@ AuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있�
   "keywords": [
     
   ],
-  "articleBody": "@Authenticationprincipal !이 어노테이션은 Package org.springframework.security.core.annotation 에 있는 어노테이션 입니다.\ndocs.spring.io에서 확인해 보면 이 어노테이션은 Authentication.getPrincipal()메서드 인수를 확인하는 데 사용된다고 하는데 Authentication 인터페이스에 대해서는 다음에 다루고 우선 이 메서드만 확인해 보게 되면\ngetPrincipal\n인증 중인 주체의 ID입니다.\n사용자 이름과 비밀번호가 있는 인증 요청의 경우, 이 사용자 이름이 됩니다.\n호출자는 인증 요청의 주체를 채워야 합니다.\nAuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있는 주체로서 더 풍부한 정보를 포함하는 인증을 반환하는 경우가 많습니다.\n많은 인증 공급자가 UserDetails 개체를 주체로 만듭니다.\n라고한다. 그럼 이제 @Authenticationprincipal에 대해 한번 확인해보자.\nSpring Security를 사용할 때 @AuthenticationPrincipal은 사용자가 인증된 경우 principal를 주입하고\n사용자가 인증되지 않은 경우 null을 주입하는데 대부분의 로그인 기능에 UserDetails을 상속받아 커스텀으로 유저 디테일을 만들고 시작하기에 아래 코드에서는 TestUserDetails로 받을 수 있다.\n@RestController public class UserController { @GetMapping(\"/username\") public String getUserName(@AuthenticationPrincipal TestUserDetails testUserDetails) { return testUserDetails.getUsername(); } } 만약에 @Authenticationprincipal를 사용하지 않는다면 SecurityContextHolder를 사용해 Principal를 가져올 수 있다.\n@RestController public class UserController { @GetMapping(\"/username\") public String getUserName(@AuthenticationPrincipal TestUserDetails testUserDetails) { SecurityContext context = SecurityContextHolder.getContext(); Authentication authentication = context.getAuthentication(); TestUserDetails testUserDetails = (TestUserDetails) authentication.getPrincipal(); return testUserDetails.getUsername(); } } 참조\n Annotation Type AuthenticationPrincipal Interface Authentication [Spring Boot] How to stub @AuthenticationPrincipal argument with Spring-Security in Unit Tests Spring Security: Authentication and Authorization In-Depth  - 끗 - ",
+  "articleBody": "@Authenticationprincipal !이 어노테이션은 Package org.springframework.security.core.annotation 에 있는 어노테이션 입니다.\ndocs.spring.io에서 확인해 보면 이 어노테이션은 Authentication.getPrincipal()메서드 인수를 확인하는 데 사용된다고 하는데 Authentication 인터페이스에 대해서는 다음에 다루고 우선 이 메서드만 확인해 보게 되면\ngetPrincipal\n인증 중인 주체의 ID입니다.\n사용자 이름과 비밀번호가 있는 인증 요청의 경우, 이 사용자 이름이 됩니다.\n호출자는 인증 요청의 주체를 채워야 합니다.\nAuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있는 주체로서 더 풍부한 정보를 포함하는 인증을 반환하는 경우가 많습니다.\n많은 인증 공급자가 UserDetails 개체를 주체로 만듭니다.\n라고한다. 그럼 이제 @Authenticationprincipal에 대해 한번 확인해보자.\nSpring Security를 사용할 때 @AuthenticationPrincipal은 사용자가 인증된 경우 principal를 주입하고\n사용자가 인증되지 않은 경우 null을 주입하는데 대부분의 로그인 기능에 UserDetails을 상속받아 커스텀으로 유저 디테일을 만들고 시작하기에 아래 코드에서는 TestUserDetails로 받을 수 있다.\n@RestController public class UserController {   @GetMapping(\"/username\")  public String getUserName(@AuthenticationPrincipal TestUserDetails testUserDetails) {  return testUserDetails.getUsername();  }  } 만약에 @Authenticationprincipal를 사용하지 않는다면 SecurityContextHolder를 사용해 Principal를 가져올 수 있다.\n@RestController public class UserController {   @GetMapping(\"/username\")  public String getUserName(@AuthenticationPrincipal TestUserDetails testUserDetails) {  SecurityContext context = SecurityContextHolder.getContext();  Authentication authentication = context.getAuthentication();  TestUserDetails testUserDetails = (TestUserDetails) authentication.getPrincipal();  return testUserDetails.getUsername();  }  } 참조\n Annotation Type AuthenticationPrincipal Interface Authentication [Spring Boot] How to stub @AuthenticationPrincipal argument with Spring-Security in Unit Tests Spring Security: Authentication and Authorization In-Depth  - 끗 - ",
   "wordCount" : "197",
   "inLanguage": "en",
   "datePublished": "2022-01-14T01:13:27+08:00",
@@ -168,14 +168,15 @@ AuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있�
     window.intergramCustomizations = {
         
         titleOpen: 'SPRINGBOOT.KR',
-        introMessage: '안녕하세요. 궁금한 건 채팅을 남겨주세요.',
+        cookieExpiration: 2,
+        introMessage: '안녕하세요. 궁금한 건 채팅을 남겨주세요. 바로 대답할 수 있도록 노력 중입니다.',
         autoResponse: '잠시만 기다려 주세요...',
         autoNoResponse: '지금은 바쁜 것 같네요.. 다음에 연락 주세요..',
         mainColor: "#262934", 
         alwaysUseFloatingButton: true 
     };
 </script>
-<script id="intergram" type="text/javascript" src="https://www.intergram.xyz/js/widget.js"></script>
+<script id="intergram" type="text/javascript" src="/js/intergram.js"></script>
 <header class="header">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -234,7 +235,7 @@ AuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있�
     <h1 class="post-title">
       @Authenticationprincipal에 대하여
     </h1>
-    <div class="post-meta"><span title='2022-01-14 01:13:27 +0800 CST'>January 14, 2022</span>
+    <div class="post-meta"><span title='2022-01-14 01:13:27 +0800 +0800'>January 14, 2022</span>
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -327,29 +328,29 @@ AuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있�
 <p>라고한다. 그럼 이제 <code>@Authenticationprincipal</code>에 대해 한번 확인해보자.</p>
 <p>Spring Security를 사용할 때 <code>@AuthenticationPrincipal</code>은 사용자가 인증된 경우 principal를 주입하고</p>
 <p>사용자가 인증되지 않은 경우 null을 주입하는데 대부분의 로그인 기능에 UserDetails을 상속받아 커스텀으로 유저 디테일을 만들고 시작하기에 아래 코드에서는 TestUserDetails로 받을 수 있다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@RestController</span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserController</span> <span style="color:#f92672">{</span>
-
-    <span style="color:#a6e22e">@GetMapping</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/username&#34;</span><span style="color:#f92672">)</span>
-    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getUserName</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@AuthenticationPrincipal</span> TestUserDetails testUserDetails<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> testUserDetails<span style="color:#f92672">.</span><span style="color:#a6e22e">getUsername</span><span style="color:#f92672">();</span>
-    <span style="color:#f92672">}</span>
-    
-<span style="color:#f92672">}</span>
-</code></pre></div><p>만약에 @Authenticationprincipal를 사용하지 않는다면 SecurityContextHolder를 사용해 Principal를 가져올 수 있다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@RestController</span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserController</span> <span style="color:#f92672">{</span>
-
-    <span style="color:#a6e22e">@GetMapping</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/username&#34;</span><span style="color:#f92672">)</span>
-    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getUserName</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@AuthenticationPrincipal</span> TestUserDetails testUserDetails<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        SecurityContext context <span style="color:#f92672">=</span> SecurityContextHolder<span style="color:#f92672">.</span><span style="color:#a6e22e">getContext</span><span style="color:#f92672">();</span>
-        Authentication authentication <span style="color:#f92672">=</span> context<span style="color:#f92672">.</span><span style="color:#a6e22e">getAuthentication</span><span style="color:#f92672">();</span>
-        TestUserDetails testUserDetails <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>TestUserDetails<span style="color:#f92672">)</span> authentication<span style="color:#f92672">.</span><span style="color:#a6e22e">getPrincipal</span><span style="color:#f92672">();</span>
-        <span style="color:#66d9ef">return</span> testUserDetails<span style="color:#f92672">.</span><span style="color:#a6e22e">getUsername</span><span style="color:#f92672">();</span>
-    <span style="color:#f92672">}</span>
-    
-<span style="color:#f92672">}</span>
-</code></pre></div><p>참조</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@RestController</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserController</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@GetMapping</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/username&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getUserName</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@AuthenticationPrincipal</span> TestUserDetails testUserDetails<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> testUserDetails<span style="color:#f92672">.</span><span style="color:#a6e22e">getUsername</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>만약에 @Authenticationprincipal를 사용하지 않는다면 SecurityContextHolder를 사용해 Principal를 가져올 수 있다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@RestController</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserController</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@GetMapping</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/username&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getUserName</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@AuthenticationPrincipal</span> TestUserDetails testUserDetails<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        SecurityContext context <span style="color:#f92672">=</span> SecurityContextHolder<span style="color:#f92672">.</span><span style="color:#a6e22e">getContext</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        Authentication authentication <span style="color:#f92672">=</span> context<span style="color:#f92672">.</span><span style="color:#a6e22e">getAuthentication</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        TestUserDetails testUserDetails <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>TestUserDetails<span style="color:#f92672">)</span> authentication<span style="color:#f92672">.</span><span style="color:#a6e22e">getPrincipal</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> testUserDetails<span style="color:#f92672">.</span><span style="color:#a6e22e">getUsername</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>참조</p>
 <ul>
 <li><a href="https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/annotation/AuthenticationPrincipal.html">Annotation Type AuthenticationPrincipal</a></li>
 <li><a href="https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/Authentication.html">Interface Authentication</a></li>

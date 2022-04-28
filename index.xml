@@ -6,7 +6,19 @@
     <description>Recent content on SPRINGBOOT.KR</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>kr-ko</language>
-    <lastBuildDate>Fri, 28 Jan 2022 13:48:58 +0800</lastBuildDate><atom:link href="https://www.springboot.kr/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 28 Apr 2022 22:27:01 +0900</lastBuildDate><atom:link href="https://www.springboot.kr/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>블러킹. 넌블러킹.</title>
+      <link>https://www.springboot.kr/posts/etc/blocking-n-non-blocking/</link>
+      <pubDate>Thu, 28 Apr 2022 22:27:01 +0900</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/etc/blocking-n-non-blocking/</guid>
+      <description>블러킹(Blocking) 블러킹은 다른 메서드를 호출할 때 제어권도 다 넘겨주고 작업이 끝난 후에 돌려 받는 것을 말한다.
+예제는 2개의 클래스로 진행되며 Data, Main으로 진행 된다.
+블러킹 예제 DataSync Class
+public class DataSync {  private int id;  private long simulationDuration;   public DataSync(int id, long simulationDuration) {  this.id = id;  this.simulationDuration = simulationDuration;  }   public String get() {  try {  Thread.sleep(this.simulationDuration);  } catch (InterruptedException e) {  e.</description>
+    </item>
+    
     <item>
       <title>Java와 Kotlin에서 retainAll 사용하기</title>
       <link>https://www.springboot.kr/posts/java/about-retain-all/</link>
@@ -56,7 +68,7 @@ retain 은 a와 b의 공통된 값만을 제외한 모든 값은 없앨 수 있�
 implementation group: &amp;#39;org.springframework.cloud&amp;#39;, name: &amp;#39;spring-cloud-stream-binder-kafka&amp;#39;, version: &amp;#39;3.2.1&amp;#39; 를 추가하면 5개의 라이브러리가 추가 된다.
 Gradle: org.springframework.cloud:spring-cloud-function-context:3.2.1 Gradle: org.springframework.cloud:spring-cloud-function-core:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka-core:3.2.1 그럼 시작해보자.
 우선 application.yml에 cloud kafka를 설정해줍시다.
-cloud: function: definition: consumer;producer stream: kafka: bindings: producer-out-0: producer: configuration: key: serializer: org.apache.kafka.common.serialization.StringSerializer consumer-in-0: consumer: configuration: key: deserializer: org.apache.kafka.common.serialization.StringDeserializer value: deserializer: com.</description>
+cloud:  function:  definition: consumer;producer  stream:  kafka:  bindings:  producer-out-0:  producer:  configuration:  key:  serializer: org.</description>
     </item>
     
     <item>
@@ -99,7 +111,7 @@ AuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있�
       <description>이번 게시물은 JPA를 사용할 때 querydsl 없이 여러 엔티티를 join 하는 방법이다.
 단 조건으로 엔티티 중 다른 엔티티 간의 중개자 역할을 하는 엔티티가 필요하다 매핑이 되어 있어야 한다.
 코드로 보자
-@Entity public class Company { @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id; private String name; @OneToMany(mappedBy = &amp;#34;company&amp;#34;, fetch = FetchType.LAZY, cascade = CascadeType.PERSIST) @JoinColumn(name = &amp;#34;company_id&amp;#34;) private List&amp;lt;Product&amp;gt; products = new ArrayList&amp;lt;&amp;gt;(); @OneToOne(mappedBy = &amp;#34;company&amp;#34;, fetch = FetchType.LAZY) private Employee employee; } @Entity public class Employee { @Id @GeneratedValue(strategy = GenerationType.</description>
+@Entity public class Company {   @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)  private Long id;   private String name;   @OneToMany(mappedBy = &amp;#34;company&amp;#34;, fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)  @JoinColumn(name = &amp;#34;company_id&amp;#34;)  private List&amp;lt;Product&amp;gt; products = new ArrayList&amp;lt;&amp;gt;();   @OneToOne(mappedBy = &amp;#34;company&amp;#34;, fetch = FetchType.</description>
     </item>
     
     <item>
@@ -114,7 +126,7 @@ AuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있�
  @NamedEntityGraph 와 @EntityGraph 를 사용해 해결하기 Querydsl 을 사용해 해결하기 JPQL 을 사용해 해결하기  나는 여기 중에서 1번과 비슷하게 사용하는 방법을 소개한다.
 코드를 보자
 우선 Entity 클래스들부터 보자 Company와 Product가 있다.
-@Entity public class Company { @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id; private String name; @OneToMany(mappedBy = &amp;#34;company&amp;#34;, fetch = FetchType.</description>
+@Entity public class Company {   @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)  private Long id;   private String name;   @OneToMany(mappedBy = &amp;#34;company&amp;#34;, fetch = FetchType.</description>
     </item>
     
     <item>
@@ -317,7 +329,7 @@ Enable Kubernetes를 체크 후 apply를 눌러 쿠버네티스를 활성화 시
 활성화가 되는 도중에는 오른쪽 하단에 Kubernetes is starting 이란 문구가 나오고
 활성화가 끝나면 오른쪽 하단에 Kubernetes is running 으로 나온다.
 다음으로 kubectl을 설치해 주자 kubernetes cli 툴이다.
-curl -LO &amp;quot;https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl&amp;quot; chmod +x ./kubectl sudo mv ./kubectl /usr/local/bin/kubectl 설치가 끝나면 version 체크로 확인을 해준다.
+curl -LO &amp;#34;https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl&amp;#34; chmod +x ./kubectl sudo mv ./kubectl /usr/local/bin/kubectl 설치가 끝나면 version 체크로 확인을 해준다.
 kubectl version Kubectl 설치가 끝나면 Minikube 설치를 해준다.</description>
     </item>
     
@@ -344,7 +356,7 @@ kubectl version Kubectl 설치가 끝나면 Minikube 설치를 해준다.</descr
       <description>Effective Java 3/E 2장 생성자에 매개변수가 많다면 빌더를 고려하라 정적 팩터리와 생성자에는 똑같은 제약이 하나 있다.
 선택적 매개변수가 많을때 대응이 어렵다.
 점층적 생성자 패턴도 쓸 수는 있지만 매개변수가 많아지면 클라이언트 코드를 작성하거나 읽기 어려워 진다.
-public class Hello { private String str; private String str2; private String str3; public Hello(String str) { System.out.println(&amp;#34;Hello str&amp;#34; + str); } public Hello(String str, String str2) { System.out.println(&amp;#34;Hello str1, str2&amp;#34; + str + str2); } public Hello(String str, String str2) { System.</description>
+public class Hello {   private String str;  private String str2;  private String str3;   public Hello(String str) {  System.out.println(&amp;#34;Hello str&amp;#34; + str);  }   public Hello(String str, String str2) {  System.</description>
     </item>
     
     <item>
@@ -381,7 +393,7 @@ public class Hello { private String str; private String str2; private String str
 go-pg에 대한 링크를 걸어 둡니다.
 Github / Document
 위에 링크를 첨부해 두었다 우선 go-pg에 접속하기 위해서는 다음과 같은 세팅을 잡는다.
- database.go  func Connect() *pg.DB { db := pg.Connect(&amp;amp;pg.Options{ User: &amp;#34;user&amp;#34;, Database: &amp;#34;database&amp;#34;, Addr: &amp;#34;addr:port&amp;#34; }) if db == nil { log.</description>
+ database.go  func Connect() *pg.DB {  db := pg.Connect(&amp;amp;pg.Options{  User: &amp;#34;user&amp;#34;,  Database: &amp;#34;database&amp;#34;,  Addr: &amp;#34;addr:port&amp;#34;  })  if db == nil {  log.</description>
     </item>
     
     <item>

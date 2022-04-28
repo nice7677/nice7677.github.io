@@ -18,7 +18,7 @@
 <link rel="mask-icon" href="https://www.springboot.kr/favicon_io/apple-touch-icon.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.91.2" />
+<meta name="generator" content="Hugo 0.97.3" />
 <link rel="alternate" type="application/rss+xml" href="https://www.springboot.kr/posts/index.xml">
 <noscript>
     <style>
@@ -109,14 +109,15 @@ if (!doNotTrack) {
     window.intergramCustomizations = {
         
         titleOpen: 'SPRINGBOOT.KR',
-        introMessage: '안녕하세요. 궁금한 건 채팅을 남겨주세요.',
+        cookieExpiration: 2,
+        introMessage: '안녕하세요. 궁금한 건 채팅을 남겨주세요. 바로 대답할 수 있도록 노력 중입니다.',
         autoResponse: '잠시만 기다려 주세요...',
         autoNoResponse: '지금은 바쁜 것 같네요.. 다음에 연락 주세요..',
         mainColor: "#262934", 
         alwaysUseFloatingButton: true 
     };
 </script>
-<script id="intergram" type="text/javascript" src="https://www.intergram.xyz/js/widget.js"></script>
+<script id="intergram" type="text/javascript" src="/js/intergram.js"></script>
 <header class="header">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -174,6 +175,21 @@ if (!doNotTrack) {
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>생성자에 매개변수가 많다면 빌더를 고려하라
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Effective Java 3/E 2장 생성자에 매개변수가 많다면 빌더를 고려하라 정적 팩터리와 생성자에는 똑같은 제약이 하나 있다.
+선택적 매개변수가 많을때 대응이 어렵다.
+점층적 생성자 패턴도 쓸 수는 있지만 매개변수가 많아지면 클라이언트 코드를 작성하거나 읽기 어려워 진다.
+public class Hello {   private String str;  private String str2;  private String str3;   public Hello(String str) {  System.out.println(&#34;Hello str&#34; &#43; str);  }   public Hello(String str, String str2) {  System....</p>
+  </section>
+  <footer class="entry-footer"><span title='2019-06-20 14:23:57 +0800 +0800'>June 20, 2019</span></footer>
+  <a class="entry-link" aria-label="post link to 생성자에 매개변수가 많다면 빌더를 고려하라" href="https://www.springboot.kr/posts/effective-java/effective-fava-3e-02-02/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>생성자 대신 정적 팩토리 메서드를 고려하라
     </h2>
   </header>
@@ -185,7 +201,7 @@ if (!doNotTrack) {
   이름을 가질 수 없다.
  어떤게 더 의미를 잘 설명할 수 있는 가? BigInteger(int, int, Random) BigInteger....</p>
   </section>
-  <footer class="entry-footer"><span title='2019-06-19 14:23:52 +0800 CST'>June 19, 2019</span></footer>
+  <footer class="entry-footer"><span title='2019-06-19 14:23:52 +0800 +0800'>June 19, 2019</span></footer>
   <a class="entry-link" aria-label="post link to 생성자 대신 정적 팩토리 메서드를 고려하라" href="https://www.springboot.kr/posts/effective-java/effective-fava-3e-02-01/"></a>
 </article>
 
@@ -197,7 +213,7 @@ if (!doNotTrack) {
   <section class="entry-content">
     <p>JUnit4 assert method 예시    assertXxx Method 사용 목적     assertArrayEquals(&#34;message&#34;, A, B) 배열 A와 B가 일치함을 확인한다.   assertEquals(&#34;message&#34;, A, B) 객체 A와 B가 일치함을 확인한다. B를 파라미터로 A의 equals() 메서드를 호출한다(A.equals(B)).   assertSame(&#34;message&#34;, A, B) 객체 A와 B가 같은 객체임을 확인한다. assertEquals 메서드는 두 객체의 값이 같은가를 검사하는데 반해(equals 메서드 사용), assertSame 메서드는 두객체가 동일한, 즉 하나의 객체인가를 검사한다(== 연산자 사용)   assertTrue(&#34;message&#34;, A) 조건 A가 참(true)임을 확인한다....</p>
   </section>
-  <footer class="entry-footer"><span title='2019-06-17 14:23:07 +0800 CST'>June 17, 2019</span></footer>
+  <footer class="entry-footer"><span title='2019-06-17 14:23:07 +0800 +0800'>June 17, 2019</span></footer>
   <a class="entry-link" aria-label="post link to JUnit4 assert method 예시" href="https://www.springboot.kr/posts/junit-01/"></a>
 </article>
 
@@ -212,9 +228,9 @@ if (!doNotTrack) {
 go-pg에 대한 링크를 걸어 둡니다.
 Github / Document
 위에 링크를 첨부해 두었다 우선 go-pg에 접속하기 위해서는 다음과 같은 세팅을 잡는다.
- database.go  func Connect() *pg.DB { db := pg.Connect(&amp;pg.Options{ User: &#34;user&#34;, Database: &#34;database&#34;, Addr: &#34;addr:port&#34; }) if db == nil { log....</p>
+ database.go  func Connect() *pg.DB {  db := pg.Connect(&amp;pg.Options{  User: &#34;user&#34;,  Database: &#34;database&#34;,  Addr: &#34;addr:port&#34;  })  if db == nil {  log....</p>
   </section>
-  <footer class="entry-footer"><span title='2019-03-23 14:22:38 +0800 CST'>March 23, 2019</span></footer>
+  <footer class="entry-footer"><span title='2019-03-23 14:22:38 +0800 +0800'>March 23, 2019</span></footer>
   <a class="entry-link" aria-label="post link to golang go-pg 사용하기" href="https://www.springboot.kr/posts/golang-go-pg-1/"></a>
 </article>
 
@@ -235,24 +251,13 @@ Github / Document
   org.json 라이브러리와 jackson 라이브러리를 섞어 사용한다.
   예제 샘플이다...</p>
   </section>
-  <footer class="entry-footer"><span title='2019-03-22 14:21:02 +0800 CST'>March 22, 2019</span></footer>
+  <footer class="entry-footer"><span title='2019-03-22 14:21:02 +0800 +0800'>March 22, 2019</span></footer>
   <a class="entry-link" aria-label="post link to 자바 XML TO JSON 변환 하기" href="https://www.springboot.kr/posts/java-xml-to-json/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Archive
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>archives</p>
-  </section>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to Archive" href="https://www.springboot.kr/archives/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="prev" href="https://www.springboot.kr/posts/page/5/">« Prev Page</a>
+    <a class="next" href="https://www.springboot.kr/posts/page/7/">Next Page »</a>
   </nav>
 </footer>
     </main>

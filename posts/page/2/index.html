@@ -18,7 +18,7 @@
 <link rel="mask-icon" href="https://www.springboot.kr/favicon_io/apple-touch-icon.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.91.2" />
+<meta name="generator" content="Hugo 0.97.3" />
 <link rel="alternate" type="application/rss+xml" href="https://www.springboot.kr/posts/index.xml">
 <noscript>
     <style>
@@ -109,14 +109,15 @@ if (!doNotTrack) {
     window.intergramCustomizations = {
         
         titleOpen: 'SPRINGBOOT.KR',
-        introMessage: '안녕하세요. 궁금한 건 채팅을 남겨주세요.',
+        cookieExpiration: 2,
+        introMessage: '안녕하세요. 궁금한 건 채팅을 남겨주세요. 바로 대답할 수 있도록 노력 중입니다.',
         autoResponse: '잠시만 기다려 주세요...',
         autoNoResponse: '지금은 바쁜 것 같네요.. 다음에 연락 주세요..',
         mainColor: "#262934", 
         alwaysUseFloatingButton: true 
     };
 </script>
-<script id="intergram" type="text/javascript" src="https://www.intergram.xyz/js/widget.js"></script>
+<script id="intergram" type="text/javascript" src="/js/intergram.js"></script>
 <header class="header">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -174,6 +175,24 @@ if (!doNotTrack) {
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>ELK랑 씨름한날
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>오늘은 ELK랑 씨름했다. 왜냐면 내가 지금 해외에 있으니까 씨름했다.
+우선 지금 개발할 때 쓰는 건 5년 넘은 맥북 듀얼코어에 8기가인데
+프로젝트를 MSA로 하니까 서비스만 5개를 돌리고 도커 안에 컨테이너도 여러개 띄우고 카프카도 키고 하니까 하루도 빠짐없이 비행기 이륙을 시도한다.
+거기다 elk가 필요하게 됐는데 맨날 이륙하는 맥북에 뭔가를 더하기 싫어서 한국 집에 있는 rpi에 elk 설치를 시도했다.
+결국엔 되긴 했는데 ek만 됐다 l빼고ㅋㅋ
+ek는 rpi에 깔고 logstash는 맥에 깔았다.
+그리고 연결하는 데 애를 좀 먹었다....</p>
+  </section>
+  <footer class="entry-footer"><span title='2022-01-14 21:57:11 +0800 +0800'>January 14, 2022</span></footer>
+  <a class="entry-link" aria-label="post link to ELK랑 씨름한날" href="https://www.springboot.kr/posts/blahblah/fight-with-elk/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>@Authenticationprincipal에 대하여
     </h2>
   </header>
@@ -187,7 +206,7 @@ getPrincipal
 AuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있는 주체로서 더 풍부한 정보를 포함하는 인증을 반환하는 경우가 많습니다.
 많은 인증 공급자가 UserDetails 개체를 주체로 만듭니다....</p>
   </section>
-  <footer class="entry-footer"><span title='2022-01-14 01:13:27 +0800 CST'>January 14, 2022</span></footer>
+  <footer class="entry-footer"><span title='2022-01-14 01:13:27 +0800 +0800'>January 14, 2022</span></footer>
   <a class="entry-link" aria-label="post link to @Authenticationprincipal에 대하여" href="https://www.springboot.kr/posts/spring/authenticationprincipal-security/"></a>
 </article>
 
@@ -200,9 +219,9 @@ AuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있�
     <p>이번 게시물은 JPA를 사용할 때 querydsl 없이 여러 엔티티를 join 하는 방법이다.
 단 조건으로 엔티티 중 다른 엔티티 간의 중개자 역할을 하는 엔티티가 필요하다 매핑이 되어 있어야 한다.
 코드로 보자
-@Entity public class Company { @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id; private String name; @OneToMany(mappedBy = &#34;company&#34;, fetch = FetchType.LAZY, cascade = CascadeType.PERSIST) @JoinColumn(name = &#34;company_id&#34;) private List&lt;Product&gt; products = new ArrayList&lt;&gt;(); @OneToOne(mappedBy = &#34;company&#34;, fetch = FetchType.LAZY) private Employee employee; } @Entity public class Employee { @Id @GeneratedValue(strategy = GenerationType....</p>
+@Entity public class Company {   @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)  private Long id;   private String name;   @OneToMany(mappedBy = &#34;company&#34;, fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)  @JoinColumn(name = &#34;company_id&#34;)  private List&lt;Product&gt; products = new ArrayList&lt;&gt;();   @OneToOne(mappedBy = &#34;company&#34;, fetch = FetchType....</p>
   </section>
-  <footer class="entry-footer"><span title='2022-01-13 14:23:35 +0800 CST'>January 13, 2022</span></footer>
+  <footer class="entry-footer"><span title='2022-01-13 14:23:35 +0800 +0800'>January 13, 2022</span></footer>
   <a class="entry-link" aria-label="post link to JPA 다중 매핑 엔티티 Querydsl 없이 Join 하기" href="https://www.springboot.kr/posts/spring/jpa-multiple-mapping-domain-join/"></a>
 </article>
 
@@ -218,9 +237,9 @@ AuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있�
  @NamedEntityGraph 와 @EntityGraph 를 사용해 해결하기 Querydsl 을 사용해 해결하기 JPQL 을 사용해 해결하기  나는 여기 중에서 1번과 비슷하게 사용하는 방법을 소개한다.
 코드를 보자
 우선 Entity 클래스들부터 보자 Company와 Product가 있다.
-@Entity public class Company { @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id; private String name; @OneToMany(mappedBy = &#34;company&#34;, fetch = FetchType....</p>
+@Entity public class Company {   @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)  private Long id;   private String name;   @OneToMany(mappedBy = &#34;company&#34;, fetch = FetchType....</p>
   </section>
-  <footer class="entry-footer"><span title='2022-01-13 01:54:34 +0800 CST'>January 13, 2022</span></footer>
+  <footer class="entry-footer"><span title='2022-01-13 01:54:34 +0800 +0800'>January 13, 2022</span></footer>
   <a class="entry-link" aria-label="post link to JPA N&#43;1문제와 @EntityGraph" href="https://www.springboot.kr/posts/spring/jpa-n-plus-1-problem-with-entity-graph/"></a>
 </article>
 
@@ -235,25 +254,8 @@ AuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있�
 스프링 클라우드를 사용해 서비스들을 묶어 개발을 진행 중이다.
 |-------------------------------------------| | | | Auth(java)---\ | | | \ | | | \ | | User(java)-------------- Gateway(java) | | | / | | | | / | | | Media(kotlin)-/ | | | | | | | | | | | Discovery(java) ------------| | | | |-------------------------------------------| 현재 진행은 이러하고 서비스가 추가될 수도 있다고 생각한다....</p>
   </section>
-  <footer class="entry-footer"><span title='2022-01-12 19:55:23 +0800 CST'>January 12, 2022</span></footer>
+  <footer class="entry-footer"><span title='2022-01-12 19:55:23 +0800 +0800'>January 12, 2022</span></footer>
   <a class="entry-link" aria-label="post link to TheCarbtoon 개발일지 - 1" href="https://www.springboot.kr/posts/devnote/thecarbtoon-1/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>어설픈 지식은 위험하다.
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>영화 더디그를 봤다.
-보는데 이런 대사가 나왔다.
-Pretty(여주) - The servants tell me you’ve studied everything, from Latin to geology. Brown(남주) - Well, a little education is a dangerous thing. (사실 education 보다는 knowledge도 어울린다고 생각하는데 education 음.. 모르겠다)
-(바실 브라운 (Basil Brown) 고고학자)
-이 대사를 보면서 영화 내에서도 나이가 있는 사람이지만 끊임없이 공부를 한다는 점 그런 게 와 닺는 거 같다.
-남자 주인공이 공부에 대해 집착(?) 아닌 집착을 하는 이유는 지식과 현장 경험은 많지만 학력이 낮아...</p>
-  </section>
-  <footer class="entry-footer"><span title='2022-01-12 15:58:44 +0800 CST'>January 12, 2022</span></footer>
-  <a class="entry-link" aria-label="post link to 어설픈 지식은 위험하다." href="https://www.springboot.kr/posts/blahblah/the-dig/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

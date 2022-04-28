@@ -18,7 +18,7 @@
 <link rel="mask-icon" href="https://www.springboot.kr/favicon_io/apple-touch-icon.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.91.2" />
+<meta name="generator" content="Hugo 0.97.3" />
 <link rel="alternate" type="application/rss+xml" href="https://www.springboot.kr/posts/index.xml">
 <noscript>
     <style>
@@ -109,14 +109,15 @@ if (!doNotTrack) {
     window.intergramCustomizations = {
         
         titleOpen: 'SPRINGBOOT.KR',
-        introMessage: '안녕하세요. 궁금한 건 채팅을 남겨주세요.',
+        cookieExpiration: 2,
+        introMessage: '안녕하세요. 궁금한 건 채팅을 남겨주세요. 바로 대답할 수 있도록 노력 중입니다.',
         autoResponse: '잠시만 기다려 주세요...',
         autoNoResponse: '지금은 바쁜 것 같네요.. 다음에 연락 주세요..',
         mainColor: "#262934", 
         alwaysUseFloatingButton: true 
     };
 </script>
-<script id="intergram" type="text/javascript" src="https://www.intergram.xyz/js/widget.js"></script>
+<script id="intergram" type="text/javascript" src="/js/intergram.js"></script>
 <header class="header">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -174,6 +175,21 @@ if (!doNotTrack) {
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>블러킹. 넌블러킹.
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>블러킹(Blocking) 블러킹은 다른 메서드를 호출할 때 제어권도 다 넘겨주고 작업이 끝난 후에 돌려 받는 것을 말한다.
+예제는 2개의 클래스로 진행되며 Data, Main으로 진행 된다.
+블러킹 예제 DataSync Class
+public class DataSync {  private int id;  private long simulationDuration;   public DataSync(int id, long simulationDuration) {  this.id = id;  this.simulationDuration = simulationDuration;  }   public String get() {  try {  Thread.sleep(this.simulationDuration);  } catch (InterruptedException e) {  e....</p>
+  </section>
+  <footer class="entry-footer"><span title='2022-04-28 22:27:01 +0900 KST'>April 28, 2022</span></footer>
+  <a class="entry-link" aria-label="post link to 블러킹. 넌블러킹." href="https://www.springboot.kr/posts/etc/blocking-n-non-blocking/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Java와 Kotlin에서 retainAll 사용하기
     </h2>
   </header>
@@ -184,7 +200,7 @@ RetainAll() 메서드는 지정된 컬렉션에 포함되지 않은 모든 배�
 retain 은 a와 b의 공통된 값만을 제외한 모든 값은 없앨 수 있다.
 그래서 어떻게 쓰는 건데? a, b라는 컬렉션 인스턴스가 존재할 때 a....</p>
   </section>
-  <footer class="entry-footer"><span title='2022-01-28 13:48:58 +0800 CST'>January 28, 2022</span></footer>
+  <footer class="entry-footer"><span title='2022-01-28 13:48:58 +0800 +0800'>January 28, 2022</span></footer>
   <a class="entry-link" aria-label="post link to Java와 Kotlin에서 retainAll 사용하기" href="https://www.springboot.kr/posts/java/about-retain-all/"></a>
 </article>
 
@@ -199,7 +215,7 @@ retain 은 a와 b의 공통된 값만을 제외한 모든 값은 없앨 수 있�
 우선 2번째 일지 후 있었던 일들은 인증 쪽에 구글 메일을 통해 메일을 인증하는 기능이 추가됐는데 일반 사용자를 위한 목적도 있지만 게시물을 올려주는 메인 사용자들을 위한 검증을 위해 추가했다.
 그리고 전에 생각했던 코틀린 은 안 하기로 했다. 코틀린 은 안 하고 그냥 전부 자바로 하기로 했는데 그냥 하나로 쭉 하는 게 좋을 거 같아서 그렇게 하기로 해서 코틀린 은 다음 기회에....</p>
   </section>
-  <footer class="entry-footer"><span title='2022-01-25 16:38:17 +0800 CST'>January 25, 2022</span></footer>
+  <footer class="entry-footer"><span title='2022-01-25 16:38:17 +0800 +0800'>January 25, 2022</span></footer>
   <a class="entry-link" aria-label="post link to TheCarbtoon 개발일지 - 3" href="https://www.springboot.kr/posts/devnote/thecarbtoon-3/"></a>
 </article>
 
@@ -214,7 +230,7 @@ retain 은 a와 b의 공통된 값만을 제외한 모든 값은 없앨 수 있�
 지금 진행 상황은 모든 서비스들끼리 jwt를 통해 사용자를 확인할 수 있게 됐고 인증 서비스와 유저 서비스의 개발이 얼추 진행돼가고 있는데. 요즘 드는 생각이 아무나 그림을 올릴 수 있게 만들고 카카오 페이로 후원을 받을 수 있는 기능을 구현하고 싶다.
 재미로 그리는 사람이더라도 후원을 받는 건 나쁘지 않다고 생각한다. 자신의 결과물에 산물이랄까...</p>
   </section>
-  <footer class="entry-footer"><span title='2022-01-23 20:49:13 +0800 CST'>January 23, 2022</span></footer>
+  <footer class="entry-footer"><span title='2022-01-23 20:49:13 +0800 +0800'>January 23, 2022</span></footer>
   <a class="entry-link" aria-label="post link to TheCarbtoon 개발일지 - 2" href="https://www.springboot.kr/posts/devnote/thecarbtoon-2/"></a>
 </article>
 
@@ -230,28 +246,10 @@ retain 은 a와 b의 공통된 값만을 제외한 모든 값은 없앨 수 있�
 implementation group: &#39;org.springframework.cloud&#39;, name: &#39;spring-cloud-stream-binder-kafka&#39;, version: &#39;3.2.1&#39; 를 추가하면 5개의 라이브러리가 추가 된다.
 Gradle: org.springframework.cloud:spring-cloud-function-context:3.2.1 Gradle: org.springframework.cloud:spring-cloud-function-core:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka-core:3.2.1 그럼 시작해보자.
 우선 application.yml에 cloud kafka를 설정해줍시다.
-cloud: function: definition: consumer;producer stream: kafka: bindings: producer-out-0: producer: configuration: key: serializer: org.apache.kafka.common.serialization.StringSerializer consumer-in-0: consumer: configuration: key: deserializer: org.apache.kafka.common.serialization.StringDeserializer value: deserializer: com....</p>
+cloud:  function:  definition: consumer;producer  stream:  kafka:  bindings:  producer-out-0:  producer:  configuration:  key:  serializer: org....</p>
   </section>
-  <footer class="entry-footer"><span title='2022-01-19 02:00:28 +0800 CST'>January 19, 2022</span></footer>
+  <footer class="entry-footer"><span title='2022-01-19 02:00:28 +0800 +0800'>January 19, 2022</span></footer>
   <a class="entry-link" aria-label="post link to StreamBridge 사용하기" href="https://www.springboot.kr/posts/spring/spring-cloud-stream-binder-kafka/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>ELK랑 씨름한날
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>오늘은 ELK랑 씨름했다. 왜냐면 내가 지금 해외에 있으니까 씨름했다.
-우선 지금 개발할 때 쓰는 건 5년 넘은 맥북 듀얼코어에 8기가인데
-프로젝트를 MSA로 하니까 서비스만 5개를 돌리고 도커 안에 컨테이너도 여러개 띄우고 카프카도 키고 하니까 하루도 빠짐없이 비행기 이륙을 시도한다.
-거기다 elk가 필요하게 됐는데 맨날 이륙하는 맥북에 뭔가를 더하기 싫어서 한국 집에 있는 rpi에 elk 설치를 시도했다.
-결국엔 되긴 했는데 ek만 됐다 l빼고ㅋㅋ
-ek는 rpi에 깔고 logstash는 맥에 깔았다.
-그리고 연결하는 데 애를 좀 먹었다....</p>
-  </section>
-  <footer class="entry-footer"><span title='2022-01-14 21:57:11 +0800 CST'>January 14, 2022</span></footer>
-  <a class="entry-link" aria-label="post link to ELK랑 씨름한날" href="https://www.springboot.kr/posts/blahblah/fight-with-elk/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

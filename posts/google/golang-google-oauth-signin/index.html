@@ -19,7 +19,7 @@
 <meta name="author" content="">
 <link rel="canonical" href="https://www.springboot.kr/posts/google/golang-google-oauth-signin/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.f238f1b0ccea21e45d3c0112bdd442ca592e7287c4a346036dc9a8b461e5f0a0.css" integrity="sha256-8jjxsMzqIeRdPAESvdRCylkucofEo0YDbcmotGHl8KA=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.2840b7fccd34145847db71a290569594bdbdb00047097f75d6495d162f5d7dff.js" integrity="sha256-KEC3/M00FFhH23GikFaVlL29sABHCX911kldFi9dff8="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://www.springboot.kr/favicon_io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://www.springboot.kr/favicon_io/favicon-16x16.png">
@@ -28,7 +28,7 @@
 <link rel="mask-icon" href="https://www.springboot.kr/favicon_io/apple-touch-icon.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.91.2" />
+<meta name="generator" content="Hugo 0.97.3" />
 <noscript>
     <style>
         #theme-toggle,
@@ -134,7 +134,7 @@ if (!doNotTrack) {
   "keywords": [
     
   ],
-  "articleBody": "2019년 1월에 Google+ API가 종료 됬습니다.\n그래서 찾아보는데… 찾았습니다.\n물론 너무 짧은 시간동안 서치하고 사용한거라 원래 공유되있는 내용 일수도 있습니다.\n여기로 가면 쉽게 로그인을 사용할수 있는 방법이 있는데요.\n저는 또 사용하지 않았습니다.\n그래서 찾은 방법은 우선 Golang Google OAuth 사용 하기와 겹치는 내용이 있기 때문에 그부분은 스킵하고 바로 진행하겠습니다.\n그부분 이해하시고 참고하여 따라 하시면 됩니다.\n다만 저 포스트에 나와있는 내용중 code를 발급받을때 scope를 https://www.googleapis.com/auth/userinfo.email로 잡아 주시면 됩니다.\na href=\" https://accounts.google.com/o/oauth2/v2/auth? scope=https://www.googleapis.com/auth/userinfo.email\u0026 access_type=offline\u0026 include_granted_scopes=true\u0026state=state_parameter_passthrough_value\u0026 redirect_uri=http://localhost:3005/googlecallback\u0026response_type=code\u0026 client_id=YOUR_CLIENT_ID \" 다음으로 위에 링크된 포스트에 있는 resty를 사용하여 진행 합니다.\n우선 사용자의 정보를 가져오기 위해서는 위의 내용에서 인증을 한뒤 발급받은 코드를 사용해 id_token을 받아야합니다.\n발급을 받기 위해서 위에서 말한 코드를 받는 작업을 해주시면 됩니다.\n다음으로 전에 작성한 포스트에 있는 스코프와 범위가 달르기 떄문에 위에 적어논 범위로 잡고 요청을 보내고 받은 코드를 사용하면 id_token이 들어옵니다.\n요청을 보내면 이렇게 나옵니다!!\n코드를 보겠습니다.\nfunc (this *GoogleService) GetEmail(code string) error { // 기존 token 받는 코드 \tclient := resty.New() resp, err := client.R(). SetHeader(\"Content-Type\", \"application/x-www-form-urlencoded\"). SetFormData(map[string]string{ \"code\": code, \"client_id\": CLIENT_ID, \"client_secret\": CLIENT_SECRET, \"redirect_uri\": \"http://localhost:3005/googlecallback\", \"grant_type\": \"authorization_code\", }). Post(\"https://www.googleapis.com/oauth2/v4/token\") if err != nil { log.Println(err.Error()) } src_json := resp.Body() var m map[string]string err = json.Unmarshal(src_json, \u0026m) if err != nil { log.Println(err.Error()) } // 여기 부터는 id_token을 사용해서 google사용자 정보를 가져오는 요청 \tclient = resty.New() resp, err = client.R(). Get(\"https://oauth2.googleapis.com/tokeninfo?id_token=\" + m[\"id_token\"]) if err != nil { log.Println(err.Error()) } src_json = resp.Body() var n map[string]string err = json.Unmarshal(src_json, \u0026n) if err != nil { log.Println(err.Error()) } log.Println(n[\"email\"]) return nil } 위에 주석을 한 부분의 요청 주소를 보시면 \"https://oauth2.googleapis.com/tokeninfo?id_token=\" + m[\"id_token\"]로 되있습니다.\n위에서 받은 id_token을 다음 요청 부분에서 넣어주고 GET으로 요청하시면\n짜잔\n이렇게 사용자 정보가 나오는데 여기서 필요한 부분을 슬쩍하시면 됩니다. 저는 email을 슬쩍했습니다.\n댓글 남겨주세요~~\n",
+  "articleBody": "2019년 1월에 Google+ API가 종료 됬습니다.\n그래서 찾아보는데… 찾았습니다.\n물론 너무 짧은 시간동안 서치하고 사용한거라 원래 공유되있는 내용 일수도 있습니다.\n여기로 가면 쉽게 로그인을 사용할수 있는 방법이 있는데요.\n저는 또 사용하지 않았습니다.\n그래서 찾은 방법은 우선 Golang Google OAuth 사용 하기와 겹치는 내용이 있기 때문에 그부분은 스킵하고 바로 진행하겠습니다.\n그부분 이해하시고 참고하여 따라 하시면 됩니다.\n다만 저 포스트에 나와있는 내용중 code를 발급받을때 scope를 https://www.googleapis.com/auth/userinfo.email로 잡아 주시면 됩니다.\na href=\" https://accounts.google.com/o/oauth2/v2/auth? scope=https://www.googleapis.com/auth/userinfo.email\u0026 access_type=offline\u0026 include_granted_scopes=true\u0026state=state_parameter_passthrough_value\u0026 redirect_uri=http://localhost:3005/googlecallback\u0026response_type=code\u0026 client_id=YOUR_CLIENT_ID \" 다음으로 위에 링크된 포스트에 있는 resty를 사용하여 진행 합니다.\n우선 사용자의 정보를 가져오기 위해서는 위의 내용에서 인증을 한뒤 발급받은 코드를 사용해 id_token을 받아야합니다.\n발급을 받기 위해서 위에서 말한 코드를 받는 작업을 해주시면 됩니다.\n다음으로 전에 작성한 포스트에 있는 스코프와 범위가 달르기 떄문에 위에 적어논 범위로 잡고 요청을 보내고 받은 코드를 사용하면 id_token이 들어옵니다.\n요청을 보내면 이렇게 나옵니다!!\n코드를 보겠습니다.\nfunc (this *GoogleService) GetEmail(code string) error {   // 기존 token 받는 코드 \tclient := resty.New() \tresp, err := client.R(). \tSetHeader(\"Content-Type\", \"application/x-www-form-urlencoded\"). \tSetFormData(map[string]string{ \t\"code\": code, \t\"client_id\": CLIENT_ID, \t\"client_secret\": CLIENT_SECRET, \t\"redirect_uri\": \"http://localhost:3005/googlecallback\", \t\"grant_type\": \"authorization_code\", \t}). \tPost(\"https://www.googleapis.com/oauth2/v4/token\") \tif err != nil { \tlog.Println(err.Error()) \t} \tsrc_json := resp.Body() \tvar m map[string]string \terr = json.Unmarshal(src_json, \u0026m) \tif err != nil { \tlog.Println(err.Error()) \t}    // 여기 부터는 id_token을 사용해서 google사용자 정보를 가져오는 요청 \tclient = resty.New() \tresp, err = client.R(). \tGet(\"https://oauth2.googleapis.com/tokeninfo?id_token=\" + m[\"id_token\"]) \tif err != nil { \tlog.Println(err.Error()) \t} \tsrc_json = resp.Body() \tvar n map[string]string \terr = json.Unmarshal(src_json, \u0026n) \tif err != nil { \tlog.Println(err.Error()) \t} \tlog.Println(n[\"email\"])  \treturn nil  } 위에 주석을 한 부분의 요청 주소를 보시면 \"https://oauth2.googleapis.com/tokeninfo?id_token=\" + m[\"id_token\"]로 되있습니다.\n위에서 받은 id_token을 다음 요청 부분에서 넣어주고 GET으로 요청하시면\n짜잔\n이렇게 사용자 정보가 나오는데 여기서 필요한 부분을 슬쩍하시면 됩니다. 저는 email을 슬쩍했습니다.\n댓글 남겨주세요~~\n",
   "wordCount" : "275",
   "inLanguage": "en",
   "datePublished": "2019-12-12T00:37:20+09:00",
@@ -171,14 +171,15 @@ if (!doNotTrack) {
     window.intergramCustomizations = {
         
         titleOpen: 'SPRINGBOOT.KR',
-        introMessage: '안녕하세요. 궁금한 건 채팅을 남겨주세요.',
+        cookieExpiration: 2,
+        introMessage: '안녕하세요. 궁금한 건 채팅을 남겨주세요. 바로 대답할 수 있도록 노력 중입니다.',
         autoResponse: '잠시만 기다려 주세요...',
         autoNoResponse: '지금은 바쁜 것 같네요.. 다음에 연락 주세요..',
         mainColor: "#262934", 
         alwaysUseFloatingButton: true 
     };
 </script>
-<script id="intergram" type="text/javascript" src="https://www.intergram.xyz/js/widget.js"></script>
+<script id="intergram" type="text/javascript" src="/js/intergram.js"></script>
 <header class="header">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -237,7 +238,7 @@ if (!doNotTrack) {
     <h1 class="post-title">
       Golang Google Oauth Signin 인증 방법
     </h1>
-    <div class="post-meta"><span title='2019-12-12 00:37:20 +0900 +0900'>December 12, 2019</span>
+    <div class="post-meta"><span title='2019-12-12 00:37:20 +0900 KST'>December 12, 2019</span>
 
 </div>
   </header> 
@@ -249,15 +250,15 @@ if (!doNotTrack) {
 <p>그래서 찾은 방법은 우선 <a href="/posts/google/golang-google-oauth/">Golang Google OAuth 사용 하기</a>와 겹치는 내용이 있기 때문에 그부분은 스킵하고 바로 진행하겠습니다.</p>
 <p>그부분 이해하시고 참고하여 따라 하시면 됩니다.</p>
 <p>다만 저 포스트에 나와있는 내용중 code를 발급받을때 scope를 <code>https://www.googleapis.com/auth/userinfo.email</code>로 잡아 주시면 됩니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;
-</span><span style="color:#e6db74">https://accounts.google.com/o/oauth2/v2/auth?
-</span><span style="color:#e6db74">scope=https://www.googleapis.com/auth/userinfo.email&amp;
-</span><span style="color:#e6db74">access_type=offline&amp;
-</span><span style="color:#e6db74">include_granted_scopes=true&amp;state=state_parameter_passthrough_value&amp;
-</span><span style="color:#e6db74">redirect_uri=http://localhost:3005/googlecallback&amp;response_type=code&amp;
-</span><span style="color:#e6db74">client_id=YOUR_CLIENT_ID
-</span><span style="color:#e6db74">&#34;</span>&gt;
-</code></pre></div><p>다음으로 위에 링크된 포스트에 있는 resty를 사용하여 진행 합니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">https://accounts.google.com/o/oauth2/v2/auth?
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">scope=https://www.googleapis.com/auth/userinfo.email&amp;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">access_type=offline&amp;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">include_granted_scopes=true&amp;state=state_parameter_passthrough_value&amp;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">redirect_uri=http://localhost:3005/googlecallback&amp;response_type=code&amp;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">client_id=YOUR_CLIENT_ID
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;</span>&gt;
+</span></span></code></pre></div><p>다음으로 위에 링크된 포스트에 있는 resty를 사용하여 진행 합니다.</p>
 <p>우선 사용자의 정보를 가져오기 위해서는 위의 내용에서 인증을 한뒤 발급받은 코드를 사용해 id_token을 받아야합니다.</p>
 <p>발급을 받기 위해서 위에서 말한 코드를 받는 작업을 해주시면 됩니다.</p>
 <p><img loading="lazy" src="/images/golang-google-oauth/signin/1.png" alt="이미지"  />
@@ -267,50 +268,50 @@ if (!doNotTrack) {
 <p><img loading="lazy" src="/images/golang-google-oauth/signin/2.png" alt="이미지"  />
 </p>
 <p>코드를 보겠습니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">this</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">GoogleService</span>) <span style="color:#a6e22e">GetEmail</span>(<span style="color:#a6e22e">code</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span> {
-
-    <span style="color:#75715e">// 기존 token 받는 코드
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">client</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">resty</span>.<span style="color:#a6e22e">New</span>()
-	<span style="color:#a6e22e">resp</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">R</span>().
-		<span style="color:#a6e22e">SetHeader</span>(<span style="color:#e6db74">&#34;Content-Type&#34;</span>, <span style="color:#e6db74">&#34;application/x-www-form-urlencoded&#34;</span>).
-		<span style="color:#a6e22e">SetFormData</span>(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span>{
-			<span style="color:#e6db74">&#34;code&#34;</span>:          <span style="color:#a6e22e">code</span>,
-			<span style="color:#e6db74">&#34;client_id&#34;</span>:     <span style="color:#a6e22e">CLIENT_ID</span>,
-			<span style="color:#e6db74">&#34;client_secret&#34;</span>: <span style="color:#a6e22e">CLIENT_SECRET</span>,
-			<span style="color:#e6db74">&#34;redirect_uri&#34;</span>:  <span style="color:#e6db74">&#34;http://localhost:3005/googlecallback&#34;</span>,
-			<span style="color:#e6db74">&#34;grant_type&#34;</span>:    <span style="color:#e6db74">&#34;authorization_code&#34;</span>,
-		}).
-		<span style="color:#a6e22e">Post</span>(<span style="color:#e6db74">&#34;https://www.googleapis.com/oauth2/v4/token&#34;</span>)
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">Error</span>())
-	}
-	<span style="color:#a6e22e">src_json</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Body</span>()
-	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">m</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span>
-	<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">Unmarshal</span>(<span style="color:#a6e22e">src_json</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">m</span>)
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">Error</span>())
-	}
-
-
-    <span style="color:#75715e">// 여기 부터는 id_token을 사용해서 google사용자 정보를 가져오는 요청
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">client</span> = <span style="color:#a6e22e">resty</span>.<span style="color:#a6e22e">New</span>()
-	<span style="color:#a6e22e">resp</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">R</span>().
-		<span style="color:#a6e22e">Get</span>(<span style="color:#e6db74">&#34;https://oauth2.googleapis.com/tokeninfo?id_token=&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">m</span>[<span style="color:#e6db74">&#34;id_token&#34;</span>])
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">Error</span>())
-	}
-	<span style="color:#a6e22e">src_json</span> = <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Body</span>()
-	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">n</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span>
-	<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">Unmarshal</span>(<span style="color:#a6e22e">src_json</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">n</span>)
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">Error</span>())
-	}
-	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">n</span>[<span style="color:#e6db74">&#34;email&#34;</span>])
-
-	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
-
-}
-</code></pre></div><p>위에 주석을 한 부분의 요청 주소를 보시면 <code>&quot;https://oauth2.googleapis.com/tokeninfo?id_token=&quot; + m[&quot;id_token&quot;]</code>로 되있습니다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-golang" data-lang="golang"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">this</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">GoogleService</span>) <span style="color:#a6e22e">GetEmail</span>(<span style="color:#a6e22e">code</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 기존 token 받는 코드
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">client</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">resty</span>.<span style="color:#a6e22e">New</span>()
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">resp</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">R</span>().
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">SetHeader</span>(<span style="color:#e6db74">&#34;Content-Type&#34;</span>, <span style="color:#e6db74">&#34;application/x-www-form-urlencoded&#34;</span>).
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">SetFormData</span>(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span>{
+</span></span><span style="display:flex;"><span>			<span style="color:#e6db74">&#34;code&#34;</span>:          <span style="color:#a6e22e">code</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#e6db74">&#34;client_id&#34;</span>:     <span style="color:#a6e22e">CLIENT_ID</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#e6db74">&#34;client_secret&#34;</span>: <span style="color:#a6e22e">CLIENT_SECRET</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#e6db74">&#34;redirect_uri&#34;</span>:  <span style="color:#e6db74">&#34;http://localhost:3005/googlecallback&#34;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#e6db74">&#34;grant_type&#34;</span>:    <span style="color:#e6db74">&#34;authorization_code&#34;</span>,
+</span></span><span style="display:flex;"><span>		}).
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Post</span>(<span style="color:#e6db74">&#34;https://www.googleapis.com/oauth2/v4/token&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">Error</span>())
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">src_json</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Body</span>()
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">m</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">Unmarshal</span>(<span style="color:#a6e22e">src_json</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">m</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">Error</span>())
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 여기 부터는 id_token을 사용해서 google사용자 정보를 가져오는 요청
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">client</span> = <span style="color:#a6e22e">resty</span>.<span style="color:#a6e22e">New</span>()
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">resp</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">R</span>().
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Get</span>(<span style="color:#e6db74">&#34;https://oauth2.googleapis.com/tokeninfo?id_token=&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">m</span>[<span style="color:#e6db74">&#34;id_token&#34;</span>])
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">Error</span>())
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">src_json</span> = <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Body</span>()
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">n</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">Unmarshal</span>(<span style="color:#a6e22e">src_json</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">n</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">Error</span>())
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">n</span>[<span style="color:#e6db74">&#34;email&#34;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>위에 주석을 한 부분의 요청 주소를 보시면 <code>&quot;https://oauth2.googleapis.com/tokeninfo?id_token=&quot; + m[&quot;id_token&quot;]</code>로 되있습니다.</p>
 <p>위에서 받은 id_token을 다음 요청 부분에서 넣어주고 GET으로 요청하시면</p>
 <p>짜잔</p>
 <p><img loading="lazy" src="/images/golang-google-oauth/signin/3.png" alt="이미지"  />

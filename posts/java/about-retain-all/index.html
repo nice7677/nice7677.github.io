@@ -15,7 +15,7 @@ retain 은 a와 b의 공통된 값만을 제외한 모든 값은 없앨 수 있�
 <meta name="author" content="">
 <link rel="canonical" href="https://www.springboot.kr/posts/java/about-retain-all/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.f238f1b0ccea21e45d3c0112bdd442ca592e7287c4a346036dc9a8b461e5f0a0.css" integrity="sha256-8jjxsMzqIeRdPAESvdRCylkucofEo0YDbcmotGHl8KA=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.2840b7fccd34145847db71a290569594bdbdb00047097f75d6495d162f5d7dff.js" integrity="sha256-KEC3/M00FFhH23GikFaVlL29sABHCX911kldFi9dff8="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://www.springboot.kr/favicon_io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://www.springboot.kr/favicon_io/favicon-16x16.png">
@@ -24,7 +24,7 @@ retain 은 a와 b의 공통된 값만을 제외한 모든 값은 없앨 수 있�
 <link rel="mask-icon" href="https://www.springboot.kr/favicon_io/apple-touch-icon.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.91.2" />
+<meta name="generator" content="Hugo 0.97.3" />
 <noscript>
     <style>
         #theme-toggle,
@@ -122,7 +122,7 @@ retain 은 a와 b의 공통된 값만을 제외한 모든 값은 없앨 수 있�
   "keywords": [
     
   ],
-  "articleBody": "  Java와 Kotlin에서 retainAll 사용하기 What is retainAll Method? retainAll 메서드는 무엇일까?\nRetainAll() 메서드는 지정된 컬렉션에 포함되지 않은 모든 배열 목록 요소를 제거하거나 메서드에 매개 변수로 전달된 컬렉션 목록의 모든 요소와 일치하는 현재 컬렉션 인스턴스의 모든 일치 요소를 유지하는 데 사용되는 메서드이다.\n아래의 그림을 보면 이해가 더 쉽다.\nretain 은 a와 b의 공통된 값만을 제외한 모든 값은 없앨 수 있다.\n그래서 어떻게 쓰는 건데? a, b라는 컬렉션 인스턴스가 존재할 때 a.retainAll(b) 이런 식으로 사용하면 된다.\n코틀린 코드를 예제로 봐보자.\nfun main(args: Array) { val listExampleIntArrayString = listRetainAllExample(intArrayOf(1, 2, 2, 1), intArrayOf(2, 2)).map { it.toString() }.toTypedArray() .contentToString() println(\"list example int array = \" + listExampleIntArrayString) val setExampleIntArrayString = setRetainAllExample(intArrayOf(1, 2, 2, 1), intArrayOf(2, 2)).map { it.toString() }.toTypedArray() .contentToString() println(\"set example int array = \" + setExampleIntArrayString) } // Runtime 461 ms Memory 43.1 MB fun listRetainAllExample(nums1: IntArray, nums2: IntArray): IntArray { val nums1List = nums1.distinct().toMutableList() val nums2List = nums2.distinct().toMutableList() nums1List.retainAll(nums2List) return nums1List.toIntArray() } // Runtime 363 ms Memory 42.4 MB fun setRetainAllExample(nums1: IntArray, nums2: IntArray): IntArray { var nums1Set = nums1.toMutableSet() val nums2Set = nums2.toMutableSet() nums1Set.retainAll(nums2Set) return nums1Set.toIntArray() } 위의 코드를 보게 되면 [1, 2, 2, 1], [2, 2]를 파라미터로 받아서 중복이 제거된 값들을 추려 IntArray로 다시 반환하는 예제이다.\n예제의 코드를 보면 컬렉션 인스턴스인 List와 Set으로 예제를 든다.\n단 여기서 List를 통해 retainAll을 할 때 중복 제거를 원하는 경우 distinct()를 사용해 중복제거를 한번 해주고 리스트로 변경 후 retainAll을 실행하였다.\n중복이 제거되지 않았을 경우의 결괏값은 다음과 같다.\nlist example int array = [2, 2] set example int array = [2] distinct()를 사용해 중복 제거를 한 결괏값은 다음과 같다.\nlist example int array = [2] set example int array = [2] 자바에서 List로 retainAll을 사용한 코드 예제\npublic class AboutRetainAll { public static void main(String[] args) { System.out.println(retainAll(new int[]{1, 2, 2, 1}, new int[]{2, 2})); } public static int[] retainAll(int[] nums1, int[] nums2) { SetInteger nums1Set = Arrays.stream(nums1).boxed().collect(Collectors.toSet()); SetInteger nums2Set = Arrays.stream(nums2).boxed().collect(Collectors.toSet()); nums1Set.retainAll(nums2Set); return nums1Set.stream().mapToInt(x - x).toArray(); } } END 이렇게 해서 retainAll 메서드에 알아봤다. 자주 써먹을 수 있길 😁\nReference  【DataStructure】The difference among methods addAll(),retainAll() and removeAll() kotlin-stdlib / kotlin.collections / retainAll retainAll-java.util.Collection-  ",
+  "articleBody": "  Java와 Kotlin에서 retainAll 사용하기 What is retainAll Method? retainAll 메서드는 무엇일까?\nRetainAll() 메서드는 지정된 컬렉션에 포함되지 않은 모든 배열 목록 요소를 제거하거나 메서드에 매개 변수로 전달된 컬렉션 목록의 모든 요소와 일치하는 현재 컬렉션 인스턴스의 모든 일치 요소를 유지하는 데 사용되는 메서드이다.\n아래의 그림을 보면 이해가 더 쉽다.\nretain 은 a와 b의 공통된 값만을 제외한 모든 값은 없앨 수 있다.\n그래서 어떻게 쓰는 건데? a, b라는 컬렉션 인스턴스가 존재할 때 a.retainAll(b) 이런 식으로 사용하면 된다.\n코틀린 코드를 예제로 봐보자.\nfun main(args: Array) {  val listExampleIntArrayString =  listRetainAllExample(intArrayOf(1, 2, 2, 1), intArrayOf(2, 2)).map { it.toString() }.toTypedArray()  .contentToString()  println(\"list example int array = \" + listExampleIntArrayString)  val setExampleIntArrayString =  setRetainAllExample(intArrayOf(1, 2, 2, 1), intArrayOf(2, 2)).map { it.toString() }.toTypedArray()  .contentToString()  println(\"set example int array = \" + setExampleIntArrayString) }  // Runtime 461 ms Memory 43.1 MB fun listRetainAllExample(nums1: IntArray, nums2: IntArray): IntArray {  val nums1List = nums1.distinct().toMutableList()  val nums2List = nums2.distinct().toMutableList()  nums1List.retainAll(nums2List)  return nums1List.toIntArray() }  // Runtime 363 ms Memory 42.4 MB fun setRetainAllExample(nums1: IntArray, nums2: IntArray): IntArray {  var nums1Set = nums1.toMutableSet()  val nums2Set = nums2.toMutableSet()  nums1Set.retainAll(nums2Set)  return nums1Set.toIntArray() } 위의 코드를 보게 되면 [1, 2, 2, 1], [2, 2]를 파라미터로 받아서 중복이 제거된 값들을 추려 IntArray로 다시 반환하는 예제이다.\n예제의 코드를 보면 컬렉션 인스턴스인 List와 Set으로 예제를 든다.\n단 여기서 List를 통해 retainAll을 할 때 중복 제거를 원하는 경우 distinct()를 사용해 중복제거를 한번 해주고 리스트로 변경 후 retainAll을 실행하였다.\n중복이 제거되지 않았을 경우의 결괏값은 다음과 같다.\nlist example int array = [2, 2] set example int array = [2] distinct()를 사용해 중복 제거를 한 결괏값은 다음과 같다.\nlist example int array = [2] set example int array = [2] 자바에서 List로 retainAll을 사용한 코드 예제\npublic class AboutRetainAll {   public static void main(String[] args) {  System.out.println(retainAll(new int[]{1, 2, 2, 1}, new int[]{2, 2}));  }   public static int[] retainAll(int[] nums1, int[] nums2) {  SetInteger nums1Set = Arrays.stream(nums1).boxed().collect(Collectors.toSet());  SetInteger nums2Set = Arrays.stream(nums2).boxed().collect(Collectors.toSet());  nums1Set.retainAll(nums2Set);  return nums1Set.stream().mapToInt(x - x).toArray();  }  } END 이렇게 해서 retainAll 메서드에 알아봤다. 자주 써먹을 수 있길 😁\nReference  【DataStructure】The difference among methods addAll(),retainAll() and removeAll() kotlin-stdlib / kotlin.collections / retainAll retainAll-java.util.Collection-  ",
   "wordCount" : "340",
   "inLanguage": "en",
   "datePublished": "2022-01-28T13:48:58+08:00",
@@ -159,14 +159,15 @@ retain 은 a와 b의 공통된 값만을 제외한 모든 값은 없앨 수 있�
     window.intergramCustomizations = {
         
         titleOpen: 'SPRINGBOOT.KR',
-        introMessage: '안녕하세요. 궁금한 건 채팅을 남겨주세요.',
+        cookieExpiration: 2,
+        introMessage: '안녕하세요. 궁금한 건 채팅을 남겨주세요. 바로 대답할 수 있도록 노력 중입니다.',
         autoResponse: '잠시만 기다려 주세요...',
         autoNoResponse: '지금은 바쁜 것 같네요.. 다음에 연락 주세요..',
         mainColor: "#262934", 
         alwaysUseFloatingButton: true 
     };
 </script>
-<script id="intergram" type="text/javascript" src="https://www.intergram.xyz/js/widget.js"></script>
+<script id="intergram" type="text/javascript" src="/js/intergram.js"></script>
 <header class="header">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -225,7 +226,7 @@ retain 은 a와 b의 공통된 값만을 제외한 모든 값은 없앨 수 있�
     <h1 class="post-title">
       Java와 Kotlin에서 retainAll 사용하기
     </h1>
-    <div class="post-meta"><span title='2022-01-28 13:48:58 +0800 CST'>January 28, 2022</span>
+    <div class="post-meta"><span title='2022-01-28 13:48:58 +0800 +0800'>January 28, 2022</span>
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -328,33 +329,33 @@ retain 은 a와 b의 공통된 값만을 제외한 모든 값은 없앨 수 있�
 <h3 id="그래서-어떻게-쓰는-건데">그래서 어떻게 쓰는 건데?<a hidden class="anchor" aria-hidden="true" href="#그래서-어떻게-쓰는-건데">#</a></h3>
 <p>a, b라는 컬렉션 인스턴스가 존재할 때 <code>a.retainAll(b)</code> 이런 식으로 사용하면 된다.</p>
 <p>코틀린 코드를 예제로 봐보자.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin"><span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">main</span>(args: Array&lt;String&gt;) {
-    <span style="color:#66d9ef">val</span> listExampleIntArrayString =
-        listRetainAllExample(intArrayOf(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>), intArrayOf(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>)).map { <span style="color:#66d9ef">it</span>.toString() }.toTypedArray()
-            .contentToString()
-    println(<span style="color:#e6db74">&#34;list example int array =&gt; &#34;</span> + listExampleIntArrayString)
-    <span style="color:#66d9ef">val</span> setExampleIntArrayString =
-        setRetainAllExample(intArrayOf(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>), intArrayOf(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>)).map { <span style="color:#66d9ef">it</span>.toString() }.toTypedArray()
-            .contentToString()
-    println(<span style="color:#e6db74">&#34;set example int array =&gt; &#34;</span> + setExampleIntArrayString)
-}
-
-<span style="color:#75715e">// Runtime 461 ms Memory 43.1 MB
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">listRetainAllExample</span>(nums1: IntArray, nums2: IntArray): IntArray {
-    <span style="color:#66d9ef">val</span> nums1List = nums1.distinct().toMutableList()
-    <span style="color:#66d9ef">val</span> nums2List = nums2.distinct().toMutableList()
-    nums1List.retainAll(nums2List)
-    <span style="color:#66d9ef">return</span> nums1List.toIntArray()
-}
-
-<span style="color:#75715e">// Runtime 363 ms Memory 42.4 MB
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">setRetainAllExample</span>(nums1: IntArray, nums2: IntArray): IntArray {
-    <span style="color:#66d9ef">var</span> nums1Set = nums1.toMutableSet()
-    <span style="color:#66d9ef">val</span> nums2Set = nums2.toMutableSet()
-    nums1Set.retainAll(nums2Set)
-    <span style="color:#66d9ef">return</span> nums1Set.toIntArray()
-}
-</code></pre></div><p>위의 코드를 보게 되면 <code>[1, 2, 2, 1]</code>, <code>[2, 2]</code>를 파라미터로 받아서 중복이 제거된 값들을 추려 IntArray로 다시 반환하는 예제이다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">main</span>(args: Array&lt;String&gt;) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">val</span> listExampleIntArrayString =
+</span></span><span style="display:flex;"><span>        listRetainAllExample(intArrayOf(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>), intArrayOf(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>)).map { <span style="color:#66d9ef">it</span>.toString() }.toTypedArray()
+</span></span><span style="display:flex;"><span>            .contentToString()
+</span></span><span style="display:flex;"><span>    println(<span style="color:#e6db74">&#34;list example int array =&gt; &#34;</span> + listExampleIntArrayString)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">val</span> setExampleIntArrayString =
+</span></span><span style="display:flex;"><span>        setRetainAllExample(intArrayOf(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>), intArrayOf(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>)).map { <span style="color:#66d9ef">it</span>.toString() }.toTypedArray()
+</span></span><span style="display:flex;"><span>            .contentToString()
+</span></span><span style="display:flex;"><span>    println(<span style="color:#e6db74">&#34;set example int array =&gt; &#34;</span> + setExampleIntArrayString)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Runtime 461 ms Memory 43.1 MB
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">listRetainAllExample</span>(nums1: IntArray, nums2: IntArray): IntArray {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">val</span> nums1List = nums1.distinct().toMutableList()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">val</span> nums2List = nums2.distinct().toMutableList()
+</span></span><span style="display:flex;"><span>    nums1List.retainAll(nums2List)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> nums1List.toIntArray()
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Runtime 363 ms Memory 42.4 MB
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">setRetainAllExample</span>(nums1: IntArray, nums2: IntArray): IntArray {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> nums1Set = nums1.toMutableSet()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">val</span> nums2Set = nums2.toMutableSet()
+</span></span><span style="display:flex;"><span>    nums1Set.retainAll(nums2Set)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> nums1Set.toIntArray()
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>위의 코드를 보게 되면 <code>[1, 2, 2, 1]</code>, <code>[2, 2]</code>를 파라미터로 받아서 중복이 제거된 값들을 추려 IntArray로 다시 반환하는 예제이다.</p>
 <p>예제의 코드를 보면 컬렉션 인스턴스인 List와 Set으로 예제를 든다.</p>
 <p>단 여기서 List를 통해 retainAll을 할 때 중복 제거를 원하는 경우 distinct()를 사용해 중복제거를 한번 해주고 리스트로 변경 후 retainAll을 실행하였다.</p>
 <p>중복이 제거되지 않았을 경우의 결괏값은 다음과 같다.</p>
@@ -364,21 +365,21 @@ set example int array =&gt; [2]
 <pre tabindex="0"><code>list example int array =&gt; [2]
 set example int array =&gt; [2]
 </code></pre><p>자바에서 List로 retainAll을 사용한 코드 예제</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AboutRetainAll</span> <span style="color:#f92672">{</span>
-
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>retainAll<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]{</span>1<span style="color:#f92672">,</span> 2<span style="color:#f92672">,</span> 2<span style="color:#f92672">,</span> 1<span style="color:#f92672">},</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]{</span>2<span style="color:#f92672">,</span> 2<span style="color:#f92672">}));</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> <span style="color:#a6e22e">retainAll</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> nums1<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> nums2<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        Set<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> nums1Set <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">(</span>nums1<span style="color:#f92672">).</span><span style="color:#a6e22e">boxed</span><span style="color:#f92672">().</span><span style="color:#a6e22e">collect</span><span style="color:#f92672">(</span>Collectors<span style="color:#f92672">.</span><span style="color:#a6e22e">toSet</span><span style="color:#f92672">());</span>
-        Set<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> nums2Set <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">(</span>nums2<span style="color:#f92672">).</span><span style="color:#a6e22e">boxed</span><span style="color:#f92672">().</span><span style="color:#a6e22e">collect</span><span style="color:#f92672">(</span>Collectors<span style="color:#f92672">.</span><span style="color:#a6e22e">toSet</span><span style="color:#f92672">());</span>
-        nums1Set<span style="color:#f92672">.</span><span style="color:#a6e22e">retainAll</span><span style="color:#f92672">(</span>nums2Set<span style="color:#f92672">);</span>
-        <span style="color:#66d9ef">return</span> nums1Set<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">mapToInt</span><span style="color:#f92672">(</span>x <span style="color:#f92672">-&gt;</span> x<span style="color:#f92672">).</span><span style="color:#a6e22e">toArray</span><span style="color:#f92672">();</span>
-    <span style="color:#f92672">}</span>
-
-<span style="color:#f92672">}</span>
-</code></pre></div><h3 id="end">END<a hidden class="anchor" aria-hidden="true" href="#end">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AboutRetainAll</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>retainAll<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]{</span>1<span style="color:#f92672">,</span> 2<span style="color:#f92672">,</span> 2<span style="color:#f92672">,</span> 1<span style="color:#f92672">},</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]{</span>2<span style="color:#f92672">,</span> 2<span style="color:#f92672">}));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> <span style="color:#a6e22e">retainAll</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> nums1<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> nums2<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Set<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> nums1Set <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">(</span>nums1<span style="color:#f92672">).</span><span style="color:#a6e22e">boxed</span><span style="color:#f92672">().</span><span style="color:#a6e22e">collect</span><span style="color:#f92672">(</span>Collectors<span style="color:#f92672">.</span><span style="color:#a6e22e">toSet</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>        Set<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> nums2Set <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">(</span>nums2<span style="color:#f92672">).</span><span style="color:#a6e22e">boxed</span><span style="color:#f92672">().</span><span style="color:#a6e22e">collect</span><span style="color:#f92672">(</span>Collectors<span style="color:#f92672">.</span><span style="color:#a6e22e">toSet</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>        nums1Set<span style="color:#f92672">.</span><span style="color:#a6e22e">retainAll</span><span style="color:#f92672">(</span>nums2Set<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> nums1Set<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">mapToInt</span><span style="color:#f92672">(</span>x <span style="color:#f92672">-&gt;</span> x<span style="color:#f92672">).</span><span style="color:#a6e22e">toArray</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="end">END<a hidden class="anchor" aria-hidden="true" href="#end">#</a></h3>
 <p>이렇게 해서 retainAll 메서드에 알아봤다. 자주 써먹을 수 있길 😁</p>
 <p><img loading="lazy" src="/images/java/about-retainall/happy-skeleton.gif" alt="last-dance"  />
 </p>
@@ -394,6 +395,11 @@ set example int array =&gt; [2]
 
   <footer class="post-footer">
 <nav class="paginav">
+  <a class="prev" href="https://www.springboot.kr/posts/etc/blocking-n-non-blocking/">
+    <span class="title">« Prev Page</span>
+    <br>
+    <span>블러킹. 넌블러킹.</span>
+  </a>
   <a class="next" href="https://www.springboot.kr/posts/devnote/thecarbtoon-3/">
     <span class="title">Next Page »</span>
     <br>
