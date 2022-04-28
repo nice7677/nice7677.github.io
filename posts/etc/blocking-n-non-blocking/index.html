@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>블러킹. 넌블러킹. | SPRINGBOOT.KR</title>
+<meta name="keywords" content="" />
+<meta name="description" content="블러킹(Blocking) 블러킹은 다른 메서드를 호출할 때 제어권도 다 넘겨주고 작업이 끝난 후에 돌려 받는 것을 말한다.
+예제는 2개의 클래스로 진행되며 Data, Main으로 진행 된다.
+블러킹 예제 DataSync Class
+public class DataSync {  private int id;  private long simulationDuration;   public DataSync(int id, long simulationDuration) {  this.id = id;  this.simulationDuration = simulationDuration;  }   public String get() {  try {  Thread.sleep(this.simulationDuration);  } catch (InterruptedException e) {  e.">
+<meta name="author" content="">
+<link rel="canonical" href="https://www.springboot.kr/posts/etc/blocking-n-non-blocking/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.f238f1b0ccea21e45d3c0112bdd442ca592e7287c4a346036dc9a8b461e5f0a0.css" integrity="sha256-8jjxsMzqIeRdPAESvdRCylkucofEo0YDbcmotGHl8KA=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.2840b7fccd34145847db71a290569594bdbdb00047097f75d6495d162f5d7dff.js" integrity="sha256-KEC3/M00FFhH23GikFaVlL29sABHCX911kldFi9dff8="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://www.springboot.kr/favicon_io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.springboot.kr/favicon_io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.springboot.kr/favicon_io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://www.springboot.kr/favicon_io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://www.springboot.kr/favicon_io/apple-touch-icon.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.97.3" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PM2KLTYJRP"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-PM2KLTYJRP', { 'anonymize_ip': false });
+}
+</script>
+<meta property="og:title" content="블러킹. 넌블러킹." />
+<meta property="og:description" content="블러킹(Blocking) 블러킹은 다른 메서드를 호출할 때 제어권도 다 넘겨주고 작업이 끝난 후에 돌려 받는 것을 말한다.
+예제는 2개의 클래스로 진행되며 Data, Main으로 진행 된다.
+블러킹 예제 DataSync Class
+public class DataSync {  private int id;  private long simulationDuration;   public DataSync(int id, long simulationDuration) {  this.id = id;  this.simulationDuration = simulationDuration;  }   public String get() {  try {  Thread.sleep(this.simulationDuration);  } catch (InterruptedException e) {  e." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.springboot.kr/posts/etc/blocking-n-non-blocking/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-04-28T22:27:01&#43;09:00" />
+<meta property="article:modified_time" content="2022-04-28T22:27:01&#43;09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="블러킹. 넌블러킹."/>
+<meta name="twitter:description" content="블러킹(Blocking) 블러킹은 다른 메서드를 호출할 때 제어권도 다 넘겨주고 작업이 끝난 후에 돌려 받는 것을 말한다.
+예제는 2개의 클래스로 진행되며 Data, Main으로 진행 된다.
+블러킹 예제 DataSync Class
+public class DataSync {  private int id;  private long simulationDuration;   public DataSync(int id, long simulationDuration) {  this.id = id;  this.simulationDuration = simulationDuration;  }   public String get() {  try {  Thread.sleep(this.simulationDuration);  } catch (InterruptedException e) {  e."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://www.springboot.kr/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "블러킹. 넌블러킹.",
+      "item": "https://www.springboot.kr/posts/etc/blocking-n-non-blocking/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "블러킹. 넌블러킹.",
+  "name": "블러킹. 넌블러킹.",
+  "description": "블러킹(Blocking) 블러킹은 다른 메서드를 호출할 때 제어권도 다 넘겨주고 작업이 끝난 후에 돌려 받는 것을 말한다.\n예제는 2개의 클래스로 진행되며 Data, Main으로 진행 된다.\n블러킹 예제 DataSync Class\npublic class DataSync {  private int id;  private long simulationDuration;   public DataSync(int id, long simulationDuration) {  this.id = id;  this.simulationDuration = simulationDuration;  }   public String get() {  try {  Thread.sleep(this.simulationDuration);  } catch (InterruptedException e) {  e.",
+  "keywords": [
+    
+  ],
+  "articleBody": "블러킹(Blocking) 블러킹은 다른 메서드를 호출할 때 제어권도 다 넘겨주고 작업이 끝난 후에 돌려 받는 것을 말한다.\n예제는 2개의 클래스로 진행되며 Data, Main으로 진행 된다.\n블러킹 예제 DataSync Class\npublic class DataSync {  private int id;  private long simulationDuration;   public DataSync(int id, long simulationDuration) {  this.id = id;  this.simulationDuration = simulationDuration;  }   public String get() {  try {  Thread.sleep(this.simulationDuration);  } catch (InterruptedException e) {  e.printStackTrace();  }   return \"data-\" + id;  } } MainSync Class\npublic class MainSync {  public static void main(String[] args) {  long startTime, endTime;   DataSync dataSync1 = new DataSync(1, 5000); // 5s  DataSync dataSync2 = new DataSync(2, 2000); // 2s  DataSync dataSync3 = new DataSync(3, 3000); // 3s   startTime = System.currentTimeMillis();  System.out.println(\"Start\");   String d1 = dataSync1.get();  printData(d1);   String d2 = dataSync2.get();  printData(d2);   String d3 = dataSync3.get();  printData(d3);   endTime = System.currentTimeMillis();  System.out.println(\"Done\");   System.out.print(\"Execution time (ms): \" + (endTime - startTime));  }   private static void printData(Object data) {  try {  Thread.sleep(1000);  } catch (InterruptedException e) {  e.printStackTrace();  }   System.out.println(\"Synchronously printing \" + data);  } } 이 예제의 출력값을 보게되면 순차로 출력이 된걸 볼 수 있다.\nStart Synchronously printing data-1 Synchronously printing data-2 Synchronously printing data-3 Done Execution time (ms): 13046 이런 방식을 블러킹 방식이라 한다.\n넌블러킹(Non-Blocking) 블러킹과 다르게 제어권을 계속 가지고 있기 때문에 작업의 완료여부와 상관없이 다른 작업을 수행할 수 있는것을 말한다.\n예제는 2개의 클래스로 진행되며 Data, Main으로 진행 된다.\n넌블러킹 예제 DataASync Class\npublic class DataAsync implements SupplierString {  private int id;  private long simulationDuration;   public DataAsync(int id, long simulationDuration) {  this.id = id;  this.simulationDuration = simulationDuration;  }   @Override  public String get() {  try {  Thread.sleep(this.simulationDuration);  } catch (InterruptedException e) {  e.printStackTrace();  }   return \"data-\" + id;  } } MainAsync Class\npublic class MainAsync { public static void main(String[] args) { long startTime, endTime; CountDownLatch latch = new CountDownLatch(3); DataAsync dataAsync1 = new DataAsync(1, 5000); // 5s DataAsync dataAsync2 = new DataAsync(2, 2000); // 2s DataAsync dataAsync3 = new DataAsync(3, 3000); // 3s startTime = System.currentTimeMillis(); System.out.println(\"Start\"); try { CompletableFuture.supplyAsync(dataAsync1).thenAccept(d1 - { printData(d1); latch.countDown(); }); CompletableFuture.supplyAsync(dataAsync2).thenAccept(d2 - { printData(d2); latch.countDown(); }); CompletableFuture.supplyAsync(dataAsync3).thenAccept(d3 - { printData(d3); latch.countDown(); }); latch.await(); } catch (Exception e) { e.printStackTrace(); } endTime = System.currentTimeMillis(); System.out.println(\"Done\"); System.out.print(\"Execution time (ms): \" + (endTime - startTime)); } private static void printData(String data) { try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); } System.out.println(\"Synchronously printing \" + data); } } 넌블러킹의 실행된 예제의 출력값을 확인하면 위의 블러킹 방식과는 다르게 순차적으로 진행되지 않고 먼저 실행이 끝나는 순으로 출력된 모습을 볼 수 있다.\nStart Synchronously printing data-2 Synchronously printing data-3 Synchronously printing data-1 Done Execution time (ms): 6015 이런 방식을 넌블러킹이라한다.\n참조  java-selector-is-asynchronous-or-non-blocking-architecture lamngockhuong/java-blocking-vs-no-blocking-example  - 끗 -  500미터\n ",
+  "wordCount" : "428",
+  "inLanguage": "en",
+  "datePublished": "2022-04-28T22:27:01+09:00",
+  "dateModified": "2022-04-28T22:27:01+09:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.springboot.kr/posts/etc/blocking-n-non-blocking/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SPRINGBOOT.KR",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.springboot.kr/favicon_io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<script>
+    window.intergramId = "629395064";
+    window.intergramCustomizations = {
+        
+        titleOpen: 'SPRINGBOOT.KR',
+        cookieExpiration: 2,
+        introMessage: '안녕하세요. 궁금한 건 채팅을 남겨주세요. 바로 대답할 수 있도록 노력 중입니다.',
+        autoResponse: '잠시만 기다려 주세요...',
+        autoNoResponse: '지금은 바쁜 것 같네요.. 다음에 연락 주세요..',
+        mainColor: "#262934", 
+        alwaysUseFloatingButton: true 
+    };
+</script>
+<script id="intergram" type="text/javascript" src="/js/intergram.js"></script>
+<header class="header">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://www.springboot.kr/" accesskey="h" title="SPRINGBOOT.KR (Alt + H)">SPRINGBOOT.KR</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://www.springboot.kr/posts" title="posts">
+                    <span>posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.springboot.kr/search" title="search (Alt &#43; /)" accesskey=/>
+                    <span>search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.springboot.kr/archives" title="archives">
+                    <span>archives</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+    <main class="main page">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://www.springboot.kr/">Home</a>&nbsp;»&nbsp;<a href="https://www.springboot.kr/posts/">Posts</a></div>
+    <h1 class="post-title">
+      블러킹. 넌블러킹.
+    </h1>
+    <div class="post-meta"><span title='2022-04-28 22:27:01 +0900 KST'>April 28, 2022</span>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                <span class="details">목차</span>
+            </summary>
+
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#%eb%b8%94%eb%9f%ac%ed%82%b9blocking" aria-label="블러킹(Blocking)">블러킹(Blocking)</a><ul>
+                            
+                    <li>
+                        <a href="#%eb%b8%94%eb%9f%ac%ed%82%b9-%ec%98%88%ec%a0%9c" aria-label="블러킹 예제">블러킹 예제</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#%eb%84%8c%eb%b8%94%eb%9f%ac%ed%82%b9non-blocking" aria-label="넌블러킹(Non-Blocking)">넌블러킹(Non-Blocking)</a><ul>
+                            
+                    <li>
+                        <a href="#%eb%84%8c%eb%b8%94%eb%9f%ac%ed%82%b9-%ec%98%88%ec%a0%9c" aria-label="넌블러킹 예제">넌블러킹 예제</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#%ec%b0%b8%ec%a1%b0" aria-label="참조">참조</a></li>
+                    <li>
+                        <a href="#--%eb%81%97--" aria-label="- 끗 -">- 끗 -</a>
+                    </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        
+        activeElement = elements[0];
+        document.querySelector(`.inner ul li a[href="#${activeElement.getAttribute('id')}"]`).classList.add('active');
+    }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+            if (element === activeElement ){
+                document.querySelector(`.inner ul li a[href="#${element.getAttribute('id')}"]`).classList.add('active');
+            } else {
+                document.querySelector(`.inner ul li a[href="#${element.getAttribute('id')}"]`).classList.remove('active');
+            }
+        })
+    }, false);
+
+    
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+</script>
+  <div class="post-content"><h2 id="블러킹blocking">블러킹(Blocking)<a hidden class="anchor" aria-hidden="true" href="#블러킹blocking">#</a></h2>
+<p><img loading="lazy" src="https://i.stack.imgur.com/qUNgG.png" alt="blocking"  />
+</p>
+<p>블러킹은 다른 메서드를 호출할 때 제어권도 다 넘겨주고 작업이 끝난 후에 돌려 받는 것을 말한다.</p>
+<p>예제는 2개의 클래스로 진행되며 Data, Main으로 진행 된다.</p>
+<h3 id="블러킹-예제">블러킹 예제<a hidden class="anchor" aria-hidden="true" href="#블러킹-예제">#</a></h3>
+<p>DataSync Class</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DataSync</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> id<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">long</span> simulationDuration<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">DataSync</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> id<span style="color:#f92672">,</span> <span style="color:#66d9ef">long</span> simulationDuration<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">id</span> <span style="color:#f92672">=</span> id<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">simulationDuration</span> <span style="color:#f92672">=</span> simulationDuration<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">get</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">simulationDuration</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InterruptedException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;data-&#34;</span> <span style="color:#f92672">+</span> id<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>MainSync Class</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MainSync</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">long</span> startTime<span style="color:#f92672">,</span> endTime<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        DataSync dataSync1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DataSync<span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> 5000<span style="color:#f92672">);</span> <span style="color:#75715e">// 5s
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        DataSync dataSync2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DataSync<span style="color:#f92672">(</span>2<span style="color:#f92672">,</span> 2000<span style="color:#f92672">);</span> <span style="color:#75715e">// 2s
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        DataSync dataSync3 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DataSync<span style="color:#f92672">(</span>3<span style="color:#f92672">,</span> 3000<span style="color:#f92672">);</span> <span style="color:#75715e">// 3s
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>        startTime <span style="color:#f92672">=</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">currentTimeMillis</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Start&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        String d1 <span style="color:#f92672">=</span> dataSync1<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        printData<span style="color:#f92672">(</span>d1<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        String d2 <span style="color:#f92672">=</span> dataSync2<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        printData<span style="color:#f92672">(</span>d2<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        String d3 <span style="color:#f92672">=</span> dataSync3<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        printData<span style="color:#f92672">(</span>d3<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        endTime <span style="color:#f92672">=</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">currentTimeMillis</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Done&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Execution time (ms): &#34;</span> <span style="color:#f92672">+</span> <span style="color:#f92672">(</span>endTime <span style="color:#f92672">-</span> startTime<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printData</span><span style="color:#f92672">(</span>Object data<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>1000<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InterruptedException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Synchronously printing &#34;</span> <span style="color:#f92672">+</span> data<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>이 예제의 출력값을 보게되면 순차로 출력이 된걸 볼 수 있다.</p>
+<pre tabindex="0"><code>Start
+Synchronously printing data-1
+Synchronously printing data-2
+Synchronously printing data-3
+Done
+Execution time (ms): 13046
+</code></pre><p>이런 방식을 블러킹 방식이라 한다.</p>
+<h2 id="넌블러킹non-blocking">넌블러킹(Non-Blocking)<a hidden class="anchor" aria-hidden="true" href="#넌블러킹non-blocking">#</a></h2>
+<p><img loading="lazy" src="https://i.stack.imgur.com/vjs5k.png" alt="non-blocking"  />
+</p>
+<p>블러킹과 다르게 제어권을 계속 가지고 있기 때문에 작업의 완료여부와 상관없이 다른 작업을 수행할 수 있는것을 말한다.</p>
+<p>예제는 2개의 클래스로 진행되며 Data, Main으로 진행 된다.</p>
+<h3 id="넌블러킹-예제">넌블러킹 예제<a hidden class="anchor" aria-hidden="true" href="#넌블러킹-예제">#</a></h3>
+<p>DataASync Class</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DataAsync</span> <span style="color:#66d9ef">implements</span> Supplier<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> id<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">long</span> simulationDuration<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">DataAsync</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> id<span style="color:#f92672">,</span> <span style="color:#66d9ef">long</span> simulationDuration<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">id</span> <span style="color:#f92672">=</span> id<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">simulationDuration</span> <span style="color:#f92672">=</span> simulationDuration<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">get</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">simulationDuration</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InterruptedException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;data-&#34;</span> <span style="color:#f92672">+</span> id<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>MainAsync Class</p>
+<pre tabindex="0"><code>public class MainAsync {
+    public static void main(String[] args) {
+        long startTime, endTime;
+
+        CountDownLatch latch = new CountDownLatch(3);
+        DataAsync dataAsync1 = new DataAsync(1, 5000); // 5s
+        DataAsync dataAsync2 = new DataAsync(2, 2000); // 2s
+        DataAsync dataAsync3 = new DataAsync(3, 3000); // 3s
+
+        startTime = System.currentTimeMillis();
+        System.out.println(&#34;Start&#34;);
+
+        try {
+            CompletableFuture.supplyAsync(dataAsync1).thenAccept(d1 -&gt; {
+                printData(d1);
+                latch.countDown();
+            });
+
+            CompletableFuture.supplyAsync(dataAsync2).thenAccept(d2 -&gt; {
+                printData(d2);
+                latch.countDown();
+            });
+
+            CompletableFuture.supplyAsync(dataAsync3).thenAccept(d3 -&gt; {
+                printData(d3);
+                latch.countDown();
+            });
+
+            latch.await();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        endTime = System.currentTimeMillis();
+        System.out.println(&#34;Done&#34;);
+
+        System.out.print(&#34;Execution time (ms): &#34; + (endTime - startTime));
+    }
+
+    private static void printData(String data) {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(&#34;Synchronously printing &#34; + data);
+    }
+}
+</code></pre><p>넌블러킹의 실행된 예제의 출력값을 확인하면 위의 블러킹 방식과는 다르게 순차적으로 진행되지 않고 먼저 실행이 끝나는 순으로 출력된 모습을 볼 수 있다.</p>
+<pre tabindex="0"><code>Start
+Synchronously printing data-2
+Synchronously printing data-3
+Synchronously printing data-1
+Done
+Execution time (ms): 6015
+</code></pre><p>이런 방식을 넌블러킹이라한다.</p>
+<h2 id="참조">참조<a hidden class="anchor" aria-hidden="true" href="#참조">#</a></h2>
+<ul>
+<li><a href="https://stackoverflow.com/questions/17615272/java-selector-is-asynchronous-or-non-blocking-architecture">java-selector-is-asynchronous-or-non-blocking-architecture</a></li>
+<li><a href="https://github.com/lamngockhuong/java-blocking-vs-no-blocking-example">lamngockhuong/java-blocking-vs-no-blocking-example</a></li>
+</ul>
+<h2 id="--끗--">- 끗 -<a hidden class="anchor" aria-hidden="true" href="#--끗--">#</a></h2>
+<p><img loading="lazy" src="/images/letsgo/golf-swing.gif" alt="image"  />
+</p>
+<blockquote>
+<p>500미터</p>
+</blockquote>
+
+
+  </div>
+
+  <footer class="post-footer">
+<nav class="paginav">
+  <a class="next" href="https://www.springboot.kr/posts/java/about-retain-all/">
+    <span class="title">Next Page »</span>
+    <br>
+    <span>Java와 Kotlin에서 retainAll 사용하기</span>
+  </a>
+</nav>
+
+  </footer><script src="https://utteranc.es/client.js"
+        repo="nice7677/nice7677.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://www.springboot.kr/">SPRINGBOOT.KR</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
