@@ -6,7 +6,23 @@
     <description>Recent content on SPRINGBOOT.KR</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>kr-ko</language>
-    <lastBuildDate>Thu, 28 Apr 2022 22:27:01 +0900</lastBuildDate><atom:link href="https://www.springboot.kr/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 02 May 2022 00:40:01 +0900</lastBuildDate><atom:link href="https://www.springboot.kr/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>띵가띵가</title>
+      <link>https://www.springboot.kr/posts/blahblah/2022-05-02/</link>
+      <pubDate>Mon, 02 May 2022 00:40:01 +0900</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/blahblah/2022-05-02/</guid>
+      <description>지금은 5월2일 12시 40분.
+이번주 띵가띵가 놀면서 생각해봄.
+개념공부 -&amp;gt; 블로그 글 작성
+코드공부 -&amp;gt; 깃허브에 커밋
+개념적인 공부와 코드 병행
+히히히히히히히히히히히히히히히히히히히히히히히히히히히히히히히히히히히히
+다음주도 화이팅. 적응되가서 그렇게 피곤하지가 않다.
+공부 시작하자.</description>
+    </item>
+    
     <item>
       <title>블러킹. 넌블러킹.</title>
       <link>https://www.springboot.kr/posts/etc/blocking-n-non-blocking/</link>
