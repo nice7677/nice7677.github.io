@@ -6,7 +6,21 @@
     <description>Recent content on SPRINGBOOT.KR</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>kr-ko</language>
-    <lastBuildDate>Thu, 09 Jun 2022 21:12:38 +0900</lastBuildDate><atom:link href="https://www.springboot.kr/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 04 Sep 2022 19:19:42 +0900</lastBuildDate><atom:link href="https://www.springboot.kr/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MDC Logback</title>
+      <link>https://www.springboot.kr/posts/spring/webflux-and-mdc/</link>
+      <pubDate>Sun, 04 Sep 2022 19:19:42 +0900</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/spring/webflux-and-mdc/</guid>
+      <description>MDC(Mapped Diagnostic Context) MDC는 로그를 더 잘 추적할 수 있도록 하는 정보를 로그 메세지에 찍을수있게 해주는 기능을 한다.
+Map으로 되있으며 ThreadLocal 사용으로 인해 Thread 단위로 생성된다.
+Slf4j MDC를 사용 기준으로 org.slf4j.MDC 클래스 안에 static으로 선언된 MDCAdapter 를 찾아 볼 수 있다.
+MDCAdapter는 인터페이스로 되있는데 Adapter를 implements 하는 클래스를 찾아 보면 LogbackMDCAdapter 가 보인다.
+여기에 보면
+public class LogbackMDCAdapter implements MDCAdapter {  ...  final ThreadLocal&amp;lt;Map&amp;lt;String, String&amp;gt;&amp;gt; copyOnThreadLocal = new ThreadLocal&amp;lt;Map&amp;lt;String, String&amp;gt;&amp;gt;();  .</description>
+    </item>
+    
     <item>
       <title>이명에 걸렸다.</title>
       <link>https://www.springboot.kr/posts/blahblah/2022-06-09/</link>
