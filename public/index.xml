@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>SPRINGBOOT.KR</title>
+    <link>https://www.springboot.kr/</link>
+    <description>Recent content on SPRINGBOOT.KR</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>kr-ko</language>
+    <lastBuildDate>Mon, 05 Sep 2022 22:28:59 +0900</lastBuildDate><atom:link href="https://www.springboot.kr/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[DDD START SERIES] EP.1 도메인 모델 시작하기</title>
+      <link>https://www.springboot.kr/posts/java/start-ddd/chp1-start-ddd-model/</link>
+      <pubDate>Mon, 05 Sep 2022 22:28:59 +0900</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/java/start-ddd/chp1-start-ddd-model/</guid>
+      <description>DDD START SERIES는 도메인 주도 개발 시작하기 책을 참고 하여 작성된 요약 글 입니다.
+EP.1.1 도메인 이란? 예를 들어 개발자 입장에서 온라인 서점은 구현해야 할 소프트웨어의 대상이 될 수 있다.
+온라인 서점을 온라인으로 책을 판매하는 데 필요한 상품 조회, 구매, 결제, 배송 추적 등 기능이 필요하다.
+이때 온라인 서점은 소프트웨어로 해결하고자 하는 문제 영역, 즉 도메인에 해당한다.
+한 도메인은 다시 하위 도메인으로 나눌 수 있다.
+Example
+ ---- [정산] / / [주문] ------ [회원] \ | \ | ---- [회원] 무조건 고정된 하위 도메인이 존재하는 것은 아니고 필요에 따라 나뉠 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>MDC Logback</title>
+      <link>https://www.springboot.kr/posts/spring/webflux-and-mdc/</link>
+      <pubDate>Sun, 04 Sep 2022 19:19:42 +0900</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/spring/webflux-and-mdc/</guid>
+      <description>MDC(Mapped Diagnostic Context) MDC는 로그를 더 잘 추적할 수 있도록 하는 정보를 로그 메세지에 찍을수있게 해주는 기능을 한다.
+Map으로 되있으며 ThreadLocal 사용으로 인해 Thread 단위로 생성된다.
+Slf4j MDC를 사용 기준으로 org.slf4j.MDC 클래스 안에 static으로 선언된 MDCAdapter 를 찾아 볼 수 있다.
+MDCAdapter는 인터페이스로 되있는데 Adapter를 implements 하는 클래스를 찾아 보면 LogbackMDCAdapter 가 보인다.
+여기에 보면
+public class LogbackMDCAdapter implements MDCAdapter {  ...  final ThreadLocal&amp;lt;Map&amp;lt;String, String&amp;gt;&amp;gt; copyOnThreadLocal = new ThreadLocal&amp;lt;Map&amp;lt;String, String&amp;gt;&amp;gt;();  .</description>
+    </item>
+    
+    <item>
+      <title>이명에 걸렸다.</title>
+      <link>https://www.springboot.kr/posts/blahblah/2022-06-09/</link>
+      <pubDate>Thu, 09 Jun 2022 21:12:38 +0900</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/blahblah/2022-06-09/</guid>
+      <description>이명에 걸렸다.
+소리가 난다.
+24시간 난다.
+아무것도 못한다.
+소리가 난다.
+망했다.
+이명에 걸렸다.</description>
+    </item>
+    
+    <item>
+      <title>띵가띵가</title>
+      <link>https://www.springboot.kr/posts/blahblah/2022-05-02/</link>
+      <pubDate>Mon, 02 May 2022 00:40:01 +0900</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/blahblah/2022-05-02/</guid>
+      <description>지금은 5월2일 12시 40분.
+이번주 띵가띵가 놀면서 생각해봄.
+개념공부 -&amp;gt; 블로그 글 작성
+코드공부 -&amp;gt; 깃허브에 커밋
+개념적인 공부와 코드 병행
+히히히히히히히히히히히히히히히히히히히히히히히히히히히히히히히히히히히히
+다음주도 화이팅. 적응되가서 그렇게 피곤하지가 않다.
+공부 시작하자.</description>
+    </item>
+    
+    <item>
+      <title>블러킹. 넌블러킹.</title>
+      <link>https://www.springboot.kr/posts/etc/blocking-n-non-blocking/</link>
+      <pubDate>Thu, 28 Apr 2022 22:27:01 +0900</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/etc/blocking-n-non-blocking/</guid>
+      <description>블러킹(Blocking) 블러킹은 다른 메서드를 호출할 때 제어권도 다 넘겨주고 작업이 끝난 후에 돌려 받는 것을 말한다.
+예제는 2개의 클래스로 진행되며 Data, Main으로 진행 된다.
+블러킹 예제 DataSync Class
+public class DataSync {  private int id;  private long simulationDuration;   public DataSync(int id, long simulationDuration) {  this.id = id;  this.simulationDuration = simulationDuration;  }   public String get() {  try {  Thread.sleep(this.simulationDuration);  } catch (InterruptedException e) {  e.</description>
+    </item>
+    
+    <item>
+      <title>Java와 Kotlin에서 retainAll 사용하기</title>
+      <link>https://www.springboot.kr/posts/java/about-retain-all/</link>
+      <pubDate>Fri, 28 Jan 2022 13:48:58 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/java/about-retain-all/</guid>
+      <description>Java와 Kotlin에서 retainAll 사용하기 What is retainAll Method? retainAll 메서드는 무엇일까?
+RetainAll() 메서드는 지정된 컬렉션에 포함되지 않은 모든 배열 목록 요소를 제거하거나 메서드에 매개 변수로 전달된 컬렉션 목록의 모든 요소와 일치하는 현재 컬렉션 인스턴스의 모든 일치 요소를 유지하는 데 사용되는 메서드이다.
+아래의 그림을 보면 이해가 더 쉽다.
+retain 은 a와 b의 공통된 값만을 제외한 모든 값은 없앨 수 있다.
+그래서 어떻게 쓰는 건데? a, b라는 컬렉션 인스턴스가 존재할 때 a.</description>
+    </item>
+    
+    <item>
+      <title>TheCarbtoon 개발일지 - 3</title>
+      <link>https://www.springboot.kr/posts/devnote/thecarbtoon-3/</link>
+      <pubDate>Tue, 25 Jan 2022 16:38:17 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/devnote/thecarbtoon-3/</guid>
+      <description>(대만 이란쪽 좋은 곳)
+벌써 3번째 개발일지 3일 전인가 쓰고 안 썼는데 오늘 다음 일지를 작성하게 됐다.
+우선 2번째 일지 후 있었던 일들은 인증 쪽에 구글 메일을 통해 메일을 인증하는 기능이 추가됐는데 일반 사용자를 위한 목적도 있지만 게시물을 올려주는 메인 사용자들을 위한 검증을 위해 추가했다.
+그리고 전에 생각했던 코틀린 은 안 하기로 했다. 코틀린 은 안 하고 그냥 전부 자바로 하기로 했는데 그냥 하나로 쭉 하는 게 좋을 거 같아서 그렇게 하기로 해서 코틀린 은 다음 기회에.</description>
+    </item>
+    
+    <item>
+      <title>TheCarbtoon 개발일지 - 2</title>
+      <link>https://www.springboot.kr/posts/devnote/thecarbtoon-2/</link>
+      <pubDate>Sun, 23 Jan 2022 20:49:13 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/devnote/thecarbtoon-2/</guid>
+      <description>(지내고 있는 곳의 가까운 학교 운동장?)
+한.. 10일 전쯤 개발일지 1을 올렸는데 그 뒤로 몸이 좀 안 좋아서 일주일 쉰 거 같다.
+지금 진행 상황은 모든 서비스들끼리 jwt를 통해 사용자를 확인할 수 있게 됐고 인증 서비스와 유저 서비스의 개발이 얼추 진행돼가고 있는데. 요즘 드는 생각이 아무나 그림을 올릴 수 있게 만들고 카카오 페이로 후원을 받을 수 있는 기능을 구현하고 싶다.
+재미로 그리는 사람이더라도 후원을 받는 건 나쁘지 않다고 생각한다. 자신의 결과물에 산물이랄까</description>
+    </item>
+    
+    <item>
+      <title>StreamBridge 사용하기</title>
+      <link>https://www.springboot.kr/posts/spring/spring-cloud-stream-binder-kafka/</link>
+      <pubDate>Wed, 19 Jan 2022 02:00:28 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/spring/spring-cloud-stream-binder-kafka/</guid>
+      <description>Spring Cloud Stream Binder Kafka를 위한 글.
+버전이 올라오면서 @OUTPUT 어노테이션이 Deprecated 돼서 찾아봤는데 StreamBridge를 이용하면 된다 한다.
+일단 처음부터 봐봅시다.
+implementation group: &amp;#39;org.springframework.cloud&amp;#39;, name: &amp;#39;spring-cloud-stream-binder-kafka&amp;#39;, version: &amp;#39;3.2.1&amp;#39; 를 추가하면 5개의 라이브러리가 추가 된다.
+Gradle: org.springframework.cloud:spring-cloud-function-context:3.2.1 Gradle: org.springframework.cloud:spring-cloud-function-core:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka:3.2.1 Gradle: org.springframework.cloud:spring-cloud-stream-binder-kafka-core:3.2.1 그럼 시작해보자.
+우선 application.yml에 cloud kafka를 설정해줍시다.
+cloud:  function:  definition: consumer;producer  stream:  kafka:  bindings:  producer-out-0:  producer:  configuration:  key:  serializer: org.</description>
+    </item>
+    
+    <item>
+      <title>ELK랑 씨름한날</title>
+      <link>https://www.springboot.kr/posts/blahblah/fight-with-elk/</link>
+      <pubDate>Fri, 14 Jan 2022 21:57:11 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/blahblah/fight-with-elk/</guid>
+      <description>오늘은 ELK랑 씨름했다. 왜냐면 내가 지금 해외에 있으니까 씨름했다.
+우선 지금 개발할 때 쓰는 건 5년 넘은 맥북 듀얼코어에 8기가인데
+프로젝트를 MSA로 하니까 서비스만 5개를 돌리고 도커 안에 컨테이너도 여러개 띄우고 카프카도 키고 하니까 하루도 빠짐없이 비행기 이륙을 시도한다.
+거기다 elk가 필요하게 됐는데 맨날 이륙하는 맥북에 뭔가를 더하기 싫어서 한국 집에 있는 rpi에 elk 설치를 시도했다.
+결국엔 되긴 했는데 ek만 됐다 l빼고ㅋㅋ
+ek는 rpi에 깔고 logstash는 맥에 깔았다.
+그리고 연결하는 데 애를 좀 먹었다.</description>
+    </item>
+    
+    <item>
+      <title>@Authenticationprincipal에 대하여</title>
+      <link>https://www.springboot.kr/posts/spring/authenticationprincipal-security/</link>
+      <pubDate>Fri, 14 Jan 2022 01:13:27 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/spring/authenticationprincipal-security/</guid>
+      <description>@Authenticationprincipal !이 어노테이션은 Package org.springframework.security.core.annotation 에 있는 어노테이션 입니다.
+docs.spring.io에서 확인해 보면 이 어노테이션은 Authentication.getPrincipal()메서드 인수를 확인하는 데 사용된다고 하는데 Authentication 인터페이스에 대해서는 다음에 다루고 우선 이 메서드만 확인해 보게 되면
+getPrincipal
+인증 중인 주체의 ID입니다.
+사용자 이름과 비밀번호가 있는 인증 요청의 경우, 이 사용자 이름이 됩니다.
+호출자는 인증 요청의 주체를 채워야 합니다.
+AuthenticationManager 구현체는 응용 프로그램에서 사용할 수 있는 주체로서 더 풍부한 정보를 포함하는 인증을 반환하는 경우가 많습니다.
+많은 인증 공급자가 UserDetails 개체를 주체로 만듭니다.</description>
+    </item>
+    
+    <item>
+      <title>JPA 다중 매핑 엔티티 Querydsl 없이 Join 하기</title>
+      <link>https://www.springboot.kr/posts/spring/jpa-multiple-mapping-domain-join/</link>
+      <pubDate>Thu, 13 Jan 2022 14:23:35 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/spring/jpa-multiple-mapping-domain-join/</guid>
+      <description>이번 게시물은 JPA를 사용할 때 querydsl 없이 여러 엔티티를 join 하는 방법이다.
+단 조건으로 엔티티 중 다른 엔티티 간의 중개자 역할을 하는 엔티티가 필요하다 매핑이 되어 있어야 한다.
+코드로 보자
+@Entity public class Company {   @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)  private Long id;   private String name;   @OneToMany(mappedBy = &amp;#34;company&amp;#34;, fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)  @JoinColumn(name = &amp;#34;company_id&amp;#34;)  private List&amp;lt;Product&amp;gt; products = new ArrayList&amp;lt;&amp;gt;();   @OneToOne(mappedBy = &amp;#34;company&amp;#34;, fetch = FetchType.</description>
+    </item>
+    
+    <item>
+      <title>JPA N&#43;1문제와 @EntityGraph</title>
+      <link>https://www.springboot.kr/posts/spring/jpa-n-plus-1-problem-with-entity-graph/</link>
+      <pubDate>Thu, 13 Jan 2022 01:54:34 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/spring/jpa-n-plus-1-problem-with-entity-graph/</guid>
+      <description>JPA N+1은 많이 겪어본 문제일듯한데.
+쉬운 방법으로 해결하는 fetch join 방법을 소개한다.
+우선 기본적으로 많이 쓰이는 3가지를 소개한다.
+ @NamedEntityGraph 와 @EntityGraph 를 사용해 해결하기 Querydsl 을 사용해 해결하기 JPQL 을 사용해 해결하기  나는 여기 중에서 1번과 비슷하게 사용하는 방법을 소개한다.
+코드를 보자
+우선 Entity 클래스들부터 보자 Company와 Product가 있다.
+@Entity public class Company {   @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)  private Long id;   private String name;   @OneToMany(mappedBy = &amp;#34;company&amp;#34;, fetch = FetchType.</description>
+    </item>
+    
+    <item>
+      <title>TheCarbtoon 개발일지 - 1</title>
+      <link>https://www.springboot.kr/posts/devnote/thecarbtoon-1/</link>
+      <pubDate>Wed, 12 Jan 2022 19:55:23 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/devnote/thecarbtoon-1/</guid>
+      <description>나는 최근 카툰을 볼 수 있는 서비스를 만들고 있다.
+이름은 TheCarbToon.
+스프링 클라우드를 사용해 서비스들을 묶어 개발을 진행 중이다.
+|-------------------------------------------| | | | Auth(java)---\ | | | \ | | | \ | | User(java)-------------- Gateway(java) | | | / | | | | / | | | Media(kotlin)-/ | | | | | | | | | | | Discovery(java) ------------| | | | |-------------------------------------------| 현재 진행은 이러하고 서비스가 추가될 수도 있다고 생각한다.</description>
+    </item>
+    
+    <item>
+      <title>어설픈 지식은 위험하다.</title>
+      <link>https://www.springboot.kr/posts/blahblah/the-dig/</link>
+      <pubDate>Wed, 12 Jan 2022 15:58:44 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/blahblah/the-dig/</guid>
+      <description>영화 더디그를 봤다.
+보는데 이런 대사가 나왔다.
+Pretty(여주) - The servants tell me you’ve studied everything, from Latin to geology. Brown(남주) - Well, a little education is a dangerous thing. (사실 education 보다는 knowledge도 어울린다고 생각하는데 education 음.. 모르겠다)
+(바실 브라운 (Basil Brown) 고고학자)
+이 대사를 보면서 영화 내에서도 나이가 있는 사람이지만 끊임없이 공부를 한다는 점 그런 게 와 닺는 거 같다.
+남자 주인공이 공부에 대해 집착(?) 아닌 집착을 하는 이유는 지식과 현장 경험은 많지만 학력이 낮아</description>
+    </item>
+    
+    <item>
+      <title>required a single bean, but 3 were found 해결법</title>
+      <link>https://www.springboot.kr/posts/spring/required-a-single-bean-but-3-were-found/</link>
+      <pubDate>Tue, 11 Jan 2022 20:36:37 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/spring/required-a-single-bean-but-3-were-found/</guid>
+      <description>Field testService in com.example.TestController required a single bean, but 3 were found: - testServiceImpl1: defined in file [build/classes/java/main/com/example/TestServiceImpl1.class] - testServiceImpl2: defined in file [build/classes/java/main/com/example/TestServiceImpl2.class] - testServiceImpl3: defined in file [build/classes/java/main/com/example/TestServiceImpl3.class] Consider marking one of the beans as @Primary, updating the consumer to accept multiple beans, or using @Qualifier to identify the bean that should be consumed @Primary, @Qualifier 이런 문제에서 생기는 스프링 에러다.
+빈이 여러 개인 경우 생기는 문제인데
+밑이 보면 해결 방법으로 3가지를 제시해 준다.</description>
+    </item>
+    
+    <item>
+      <title>블로그 새롭게 만들기 성공</title>
+      <link>https://www.springboot.kr/posts/blahblah/renew-blog/</link>
+      <pubDate>Tue, 11 Jan 2022 13:48:08 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/blahblah/renew-blog/</guid>
+      <description>블로그 새롭게 만들기 성공</description>
+    </item>
+    
+    <item>
+      <title>블라블라</title>
+      <link>https://www.springboot.kr/posts/blahblah/2021-12-27-blahblah/</link>
+      <pubDate>Mon, 27 Dec 2021 17:33:16 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/blahblah/2021-12-27-blahblah/</guid>
+      <description>겨울이 끝나면 봄이 온다. 봄이 온다. 봄이 올까? 왜 봄일까? 봄은 짧은데 여름아니면 겨울하면안되나? 여름은 안되나? 겨울은?</description>
+    </item>
+    
+    <item>
+      <title>[오브젝트 OBJECTS] Chapter 5. 책임 할당하기</title>
+      <link>https://www.springboot.kr/posts/object/chapter5/</link>
+      <pubDate>Wed, 27 Oct 2021 18:53:16 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/object/chapter5/</guid>
+      <description>Chapter 5. 책임 할당하기 데이터 중심 설계로 인해 발생하는 문제점을 해결할 수 있는 가장 기본적인 방법은 데이터가 아닌 책임에 초점을 맞추는 것이다.
+책임에 초점을 맞춰서 설계할 때 직면하는 가장 큰 어려움은 어떤 객체에게 어떤 책임을 할당할지를 결정하기가 쉽지 않다는 것이다.
+책임 할당 과정은 일종의 트레이드오프 활동이다. 동일한 문제를 해결할 수 있는 다양한 책임 할당 방법이 존재하며 어떤 방법이 최선인지는 상황과 문맥에 따라 달라진다.
+따라서 올바른 책임을 할당하기 위해서는 다양한 관점에서 설계를 평가할 수 있어야 한다.</description>
+    </item>
+    
+    <item>
+      <title>[오브젝트 OBJECTS] Chapter 4. 설계 품질과 트레이드오프</title>
+      <link>https://www.springboot.kr/posts/object/chapter4/</link>
+      <pubDate>Tue, 26 Oct 2021 16:01:16 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/object/chapter4/</guid>
+      <description>Chapter 4. 설계 품질과 트레이드오프 객체지향 설계의 핵심은 역할,책임,협력이다.
+협력은 애플리케이션의 기능을 구현하기 위해 메시지를 주고받는 객체들 사이의 상호작용 이다. 책임은 객체가 다른 객체와 협력 하기 위해 수행하는 행동이고 역할은 대체 가능한 책임의 집합이다.
+책임 주도 설계라는 이름에 나오는 것처럼 저 셋중 가장 중요한 것은 책임이다.
+책임이 객체지향 애플리케이션 전체의 품질을 결정한다.
+객체지향 설계란 올바른 객체에게 올바른 책임을 할당하면서 낮은 결합도와 높은 응집도를 가진 구조를 창조하는 활동이다.
+객체지향 설계에 관한 두 가지 관점이 섞여 있다.</description>
+    </item>
+    
+    <item>
+      <title>[오브젝트 OBJECTS] Chapter 3. 역할, 책임, 협력</title>
+      <link>https://www.springboot.kr/posts/object/chapter3/</link>
+      <pubDate>Wed, 13 Oct 2021 16:39:16 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/object/chapter3/</guid>
+      <description>Chapter 3. 역할, 책임, 협력 객체지향 패러다임의 관점에서 핵심은 역할, 책임, 협력이다.
+애플리케이션의 기능을 구현하기 위해 수행하는 상호작용을 협력, 객체 자체가 협력에 참여하기 위해 수행하는 로직을 책임이라 한다.
+객체들이 협력 안에서 수행하는 책임들이 모여 객체가 수행하는 역할을 구성한다
+객체지향의 본질은 협력하는 객체들의 공동체를 창조하는 것이다.
+클래스와 상속은 객체들의 책임과 협력이 어느 정도 자리를 잡은 후에 사용할 수 있는 구현 메커니즘일 뿐이다.
+역할, 책임 협력이 제자리를 찾지 못한 상태라면 응집도 높은 클래스와 중복 없는 상속 계층을 구현한다고 하더라도 애플리케이션이 침몰하는 것을 구원하지는 못한다.</description>
+    </item>
+    
+    <item>
+      <title>[오브젝트 OBJECTS] Chapter 2. 객체지향 프로그래밍</title>
+      <link>https://www.springboot.kr/posts/object/chapter2/</link>
+      <pubDate>Tue, 12 Oct 2021 16:14:16 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/object/chapter2/</guid>
+      <description>Chapter 2. 객체지향 프로그래밍 제목처럼 챕터 2에서는 객체지향 프로그래밍에 대해 이야기한다
+협력, 객체, 클래스 객체지향이란 말 그대로 객체를 지향하는 것이다.
+그리고 객체지향에 익숙한 사람이라면 클래스에 대해 고민할 것이고 어떤 속성과 메서드가 들어갈 것인가를 고민할 것이다.
+하지만 이건 객체지향의 본질과는 거리가 멀다.
+위에 말한 것처럼 객체지향은 객체를 지향하는 것이다.
+진정한 객체지향 패러다임으로의 전환은 클래스가 아닌 개체에 초점을 맞춰야 얻을 수 있다.
+그러기 위해서는 우리는 두 가지에 집중해야 한다.
+  어떤 클래스가 필요한지 고민하기 전에 어떤 객체들이 필요한지 고민하기</description>
+    </item>
+    
+    <item>
+      <title>[오브젝트 OBJECTS] Chapter 1. 객체, 설계</title>
+      <link>https://www.springboot.kr/posts/object/chapter1/</link>
+      <pubDate>Thu, 07 Oct 2021 18:18:16 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/object/chapter1/</guid>
+      <description>Chapter 1. 객체, 설계 챕터의 초반에 소프트웨어 모듈에 대해 이야기한다.
+ 실행 중에 제대로 동작하는 것 변경을 위해 존재하는 것 코드를 읽는 사람과 의사소통하는 것  그리고 위에 있는 주제를 가지고 예제를 들어 이야기한다.
+변경에 취약한 코드 객체 사이의 의존성에 관련된 문제, 물론 의존성을 완전히 없애는 것이 아니라 의존성을 낮추며 협력하는 객체들의 공동체를 만드는 것이 좋다.
+이렇게 객체들 간의 의존성이 과한 경우 결합도가 높다고 한다.
+이 결합도가 높을 경우 코드 변경에 있어 어려움을 겪을 수가 있다.</description>
+    </item>
+    
+    <item>
+      <title>카카오 TV 챗봇 만들기</title>
+      <link>https://www.springboot.kr/posts/kakaotv/kakaotv-chat-bot/</link>
+      <pubDate>Mon, 04 Jan 2021 16:36:41 +0900</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/kakaotv/kakaotv-chat-bot/</guid>
+      <description>카카오TV 챗봇 만들기
+일 년도 더 넘게 글을 쓰지 않았다. 이제 가끔씩 다시 적어보려고 하는데 시작이 카카오티비 챗봇이다.
+이미 작년에 만들었는데 카카오TV가 죽어서 사용하질 않고 있다.
+시청자가 500명 정도되는 방에서 테스트까지 끝낸 챗봇인데
+테스트가 끝날 때 즈음 사람들이 대부분 트위치로 이동해 사용하질 않았다.
+궁금해하는 사람이 있을 수도 있으니 어떻게 만들었는지 개발기를 적어보도록 해야겠다.
+우선 카카오TV는 트위치 처럼 API를 제공하지 않는다.
+하지만 Web은 제공한다 ([?]팟플레이어라는 플레이어를 사용해 보는사람들이 많다. 웹은 트위치처럼 좋지 않고 기능이적어 사람들이 잘안쓴다.</description>
+    </item>
+    
+    <item>
+      <title>Golang Google Oauth Signin 인증 방법</title>
+      <link>https://www.springboot.kr/posts/google/golang-google-oauth-signin/</link>
+      <pubDate>Thu, 12 Dec 2019 00:37:20 +0900</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/google/golang-google-oauth-signin/</guid>
+      <description>2019년 1월에 Google+ API가 종료 됬습니다.
+그래서 찾아보는데&amp;hellip; 찾았습니다.
+물론 너무 짧은 시간동안 서치하고 사용한거라 원래 공유되있는 내용 일수도 있습니다.
+여기로 가면 쉽게 로그인을 사용할수 있는 방법이 있는데요.
+저는 또 사용하지 않았습니다.
+그래서 찾은 방법은 우선 Golang Google OAuth 사용 하기와 겹치는 내용이 있기 때문에 그부분은 스킵하고 바로 진행하겠습니다.
+그부분 이해하시고 참고하여 따라 하시면 됩니다.
+다만 저 포스트에 나와있는 내용중 code를 발급받을때 scope를 https://www.googleapis.com/auth/userinfo.email로 잡아 주시면 됩니다.
+&amp;lt;a href=&amp;#34; https://accounts.google.com/o/oauth2/v2/auth? scope=https://www.</description>
+    </item>
+    
+    <item>
+      <title>Java serialVersionUID에 대하여</title>
+      <link>https://www.springboot.kr/posts/java/about-serialversionuid/</link>
+      <pubDate>Tue, 10 Dec 2019 15:09:19 +0900</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/java/about-serialversionuid/</guid>
+      <description>serialVersionUID
+  serialVersionUID에 란 무엇인가?
+ 객체를 직렬화 하여 역직렬화를 할때 사용한다. 직렬화 외에도 보안등의 용도에 사용됬다. 객체에 대한 고유번호(?)으로 생각하면 된다. serialization가 사용되는 클래스의 경우에 명시적으로 선언해 주는것을 권유한다.    어떻게 사용하는가?
+ serialVersionUID를 사용하기 위해서는 static, final, long 타입이여야 한다. private을 추천함. example) private static final long serialVersionUID = 11L;     선언을 하지 않을 경우에는?
+ 선언을 하지 않은 경우에는 실행하는 시점에서 serialization을 담당하는 모듈을 통해 자동생성되어 디폴트값이 만들어진다.</description>
+    </item>
+    
+    <item>
+      <title>Golang Google OAuth 사용 하기</title>
+      <link>https://www.springboot.kr/posts/google/golang-google-oauth/</link>
+      <pubDate>Thu, 21 Nov 2019 17:21:14 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/google/golang-google-oauth/</guid>
+      <description>Golang에서 google photo를 사용하기 위해서 찾았던 내용을 정리 하려고 한다.
+이건 내 방법이고 다른 방법이 있을 수 있음.
+Google OAuth 2.0 for Web Server Applications
+우선 위에 있는 사이트를 참조해 정리 한다.
+위 사이트에서는 Go는 라이브러리가 지원 한다고 적혀 있다.
+하지만 쓰지 않았다. ㅋㅋ
+내가 사용한 방법은 resty라는 http 라이브러리를 사용했다.
+resty는 spring으로 보면 resttemplate 같은? 나는 같은 용도로 사용한다.
+resty설치를 위해 다과 같이 입력해 준다.
+go get -u github.com/go-resty/resty/v2 설치가 끝나면 라이브러리를 사용할수 있다.</description>
+    </item>
+    
+    <item>
+      <title>Kubernetes Minikube 설치</title>
+      <link>https://www.springboot.kr/posts/k8s/kubernetes-install/</link>
+      <pubDate>Mon, 18 Nov 2019 19:02:57 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/k8s/kubernetes-install/</guid>
+      <description>맥북에서 kubernetes 설치를 위해 상단바에 있는 도커를 클릭후
+Preferences&amp;hellip; 를 클릭후 kubernetes 버튼을 눌러
+Enable Kubernetes를 체크 후 apply를 눌러 쿠버네티스를 활성화 시킨다.
+활성화가 되는 도중에는 오른쪽 하단에 Kubernetes is starting 이란 문구가 나오고
+활성화가 끝나면 오른쪽 하단에 Kubernetes is running 으로 나온다.
+다음으로 kubectl을 설치해 주자 kubernetes cli 툴이다.
+curl -LO &amp;#34;https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl&amp;#34; chmod +x ./kubectl sudo mv ./kubectl /usr/local/bin/kubectl 설치가 끝나면 version 체크로 확인을 해준다.
+kubectl version Kubectl 설치가 끝나면 Minikube 설치를 해준다.</description>
+    </item>
+    
+    <item>
+      <title>생성자나 열거 탕비으로 싱클턴임을 보증하라</title>
+      <link>https://www.springboot.kr/posts/effective-java/effective-fava-3e-02-03/</link>
+      <pubDate>Fri, 21 Jun 2019 14:24:00 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/effective-java/effective-fava-3e-02-03/</guid>
+      <description>Effective Java 3/E 2장 생성자나 열거 탕비으로 싱클턴임을 보증하라 싱글턴은 인스턴스를 하나만 만들수 있는 패턴이다.
+하지만 클래스를 싱글턴으로 만들면 싱글턴 인스턴스를 Mock 구현으로 대체 할 수가 없다
+그렇게 되면 이를 사용하는 클라이언트를 테스트하기가 어려워지게 된다.
+아주 복잡한 직렬화 상황이나 리플렉션 공격에서도 제2의 인스턴스가 생기는 일을 완벽히 막아준다.
+대부분의 상황에서는 원소가 하나뿐인 열거 타입이 싱글턴을 만드는 가장 좋은 방법이다.
+하지만 만약에 싱글턴이 Enum 외의 클래스를 상속해야 한다면 이 방법은 사용할 수 없다.</description>
+    </item>
+    
+    <item>
+      <title>생성자에 매개변수가 많다면 빌더를 고려하라</title>
+      <link>https://www.springboot.kr/posts/effective-java/effective-fava-3e-02-02/</link>
+      <pubDate>Thu, 20 Jun 2019 14:23:57 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/effective-java/effective-fava-3e-02-02/</guid>
+      <description>Effective Java 3/E 2장 생성자에 매개변수가 많다면 빌더를 고려하라 정적 팩터리와 생성자에는 똑같은 제약이 하나 있다.
+선택적 매개변수가 많을때 대응이 어렵다.
+점층적 생성자 패턴도 쓸 수는 있지만 매개변수가 많아지면 클라이언트 코드를 작성하거나 읽기 어려워 진다.
+public class Hello {   private String str;  private String str2;  private String str3;   public Hello(String str) {  System.out.println(&amp;#34;Hello str&amp;#34; + str);  }   public Hello(String str, String str2) {  System.</description>
+    </item>
+    
+    <item>
+      <title>생성자 대신 정적 팩토리 메서드를 고려하라</title>
+      <link>https://www.springboot.kr/posts/effective-java/effective-fava-3e-02-01/</link>
+      <pubDate>Wed, 19 Jun 2019 14:23:52 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/effective-java/effective-fava-3e-02-01/</guid>
+      <description>Effective Java 3/E 2장 생성자 대신 정적 팩토리 메서드를 고려하라    인스턴스를 얻는전통적 수단은 Public 생성자이다.
+  클래스는 별도로 정적 팩터리 메서드를 제공 할 수 있다. (클래스의 인스턴스를 반환하는 단순한 정적 메서드)
+  정적 팩터리 메서드와 팩토리 패턴은 같지 않다.
+    정적 팩터리 메서드가 생성자보다 좋은점 5가지
+  이름을 가질 수 없다.
+ 어떤게 더 의미를 잘 설명할 수 있는 가? BigInteger(int, int, Random) BigInteger.</description>
+    </item>
+    
+    <item>
+      <title>JUnit4 assert method 예시</title>
+      <link>https://www.springboot.kr/posts/junit-01/</link>
+      <pubDate>Mon, 17 Jun 2019 14:23:07 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/junit-01/</guid>
+      <description>JUnit4 assert method 예시    assertXxx Method 사용 목적     assertArrayEquals(&amp;quot;message&amp;quot;, A, B) 배열 A와 B가 일치함을 확인한다.   assertEquals(&amp;quot;message&amp;quot;, A, B) 객체 A와 B가 일치함을 확인한다. B를 파라미터로 A의 equals() 메서드를 호출한다(A.equals(B)).   assertSame(&amp;quot;message&amp;quot;, A, B) 객체 A와 B가 같은 객체임을 확인한다. assertEquals 메서드는 두 객체의 값이 같은가를 검사하는데 반해(equals 메서드 사용), assertSame 메서드는 두객체가 동일한, 즉 하나의 객체인가를 검사한다(== 연산자 사용)   assertTrue(&amp;quot;message&amp;quot;, A) 조건 A가 참(true)임을 확인한다.</description>
+    </item>
+    
+    <item>
+      <title>golang go-pg 사용하기</title>
+      <link>https://www.springboot.kr/posts/golang-go-pg-1/</link>
+      <pubDate>Sat, 23 Mar 2019 14:22:38 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/golang-go-pg-1/</guid>
+      <description>golang에서 postgresql orm go-pg 사용하기 처음 글에서는 go-pg를 사용한 connection과 close에 대해 적어본다 예제 샘플을 따라하면 잘 될것이다.
+나는 postgresql을 사용하기 위함이 아니라 cockroach db를 go에서 사용하기 위해 go-pg를 선택했다.
+go-pg에 대한 링크를 걸어 둡니다.
+Github / Document
+위에 링크를 첨부해 두었다 우선 go-pg에 접속하기 위해서는 다음과 같은 세팅을 잡는다.
+ database.go  func Connect() *pg.DB {  db := pg.Connect(&amp;amp;pg.Options{  User: &amp;#34;user&amp;#34;,  Database: &amp;#34;database&amp;#34;,  Addr: &amp;#34;addr:port&amp;#34;  })  if db == nil {  log.</description>
+    </item>
+    
+    <item>
+      <title>자바 XML TO JSON 변환 하기</title>
+      <link>https://www.springboot.kr/posts/java-xml-to-json/</link>
+      <pubDate>Fri, 22 Mar 2019 14:21:02 +0800</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/java-xml-to-json/</guid>
+      <description>XML TO JSON (AND CUSTOM OBJECT) xml 데이터를 json으로 변환하기 위한 작업이 필요하다.
+그러기 위해서 spring framework에서 많이 사용하는 jackson(jackson-dataformat-xml)을 사용해 변환을 해보려 했다.
+하지만 jackson 라이브러리를 사용해 xml을 json으로 변환할 때 xml의 multiple child 값들이 다 사라지면서 단일 값이 남게 된다.
+그래서 찾아봤다.
+똑같은 현상을 가지고 있는 사람을 발견했다.
+스택오버플로우
+거기에 있는 답변을 참고해보자.
+  org.json 라이브러리를 추가시킨다.
+  org.json 라이브러리와 jackson 라이브러리를 섞어 사용한다.
+  예제 샘플이다</description>
+    </item>
+    
+    
+    
+    
+  </channel>
+</rss>
