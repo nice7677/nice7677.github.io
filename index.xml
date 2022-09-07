@@ -6,7 +6,22 @@
     <description>Recent content on SPRINGBOOT.KR</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>kr-ko</language>
-    <lastBuildDate>Sun, 04 Sep 2022 19:19:42 +0900</lastBuildDate><atom:link href="https://www.springboot.kr/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 05 Sep 2022 22:28:59 +0900</lastBuildDate><atom:link href="https://www.springboot.kr/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[DDD START SERIES] EP.1 도메인 모델 시작하기</title>
+      <link>https://www.springboot.kr/posts/java/start-ddd/chp1-start-ddd-model/</link>
+      <pubDate>Mon, 05 Sep 2022 22:28:59 +0900</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/java/start-ddd/chp1-start-ddd-model/</guid>
+      <description>DDD START SERIES는 도메인 주도 개발 시작하기 책을 참고 하여 작성된 요약 글 입니다.
+EP.1.1 도메인 이란? 예를 들어 개발자 입장에서 온라인 서점은 구현해야 할 소프트웨어의 대상이 될 수 있다.
+온라인 서점을 온라인으로 책을 판매하는 데 필요한 상품 조회, 구매, 결제, 배송 추적 등 기능이 필요하다.
+이때 온라인 서점은 소프트웨어로 해결하고자 하는 문제 영역, 즉 도메인에 해당한다.
+한 도메인은 다시 하위 도메인으로 나눌 수 있다.
+Example
+ ---- [정산] / / [주문] ------ [회원] \ | \ | ---- [회원] 무조건 고정된 하위 도메인이 존재하는 것은 아니고 필요에 따라 나뉠 수 있다.</description>
+    </item>
+    
     <item>
       <title>MDC Logback</title>
       <link>https://www.springboot.kr/posts/spring/webflux-and-mdc/</link>
