@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>MDC Logback | SPRINGBOOT.KR</title>
+<meta name="keywords" content="" />
+<meta name="description" content="MDC(Mapped Diagnostic Context) MDC는 로그를 더 잘 추적할 수 있도록 하는 정보를 로그 메세지에 찍을수있게 해주는 기능을 한다.
+Map으로 되있으며 ThreadLocal 사용으로 인해 Thread 단위로 생성된다.
+Slf4j MDC를 사용 기준으로 org.slf4j.MDC 클래스 안에 static으로 선언된 MDCAdapter 를 찾아 볼 수 있다.
+MDCAdapter는 인터페이스로 되있는데 Adapter를 implements 하는 클래스를 찾아 보면 LogbackMDCAdapter 가 보인다.
+여기에 보면
+public class LogbackMDCAdapter implements MDCAdapter {  ...  final ThreadLocal&lt;Map&lt;String, String&gt;&gt; copyOnThreadLocal = new ThreadLocal&lt;Map&lt;String, String&gt;&gt;();  .">
+<meta name="author" content="">
+<link rel="canonical" href="https://www.springboot.kr/posts/spring/webflux-and-mdc/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.f238f1b0ccea21e45d3c0112bdd442ca592e7287c4a346036dc9a8b461e5f0a0.css" integrity="sha256-8jjxsMzqIeRdPAESvdRCylkucofEo0YDbcmotGHl8KA=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.2840b7fccd34145847db71a290569594bdbdb00047097f75d6495d162f5d7dff.js" integrity="sha256-KEC3/M00FFhH23GikFaVlL29sABHCX911kldFi9dff8="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://www.springboot.kr/favicon_io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.springboot.kr/favicon_io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.springboot.kr/favicon_io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://www.springboot.kr/favicon_io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://www.springboot.kr/favicon_io/apple-touch-icon.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.97.3" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PM2KLTYJRP"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-PM2KLTYJRP', { 'anonymize_ip': false });
+}
+</script>
+<meta property="og:title" content="MDC Logback" />
+<meta property="og:description" content="MDC(Mapped Diagnostic Context) MDC는 로그를 더 잘 추적할 수 있도록 하는 정보를 로그 메세지에 찍을수있게 해주는 기능을 한다.
+Map으로 되있으며 ThreadLocal 사용으로 인해 Thread 단위로 생성된다.
+Slf4j MDC를 사용 기준으로 org.slf4j.MDC 클래스 안에 static으로 선언된 MDCAdapter 를 찾아 볼 수 있다.
+MDCAdapter는 인터페이스로 되있는데 Adapter를 implements 하는 클래스를 찾아 보면 LogbackMDCAdapter 가 보인다.
+여기에 보면
+public class LogbackMDCAdapter implements MDCAdapter {  ...  final ThreadLocal&lt;Map&lt;String, String&gt;&gt; copyOnThreadLocal = new ThreadLocal&lt;Map&lt;String, String&gt;&gt;();  ." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.springboot.kr/posts/spring/webflux-and-mdc/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-04T19:19:42&#43;09:00" />
+<meta property="article:modified_time" content="2022-09-04T19:19:42&#43;09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MDC Logback"/>
+<meta name="twitter:description" content="MDC(Mapped Diagnostic Context) MDC는 로그를 더 잘 추적할 수 있도록 하는 정보를 로그 메세지에 찍을수있게 해주는 기능을 한다.
+Map으로 되있으며 ThreadLocal 사용으로 인해 Thread 단위로 생성된다.
+Slf4j MDC를 사용 기준으로 org.slf4j.MDC 클래스 안에 static으로 선언된 MDCAdapter 를 찾아 볼 수 있다.
+MDCAdapter는 인터페이스로 되있는데 Adapter를 implements 하는 클래스를 찾아 보면 LogbackMDCAdapter 가 보인다.
+여기에 보면
+public class LogbackMDCAdapter implements MDCAdapter {  ...  final ThreadLocal&lt;Map&lt;String, String&gt;&gt; copyOnThreadLocal = new ThreadLocal&lt;Map&lt;String, String&gt;&gt;();  ."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://www.springboot.kr/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "MDC Logback",
+      "item": "https://www.springboot.kr/posts/spring/webflux-and-mdc/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "MDC Logback",
+  "name": "MDC Logback",
+  "description": "MDC(Mapped Diagnostic Context) MDC는 로그를 더 잘 추적할 수 있도록 하는 정보를 로그 메세지에 찍을수있게 해주는 기능을 한다.\nMap으로 되있으며 ThreadLocal 사용으로 인해 Thread 단위로 생성된다.\nSlf4j MDC를 사용 기준으로 org.slf4j.MDC 클래스 안에 static으로 선언된 MDCAdapter 를 찾아 볼 수 있다.\nMDCAdapter는 인터페이스로 되있는데 Adapter를 implements 하는 클래스를 찾아 보면 LogbackMDCAdapter 가 보인다.\n여기에 보면\npublic class LogbackMDCAdapter implements MDCAdapter {  ...  final ThreadLocal\u0026lt;Map\u0026lt;String, String\u0026gt;\u0026gt; copyOnThreadLocal = new ThreadLocal\u0026lt;Map\u0026lt;String, String\u0026gt;\u0026gt;();  .",
+  "keywords": [
+    
+  ],
+  "articleBody": "MDC(Mapped Diagnostic Context) MDC는 로그를 더 잘 추적할 수 있도록 하는 정보를 로그 메세지에 찍을수있게 해주는 기능을 한다.\nMap으로 되있으며 ThreadLocal 사용으로 인해 Thread 단위로 생성된다.\nSlf4j MDC를 사용 기준으로 org.slf4j.MDC 클래스 안에 static으로 선언된 MDCAdapter 를 찾아 볼 수 있다.\nMDCAdapter는 인터페이스로 되있는데 Adapter를 implements 하는 클래스를 찾아 보면 LogbackMDCAdapter 가 보인다.\n여기에 보면\npublic class LogbackMDCAdapter implements MDCAdapter {  ...  final ThreadLocalMapString, String copyOnThreadLocal = new ThreadLocalMapString, String();  ... } 이렇게 ThreadLocal로 선언된 걸 찾을 수 있다.\nLogback 설정하기 MDC를 사용하기 위해서는 Logback 설정이 필요하다.\n이 설정은 Spring WebFlux 기준 이다.\napplication.yml logging:  config: classpath:logback/logback.xml logback.xml logback.xml에서는 MDC에서 설정한 값을 사용하려고 한다.\n설정한 값을 사용하기 위해 [%X{uuid}]라는 값을 밑의 설정 파일에 명시해 둔 것을 확인할 수 있다.\n     name=\"LOG_DIR\" value=\"../\" /    name=\"CONSOLE\" class=\"ch.qos.logback.core.ConsoleAppender\"   class=\"ch.qos.logback.classic.PatternLayout\"    [%-5level] [%thread] [%X{uuid}] %d{yyyy-MM-dd HH:mm:ss.SSS} : %30logger{5} - %msg%n          name=\"SYSLOG\" class=\"ch.qos.logback.core.rolling.RollingFileAppender\"  ${LOG_DIR}/syslog/syslog.log   class=\"ch.qos.logback.classic.PatternLayout\"    [%-5level] [%thread] [%X{uuid}] %d{yyyy-MM-dd HH:mm:ss.SSS} : %30logger{5} - %msg%n       class=\"ch.qos.logback.core.rolling.TimeBasedRollingPolicy\"  ${LOG_DIR}/syslog/syslog.%d{yyyy-MM-dd}.%i.log   class=\"ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP\"  10MB          name=\"ACCESSLOG\" class=\"ch.qos.logback.core.rolling.RollingFileAppender\"  ${LOG_DIR}/accesslog/accesslog.log   class=\"ch.qos.logback.classic.PatternLayout\"    [%thread] [%X{uuid}] %msg%n       class=\"ch.qos.logback.core.rolling.TimeBasedRollingPolicy\"  ${LOG_DIR}/accesslog/accesslog.%d{yyyy-MM-dd}.%i.log   class=\"ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP\"  10MB          level=\"info\"   ref=\"CONSOLE\" /   ref=\"SYSLOG\" /     name=\"kr.springboot.mdc\" level=\"debug\" additivity=\"false\"   ref=\"CONSOLE\" /     name=\"access-log\" level=\"info\" additivity=\"false\"   ref=\"ACCESSLOG\" /      Spring WebFlux MDC 설정 하기 WebFilter 필터에서는 들어오는 요청의 쓰레드에 MDC를 설정할 수 있다.\npackage kr.springboot.mdc.filter;  import org.slf4j.MDC; import org.springframework.web.server.ServerWebExchange; import org.springframework.web.server.WebFilter; import org.springframework.web.server.WebFilterChain; import reactor.core.publisher.Mono; import reactor.util.context.Context;  import java.util.UUID;  public class MdcLoggingFilter implements WebFilter {   private static final String MDC_UUID = \"uuid\";   @Override  public MonoVoid filter(ServerWebExchange exchange, WebFilterChain chain) {  return chain.filter(exchange).contextWrite(context - {  final String uuid = UUID.randomUUID().toString();  MDC.put(MDC_UUID, uuid);  return Context.of(MDC_UUID, uuid);  });  }  } @Configuration 여기서 MDC에서 설정 한 값을들 초기화 하기 위해 copyToMdc Method에서 Clear를 하는 것을 볼 수 있다.\npackage kr.springboot.mdc.config;  import kr.springboot.mdc.filter.MdcLoggingFilter; import lombok.RequiredArgsConstructor; import org.reactivestreams.Subscription; import org.slf4j.MDC; import org.springframework.context.annotation.Bean; import org.springframework.context.annotation.Configuration; import reactor.core.CoreSubscriber; import reactor.core.publisher.Hooks; import reactor.core.publisher.Operators; import reactor.util.context.Context;  import javax.annotation.PostConstruct; import javax.annotation.PreDestroy; import java.util.Map; import java.util.stream.Collectors;  /** * @link https://www.novatec-gmbh.de/en/blog/how-can-the-mdc-context-be-used-in-the-reactive-spring-applications/ */ @Configuration public class MdcContextLifterConfiguration {   public static final String MDC_CONTEXT_REACTOR_KEY = MdcContextLifterConfiguration.class.getName();   @PostConstruct  @SuppressWarnings(\"unchecked\")  public void contextOperatorHook() {  Hooks.onEachOperator(MDC_CONTEXT_REACTOR_KEY, Operators.lift((scannable, subscriber) - new MdcContextLifter(subscriber)));  }   @Bean  public MdcLoggingFilter mdcLoggingFilter() {  return new MdcLoggingFilter();  }   @PreDestroy  public void cleanupHook() {  Hooks.resetOnEachOperator(MDC_CONTEXT_REACTOR_KEY);  }   /** * Helper that copies the state of Reactor [Context] to MDC on the #onNext function. */  @RequiredArgsConstructor  public static class MdcContextLifterT implements CoreSubscriberT {   private final CoreSubscriberT coreSubscriber;   @Override  public void onSubscribe(Subscription subscription) {  coreSubscriber.onSubscribe(subscription);  }   @Override  public void onNext(T t) {  copyToMdc(coreSubscriber.currentContext());  coreSubscriber.onNext(t);  }   @Override  public void onError(Throwable throwable) {  coreSubscriber.onError(throwable);  }   @Override  public void onComplete() {  coreSubscriber.onComplete();  }   @Override  public Context currentContext() {  return coreSubscriber.currentContext();  }   /** * Extension function for the Reactor [Context]. Copies the current context to the MDC, if context is empty clears the MDC. * State of the MDC after calling this method should be same as Reactor [Context] state. * One thread-local access only. */  void copyToMdc(Context context) {  if (context != null \u0026\u0026 !context.isEmpty()) {  MapString, String map = context.stream()  .collect(Collectors.toMap(e - e.getKey().toString(), e - e.getValue().toString()));  MDC.setContextMap(map);  } else {  MDC.clear();  }  }  } } 확인하기 모든 설정이 끝났다면 한번 확인해보자.\n예제는 http 요청을 하는 예제로 설정 전 로그는 다음과 같다.\n전 2022-09-04 19:57:30.184 INFO 80170 --- [ctor-http-nio-3] k.springboot.mdc.service.MdcTestService : MonoLiftFuseable 2022-09-04 19:57:30.597 DEBUG 80170 --- [ctor-http-nio-3] r.netty.http.client.HttpClientConnect : [ec54d609-1, L:/192.168.0.102:56393 - R:jsonplaceholder.typicode.com/104.21.4.48:443] Handler is being applied: {uri=https://jsonplaceholder.typicode.com/todos/1, method=GET} 2022-09-04 19:57:30.668 DEBUG 80170 --- [ctor-http-nio-3] r.n.http.client.HttpClientOperations : [ec54d609-1, L:/192.168.0.102:56393 - R:jsonplaceholder.typicode.com/104.21.4.48:443] Received response (auto-read:false) : [Date=Sun, 04 Sep 2022 10:57:32 GMT, Content-Type=application/json; charset=utf-8, Transfer-Encoding=chunked, Connection=keep-alive, X-Powered-By=Express, X-Ratelimit-Limit=1000, X-Ratelimit-Remaining=998, X-Ratelimit-Reset=1661768056, Vary=Origin, Accept-Encoding, Access-Control-Allow-Credentials=true, Cache-Control=max-age=43200, Pragma=no-cache, Expires=-1, X-Content-Type-Options=nosniff, Etag=W/\"53-hfEnumeNh6YirfjyjaujcOPPT+s\", Via=1.1 vegur, CF-Cache-Status=HIT, Age=212, Report-To={\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=VHZ%2FwY%2BQiIfRRLg5C3uCqwdSSrFXtNQxmXjyt5H%2BXaHYGdJvYCILHF93IOQ3WZ47SO1oQ3Jprb9%2B5wkSD2qRBiX9%2BugQ8LmGFBFtFph%2BVsnPM1XYeH%2Bn04NhHvGLh8z5LDoazC1MrjROk1h5suPb\"}],\"group\":\"cf-nel\",\"max_age\":604800}, NEL={\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}, Server=cloudflare, CF-RAY=74563473a915b46a-HKG, alt-svc=h3=\":443\"; ma=86400, h3-29=\":443\"; ma=86400] 2022-09-04 19:57:30.691 DEBUG 80170 --- [ctor-http-nio-3] r.n.http.client.HttpClientOperations : [ec54d609-1, L:/192.168.0.102:56393 - R:jsonplaceholder.typicode.com/104.21.4.48:443] Received last HTTP packet 후 [INFO ] [reactor-http-nio-3] [4e3955e6-5206-4def-ab71-92e71e36d490] 2022-09-04 19:59:39.895 : k.s.m.s.MdcTestService - MonoLiftFuseable [DEBUG] [reactor-http-nio-3] [4e3955e6-5206-4def-ab71-92e71e36d490] 2022-09-04 19:59:40.771 : r.n.h.c.HttpClientConnect - [ef905c50-1, L:/192.168.0.102:56408 - R:jsonplaceholder.typicode.com/104.21.4.48:443] Handler is being applied: {uri=https://jsonplaceholder.typicode.com/todos/1, method=GET} [DEBUG] [reactor-http-nio-3] [4e3955e6-5206-4def-ab71-92e71e36d490] 2022-09-04 19:59:40.866 : r.n.h.c.HttpClientOperations - [ef905c50-1, L:/192.168.0.102:56408 - R:jsonplaceholder.typicode.com/104.21.4.48:443] Received response (auto-read:false) : [Date=Sun, 04 Sep 2022 10:59:42 GMT, Content-Type=application/json; charset=utf-8, Transfer-Encoding=chunked, Connection=keep-alive, X-Powered-By=Express, X-Ratelimit-Limit=1000, X-Ratelimit-Remaining=998, X-Ratelimit-Reset=1661768056, Vary=Origin, Accept-Encoding, Access-Control-Allow-Credentials=true, Cache-Control=max-age=43200, Pragma=no-cache, Expires=-1, X-Content-Type-Options=nosniff, Etag=W/\"53-hfEnumeNh6YirfjyjaujcOPPT+s\", Via=1.1 vegur, CF-Cache-Status=HIT, Age=342, Report-To={\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=sUgBVCk8BU2qNiYJR7r7Dnf%2FlH87NAt8NWnHDj2KgiVFL%2Fc6OMFFGUhJnEy5vBize%2F%2BMLuwJIkGpKmHrRz%2Bs%2FE%2B22b6wilr6XFjQyTiFNdzWHQSVVgQYG1asn0oXHOlsqdHwTzQBzX7%2BT6vp9rUF\"}],\"group\":\"cf-nel\",\"max_age\":604800}, NEL={\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}, Server=cloudflare, CF-RAY=745637a159013d76-HKG, alt-svc=h3=\":443\"; ma=86400, h3-29=\":443\"; ma=86400] [DEBUG] [reactor-http-nio-3] [4e3955e6-5206-4def-ab71-92e71e36d490] 2022-09-04 19:59:40.913 : r.n.h.c.HttpClientOperations - [ef905c50-1, L:/192.168.0.102:56408 - R:jsonplaceholder.typicode.com/104.21.4.48:443] Received last HTTP packet 설정한 대로 쓰레드 옆에 UUID의 값이 찍히는 것을 확인할 수 있다.\nUUID를 따라가면 로그를 확인하기 쉬워진다.\nREFERENCE https://www.novatec-gmbh.de/en/blog/how-can-the-mdc-context-be-used-in-the-reactive-spring-applications/\n",
+  "wordCount" : "747",
+  "inLanguage": "en",
+  "datePublished": "2022-09-04T19:19:42+09:00",
+  "dateModified": "2022-09-04T19:19:42+09:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.springboot.kr/posts/spring/webflux-and-mdc/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SPRINGBOOT.KR",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.springboot.kr/favicon_io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<script>
+    window.intergramId = "629395064";
+    window.intergramCustomizations = {
+        
+        titleOpen: 'SPRINGBOOT.KR',
+        cookieExpiration: 2,
+        introMessage: '안녕하세요. 궁금한 건 채팅을 남겨주세요. 바로 대답할 수 있도록 노력 중입니다.',
+        autoResponse: '잠시만 기다려 주세요...',
+        autoNoResponse: '지금은 바쁜 것 같네요.. 다음에 연락 주세요..',
+        mainColor: "#262934", 
+        alwaysUseFloatingButton: true 
+    };
+</script>
+<script id="intergram" type="text/javascript" src="/js/intergram.js"></script>
+<header class="header">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://www.springboot.kr/" accesskey="h" title="SPRINGBOOT.KR (Alt + H)">SPRINGBOOT.KR</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://www.springboot.kr/posts" title="posts">
+                    <span>posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.springboot.kr/search" title="search (Alt &#43; /)" accesskey=/>
+                    <span>search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.springboot.kr/archives" title="archives">
+                    <span>archives</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+    <main class="main page">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://www.springboot.kr/">Home</a>&nbsp;»&nbsp;<a href="https://www.springboot.kr/posts/">Posts</a></div>
+    <h1 class="post-title">
+      MDC Logback
+    </h1>
+    <div class="post-meta"><span title='2022-09-04 19:19:42 +0900 KST'>September 4, 2022</span>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                <span class="details">목차</span>
+            </summary>
+
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#mdcmapped-diagnostic-context" aria-label="MDC(Mapped Diagnostic Context)">MDC(Mapped Diagnostic Context)</a></li>
+                    <li>
+                        <a href="#logback-%ec%84%a4%ec%a0%95%ed%95%98%ea%b8%b0" aria-label="Logback 설정하기">Logback 설정하기</a><ul>
+                            
+                    <li>
+                        <a href="#applicationyml" aria-label="application.yml"><code>application.yml</code></a></li>
+                    <li>
+                        <a href="#logbackxml" aria-label="logback.xml"><code>logback.xml</code></a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#spring-webflux-mdc-%ec%84%a4%ec%a0%95-%ed%95%98%ea%b8%b0" aria-label="Spring WebFlux MDC 설정 하기">Spring WebFlux MDC 설정 하기</a><ul>
+                            
+                    <li>
+                        <a href="#webfilter" aria-label="WebFilter"><code>WebFilter</code></a></li>
+                    <li>
+                        <a href="#configuration" aria-label="@Configuration"><code>@Configuration</code></a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#%ed%99%95%ec%9d%b8%ed%95%98%ea%b8%b0" aria-label="확인하기">확인하기</a><ul>
+                            
+                    <li>
+                        <a href="#%ec%a0%84" aria-label="전">전</a></li>
+                    <li>
+                        <a href="#%ed%9b%84" aria-label="후">후</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#reference" aria-label="REFERENCE">REFERENCE</a>
+                    </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        
+        activeElement = elements[0];
+        document.querySelector(`.inner ul li a[href="#${activeElement.getAttribute('id')}"]`).classList.add('active');
+    }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+            if (element === activeElement ){
+                document.querySelector(`.inner ul li a[href="#${element.getAttribute('id')}"]`).classList.add('active');
+            } else {
+                document.querySelector(`.inner ul li a[href="#${element.getAttribute('id')}"]`).classList.remove('active');
+            }
+        })
+    }, false);
+
+    
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+</script>
+  <div class="post-content"><h3 id="mdcmapped-diagnostic-context">MDC(Mapped Diagnostic Context)<a hidden class="anchor" aria-hidden="true" href="#mdcmapped-diagnostic-context">#</a></h3>
+<p>MDC는 로그를 더 잘 추적할 수 있도록 하는 정보를 로그 메세지에 찍을수있게 해주는 기능을 한다.</p>
+<p>Map으로 되있으며 ThreadLocal 사용으로 인해 Thread 단위로 생성된다.</p>
+<p>Slf4j MDC를 사용 기준으로 <code>org.slf4j.MDC</code> 클래스 안에 static으로 선언된 <code>MDCAdapter</code> 를 찾아 볼 수 있다.</p>
+<p>MDCAdapter는 인터페이스로 되있는데 Adapter를 implements 하는 클래스를 찾아 보면 <code>LogbackMDCAdapter</code> 가 보인다.</p>
+<p>여기에 보면</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LogbackMDCAdapter</span> <span style="color:#66d9ef">implements</span> MDCAdapter <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> ThreadLocal<span style="color:#f92672">&lt;</span>Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> String<span style="color:#f92672">&gt;&gt;</span> copyOnThreadLocal <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ThreadLocal<span style="color:#f92672">&lt;</span>Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> String<span style="color:#f92672">&gt;&gt;();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>이렇게 ThreadLocal로 선언된 걸 찾을 수 있다.</p>
+<h3 id="logback-설정하기">Logback 설정하기<a hidden class="anchor" aria-hidden="true" href="#logback-설정하기">#</a></h3>
+<p>MDC를 사용하기 위해서는 Logback 설정이 필요하다.</p>
+<p>이 설정은 Spring WebFlux 기준 이다.</p>
+<h4 id="applicationyml"><code>application.yml</code><a hidden class="anchor" aria-hidden="true" href="#applicationyml">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">logging</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">config</span>: <span style="color:#ae81ff">classpath:logback/logback.xml</span>
+</span></span></code></pre></div><h4 id="logbackxml"><code>logback.xml</code><a hidden class="anchor" aria-hidden="true" href="#logbackxml">#</a></h4>
+<p>logback.xml에서는 MDC에서 설정한 값을 사용하려고 한다.</p>
+<p>설정한 값을 사용하기 위해 <code>[%X{uuid}]</code>라는 값을 밑의 설정 파일에 명시해 둔 것을 확인할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;configuration&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;LOG_DIR&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;../&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;appender</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;CONSOLE&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;ch.qos.logback.core.ConsoleAppender&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;layout</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;ch.qos.logback.classic.PatternLayout&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;Pattern&gt;</span>
+</span></span><span style="display:flex;"><span>                [%-5level] [%thread] [%X{uuid}] %d{yyyy-MM-dd HH:mm:ss.SSS} : %30logger{5} - %msg%n
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;/Pattern&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/layout&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/appender&gt;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;appender</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;SYSLOG&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;ch.qos.logback.core.rolling.RollingFileAppender&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;file&gt;</span>${LOG_DIR}/syslog/syslog.log<span style="color:#f92672">&lt;/file&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;layout</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;ch.qos.logback.classic.PatternLayout&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;Pattern&gt;</span>
+</span></span><span style="display:flex;"><span>                [%-5level] [%thread] [%X{uuid}] %d{yyyy-MM-dd HH:mm:ss.SSS} : %30logger{5} - %msg%n
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;/Pattern&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/layout&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;rollingPolicy</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;fileNamePattern&gt;</span>${LOG_DIR}/syslog/syslog.%d{yyyy-MM-dd}.%i.log<span style="color:#f92672">&lt;/fileNamePattern&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;timeBasedFileNamingAndTriggeringPolicy</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&lt;maxFileSize&gt;</span>10MB<span style="color:#f92672">&lt;/maxFileSize&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;/timeBasedFileNamingAndTriggeringPolicy&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/rollingPolicy&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/appender&gt;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;appender</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;ACCESSLOG&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;ch.qos.logback.core.rolling.RollingFileAppender&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;file&gt;</span>${LOG_DIR}/accesslog/accesslog.log<span style="color:#f92672">&lt;/file&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;layout</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;ch.qos.logback.classic.PatternLayout&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;Pattern&gt;</span>
+</span></span><span style="display:flex;"><span>                [%thread] [%X{uuid}] %msg%n
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;/Pattern&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/layout&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;rollingPolicy</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;fileNamePattern&gt;</span>${LOG_DIR}/accesslog/accesslog.%d{yyyy-MM-dd}.%i.log<span style="color:#f92672">&lt;/fileNamePattern&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;timeBasedFileNamingAndTriggeringPolicy</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&lt;maxFileSize&gt;</span>10MB<span style="color:#f92672">&lt;/maxFileSize&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;/timeBasedFileNamingAndTriggeringPolicy&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/rollingPolicy&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/appender&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;root</span> <span style="color:#a6e22e">level=</span><span style="color:#e6db74">&#34;info&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;appender-ref</span> <span style="color:#a6e22e">ref=</span><span style="color:#e6db74">&#34;CONSOLE&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;appender-ref</span> <span style="color:#a6e22e">ref=</span><span style="color:#e6db74">&#34;SYSLOG&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/root&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;logger</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;kr.springboot.mdc&#34;</span> <span style="color:#a6e22e">level=</span><span style="color:#e6db74">&#34;debug&#34;</span> <span style="color:#a6e22e">additivity=</span><span style="color:#e6db74">&#34;false&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;appender-ref</span> <span style="color:#a6e22e">ref=</span><span style="color:#e6db74">&#34;CONSOLE&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/logger&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;logger</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;access-log&#34;</span> <span style="color:#a6e22e">level=</span><span style="color:#e6db74">&#34;info&#34;</span> <span style="color:#a6e22e">additivity=</span><span style="color:#e6db74">&#34;false&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;appender-ref</span> <span style="color:#a6e22e">ref=</span><span style="color:#e6db74">&#34;ACCESSLOG&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/logger&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/configuration&gt;</span>
+</span></span></code></pre></div><h3 id="spring-webflux-mdc-설정-하기">Spring WebFlux MDC 설정 하기<a hidden class="anchor" aria-hidden="true" href="#spring-webflux-mdc-설정-하기">#</a></h3>
+<h4 id="webfilter"><code>WebFilter</code><a hidden class="anchor" aria-hidden="true" href="#webfilter">#</a></h4>
+<p>필터에서는 들어오는 요청의 쓰레드에 MDC를 설정할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> kr.springboot.mdc.filter<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.slf4j.MDC<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.web.server.ServerWebExchange<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.web.server.WebFilter<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.web.server.WebFilterChain<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> reactor.core.publisher.Mono<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> reactor.util.context.Context<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.UUID<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MdcLoggingFilter</span> <span style="color:#66d9ef">implements</span> WebFilter <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> String MDC_UUID <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;uuid&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Mono<span style="color:#f92672">&lt;</span>Void<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>ServerWebExchange exchange<span style="color:#f92672">,</span> WebFilterChain chain<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> chain<span style="color:#f92672">.</span><span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>exchange<span style="color:#f92672">).</span><span style="color:#a6e22e">contextWrite</span><span style="color:#f92672">(</span>context <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">final</span> String uuid <span style="color:#f92672">=</span> UUID<span style="color:#f92672">.</span><span style="color:#a6e22e">randomUUID</span><span style="color:#f92672">().</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            MDC<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>MDC_UUID<span style="color:#f92672">,</span> uuid<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> Context<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span>MDC_UUID<span style="color:#f92672">,</span> uuid<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">});</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h4 id="configuration"><code>@Configuration</code><a hidden class="anchor" aria-hidden="true" href="#configuration">#</a></h4>
+<p>여기서 MDC에서 설정 한 값을들 초기화 하기 위해 copyToMdc Method에서 Clear를 하는 것을 볼 수 있다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> kr.springboot.mdc.config<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> kr.springboot.mdc.filter.MdcLoggingFilter<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> lombok.RequiredArgsConstructor<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.reactivestreams.Subscription<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.slf4j.MDC<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.context.annotation.Bean<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.context.annotation.Configuration<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> reactor.core.CoreSubscriber<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> reactor.core.publisher.Hooks<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> reactor.core.publisher.Operators<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> reactor.util.context.Context<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.annotation.PostConstruct<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.annotation.PreDestroy<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Map<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.stream.Collectors<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @link https://www.novatec-gmbh.de/en/blog/how-can-the-mdc-context-be-used-in-the-reactive-spring-applications/
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MdcContextLifterConfiguration</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> String MDC_CONTEXT_REACTOR_KEY <span style="color:#f92672">=</span> MdcContextLifterConfiguration<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@PostConstruct</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@SuppressWarnings</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;unchecked&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">contextOperatorHook</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Hooks<span style="color:#f92672">.</span><span style="color:#a6e22e">onEachOperator</span><span style="color:#f92672">(</span>MDC_CONTEXT_REACTOR_KEY<span style="color:#f92672">,</span> Operators<span style="color:#f92672">.</span><span style="color:#a6e22e">lift</span><span style="color:#f92672">((</span>scannable<span style="color:#f92672">,</span> subscriber<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">new</span> MdcContextLifter<span style="color:#f92672">(</span>subscriber<span style="color:#f92672">)));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Bean</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> MdcLoggingFilter <span style="color:#a6e22e">mdcLoggingFilter</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> MdcLoggingFilter<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@PreDestroy</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">cleanupHook</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Hooks<span style="color:#f92672">.</span><span style="color:#a6e22e">resetOnEachOperator</span><span style="color:#f92672">(</span>MDC_CONTEXT_REACTOR_KEY<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * Helper that copies the state of Reactor [Context] to MDC on the #onNext function.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@RequiredArgsConstructor</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MdcContextLifter</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">implements</span> CoreSubscriber<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> CoreSubscriber<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> coreSubscriber<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onSubscribe</span><span style="color:#f92672">(</span>Subscription subscription<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            coreSubscriber<span style="color:#f92672">.</span><span style="color:#a6e22e">onSubscribe</span><span style="color:#f92672">(</span>subscription<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onNext</span><span style="color:#f92672">(</span>T t<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            copyToMdc<span style="color:#f92672">(</span>coreSubscriber<span style="color:#f92672">.</span><span style="color:#a6e22e">currentContext</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>            coreSubscriber<span style="color:#f92672">.</span><span style="color:#a6e22e">onNext</span><span style="color:#f92672">(</span>t<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onError</span><span style="color:#f92672">(</span>Throwable throwable<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            coreSubscriber<span style="color:#f92672">.</span><span style="color:#a6e22e">onError</span><span style="color:#f92672">(</span>throwable<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onComplete</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            coreSubscriber<span style="color:#f92672">.</span><span style="color:#a6e22e">onComplete</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> Context <span style="color:#a6e22e">currentContext</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> coreSubscriber<span style="color:#f92672">.</span><span style="color:#a6e22e">currentContext</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * Extension function for the Reactor [Context]. Copies the current context to the MDC, if context is empty clears the MDC.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * State of the MDC after calling this method should be same as Reactor [Context] state.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * One thread-local access only.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">copyToMdc</span><span style="color:#f92672">(</span>Context context<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>context <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>context<span style="color:#f92672">.</span><span style="color:#a6e22e">isEmpty</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> String<span style="color:#f92672">&gt;</span> map <span style="color:#f92672">=</span> context<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#f92672">.</span><span style="color:#a6e22e">collect</span><span style="color:#f92672">(</span>Collectors<span style="color:#f92672">.</span><span style="color:#a6e22e">toMap</span><span style="color:#f92672">(</span>e <span style="color:#f92672">-&gt;</span> e<span style="color:#f92672">.</span><span style="color:#a6e22e">getKey</span><span style="color:#f92672">().</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(),</span> e <span style="color:#f92672">-&gt;</span> e<span style="color:#f92672">.</span><span style="color:#a6e22e">getValue</span><span style="color:#f92672">().</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">()));</span>
+</span></span><span style="display:flex;"><span>                MDC<span style="color:#f92672">.</span><span style="color:#a6e22e">setContextMap</span><span style="color:#f92672">(</span>map<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                MDC<span style="color:#f92672">.</span><span style="color:#a6e22e">clear</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="확인하기">확인하기<a hidden class="anchor" aria-hidden="true" href="#확인하기">#</a></h3>
+<p>모든 설정이 끝났다면 한번 확인해보자.</p>
+<p>예제는 http 요청을 하는 예제로 설정 전 로그는 다음과 같다.</p>
+<h4 id="전">전<a hidden class="anchor" aria-hidden="true" href="#전">#</a></h4>
+<pre tabindex="0"><code>2022-09-04 19:57:30.184  INFO 80170 --- [ctor-http-nio-3] k.springboot.mdc.service.MdcTestService  : MonoLiftFuseable
+2022-09-04 19:57:30.597 DEBUG 80170 --- [ctor-http-nio-3] r.netty.http.client.HttpClientConnect    : [ec54d609-1, L:/192.168.0.102:56393 - R:jsonplaceholder.typicode.com/104.21.4.48:443] Handler is being applied: {uri=https://jsonplaceholder.typicode.com/todos/1, method=GET}
+2022-09-04 19:57:30.668 DEBUG 80170 --- [ctor-http-nio-3] r.n.http.client.HttpClientOperations     : [ec54d609-1, L:/192.168.0.102:56393 - R:jsonplaceholder.typicode.com/104.21.4.48:443] Received response (auto-read:false) : [Date=Sun, 04 Sep 2022 10:57:32 GMT, Content-Type=application/json; charset=utf-8, Transfer-Encoding=chunked, Connection=keep-alive, X-Powered-By=Express, X-Ratelimit-Limit=1000, X-Ratelimit-Remaining=998, X-Ratelimit-Reset=1661768056, Vary=Origin, Accept-Encoding, Access-Control-Allow-Credentials=true, Cache-Control=max-age=43200, Pragma=no-cache, Expires=-1, X-Content-Type-Options=nosniff, Etag=W/&#34;53-hfEnumeNh6YirfjyjaujcOPPT+s&#34;, Via=1.1 vegur, CF-Cache-Status=HIT, Age=212, Report-To={&#34;endpoints&#34;:[{&#34;url&#34;:&#34;https:\/\/a.nel.cloudflare.com\/report\/v3?s=VHZ%2FwY%2BQiIfRRLg5C3uCqwdSSrFXtNQxmXjyt5H%2BXaHYGdJvYCILHF93IOQ3WZ47SO1oQ3Jprb9%2B5wkSD2qRBiX9%2BugQ8LmGFBFtFph%2BVsnPM1XYeH%2Bn04NhHvGLh8z5LDoazC1MrjROk1h5suPb&#34;}],&#34;group&#34;:&#34;cf-nel&#34;,&#34;max_age&#34;:604800}, NEL={&#34;success_fraction&#34;:0,&#34;report_to&#34;:&#34;cf-nel&#34;,&#34;max_age&#34;:604800}, Server=cloudflare, CF-RAY=74563473a915b46a-HKG, alt-svc=h3=&#34;:443&#34;; ma=86400, h3-29=&#34;:443&#34;; ma=86400]
+2022-09-04 19:57:30.691 DEBUG 80170 --- [ctor-http-nio-3] r.n.http.client.HttpClientOperations     : [ec54d609-1, L:/192.168.0.102:56393 - R:jsonplaceholder.typicode.com/104.21.4.48:443] Received last HTTP packet
+</code></pre><h4 id="후">후<a hidden class="anchor" aria-hidden="true" href="#후">#</a></h4>
+<pre tabindex="0"><code>[INFO ] [reactor-http-nio-3] [4e3955e6-5206-4def-ab71-92e71e36d490] 2022-09-04 19:59:39.895 :         k.s.m.s.MdcTestService - MonoLiftFuseable
+[DEBUG] [reactor-http-nio-3] [4e3955e6-5206-4def-ab71-92e71e36d490] 2022-09-04 19:59:40.771 :      r.n.h.c.HttpClientConnect - [ef905c50-1, L:/192.168.0.102:56408 - R:jsonplaceholder.typicode.com/104.21.4.48:443] Handler is being applied: {uri=https://jsonplaceholder.typicode.com/todos/1, method=GET}
+[DEBUG] [reactor-http-nio-3] [4e3955e6-5206-4def-ab71-92e71e36d490] 2022-09-04 19:59:40.866 :   r.n.h.c.HttpClientOperations - [ef905c50-1, L:/192.168.0.102:56408 - R:jsonplaceholder.typicode.com/104.21.4.48:443] Received response (auto-read:false) : [Date=Sun, 04 Sep 2022 10:59:42 GMT, Content-Type=application/json; charset=utf-8, Transfer-Encoding=chunked, Connection=keep-alive, X-Powered-By=Express, X-Ratelimit-Limit=1000, X-Ratelimit-Remaining=998, X-Ratelimit-Reset=1661768056, Vary=Origin, Accept-Encoding, Access-Control-Allow-Credentials=true, Cache-Control=max-age=43200, Pragma=no-cache, Expires=-1, X-Content-Type-Options=nosniff, Etag=W/&#34;53-hfEnumeNh6YirfjyjaujcOPPT+s&#34;, Via=1.1 vegur, CF-Cache-Status=HIT, Age=342, Report-To={&#34;endpoints&#34;:[{&#34;url&#34;:&#34;https:\/\/a.nel.cloudflare.com\/report\/v3?s=sUgBVCk8BU2qNiYJR7r7Dnf%2FlH87NAt8NWnHDj2KgiVFL%2Fc6OMFFGUhJnEy5vBize%2F%2BMLuwJIkGpKmHrRz%2Bs%2FE%2B22b6wilr6XFjQyTiFNdzWHQSVVgQYG1asn0oXHOlsqdHwTzQBzX7%2BT6vp9rUF&#34;}],&#34;group&#34;:&#34;cf-nel&#34;,&#34;max_age&#34;:604800}, NEL={&#34;success_fraction&#34;:0,&#34;report_to&#34;:&#34;cf-nel&#34;,&#34;max_age&#34;:604800}, Server=cloudflare, CF-RAY=745637a159013d76-HKG, alt-svc=h3=&#34;:443&#34;; ma=86400, h3-29=&#34;:443&#34;; ma=86400]
+[DEBUG] [reactor-http-nio-3] [4e3955e6-5206-4def-ab71-92e71e36d490] 2022-09-04 19:59:40.913 :   r.n.h.c.HttpClientOperations - [ef905c50-1, L:/192.168.0.102:56408 - R:jsonplaceholder.typicode.com/104.21.4.48:443] Received last HTTP packet
+</code></pre><p>설정한 대로 쓰레드 옆에 UUID의 값이 찍히는 것을 확인할 수 있다.</p>
+<p>UUID를 따라가면 로그를 확인하기 쉬워진다.</p>
+<h3 id="reference">REFERENCE<a hidden class="anchor" aria-hidden="true" href="#reference">#</a></h3>
+<p><a href="https://www.novatec-gmbh.de/en/blog/how-can-the-mdc-context-be-used-in-the-reactive-spring-applications/">https://www.novatec-gmbh.de/en/blog/how-can-the-mdc-context-be-used-in-the-reactive-spring-applications/</a></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+<nav class="paginav">
+  <a class="prev" href="https://www.springboot.kr/posts/java/start-ddd/chp1-start-ddd-model/">
+    <span class="title">« Prev Page</span>
+    <br>
+    <span>[DDD START SERIES] EP.1 도메인 모델 시작하기</span>
+  </a>
+  <a class="next" href="https://www.springboot.kr/posts/blahblah/2022-06-09/">
+    <span class="title">Next Page »</span>
+    <br>
+    <span>이명에 걸렸다.</span>
+  </a>
+</nav>
+
+  </footer><script src="https://utteranc.es/client.js"
+        repo="nice7677/nice7677.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://www.springboot.kr/">SPRINGBOOT.KR</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
