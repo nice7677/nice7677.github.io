@@ -6,7 +6,22 @@
     <description>Recent content on SPRINGBOOT.KR</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>kr-ko</language>
-    <lastBuildDate>Mon, 05 Sep 2022 22:28:59 +0900</lastBuildDate><atom:link href="https://www.springboot.kr/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 08 Sep 2022 22:02:39 +0900</lastBuildDate><atom:link href="https://www.springboot.kr/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[DDD START SERIES] EP.2 아키텍처 개요</title>
+      <link>https://www.springboot.kr/posts/java/start-ddd/ep2-start-ddd-model/</link>
+      <pubDate>Thu, 08 Sep 2022 22:02:39 +0900</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/java/start-ddd/ep2-start-ddd-model/</guid>
+      <description>DDD START SERIES는 도메인 주도 개발 시작하기 책을 참고 하여 작성된 요약 글 입니다.
+EP 2.1 네 개의 영역 아키텍처를 설계할 떄 출현하는 전형적인 네 가지의 영역
+ 표현 응용 도메인 인프라스트럭처  이미지 참조 Layered Architecture
+흐름도 표현 -&amp;gt; 응용 -&amp;gt; 도메인 -&amp;gt; 인프라스트럭처
+표현, 응용, 도메인 영역은 구현 기술을 사용한 코드를 직접 만들지 않는다.
+대신 인프라스트럭처 영역에서 제공한는 기능을 사용해서 필요한 기능을 개발한다.
+EP 2.2 계층 구조 아키텍처 게층 구조는 그 특성상 상위 계층에서 하위 계층으로의 의존만 존재하고 하위 계층은 상위 계층에 의존하지 않는다.</description>
+    </item>
+    
     <item>
       <title>[DDD START SERIES] EP.1 도메인 모델 시작하기</title>
       <link>https://www.springboot.kr/posts/java/start-ddd/chp1-start-ddd-model/</link>

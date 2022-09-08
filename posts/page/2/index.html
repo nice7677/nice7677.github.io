@@ -175,6 +175,21 @@ if (!doNotTrack) {
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>블러킹. 넌블러킹.
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>블러킹(Blocking) 블러킹은 다른 메서드를 호출할 때 제어권도 다 넘겨주고 작업이 끝난 후에 돌려 받는 것을 말한다.
+예제는 2개의 클래스로 진행되며 Data, Main으로 진행 된다.
+블러킹 예제 DataSync Class
+public class DataSync {  private int id;  private long simulationDuration;   public DataSync(int id, long simulationDuration) {  this.id = id;  this.simulationDuration = simulationDuration;  }   public String get() {  try {  Thread.sleep(this.simulationDuration);  } catch (InterruptedException e) {  e....</p>
+  </section>
+  <footer class="entry-footer"><span title='2022-04-28 22:27:01 +0900 KST'>April 28, 2022</span></footer>
+  <a class="entry-link" aria-label="post link to 블러킹. 넌블러킹." href="https://www.springboot.kr/posts/etc/blocking-n-non-blocking/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Java와 Kotlin에서 retainAll 사용하기
     </h2>
   </header>
@@ -235,24 +250,6 @@ cloud:  function:  definition: consumer;producer  stream:  kafka:  bindings:  pr
   </section>
   <footer class="entry-footer"><span title='2022-01-19 02:00:28 +0800 +0800'>January 19, 2022</span></footer>
   <a class="entry-link" aria-label="post link to StreamBridge 사용하기" href="https://www.springboot.kr/posts/spring/spring-cloud-stream-binder-kafka/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>ELK랑 씨름한날
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>오늘은 ELK랑 씨름했다. 왜냐면 내가 지금 해외에 있으니까 씨름했다.
-우선 지금 개발할 때 쓰는 건 5년 넘은 맥북 듀얼코어에 8기가인데
-프로젝트를 MSA로 하니까 서비스만 5개를 돌리고 도커 안에 컨테이너도 여러개 띄우고 카프카도 키고 하니까 하루도 빠짐없이 비행기 이륙을 시도한다.
-거기다 elk가 필요하게 됐는데 맨날 이륙하는 맥북에 뭔가를 더하기 싫어서 한국 집에 있는 rpi에 elk 설치를 시도했다.
-결국엔 되긴 했는데 ek만 됐다 l빼고ㅋㅋ
-ek는 rpi에 깔고 logstash는 맥에 깔았다.
-그리고 연결하는 데 애를 좀 먹었다....</p>
-  </section>
-  <footer class="entry-footer"><span title='2022-01-14 21:57:11 +0800 +0800'>January 14, 2022</span></footer>
-  <a class="entry-link" aria-label="post link to ELK랑 씨름한날" href="https://www.springboot.kr/posts/blahblah/fight-with-elk/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
