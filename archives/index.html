@@ -69,7 +69,7 @@ if (!doNotTrack) {
 <meta property="og:title" content="Archive" />
 <meta property="og:description" content="archives" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.springboot.kr/archives/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://www.springboot.kr/archives/" /><meta property="article:section" content="" />
 
 
 
@@ -86,12 +86,6 @@ if (!doNotTrack) {
     {
       "@type": "ListItem",
       "position":  1 ,
-      "name": "Posts",
-      "item": "https://www.springboot.kr/posts/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
       "name": "Archive",
       "item": "https://www.springboot.kr/archives/"
     }
@@ -567,6 +561,15 @@ if (!doNotTrack) {
             localStorage.setItem("pref-theme", 'light');
         } else {
             document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
+   document.body.classList.add('dark');
             localStorage.setItem("pref-theme", 'dark');
         }
     })
