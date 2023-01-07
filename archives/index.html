@@ -69,7 +69,7 @@ if (!doNotTrack) {
 <meta property="og:title" content="Archive" />
 <meta property="og:description" content="archives" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.springboot.kr/archives/" /><meta property="article:section" content="" />
+<meta property="og:url" content="https://www.springboot.kr/archives/" /><meta property="article:section" content="posts" />
 
 
 
@@ -86,6 +86,12 @@ if (!doNotTrack) {
     {
       "@type": "ListItem",
       "position":  1 ,
+      "name": "Posts",
+      "item": "https://www.springboot.kr/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
       "name": "Archive",
       "item": "https://www.springboot.kr/archives/"
     }
@@ -203,6 +209,21 @@ if (!doNotTrack) {
 <header class="page-header">
   <h1>Archive</h1>
 </header>
+<div class="archive-year">
+  <h2 class="archive-year-header">2023<sup class="archive-count">&nbsp;&nbsp;1</sup>
+  </h2>
+  <div class="archive-month">
+    <h3 class="archive-month-header">January<sup class="archive-count">&nbsp;&nbsp;1</sup></h3>
+    <div class="archive-posts">
+      <div class="archive-entry">
+        <h3 class="archive-entry-title">새해 첫 글
+        </h3>
+        <div class="archive-meta"><span title='2023-01-07 19:17:38 +0900 KST'>January 7, 2023</span></div>
+        <a class="entry-link" aria-label="post link to 새해 첫 글" href="https://www.springboot.kr/posts/blahblah/2023-01-07/"></a>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="archive-year">
   <h2 class="archive-year-header">2022<sup class="archive-count">&nbsp;&nbsp;19</sup>
   </h2>
@@ -499,7 +520,7 @@ if (!doNotTrack) {
     </main>
     
 <footer class="footer">
-    <span>&copy; 2022 <a href="https://www.springboot.kr/">SPRINGBOOT.KR</a></span>
+    <span>&copy; 2023 <a href="https://www.springboot.kr/">SPRINGBOOT.KR</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
@@ -561,15 +582,6 @@ if (!doNotTrack) {
             localStorage.setItem("pref-theme", 'light');
         } else {
             document.body.classList.add('dark');
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
-</body>
-
-</html>
-   document.body.classList.add('dark');
             localStorage.setItem("pref-theme", 'dark');
         }
     })
