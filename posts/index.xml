@@ -6,7 +6,16 @@
     <description>Recent content in Posts on SPRINGBOOT.KR</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>kr-ko</language>
-    <lastBuildDate>Sat, 07 Jan 2023 21:28:20 +0900</lastBuildDate><atom:link href="https://www.springboot.kr/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 27 Jul 2023 22:06:03 +0900</lastBuildDate><atom:link href="https://www.springboot.kr/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>오랜만에 글</title>
+      <link>https://www.springboot.kr/posts/blahblah/2023-07-27-blah/</link>
+      <pubDate>Thu, 27 Jul 2023 22:06:03 +0900</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/blahblah/2023-07-27-blah/</guid>
+      <description>근황  일을 하고 있다. GOOGLE 검색 보다 CHAT GPT가 편하다. TDD, 클린코드를 수강했다. ATDD, 클린코드를 수강하고 있다. 새로운 집에 왔다. 와이프도 한국에 왔다.  자세한 게시물은 곧 올릴예정이다.</description>
+    </item>
+    
     <item>
       <title>기적의 독서 메모 법</title>
       <link>https://www.springboot.kr/posts/blahblah/2023-01-08/</link>
