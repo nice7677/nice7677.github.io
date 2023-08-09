@@ -128,8 +128,8 @@ EP 2.2 계층 구조 아키텍처 게층 구조는 그 특성상 상위 계층�
   "keywords": [
     
   ],
-  "articleBody": "DDD START SERIES는 도메인 주도 개발 시작하기 책을 참고 하여 작성된 요약 글 입니다.\nEP 2.1 네 개의 영역 아키텍처를 설계할 떄 출현하는 전형적인 네 가지의 영역\n 표현 응용 도메인 인프라스트럭처  이미지 참조 Layered Architecture\n흐름도 표현 - 응용 - 도메인 - 인프라스트럭처\n표현, 응용, 도메인 영역은 구현 기술을 사용한 코드를 직접 만들지 않는다.\n대신 인프라스트럭처 영역에서 제공한는 기능을 사용해서 필요한 기능을 개발한다.\nEP 2.2 계층 구조 아키텍처 게층 구조는 그 특성상 상위 계층에서 하위 계층으로의 의존만 존재하고 하위 계층은 상위 계층에 의존하지 않는다.\n예를 들어 표현 계층은 응용 계층에 의존하고 응용 계층이 도메인 계층에 의존하지만, 반대로 인프라스트럭처 계층이 도메인에 의존하거나 도메인이 응용 계층에 의존하지 않는다.\n계층 구조를 엄격하게 적용한다면 상위 계층은 바로 아래 계층에만 의존을 가져야 하지만 구현의 편리함을 위해 계층 구조를 유연하게 적용하기도 한다.\nEP 2.3 DIP (의존성 역전 원칙) DIP는 저수준 모듈이 고수준 모듈에 의존하도록 바꾼다.\nSOLID programming for Arduino: The Dependency Inversion Principle\nDIP를 적용하면 위의 그림과 같이 저수준 모듈이 고수준 모듈에 의존하게 된다. 고수준 모듈이 저수준 모듈을 사용하려면 고수준 모듈이 저수준 모듈에 의존해야 하는데, 반대로 저수준 모듈이 고수준 모듈에 의존한다고 해서 이를 DIP(Dependency Inversion Principle)라 한다.\n2.3.1 DIP 주의사항 DIP를 잘못 생각하면 단순히 인터페이스와 구현 클래스를 분리하는 정도로 받아들일 수 있다.\nDIP의 핵심은 고수준 모듈이 저수준 모듈에 의존하지 않도록 하기 위함인데 DIP를 적용한 결과 구조만 보고 저수준 모듈에서 인터페이스를 추출하는 경우가 있다.\nDIP를 적용할 때 하위 기능을 추상화한 인터페이스는 고소준 모듈 관점에서 도출한다.\n2.3.2 DIP와 아키텍처 인프라스트럭처 영역은 구현 기술을 다루는 저수준 모듈이고 응용 영역과 도메인 영역은 고수준 모듈이다.\n인프라스트럭처 계층이 가장 하단에 위치하느 계층형 구조와 달리 아키텍터에 DIP를 적용하면\n[ 인프라스트럭처 ] | | | | v | [ 응용 ] | | | v v [ 도메인 ] 다음과 같이 인프라스트럭처 영역이 응용 영역과 도메인 영역에 의존하는 구조가 된다.\n인프라스트럭처에 위치한 클래스가 도메인이나 응용 영역에 정의한 인터페이스를 상속받아 구현하는 구조가 되므로 도메인과 응용 영역에 대한 영향을 주지 않거나 최소화하면서 구현 기술을 변경하는 것이 가능하다.\nEP 2.4 도메인 영역의 주요 구성요소  Entity Value Aggregate Repository Domain Service  2.4.1 Entity And Value 도메인 모델의 엔티티는 단순히 데이터를 담고 있는 데이터 구조라기보다는 데이터와 함께 기능을 제공하는 객체이다.\n도메인 관점에서 기능을 구현하고 기능 구현을 캡슐화해서 데이터가 임의로 변경되는 것을 막는다.\n도메인 모델의 엔티티는 두 개 이상의 데이터가 개념적으로 하나인 경우 벨류 타입을 이용해서 표현할 수 있다는 것이다.\nRDBMS와 같은 관계형 DB는 벨류 타입을 제대로 표현하기 힘들다.\nEP.1dㅔ서 설명한 것처럼 벨류는 불변으로 구현할 것을 권장하며, 엔티티의 벨류 타입 데이터를 변경할 때는 객체 자체를 완전히 교체한다는 것을 의미한다.\n2.4.2 Aggregate 도메인이 복잡해질때 도메인 모델에서 전체 구조를 이해하는 데 도움이 되는 것이 Aggregate 다.\nModeling Aggregates with DDD and Entity Framework\n그림에서 보이듯이 Aggregate는 관련 객체를 하나로 묶은 군집이다.\nAggregate를 사용하면 개별 객체가 아닌 관련 객체를 묶어서 객체 군집 단위로 모델을 바라볼 수 있게 된다. 개별 객체 간의 관계가 아닌 Aggregate 간의 관계로 도메인 모델을 이해하고 구현하게 되며, 이를 통해 큰 틀에서 도메인 모델을 관리할 수 있다.\n2.4.3 Repository 물리적인 저장소에 도메인 객체를 보관하기 위한 도메인 모델이 Repository 다. Entity나 Value가 요구사항에서 도출되는 도메인 모델이라면 Repository는 구현을 위한 도메인 모델이다.\nREFERENCE 도메인 주도 개발 시작하기\n제외된 내용  2.5 2.6 2.7   ",
-  "wordCount" : "500",
+  "articleBody": "DDD START SERIES는 도메인 주도 개발 시작하기 책을 참고 하여 작성된 요약 글 입니다.\nEP 2.1 네 개의 영역 아키텍처를 설계할 떄 출현하는 전형적인 네 가지의 영역\n 표현 응용 도메인 인프라스트럭처  이미지 참조 Layered Architecture\n흐름도 표현 - 응용 - 도메인 - 인프라스트럭처\n표현, 응용, 도메인 영역은 구현 기술을 사용한 코드를 직접 만들지 않는다.\n대신 인프라스트럭처 영역에서 제공한는 기능을 사용해서 필요한 기능을 개발한다.\nEP 2.2 계층 구조 아키텍처 게층 구조는 그 특성상 상위 계층에서 하위 계층으로의 의존만 존재하고 하위 계층은 상위 계층에 의존하지 않는다.\n예를 들어 표현 계층은 응용 계층에 의존하고 응용 계층이 도메인 계층에 의존하지만, 반대로 인프라스트럭처 계층이 도메인에 의존하거나 도메인이 응용 계층에 의존하지 않는다.\n계층 구조를 엄격하게 적용한다면 상위 계층은 바로 아래 계층에만 의존을 가져야 하지만 구현의 편리함을 위해 계층 구조를 유연하게 적용하기도 한다.\nEP 2.3 DIP (의존성 역전 원칙) DIP는 저수준 모듈이 고수준 모듈에 의존하도록 바꾼다.\nSOLID programming for Arduino: The Dependency Inversion Principle\nDIP를 적용하면 위의 그림과 같이 저수준 모듈이 고수준 모듈에 의존하게 된다. 고수준 모듈이 저수준 모듈을 사용하려면 고수준 모듈이 저수준 모듈에 의존해야 하는데, 반대로 저수준 모듈이 고수준 모듈에 의존한다고 해서 이를 DIP(Dependency Inversion Principle)라 한다.\n2.3.1 DIP 주의사항 DIP를 잘못 생각하면 단순히 인터페이스와 구현 클래스를 분리하는 정도로 받아들일 수 있다.\nDIP의 핵심은 고수준 모듈이 저수준 모듈에 의존하지 않도록 하기 위함인데 DIP를 적용한 결과 구조만 보고 저수준 모듈에서 인터페이스를 추출하는 경우가 있다.\nDIP를 적용할 때 하위 기능을 추상화한 인터페이스는 고소준 모듈 관점에서 도출한다.\n2.3.2 DIP와 아키텍처 인프라스트럭처 영역은 구현 기술을 다루는 저수준 모듈이고 응용 영역과 도메인 영역은 고수준 모듈이다.\n인프라스트럭처 계층이 가장 하단에 위치하느 계층형 구조와 달리 아키텍터에 DIP를 적용하면\n[ 인프라스트럭처 ] | | | | v | [ 응용 ] | | | v v [ 도메인 ] 다음과 같이 인프라스트럭처 영역이 응용 영역과 도메인 영역에 의존하는 구조가 된다.\n인프라스트럭처에 위치한 클래스가 도메인이나 응용 영역에 정의한 인터페이스를 상속받아 구현하는 구조가 되므로 도메인과 응용 영역에 대한 영향을 주지 않거나 최소화하면서 구현 기술을 변경하는 것이 가능하다.\nEP 2.4 도메인 영역의 주요 구성요소  Entity Value Aggregate Repository Domain Service  2.4.1 Entity And Value 도메인 모델의 엔티티는 단순히 데이터를 담고 있는 데이터 구조라기보다는 데이터와 함께 기능을 제공하는 객체이다.\n도메인 관점에서 기능을 구현하고 기능 구현을 캡슐화해서 데이터가 임의로 변경되는 것을 막는다.\n도메인 모델의 엔티티는 두 개 이상의 데이터가 개념적으로 하나인 경우 벨류 타입을 이용해서 표현할 수 있다는 것이다.\nRDBMS와 같은 관계형 DB는 벨류 타입을 제대로 표현하기 힘들다.\nEP.1dㅔ서 설명한 것처럼 벨류는 불변으로 구현할 것을 권장하며, 엔티티의 벨류 타입 데이터를 변경할 때는 객체 자체를 완전히 교체한다는 것을 의미한다.\n2.4.2 Aggregate 도메인이 복잡해질때 도메인 모델에서 전체 구조를 이해하는 데 도움이 되는 것이 Aggregate 다.\nModeling Aggregates with DDD and Entity Framework\n그림에서 보이듯이 Aggregate는 관련 객체를 하나로 묶은 군집이다.\nAggregate를 사용하면 개별 객체가 아닌 관련 객체를 묶어서 객체 군집 단위로 모델을 바라볼 수 있게 된다. 개별 객체 간의 관계가 아닌 Aggregate 간의 관계로 도메인 모델을 이해하고 구현하게 되며, 이를 통해 큰 틀에서 도메인 모델을 관리할 수 있다.\n2.4.3 Repository 물리적인 저장소에 도메인 객체를 보관하기 위한 도메인 모델이 Repository 다. Entity나 Value가 요구사항에서 도출되는 도메인 모델이라면 Repository는 구현을 위한 도메인 모델이다.\n2.5 요청 처리 흐름 표현 (Controller) → 응용 (Service) - 도메인 (Danain object) - 인프라스트럭처 (Repository)\n브라우저 - (http) - Controller - Service - Domain Object / Repository\nService에서 Domain 영역은 객체의 기능 Repository는 객체 리턴.\nService에서는 트랜잭션 관리를 잘해야 한다.\n2.6 인프라스트럭처 개요 인프라스트럭처는 위의 상위 계층 모두를 지원한다.\n표현, 응용, 도메인 영역..\n응용과 도메인 영역에서 구현 기술에 대한 의존은 가져가는 것이 나쁘지 않다고 생각한다.\n표현 영역은 인프라스트럭처 영역과 쌍은이룬다.\n인프라스트럭처의 영역은 다른 영역과 잘 조합해서 사용해야한다.\n우연성이 증가 될 수 있다.\n2.7 모듈 구성 아키텍처의 생각 영역은 별도 패키지에 위치한다.\n도메인이 크면 하위 도메인으로 나누고 도메인마다 별도의 패키지를 구성한다.\n도메인 모델은 애그리거트를 기준으로 다시 패키지를 구성한다.\nex) 도메인이 여러개인 경우 도메인 패키지를 나눈다.\n애그리거트, 모델, 레포지토리는 같은 영역에 위치시킨다.\nex)\ndomain.order domain.service  application.product application.category 단지 예시 일뿐 정해진 규칙은 없다..\n모든 구성에 정해진 정답은 없지만. 왠만하면 잘 분리하자.\nREFERENCE 도메인 주도 개발 시작하기\n ",
+  "wordCount" : "635",
   "inLanguage": "en",
   "datePublished": "2022-09-08T22:02:39+09:00",
   "dateModified": "2022-09-08T22:02:39+09:00",
@@ -263,12 +263,16 @@ EP 2.2 계층 구조 아키텍처 게층 구조는 그 특성상 상위 계층�
                     <li>
                         <a href="#242-aggregate" aria-label="2.4.2 Aggregate">2.4.2 Aggregate</a></li>
                     <li>
-                        <a href="#243-repository" aria-label="2.4.3 Repository">2.4.3 Repository</a></li></ul>
+                        <a href="#243-repository" aria-label="2.4.3 Repository">2.4.3 Repository</a></li>
+                    <li>
+                        <a href="#25-%ec%9a%94%ec%b2%ad-%ec%b2%98%eb%a6%ac-%ed%9d%90%eb%a6%84" aria-label="2.5 요청 처리 흐름">2.5 요청 처리 흐름</a></li>
+                    <li>
+                        <a href="#26-%ec%9d%b8%ed%94%84%eb%9d%bc%ec%8a%a4%ed%8a%b8%eb%9f%ad%ec%b2%98-%ea%b0%9c%ec%9a%94" aria-label="2.6 인프라스트럭처 개요">2.6 인프라스트럭처 개요</a></li>
+                    <li>
+                        <a href="#27-%eb%aa%a8%eb%93%88-%ea%b5%ac%ec%84%b1" aria-label="2.7 모듈 구성">2.7 모듈 구성</a></li></ul>
                     </li>
                     <li>
-                        <a href="#reference" aria-label="REFERENCE">REFERENCE</a></li>
-                    <li>
-                        <a href="#%ec%a0%9c%ec%99%b8%eb%90%9c-%eb%82%b4%ec%9a%a9" aria-label="제외된 내용">제외된 내용</a>
+                        <a href="#reference" aria-label="REFERENCE">REFERENCE</a>
                     </li>
                 </ul>
             </div>
@@ -399,16 +403,36 @@ EP 2.2 계층 구조 아키텍처 게층 구조는 그 특성상 상위 계층�
 <p>Aggregate를 사용하면 개별 객체가 아닌 관련 객체를 묶어서 객체 군집 단위로 모델을 바라볼 수 있게 된다. 개별 객체 간의 관계가 아닌 Aggregate 간의 관계로 도메인 모델을 이해하고 구현하게 되며, 이를 통해 큰 틀에서 도메인 모델을 관리할 수 있다.</p>
 <h4 id="243-repository">2.4.3 Repository<a hidden class="anchor" aria-hidden="true" href="#243-repository">#</a></h4>
 <p>물리적인 저장소에 도메인 객체를 보관하기 위한 도메인 모델이 Repository 다. Entity나 Value가 요구사항에서 도출되는 도메인 모델이라면 Repository는 구현을 위한 도메인 모델이다.</p>
+<h4 id="25-요청-처리-흐름">2.5 요청 처리 흐름<a hidden class="anchor" aria-hidden="true" href="#25-요청-처리-흐름">#</a></h4>
+<p>표현 (Controller) → 응용 (Service) -&gt; 도메인 (Danain object) -&gt; 인프라스트럭처 (Repository)</p>
+<p>브라우저 -&gt; (http) -&gt; Controller -&gt; Service -&gt; Domain Object / Repository</p>
+<p>Service에서 Domain 영역은 객체의 기능 Repository는 객체 리턴.</p>
+<p>Service에서는 트랜잭션 관리를 잘해야 한다.</p>
+<h4 id="26-인프라스트럭처-개요">2.6 인프라스트럭처 개요<a hidden class="anchor" aria-hidden="true" href="#26-인프라스트럭처-개요">#</a></h4>
+<p>인프라스트럭처는 위의 상위 계층 모두를 지원한다.</p>
+<p>표현, 응용, 도메인 영역..</p>
+<p>응용과 도메인 영역에서 구현 기술에 대한 의존은 가져가는 것이 나쁘지 않다고 생각한다.</p>
+<p>표현 영역은 인프라스트럭처 영역과 쌍은이룬다.</p>
+<p>인프라스트럭처의 영역은 다른 영역과 잘 조합해서 사용해야한다.</p>
+<p>우연성이 증가 될 수 있다.</p>
+<h4 id="27-모듈-구성">2.7 모듈 구성<a hidden class="anchor" aria-hidden="true" href="#27-모듈-구성">#</a></h4>
+<p>아키텍처의 생각 영역은 별도 패키지에 위치한다.</p>
+<p>도메인이 크면 하위 도메인으로 나누고 도메인마다 별도의 패키지를 구성한다.</p>
+<p>도메인 모델은 애그리거트를 기준으로 다시 패키지를 구성한다.</p>
+<p>ex) 도메인이 여러개인 경우 도메인 패키지를 나눈다.</p>
+<p>애그리거트, 모델, 레포지토리는 같은 영역에 위치시킨다.</p>
+<p>ex)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>domain.order
+</span></span><span style="display:flex;"><span>domain.service
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>application.product
+</span></span><span style="display:flex;"><span>application.category
+</span></span></code></pre></div><p>단지 예시 일뿐 정해진 규칙은 없다..</p>
+<p>모든 구성에 정해진 정답은 없지만. 왠만하면 잘 분리하자.</p>
 <h3 id="reference">REFERENCE<a hidden class="anchor" aria-hidden="true" href="#reference">#</a></h3>
 <p><img loading="lazy" src="/images/books/start-ddd.jpeg" alt="itssobeauti"  />
 
 도메인 주도 개발 시작하기</p>
-<h3 id="제외된-내용">제외된 내용<a hidden class="anchor" aria-hidden="true" href="#제외된-내용">#</a></h3>
-<ul>
-<li>2.5</li>
-<li>2.6</li>
-<li>2.7</li>
-</ul>
 <hr>
 <p><img loading="lazy" src="https://thumbs.gfycat.com/CoarseWhisperedHammerkop-size_restricted.gif" alt="itssobeauti"  />
 </p>
