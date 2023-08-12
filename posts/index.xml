@@ -6,7 +6,22 @@
     <description>Recent content in Posts on SPRINGBOOT.KR</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>kr-ko</language>
-    <lastBuildDate>Sun, 06 Aug 2023 21:55:55 +0900</lastBuildDate><atom:link href="https://www.springboot.kr/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 12 Aug 2023 17:38:18 +0900</lastBuildDate><atom:link href="https://www.springboot.kr/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[DDD START SERIES] EP.3 애그리거트</title>
+      <link>https://www.springboot.kr/posts/java/start-ddd/ep3-start-ddd/</link>
+      <pubDate>Sat, 12 Aug 2023 17:38:18 +0900</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/java/start-ddd/ep3-start-ddd/</guid>
+      <description>DDD START SERIES는 도메인 주도 개발 시작하기 책을 참고 하여 작성된 요약 글 입니다.
+EP 3.1 애그리거트 공통된 모델을 애그리커트 단위로 묶어서 표현한다. 보기도 쉬워지고 좋다.
+상위 수준에서 모델화 모델을 정리하면 도메인의 복잡한 관계가 더 이해가 잘 된다.
+애그리거트를 단위로 묶으면 이해하는 것뿐아니라 일관성 관리에 기준이 된다. 복잡도를 줄이고 변경 시간을 줄어들게 만든다.
+애그리거트로 묶인 도메인들은 함께 생성하고 함께 제거한다.
+주문으로 묶인 집합은 애그리거트는 회원이란 애그리거트의 영역을 침범하지 않는다.
+경계를 설정할때 기본은 도메인의 규칙과 요구사항이다.</description>
+    </item>
+    
     <item>
       <title>나한테 맞는 공부방법 찾아보기</title>
       <link>https://www.springboot.kr/posts/blahblah/2023-08-06-blah/</link>
