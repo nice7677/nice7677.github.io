@@ -6,7 +6,101 @@
     <description>Recent content in Posts on SPRINGBOOT.KR</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>kr-ko</language>
-    <lastBuildDate>Mon, 05 Sep 2022 22:28:59 +0900</lastBuildDate><atom:link href="https://www.springboot.kr/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 12 Aug 2023 17:38:18 +0900</lastBuildDate><atom:link href="https://www.springboot.kr/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[DDD START SERIES] EP.3 애그리거트</title>
+      <link>https://www.springboot.kr/posts/java/start-ddd/ep3-start-ddd/</link>
+      <pubDate>Sat, 12 Aug 2023 17:38:18 +0900</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/java/start-ddd/ep3-start-ddd/</guid>
+      <description>DDD START SERIES는 도메인 주도 개발 시작하기 책을 참고 하여 작성된 요약 글 입니다.
+EP 3.1 애그리거트 공통된 모델을 애그리커트 단위로 묶어서 표현한다. 보기도 쉬워지고 좋다.
+상위 수준에서 모델화 모델을 정리하면 도메인의 복잡한 관계가 더 이해가 잘 된다.
+애그리거트를 단위로 묶으면 이해하는 것뿐아니라 일관성 관리에 기준이 된다. 복잡도를 줄이고 변경 시간을 줄어들게 만든다.
+애그리거트로 묶인 도메인들은 함께 생성하고 함께 제거한다.
+주문으로 묶인 집합은 애그리거트는 회원이란 애그리거트의 영역을 침범하지 않는다.
+경계를 설정할때 기본은 도메인의 규칙과 요구사항이다.</description>
+    </item>
+    
+    <item>
+      <title>나한테 맞는 공부방법 찾아보기</title>
+      <link>https://www.springboot.kr/posts/blahblah/2023-08-06-blah/</link>
+      <pubDate>Sun, 06 Aug 2023 21:55:55 +0900</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/blahblah/2023-08-06-blah/</guid>
+      <description>우선 생각이 나는 공부방법으로
+ 책을 정리하면서 공부한다. 무작정 공부를하고 정리한다. 코넬노트 필기법  1번은 땡인것같음. 매번 시도해도 문서 정리하다 지쳐서 안하게됨.
+2번은 예전에 해봤는데 효과가 나름있고 집중이 잘됨.
+3번도 잠깐 하다 말았는데. 다시 시도해볼예정.
+1번은 땡이니 2,3번을 도전하고 다음 에 다시 포스팅해보도록하겠음.</description>
+    </item>
+    
+    <item>
+      <title>오랜만에 글</title>
+      <link>https://www.springboot.kr/posts/blahblah/2023-07-27-blah/</link>
+      <pubDate>Thu, 27 Jul 2023 22:06:03 +0900</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/blahblah/2023-07-27-blah/</guid>
+      <description>근황  일을 하고 있다. GOOGLE 검색 보다 CHAT GPT가 편하다. TDD, 클린코드를 수강했다. ATDD, 클린코드를 수강하고 있다. 새로운 집에 왔다. 와이프도 한국에 왔다.  자세한 게시물은 곧 올릴예정이다.</description>
+    </item>
+    
+    <item>
+      <title>기적의 독서 메모 법</title>
+      <link>https://www.springboot.kr/posts/blahblah/2023-01-08/</link>
+      <pubDate>Sat, 07 Jan 2023 21:28:20 +0900</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/blahblah/2023-01-08/</guid>
+      <description>이제 연도도 바뀌고 책을 보고 정리도 하는 것이 늘 거 같아서 책 요약하는 법을 찾아봤다.
+블로그에 책을 읽고 요약할 때 너무 많은 내용을 담으려 해서 시간이 너무 오래 걸리고 정리를 하고 나서도 금세 까먹어 다시 책을 보는 지경이니 책을 잘 요약할 수 있는 방법을 찾아봤다.
+
+ 한 번만 읽어도 책 내용 다 기억하는 기적의 독서 메모 법 | 김익한 @ican 명지대 교수, 기록학자
+ 내용을 정리하면 다음과 같다.
+ 메모의 2가지 효능  외부로부터 들어오는 것을 효과적으로 흡수 내 안에 있는 것을 끄집어 내기   메모는 내 안에 있는 생각을 구체적으로 끄집어내는 최고의 수단이다.</description>
+    </item>
+    
+    <item>
+      <title>새해 첫 글</title>
+      <link>https://www.springboot.kr/posts/blahblah/2023-01-07/</link>
+      <pubDate>Sat, 07 Jan 2023 19:17:38 +0900</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/blahblah/2023-01-07/</guid>
+      <description>새해 첫 주 핸드폰 보다가 알라딘에서 찜해둔 책이 들어왔길래 후다닥 가서 사 왔음.
+자바 퍼즐러
+자바 네트워크 프로그래밍
+이렇게 2개 샀는데 둘 다 절판이라 못 구하는 건데 알라딘에 들어왔길래 후다닥 가서 사 왔다.
+네트워크 프로그래밍은 수유에 가서 퍼즐로는 노원에 가서 사고 집에 왔다.
+집에 돌아오는 길에 크로켓을 팔길래 너무 먹고 싶었지만 참고 집에 와서 맛있는 걸 먹었다.
+이제 이거 쓰고 밖에 나가서 강아지 산책해야 하는데 지금 미세먼지 미쳐서 조금만 산책하고 금방 들어와야 할 거 같다.</description>
+    </item>
+    
+    <item>
+      <title>이번 연도에 있던 일 되돌아보기 (비고. 2022년)</title>
+      <link>https://www.springboot.kr/posts/blahblah/2022-12-22/</link>
+      <pubDate>Thu, 22 Dec 2022 22:28:38 +0900</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/blahblah/2022-12-22/</guid>
+      <description>2022년 되돌아보기 상반기 (1~6월) 작년 5월에 대만에 가서 대략 10개월 정도를 대만에서 살다 왔다.(살 때는 몰랐는데 돌아오기 몇 달 전부터 걱정이 됐음ᄏᄏ)
+그렇게 높은 연차도 아니고 거진 1년을 쉬었다고 하니 불안한 마음이 안 들래야 안 들 수가 없었다.
+그래서 살면서 국립도서관에 출퇴근하며 공부도 하고 한국에서 챙겨간 개발 책도 읽고 시간을 안 버리려 한거 같다.
+마지막 즈음엔 평소에 잘 안 가 본 곳에 돌아다니면서 귀국하는 날을 기다렸다.
+이때가 제일 재밌었던 거 같다.</description>
+    </item>
+    
+    <item>
+      <title>[DDD START SERIES] EP.2 아키텍처 개요</title>
+      <link>https://www.springboot.kr/posts/java/start-ddd/ep2-start-ddd-model/</link>
+      <pubDate>Thu, 08 Sep 2022 22:02:39 +0900</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/java/start-ddd/ep2-start-ddd-model/</guid>
+      <description>DDD START SERIES는 도메인 주도 개발 시작하기 책을 참고 하여 작성된 요약 글 입니다.
+EP 2.1 네 개의 영역 아키텍처를 설계할 떄 출현하는 전형적인 네 가지의 영역
+ 표현 응용 도메인 인프라스트럭처  이미지 참조 Layered Architecture
+흐름도 표현 -&amp;gt; 응용 -&amp;gt; 도메인 -&amp;gt; 인프라스트럭처
+표현, 응용, 도메인 영역은 구현 기술을 사용한 코드를 직접 만들지 않는다.
+대신 인프라스트럭처 영역에서 제공한는 기능을 사용해서 필요한 기능을 개발한다.
+EP 2.2 계층 구조 아키텍처 게층 구조는 그 특성상 상위 계층에서 하위 계층으로의 의존만 존재하고 하위 계층은 상위 계층에 의존하지 않는다.</description>
+    </item>
+    
     <item>
       <title>[DDD START SERIES] EP.1 도메인 모델 시작하기</title>
       <link>https://www.springboot.kr/posts/java/start-ddd/chp1-start-ddd-model/</link>
