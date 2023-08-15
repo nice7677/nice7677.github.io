@@ -6,7 +6,23 @@
     <description>Recent content on SPRINGBOOT.KR</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>kr-ko</language>
-    <lastBuildDate>Sat, 12 Aug 2023 17:38:18 +0900</lastBuildDate><atom:link href="https://www.springboot.kr/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 15 Aug 2023 23:41:19 +0900</lastBuildDate><atom:link href="https://www.springboot.kr/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>스프링 트랙잭션과 외부 호출</title>
+      <link>https://www.springboot.kr/posts/spring/transaction/trainsaction-look-back-on/</link>
+      <pubDate>Tue, 15 Aug 2023 23:41:19 +0900</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/spring/transaction/trainsaction-look-back-on/</guid>
+      <description>일하는 도중에 업무와 관련하여 트랜잭션 거는 부분에 대해 지적을 받았는데.
+이유는 즉슨
+try catch 가 선언된덕에 transcation이 실행되지 않음이다.
+내 서버가 아닌 다른 서버에 호출을 보내고 반환된 값에 에러가 있을 경우 try catch 로 에러를 잡았는데
+이 덕에 transaction이 적용되지 않는다는 리뷰를 받았다.
+위 의 코드와 같을 때.
+다음과 같은 테스트 실패 결과를 받는데
+트랜잭션 어노테이션을 saveNew메소드에 걸어놨을때 inquiry메소드에 try catch가 걸린 덕분에 실행이 되지 않고 그대로 적용이 되버리는 결과를 받는다.</description>
+    </item>
+    
     <item>
       <title>[DDD START SERIES] EP.3 애그리거트</title>
       <link>https://www.springboot.kr/posts/java/start-ddd/ep3-start-ddd/</link>
