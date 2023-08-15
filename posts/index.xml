@@ -15,12 +15,12 @@
       <guid>https://www.springboot.kr/posts/spring/transaction/trainsaction-look-back-on/</guid>
       <description>일하는 도중에 업무와 관련하여 트랜잭션 거는 부분에 대해 지적을 받았는데.
 이유는 즉슨
-try catch 가 선언된덕에 transcation이 실행되지 않음이다.
-내 서버가 아닌 다른 서버에 호출을 보내고 반환된 값에 에러가 있을 경우 try catch 로 에러를 잡았는데
+try catch 가 선언된 덕에 transcation이 실행되지 않음이다.
+내 서버가 아닌 다른 서버에 호출을 보내고 반환된 값에 에러가 있을 경우 try catch로 에러를 잡았는데
 이 덕에 transaction이 적용되지 않는다는 리뷰를 받았다.
 위 의 코드와 같을 때 다음과 같은 테스트 코드를 작성하고 결과를 받아 보면
 다음과 같은 테스트 실패 결과를 받는데
-트랜잭션 어노테이션을 saveNew메소드에 걸어놨을때 inquiry메소드에 try catch가 걸린 덕분에 실행이 되지 않고 그대로 적용이 되버리는 결과를 받는다.</description>
+트랜잭션 어노테이션을 saveNew메서드에 걸어놨을 때 inquiry메서드에 try catch가 걸린 덕분에 실행이 되지 않고 그대로 적용이 돼버리는 결과를 받는다.</description>
     </item>
     
     <item>
