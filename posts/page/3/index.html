@@ -175,6 +175,24 @@ if (!doNotTrack) {
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>[DDD START SERIES] EP.2 아키텍처 개요
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>DDD START SERIES는 도메인 주도 개발 시작하기 책을 참고 하여 작성된 요약 글 입니다.
+EP 2.1 네 개의 영역 아키텍처를 설계할 떄 출현하는 전형적인 네 가지의 영역
+ 표현 응용 도메인 인프라스트럭처  이미지 참조 Layered Architecture
+흐름도 표현 -&gt; 응용 -&gt; 도메인 -&gt; 인프라스트럭처
+표현, 응용, 도메인 영역은 구현 기술을 사용한 코드를 직접 만들지 않는다.
+대신 인프라스트럭처 영역에서 제공한는 기능을 사용해서 필요한 기능을 개발한다.
+EP 2.2 계층 구조 아키텍처 게층 구조는 그 특성상 상위 계층에서 하위 계층으로의 의존만 존재하고 하위 계층은 상위 계층에 의존하지 않는다....</p>
+  </section>
+  <footer class="entry-footer"><span title='2022-09-08 22:02:39 +0900 KST'>September 8, 2022</span></footer>
+  <a class="entry-link" aria-label="post link to [DDD START SERIES] EP.2 아키텍처 개요" href="https://www.springboot.kr/posts/java/start-ddd/ep2-start-ddd-model/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>[DDD START SERIES] EP.1 도메인 모델 시작하기
     </h2>
   </header>
@@ -243,21 +261,6 @@ public class LogbackMDCAdapter implements MDCAdapter {  ...  final ThreadLocal&l
   </section>
   <footer class="entry-footer"><span title='2022-05-02 00:40:01 +0900 KST'>May 2, 2022</span></footer>
   <a class="entry-link" aria-label="post link to 띵가띵가" href="https://www.springboot.kr/posts/blahblah/2022-05-02/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>블러킹. 넌블러킹.
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>블러킹(Blocking) 블러킹은 다른 메서드를 호출할 때 제어권도 다 넘겨주고 작업이 끝난 후에 돌려 받는 것을 말한다.
-예제는 2개의 클래스로 진행되며 Data, Main으로 진행 된다.
-블러킹 예제 DataSync Class
-public class DataSync {  private int id;  private long simulationDuration;   public DataSync(int id, long simulationDuration) {  this.id = id;  this.simulationDuration = simulationDuration;  }   public String get() {  try {  Thread.sleep(this.simulationDuration);  } catch (InterruptedException e) {  e....</p>
-  </section>
-  <footer class="entry-footer"><span title='2022-04-28 22:27:01 +0900 KST'>April 28, 2022</span></footer>
-  <a class="entry-link" aria-label="post link to 블러킹. 넌블러킹." href="https://www.springboot.kr/posts/etc/blocking-n-non-blocking/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

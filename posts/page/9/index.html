@@ -175,6 +175,21 @@ if (!doNotTrack) {
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>생성자에 매개변수가 많다면 빌더를 고려하라
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Effective Java 3/E 2장 생성자에 매개변수가 많다면 빌더를 고려하라 정적 팩터리와 생성자에는 똑같은 제약이 하나 있다.
+선택적 매개변수가 많을때 대응이 어렵다.
+점층적 생성자 패턴도 쓸 수는 있지만 매개변수가 많아지면 클라이언트 코드를 작성하거나 읽기 어려워 진다.
+public class Hello {   private String str;  private String str2;  private String str3;   public Hello(String str) {  System.out.println(&#34;Hello str&#34; &#43; str);  }   public Hello(String str, String str2) {  System....</p>
+  </section>
+  <footer class="entry-footer"><span title='2019-06-20 14:23:57 +0800 +0800'>June 20, 2019</span></footer>
+  <a class="entry-link" aria-label="post link to 생성자에 매개변수가 많다면 빌더를 고려하라" href="https://www.springboot.kr/posts/effective-java/effective-fava-3e-02-02/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>생성자 대신 정적 팩토리 메서드를 고려하라
     </h2>
   </header>
@@ -239,21 +254,10 @@ Github / Document
   <footer class="entry-footer"><span title='2019-03-22 14:21:02 +0800 +0800'>March 22, 2019</span></footer>
   <a class="entry-link" aria-label="post link to 자바 XML TO JSON 변환 하기" href="https://www.springboot.kr/posts/java-xml-to-json/"></a>
 </article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Archive
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>archives</p>
-  </section>
-  <footer class="entry-footer"></footer>
-  <a class="entry-link" aria-label="post link to Archive" href="https://www.springboot.kr/archives/"></a>
-</article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="prev" href="https://www.springboot.kr/posts/page/8/">« Prev Page</a>
+    <a class="next" href="https://www.springboot.kr/posts/page/10/">Next Page »</a>
   </nav>
 </footer>
     </main>
