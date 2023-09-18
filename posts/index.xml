@@ -6,7 +6,20 @@
     <description>Recent content in Posts on SPRINGBOOT.KR</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>kr-ko</language>
-    <lastBuildDate>Mon, 04 Sep 2023 22:07:31 +0900</lastBuildDate><atom:link href="https://www.springboot.kr/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Sep 2023 21:38:36 +0900</lastBuildDate><atom:link href="https://www.springboot.kr/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[DDD START SERIES] EP.8 비선점 잠금</title>
+      <link>https://www.springboot.kr/posts/java/start-ddd/ep8-start-ddd/</link>
+      <pubDate>Mon, 18 Sep 2023 21:38:36 +0900</pubDate>
+      
+      <guid>https://www.springboot.kr/posts/java/start-ddd/ep8-start-ddd/</guid>
+      <description>DDD START SERIES는 도메인 주도 개발 시작하기 책을 참고 하여 작성된 요약(?) 글 입니다.
+8.1 애그리거트와 트랜잭션. 애그리거트의 일관성이 깨지면 안된다.
+깨지는 문제가 발생하지 않으려면 2가지 방법이 있다.
+ A 수정하고 있는 동안 B에서 수정할 수 없게 막는다. A가 조회를 하고 B가 변경을 하면 A는 B의 수정이 끝나면 재조회를 해서 수정한다.  이 방법들은 애그리커트의 자체의 트랜잭션과 관련이 있다.
+DBMS가 지원하는 트랜잭션과 함께 애그리거트를 위한 추가적인 트랜잭션 처리 기법이 필요하다.</description>
+    </item>
+    
     <item>
       <title>[DDD START SERIES] EP.7 도메인 서비스</title>
       <link>https://www.springboot.kr/posts/java/start-ddd/ep7-start-ddd/</link>

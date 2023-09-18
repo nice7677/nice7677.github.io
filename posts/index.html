@@ -175,6 +175,22 @@ if (!doNotTrack) {
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>[DDD START SERIES] EP.8 비선점 잠금
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>DDD START SERIES는 도메인 주도 개발 시작하기 책을 참고 하여 작성된 요약(?) 글 입니다.
+8.1 애그리거트와 트랜잭션. 애그리거트의 일관성이 깨지면 안된다.
+깨지는 문제가 발생하지 않으려면 2가지 방법이 있다.
+ A 수정하고 있는 동안 B에서 수정할 수 없게 막는다. A가 조회를 하고 B가 변경을 하면 A는 B의 수정이 끝나면 재조회를 해서 수정한다.  이 방법들은 애그리커트의 자체의 트랜잭션과 관련이 있다.
+DBMS가 지원하는 트랜잭션과 함께 애그리거트를 위한 추가적인 트랜잭션 처리 기법이 필요하다....</p>
+  </section>
+  <footer class="entry-footer"><span title='2023-09-18 21:38:36 +0900 KST'>September 18, 2023</span></footer>
+  <a class="entry-link" aria-label="post link to [DDD START SERIES] EP.8 비선점 잠금" href="https://www.springboot.kr/posts/java/start-ddd/ep8-start-ddd/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>[DDD START SERIES] EP.7 도메인 서비스
     </h2>
   </header>
@@ -239,24 +255,6 @@ try catch 가 선언된 덕에 transcation이 실행되지 않음이다.
   </section>
   <footer class="entry-footer"><span title='2023-08-15 23:41:19 +0900 KST'>August 15, 2023</span></footer>
   <a class="entry-link" aria-label="post link to 스프링 트랙잭션과 외부 호출" href="https://www.springboot.kr/posts/spring/transaction/trainsaction-look-back-on/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>[DDD START SERIES] EP.3 애그리거트
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>DDD START SERIES는 도메인 주도 개발 시작하기 책을 참고 하여 작성된 요약 글 입니다.
-EP 3.1 애그리거트 공통된 모델을 애그리커트 단위로 묶어서 표현한다. 보기도 쉬워지고 좋다.
-상위 수준에서 모델화 모델을 정리하면 도메인의 복잡한 관계가 더 이해가 잘 된다.
-애그리거트를 단위로 묶으면 이해하는 것뿐아니라 일관성 관리에 기준이 된다. 복잡도를 줄이고 변경 시간을 줄어들게 만든다.
-애그리거트로 묶인 도메인들은 함께 생성하고 함께 제거한다.
-주문으로 묶인 집합은 애그리거트는 회원이란 애그리거트의 영역을 침범하지 않는다.
-경계를 설정할때 기본은 도메인의 규칙과 요구사항이다....</p>
-  </section>
-  <footer class="entry-footer"><span title='2023-08-12 17:38:18 +0900 KST'>August 12, 2023</span></footer>
-  <a class="entry-link" aria-label="post link to [DDD START SERIES] EP.3 애그리거트" href="https://www.springboot.kr/posts/java/start-ddd/ep3-start-ddd/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

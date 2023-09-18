@@ -2,13 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.springboot.kr/posts/java/start-ddd/ep7-start-ddd/</loc>
-    <lastmod>2023-09-04T22:07:31+09:00</lastmod>
+    <loc>https://www.springboot.kr/posts/java/start-ddd/ep8-start-ddd/</loc>
+    <lastmod>2023-09-18T21:38:36+09:00</lastmod>
   </url><url>
     <loc>https://www.springboot.kr/posts/</loc>
-    <lastmod>2023-09-04T22:07:31+09:00</lastmod>
+    <lastmod>2023-09-18T21:38:36+09:00</lastmod>
   </url><url>
     <loc>https://www.springboot.kr/</loc>
+    <lastmod>2023-09-18T21:38:36+09:00</lastmod>
+  </url><url>
+    <loc>https://www.springboot.kr/posts/java/start-ddd/ep7-start-ddd/</loc>
     <lastmod>2023-09-04T22:07:31+09:00</lastmod>
   </url><url>
     <loc>https://www.springboot.kr/posts/spring/ocp-pracitce/</loc>
