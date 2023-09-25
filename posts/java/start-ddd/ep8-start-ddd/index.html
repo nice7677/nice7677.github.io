@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>[DDD START SERIES] EP.8 비선점 잠금 | SPRINGBOOT.KR</title>
+<title>[DDD START SERIES] EP.8 애그리거트 트랜잭션 관리 | SPRINGBOOT.KR</title>
 <meta name="keywords" content="" />
 <meta name="description" content="DDD START SERIES는 도메인 주도 개발 시작하기 책을 참고 하여 작성된 요약(?) 글 입니다.
 8.1 애그리거트와 트랜잭션. 애그리거트의 일관성이 깨지면 안된다.
@@ -72,7 +72,7 @@ if (!doNotTrack) {
 	gtag('config', 'G-PM2KLTYJRP', { 'anonymize_ip': false });
 }
 </script>
-<meta property="og:title" content="[DDD START SERIES] EP.8 비선점 잠금" />
+<meta property="og:title" content="[DDD START SERIES] EP.8 애그리거트 트랜잭션 관리" />
 <meta property="og:description" content="DDD START SERIES는 도메인 주도 개발 시작하기 책을 참고 하여 작성된 요약(?) 글 입니다.
 8.1 애그리거트와 트랜잭션. 애그리거트의 일관성이 깨지면 안된다.
 깨지는 문제가 발생하지 않으려면 2가지 방법이 있다.
@@ -84,7 +84,7 @@ DBMS가 지원하는 트랜잭션과 함께 애그리거트를 위한 추가적�
 <meta property="article:modified_time" content="2023-09-18T21:38:36&#43;09:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="[DDD START SERIES] EP.8 비선점 잠금"/>
+<meta name="twitter:title" content="[DDD START SERIES] EP.8 애그리거트 트랜잭션 관리"/>
 <meta name="twitter:description" content="DDD START SERIES는 도메인 주도 개발 시작하기 책을 참고 하여 작성된 요약(?) 글 입니다.
 8.1 애그리거트와 트랜잭션. 애그리거트의 일관성이 깨지면 안된다.
 깨지는 문제가 발생하지 않으려면 2가지 방법이 있다.
@@ -106,7 +106,7 @@ DBMS가 지원하는 트랜잭션과 함께 애그리거트를 위한 추가적�
     {
       "@type": "ListItem",
       "position":  2 ,
-      "name": "[DDD START SERIES] EP.8 비선점 잠금",
+      "name": "[DDD START SERIES] EP.8 애그리거트 트랜잭션 관리",
       "item": "https://www.springboot.kr/posts/java/start-ddd/ep8-start-ddd/"
     }
   ]
@@ -116,14 +116,14 @@ DBMS가 지원하는 트랜잭션과 함께 애그리거트를 위한 추가적�
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "[DDD START SERIES] EP.8 비선점 잠금",
-  "name": "[DDD START SERIES] EP.8 비선점 잠금",
+  "headline": "[DDD START SERIES] EP.8 애그리거트 트랜잭션 관리",
+  "name": "[DDD START SERIES] EP.8 애그리거트 트랜잭션 관리",
   "description": "DDD START SERIES는 도메인 주도 개발 시작하기 책을 참고 하여 작성된 요약(?) 글 입니다.\n8.1 애그리거트와 트랜잭션. 애그리거트의 일관성이 깨지면 안된다.\n깨지는 문제가 발생하지 않으려면 2가지 방법이 있다.\n A 수정하고 있는 동안 B에서 수정할 수 없게 막는다. A가 조회를 하고 B가 변경을 하면 A는 B의 수정이 끝나면 재조회를 해서 수정한다.  이 방법들은 애그리커트의 자체의 트랜잭션과 관련이 있다.\nDBMS가 지원하는 트랜잭션과 함께 애그리거트를 위한 추가적인 트랜잭션 처리 기법이 필요하다.",
   "keywords": [
     
   ],
-  "articleBody": "DDD START SERIES는 도메인 주도 개발 시작하기 책을 참고 하여 작성된 요약(?) 글 입니다.\n8.1 애그리거트와 트랜잭션. 애그리거트의 일관성이 깨지면 안된다.\n깨지는 문제가 발생하지 않으려면 2가지 방법이 있다.\n A 수정하고 있는 동안 B에서 수정할 수 없게 막는다. A가 조회를 하고 B가 변경을 하면 A는 B의 수정이 끝나면 재조회를 해서 수정한다.  이 방법들은 애그리커트의 자체의 트랜잭션과 관련이 있다.\nDBMS가 지원하는 트랜잭션과 함께 애그리거트를 위한 추가적인 트랜잭션 처리 기법이 필요하다.\n대표적인 트랜잭션 처리 방법은 선점 잠금과 비선점 잠금의 두가지 방식이 있다.\n8.2 선점 잠금 선점 잠금은 먼저 애그리커트를 구한 스레드가 애그리거트 사용이 끝날때까지 다른 스레드가 해당 애그리거트를 수정하지 못하게 막는 방식이다.\n8.2.1 선점 잠금과 교착 상태 선점 잠금을 사용할땐 잠금 순서에 따른 교착 상태가 발생하지 않도록 주의해야한다.\n선점 잠금에 따른 교착 상태는 사용자 수가 많을때 발생할 가능성이 높다.\n또한 교착 상태에 빠지는 스레드도 빠르게 증가한다.\n이런 문제를 방지하기 위해 최대 대기 시간을 지정해야 한다.\nSpring Data Jpa는 @QueryHints 애노테이션을 사용한다.\nDBMS에 따라 교착 상태에 빠진 커넥션을 처리하는 방식이 다르기 때문에 사용하는 DBMS에 대해 JPA가 어떤 식으로 대기 시간을 처리하는지 반드시 확인해야 한다.\n",
-  "wordCount" : "170",
+  "articleBody": "DDD START SERIES는 도메인 주도 개발 시작하기 책을 참고 하여 작성된 요약(?) 글 입니다.\n8.1 애그리거트와 트랜잭션. 애그리거트의 일관성이 깨지면 안된다.\n깨지는 문제가 발생하지 않으려면 2가지 방법이 있다.\n A 수정하고 있는 동안 B에서 수정할 수 없게 막는다. A가 조회를 하고 B가 변경을 하면 A는 B의 수정이 끝나면 재조회를 해서 수정한다.  이 방법들은 애그리커트의 자체의 트랜잭션과 관련이 있다.\nDBMS가 지원하는 트랜잭션과 함께 애그리거트를 위한 추가적인 트랜잭션 처리 기법이 필요하다.\n대표적인 트랜잭션 처리 방법은 선점 잠금과 비선점 잠금의 두가지 방식이 있다.\n8.2 선점 잠금 선점 잠금은 먼저 애그리커트를 구한 스레드가 애그리거트 사용이 끝날때까지 다른 스레드가 해당 애그리거트를 수정하지 못하게 막는 방식이다.\n8.2.1 선점 잠금과 교착 상태 선점 잠금을 사용할땐 잠금 순서에 따른 교착 상태가 발생하지 않도록 주의해야한다.\n선점 잠금에 따른 교착 상태는 사용자 수가 많을때 발생할 가능성이 높다.\n또한 교착 상태에 빠지는 스레드도 빠르게 증가한다.\n이런 문제를 방지하기 위해 최대 대기 시간을 지정해야 한다.\nSpring Data Jpa는 @QueryHints 애노테이션을 사용한다.\nDBMS에 따라 교착 상태에 빠진 커넥션을 처리하는 방식이 다르기 때문에 사용하는 DBMS에 대해 JPA가 어떤 식으로 대기 시간을 처리하는지 반드시 확인해야 한다.\n8.3 비선점 잠금 선전 잠금이 강력해 보이긴 하지만 선점잠금으로 모든 트랜잭션 충돌 문제가 해결되는 것은 아니다.\n위의 그림과 같은 상황에서는 선점 잠금으로 해결할 수 없다.\n이런 문제는 DBMS 반영 시점에 가능 여부를 확인하여 변경한다.\n다음과 애그리거트에 버전을 넣어 수정할때 마다 버전으로 사용할 프로퍼티 값이 1씩 증가하게 구현하면 된다.\n이렇게 되면 다른 두 스레드간에 잘못된 데이터 수정을 방지 할 수 있다.\n8.4 오프라인 선점 잠금 선점 잠금이나 비선전 잠중으로 해결할 수 없을때 필요한 것이 오프라인 선점 잠금이다.\n단일 트랜잭션에서 막는 선점 잠금과는 달리 여러 트랜잭션에서 동시 변경을 막는다.\n첫 번째 트랜잭션은 시작하면 오프라인 잠금을 선점하고 마지막 트랜잭션에서 잠금을 해제한다.\n잠금 해제 전까지 다른 사용자는 잠금을 해제 할 수 없다.\n그림을 보면 A가 과정 3의 수정 요청을 수행하지 않고 프로그램을 종료하게 되면 잠금을 해제하지 않으므로 다른 사용자는 영원히 잠금을 구할 수 없다.\n그렇기 때문에 오프라인 선점 방식에는 잠금 유효 시간이 필요하다.\n유효시간이 지나면 자동으로 잠금을 해제해 다른 사용자가 잠금을 구할 수 있도록 해야 한다.\n오프라인 선점 잠금을 위한 방법으로는\nLockManager 인터페이스와 관련 클래스, DB를 이용한 LockManager 구현 방법이 있다.\nREFERENCE 도메인 주도 개발 시작하기\n ",
+  "wordCount" : "342",
   "inLanguage": "en",
   "datePublished": "2023-09-18T21:38:36+09:00",
   "dateModified": "2023-09-18T21:38:36+09:00",
@@ -224,7 +224,7 @@ DBMS가 지원하는 트랜잭션과 함께 애그리거트를 위한 추가적�
   <header class="post-header">
     <div class="breadcrumbs"><a href="https://www.springboot.kr/">Home</a>&nbsp;»&nbsp;<a href="https://www.springboot.kr/posts/">Posts</a></div>
     <h1 class="post-title">
-      [DDD START SERIES] EP.8 비선점 잠금
+      [DDD START SERIES] EP.8 애그리거트 트랜잭션 관리
     </h1>
     <div class="post-meta"><span title='2023-09-18 21:38:36 +0900 KST'>September 18, 2023</span>
 
@@ -243,10 +243,15 @@ DBMS가 지원하는 트랜잭션과 함께 애그리거트를 위한 추가적�
                         <a href="#82-%ec%84%a0%ec%a0%90-%ec%9e%a0%ea%b8%88" aria-label="8.2 선점 잠금">8.2 선점 잠금</a><ul>
                             
                     <li>
-                        <a href="#821-%ec%84%a0%ec%a0%90-%ec%9e%a0%ea%b8%88%ea%b3%bc-%ea%b5%90%ec%b0%a9-%ec%83%81%ed%83%9c" aria-label="8.2.1 선점 잠금과 교착 상태">8.2.1 선점 잠금과 교착 상태</a>
+                        <a href="#821-%ec%84%a0%ec%a0%90-%ec%9e%a0%ea%b8%88%ea%b3%bc-%ea%b5%90%ec%b0%a9-%ec%83%81%ed%83%9c" aria-label="8.2.1 선점 잠금과 교착 상태">8.2.1 선점 잠금과 교착 상태</a></li></ul>
                     </li>
-                </ul>
-                </li>
+                    <li>
+                        <a href="#83-%eb%b9%84%ec%84%a0%ec%a0%90-%ec%9e%a0%ea%b8%88" aria-label="8.3 비선점 잠금">8.3 비선점 잠금</a></li>
+                    <li>
+                        <a href="#84-%ec%98%a4%ed%94%84%eb%9d%bc%ec%9d%b8-%ec%84%a0%ec%a0%90-%ec%9e%a0%ea%b8%88" aria-label="8.4 오프라인 선점 잠금">8.4 오프라인 선점 잠금</a></li>
+                    <li>
+                        <a href="#reference" aria-label="REFERENCE">REFERENCE</a>
+                    </li>
                 </ul>
             </div>
         </details>
@@ -332,6 +337,35 @@ DBMS가 지원하는 트랜잭션과 함께 애그리거트를 위한 추가적�
 <p>이런 문제를 방지하기 위해 최대 대기 시간을 지정해야 한다.</p>
 <p>Spring Data Jpa는 @QueryHints 애노테이션을 사용한다.</p>
 <p>DBMS에 따라 교착 상태에 빠진 커넥션을 처리하는 방식이 다르기 때문에 사용하는 DBMS에 대해 JPA가 어떤 식으로 대기 시간을 처리하는지 반드시 확인해야 한다.</p>
+<h3 id="83-비선점-잠금">8.3 비선점 잠금<a hidden class="anchor" aria-hidden="true" href="#83-비선점-잠금">#</a></h3>
+<p>선전 잠금이 강력해 보이긴 하지만 선점잠금으로 모든 트랜잭션 충돌 문제가 해결되는 것은 아니다.</p>
+<p><img loading="lazy" src="/images/books/IMG_0239.png" alt="IMG_0239.png"  />
+</p>
+<p>위의 그림과 같은 상황에서는 선점 잠금으로 해결할 수 없다.</p>
+<p>이런 문제는 DBMS 반영 시점에 가능 여부를 확인하여 변경한다.</p>
+<p><img loading="lazy" src="/images/books/IMG_0240.png" alt="IMG_0239.png"  />
+</p>
+<p>다음과 애그리거트에 버전을 넣어 수정할때 마다 버전으로 사용할 프로퍼티 값이 1씩 증가하게 구현하면 된다.</p>
+<p>이렇게 되면 다른 두 스레드간에 잘못된 데이터 수정을 방지 할 수 있다.</p>
+<h3 id="84-오프라인-선점-잠금">8.4 오프라인 선점 잠금<a hidden class="anchor" aria-hidden="true" href="#84-오프라인-선점-잠금">#</a></h3>
+<p>선점 잠금이나 비선전 잠중으로 해결할 수 없을때 필요한 것이 오프라인 선점 잠금이다.</p>
+<p>단일 트랜잭션에서 막는 선점 잠금과는 달리 여러 트랜잭션에서 동시 변경을 막는다.</p>
+<p>첫 번째 트랜잭션은 시작하면 오프라인 잠금을 선점하고 마지막 트랜잭션에서 잠금을 해제한다.</p>
+<p>잠금 해제 전까지 다른 사용자는 잠금을 해제 할 수 없다.</p>
+<p><img loading="lazy" src="/images/books/IMG_0241.png" alt="IMG_0239.png"  />
+</p>
+<p>그림을 보면 A가 과정 3의 수정 요청을 수행하지 않고 프로그램을 종료하게 되면 잠금을 해제하지 않으므로 다른 사용자는 영원히 잠금을 구할 수 없다.</p>
+<p>그렇기 때문에 오프라인 선점 방식에는 잠금 유효 시간이 필요하다.</p>
+<p>유효시간이 지나면 자동으로 잠금을 해제해 다른 사용자가 잠금을 구할 수 있도록 해야 한다.</p>
+<p>오프라인 선점 잠금을 위한 방법으로는</p>
+<p>LockManager 인터페이스와 관련 클래스, DB를 이용한 LockManager 구현 방법이 있다.</p>
+<p><img loading="lazy" src="/images/books/ddd.gif" alt="dd"  />
+</p>
+<h3 id="reference">REFERENCE<a hidden class="anchor" aria-hidden="true" href="#reference">#</a></h3>
+<p><img loading="lazy" src="/images/books/start-ddd.jpeg" alt="itssobeauti"  />
+
+도메인 주도 개발 시작하기</p>
+<hr>
 
 
   </div>
